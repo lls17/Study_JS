@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/*div:nth-of-type(odd){
+				background:yellow;
+			}
+			div:nth-of-type(even){
+				background:pink;
+			}*/
+			#box{
+				width: 500px;
+				height: 500px;
+				border: 10px solid #000;
+			}
+			#box div{
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!--<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>-->
+		<!--
+			需求：
+				生成10个隔行变色的div
+				
+			
+		-->
+		<script>
+			var box = document.getElementById("box");
+		    for(var i = 0;i<10;i++){
+//		    	document.body.innerHTML += "<div></div>";
+//				if( i<5 ){//上面五个是粉色，下面五个是黄色
+				if( i%2 == 0 ){
+					box.innerHTML += "<div style='background:pink'></div>";
+				}else{
+					box.innerHTML += "<div style='background:yellow'></div>";
+				}
+		   }
+		</script>
+	</body>
+</html>

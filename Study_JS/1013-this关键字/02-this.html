@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--	
+			this
+				js中的关键字
+				js内部已经定义好了
+				
+			this的指向
+				1、在函数外部使用
+					this指向的是window
+					
+				2、在函数内部使用
+					有名函数
+						直接调用 this指的还是window
+						通过事件调用，事件是谁触发的 this指的就是谁
+					匿名函数
+						通过事件调用，事件是谁触发的 this指的就是谁
+					
+		-->
+		<div id="box">div</div>
+		<script>
+//		    alert( this );//window
+			function fn1(){
+				alert(this);
+			}
+//			fn1();//直接调用函数，this指向的是window
+			
+			var box = document.getElementById("box");
+//			document.onclick = fn1//this指的是document
+//			box.onclick = fn1;//this指的是box
+
+//			box.onclick= function(){
+//				alert(this);
+//			}
+		</script>
+	</body>
+</html>

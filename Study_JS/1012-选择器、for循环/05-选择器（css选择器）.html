@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#list .active{
+				
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			通过css选择器选择元素：
+				document.querySelector("css选择器")
+					注意：选择到的是 一个 元素(不用加下标)
+			
+		-->
+		<ul id="list">
+			<li class="active">1</li>
+			<li class="active">2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<script>
+//			var list = document.getElementById("list");
+//			list.getElementsByClassName("active")[0].style.background = "yellow";
+//			list.getElementsByClassName("active")[1].style.background = "yellow";
+			
+//			console.log( document.querySelector("#list") );//id为list的元素
+			console.log( document.querySelector("#list .active") );//list下面class为active的元素
+			console.log( document.querySelector("li") );//页面中所有的li
+
+//			document.querySelector("#list").style.background = "yellow";//选择到的是一个元素(不用加下标)
+			
+		</script>
+	</body>
+</html>

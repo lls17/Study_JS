@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: #f00;
+				color: #fff;
+				font-size: 50px;
+				line-height: 100px;
+				text-align: center;
+				display: none;
+			}
+			div.show{
+				display: block;
+			}
+			input.active{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			需求：
+				点击按钮按钮颜色高亮
+				显示对应的div
+			
+			思路：
+				1获取元素
+				2为按钮添加点击事件处理函数
+					3把上一个点击的按钮class去掉
+						给点击的按钮添加上class
+					4把上一个显示的div的class去掉
+						给点击的按钮对应的div加上class
+					5然后把上一个（last）的值改变
+		-->
+		<input class="active" type="button" value="选项1" />
+		<input type="button" value="选项2" />
+		<input type="button" value="选项3" />
+		<div class="show">1</div>
+		<div>2</div>
+		<div>3</div>
+		<script>
+//		1获取元素
+			var inps = document.getElementsByTagName("input");
+			var divs = document.getElementsByTagName("div");
+			var last = 0;//上一个默认为0
+//		2为所有的按钮添加点击事件处理函数
+			for (var i = 0; i < inps.length; i++) {
+				inps[i].index = i;//为所有的input添加索引（自定义属性）
+				inps[i].onclick = function(){
+//					3把上一个点击的按钮class去掉
+					inps[last].className = "";
+//						给点击的按钮添加上class
+					this.className = "active";
+					
+//					4把上一个显示的div的class去掉
+					divs[last].className = "";
+//						给点击的按钮对应的div加上class
+					divs[this.index].className = "show";
+					last = this.index;
+//					5然后把上一个（last）的值改变
+				}
+			}
+		</script>
+	</body>
+</html>

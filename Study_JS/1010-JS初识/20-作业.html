@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+		body {
+			padding-left: 20px;
+			height: 100%;
+		}
+		span {
+			display: inline-block;
+			font-size: 20px;
+			margin-top: 30px;
+			vertical-align: top;
+		}
+		#define {
+			width: 100px;
+			height: 40px;
+			text-align: center;
+			font-weight: bold;
+			line-height: 40px;
+			padding: 0px 20px;
+			border: 1px solid #000;
+			display: inline-block;
+			margin-top: 20px;
+			vertical-align: top;
+			font-size: 20px;
+			background-color: red;
+			color: #FFFFFF;
+		}
+		.div1 {
+			width: 100px;
+			height: 100px;
+			border: 5px solid #000;
+			transition: 1s;
+		}
+		.div2 {
+			width: 300px;
+			height: 200px;
+			border: 20px solid #9c949c;
+			margin:  0 auto;
+			font-size: 0px;
+			text-align: center;
+			padding-top: 16px;
+			display: none;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -160px;
+			margin-top: -110px;
+			z-index: 22;
+			background-color: #fff;
+		}
+		.div2 li {
+			display: inline-block;
+			vertical-align: top;
+			margin-bottom: 8px;
+		}
+		#box {
+			margin-top: 20px;
+		}
+		.div2 li span {
+			float: left;
+			line-height: 30px;
+			font-size: 16px;
+			margin-top: 0px;
+		}
+		.div2 li a {
+			float: left;
+			font-size: 12px;
+			width: 36px;
+			height: 32px;
+			line-height: 32px;
+			text-align: center;
+			margin-right: 5px;
+		}
+		li>a:nth-of-type(1) {
+			color: #fff;
+			background-color: red;
+		}
+		li>a:nth-of-type(2) {
+			color: #ffff00;
+			background-color: #efbd00;
+		}
+		li>a:nth-of-type(3) {
+			color: #fff;
+			background-color: #5a94ef;
+		}
+		.div2 .list>a {
+			background-color: #efefef;
+			color: #808080;
+			border: 1px solid #c0c0c0;
+			box-sizing: border-box;
+		}
+		.list2 {
+			margin-top: 12px;
+			height: 30px;
+		}
+		.div2 .list2>a {
+			float: left;
+			height: 30px;
+			width: 60px;
+			text-align: center;
+			line-height: 30px;
+			background-color: #002952;
+			color: #fff;
+		}
+		#wrap {
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.3);
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<span>请为下面的DIV设置样式：</span><a id="define" href="javascript:;">点击设置</a>
+	<div class="div1" id="box"></div>
+	<div id="wrap"></div>
+	<ul class="div2" id="tc">
+		<li>
+			<span>请选择背景图片：</span>
+			<a id="red" href="javascript:;">红</a>
+			<a id="yellow" href="javascript:;">黄</a>
+			<a id="blue" href="javascript:;">蓝</a>
+		</li>
+		<li class="list">
+			<span>请选择宽度(px)：</span>
+			<a id="w2" href="javascript:;">200</a>
+			<a id="w3" href="javascript:;">300</a>
+			<a id="w4" href="javascript:;">400</a>
+		</li>
+		<li class="list">
+			<span>请选择高度(px)：</span>
+			<a id="h2" href="javascript:;">200</a>
+			<a id="h3" href="javascript:;">300</a>
+			<a id="h4" href="javascript:;">400</a>
+		</li>
+		<li class="list2">
+			<a id="resume" href="javascript:;">恢复</a>
+			<a id="fix" href="javascript:;">确认</a>
+		</li>
+	</ul>
+	<script>
+		var obox = document.getElementById("box");
+		var odefine = document.getElementById("define");
+		var owrap = document.getElementById("wrap");
+		var otc = document.getElementById("tc");
+		
+		function show(){
+			owrap.style.display = "block";
+			otc.style.display = "block";
+		}
+		function hide(){
+			owrap.style.display = "none";
+			otc.style.display = "none";
+		}
+		odefine.onclick = function(){
+			show();
+		};
+		
+		var ored = document.getElementById("red");
+		var oyellow = document.getElementById("yellow");
+		var oblue = document.getElementById("blue");
+		ored.onclick = function(){
+			obox.style.backgroundColor = "red";
+		};
+		oyellow.onclick = function(){
+			obox.style.backgroundColor = "yellow";
+		};
+		oblue.onclick = function(){
+			obox.style.backgroundColor = "blue";
+		};
+		
+		var ow2 = document.getElementById("w2");
+		var ow3 = document.getElementById("w3");
+		var ow4 = document.getElementById("w4");
+		ow2.onclick = function(){
+			obox.style["width"] = "200px";
+		};
+		ow3.onclick = function(){
+			obox.style["width"] = "300px";
+		};
+		ow4.onclick = function(){
+			obox.style["width"] = "400px";
+		};
+		
+		var oh2 = document.getElementById("h2");
+		var oh3 = document.getElementById("h3");
+		var oh4 = document.getElementById("h4");
+		oh2.onclick = function(){
+			obox.style["height"] = "200px";
+		};
+		oh3.onclick = function(){
+			obox.style["height"] = "300px";
+		};
+		oh4.onclick = function(){
+			obox.style["height"] = "400px";
+		};
+		
+		var oresume = document.getElementById("resume");
+		var ofix = document.getElementById("fix");
+		ofix.onclick = function(){
+			hide();
+		};
+		oresume.onclick = function(){
+			hide();
+			obox.style = "";
+			obox.className = "div1";
+		};
+	</script>
+</body>
+</html>

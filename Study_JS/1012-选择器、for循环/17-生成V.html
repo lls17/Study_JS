@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+	#box{
+		width: 500px;
+		height: 500px;
+		border: 10px solid #000;
+		position: relative;
+	}
+	#box div{
+		width:100px;
+		height:100px;
+		background-color:pink;
+		position: absolute;
+		color: #000;
+		font-size: 80px;
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+//
+
+//	i 	top		left
+//	0	0		100*i
+//	1   100 	
+//	2 	200
+//	3	100
+//	4	0
+	var box = document.getElementById("box");
+	function fnUp(){
+		for(var i = 0;i<5;i++){
+			if(i<3){
+				box.innerHTML += "<div style='left:"+100*i+"px;top:"+100*i+"px'>"+i+"</div>";
+			}else{
+				box.innerHTML += "<div style='left:"+100*i+"px;top:"+(400-100*i)+"px'>"+i+"</div>";
+			}
+		}
+	}
+	function fnRight(){
+		alert("生成向右的v");
+	}
+	function fnBlow(){
+		alert("生成向下的v");
+	}
+	function fnLeft(){
+		alert("生成向左的v");
+	}
+	var num = 0;
+	document.onclick = function(){
+//		num++;
+		if( num == 0 ){
+			fnUp();
+		}
+		if( num == 1 ){
+			fnRight();
+		}
+		if( num == 2 ){
+			fnBlow();
+		}
+		if( num == 3 ){
+			fnLeft();
+		}
+		num++;
+//		if(num == 4){
+//			num = 0;
+//		}
+//		num = num % 4;//可以简写成下面的形式:
+		num %= 4;	
+	};
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		<div class="box clear">
+			<input type="button" id="btn1" value="上一组" />
+			<input type="button" id="btn2" value="下一组" />
+			<div id="contentl">
+				<img id="con_img1" src="img/1.jpg"/>
+				<p id="p1">这是第一组的第1张</p>
+				<span id="xb1">1/4</span>
+				<a id="lldj" href="javascript:;"></a>
+				<a id="lrdj" href="javascript:;"></a>
+			</div>
+			<div id="contentr">
+				<img id="con_img2" src="img/01.jpg"/>
+				<p id="p2">这是第二组的第1张</p>
+				<span id="xb2">1/3</span>
+				<a id="rldj" href="javascript:;"></a>
+				<a id="rrdj" href="javascript:;"></a>
+			</div>
+			<script>
+				var content = document.getElementById("contentl");
+				var con_Img1 = document.getElementById("con_img1");
+				var xb1 = document.getElementById("xb1");
+				var xb2 = document.getElementById("xb2");
+				var lldj = document.getElementById("lldj");
+				var lrdj = document.getElementById("lrdj");
+				var rldj = document.getElementById("rldj");
+				var rrdj = document.getElementById("rrdj");
+				var p1 = document.getElementById("p1");
+				var p2 = document.getElementById("p2");
+				var con_Img2 = document.getElementById("con_img2");
+				var btn1 = document.getElementById("btn1");
+				var btn2 = document.getElementById("btn2");
+				 
+			 	var con_Img1Atrr = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+			 	var con_Img2Atrr = ["img/01.jpg","img/02.jpg","img/03.jpg"]; 
+			 	var p1Atrr = ["这是第一组的第1张","这是第一组的第2张","这是第一组的第3张","这是第一组的第4张"];
+			 	var p2Atrr = ["这是第二组的第1张","这是第二组的第2张","这是第二组的第3张"];
+			 	function tab1(){
+			 		con_Img1.src = con_Img1Atrr[num];
+			 		p1.innerHTML = p1Atrr[num];
+			 		xb1.innerHTML = num+1 +"/"+ p1Atrr.length;
+			 	}
+			 	function tab2(){
+			 		con_Img2.src = con_Img2Atrr[num2];
+			 		p2.innerHTML = p2Atrr[num2];
+			 		xb2.innerHTML = num2+1 +"/"+ p2Atrr.length;
+			 	}
+			 	var num = 0;	
+			 	var num2 = 0;
+			 	lldj.onclick = function(){
+			 		num --;
+			 		if( num<0 ){
+			 			num = con_Img1Atrr.length-1;
+			 		}
+			 		tab1();
+			 	}
+			 	lrdj.onclick = function(){
+			 		num ++;
+			 		if( num>=con_Img1Atrr.length ){
+			 			num = 0;
+			 		}
+			 		tab1();
+			 	}
+				rldj.onclick = function(){
+					num2 --;
+			 		if( num2<0 ){
+			 			num2 = con_Img2Atrr.length-1;
+			 		}
+			 		tab2();
+				}
+				rrdj.onclick = function(){
+			 		num2 ++;
+			 		if( num2>=con_Img2Atrr.length ){
+			 			num2 = 0;
+			 		}
+			 		tab2();
+			 	}
+				btn1.onclick =function(){
+					num --;
+					num2 --;
+					if(num<0){
+						num = con_Img1Atrr.length-1;
+			 	}
+					if(num2<0){
+						num2 = con_Img2Atrr.length-1;
+					}
+					tab1();
+					tab2();
+				}
+				btn2.onclick =function(){
+					num ++;
+					num2 ++;
+					if(num >=con_Img1Atrr.length){
+						num = 0;
+			 	}
+					if(num2>=con_Img2Atrr.length){
+						num2 = 0;
+					}
+					tab1();
+					tab2();
+				}
+			</script>
+		</div>
+	</body>
+</html>

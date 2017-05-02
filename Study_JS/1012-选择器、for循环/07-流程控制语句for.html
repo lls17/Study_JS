@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			for循环
+			作用
+				根据一定的条件，重复的执行一行或多行代码
+			
+			语法：
+				for(1、初始化;2、判断条件;4、变量改变){
+					3、条件成立的时候执行的一行或者多行代码
+				}
+			
+			执行顺序：
+				1、初始化 (在for循环执行的时候只执行一次)
+				2、判断条件
+				3、条件成立的时候执行的一行或者多行代码
+				4、变量改变
+				
+				2、判断条件
+				3、条件成立的时候执行的一行或者多行代码
+				4、变量改变
+				..。
+				
+				4、变量改变
+				2、判断条件
+					如果判断条件不成立，则跳出循环
+					
+			千万注意：
+				一定要加上 正确的 判断条件和变量的改变
+		-->
+		<ul id="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<script>
+			var list = document.getElementById("list");
+			var lis = list.getElementsByTagName("li");
+//			lis[0].style.background = "yellow";
+//			lis[1].style.background = "yellow";
+//			lis[2].style.background = "yellow";
+//			lis[3].style.background = "yellow";
+//			lis[4].style.background = "yellow";
+
+			//弹5次1
+//			alert(1);
+//			alert(1);
+//			alert(1);
+//			alert(1);
+//			alert(1);
+			
+//			语法：
+//				for(1、初始化;2、判断条件;4、变量改变){
+//					3、条件成立的时候执行的一行或者多行代码
+//				}
+
+			for( var i=0;i<5;i++ ){
+				alert( 1 );
+			}
+			/*
+				1 初始化 				var i = 0
+				2 判断条件 			i<5
+				3 条件成立的时候执行代码 	alert(1)
+				4 变量改变 			i++    此时i变成了1
+				
+				2 判断条件 			i<5
+				3 条件成立的时候执行代码 	alert(1)
+				4 变量改变 			i++    此时i变成了2
+				
+				2 判断条件 			i<5
+				3 条件成立的时候执行代码 	alert(1)
+				4 变量改变 			i++    此时i变成了3
+				
+				2 判断条件 			i<5
+				3 条件成立的时候执行代码 	alert(1)
+				4 变量改变 			i++    此时i变成了4
+				
+				2 判断条件 			i<5
+				3 条件成立的时候执行代码 	alert(1)
+				4 变量改变 			i++    此时i变成了5
+				
+				2 判断条件 			i<5
+					条件不成立 跳出循环
+			*/
+		</script>
+	</body>
+</html>

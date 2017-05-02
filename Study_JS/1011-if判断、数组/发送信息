@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul{
+				padding:0;
+				margin:0;
+				list-style-type:none;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" value="" id="text"/>
+		<input type="button" value="Sent" id="btn"/>
+		<ul id="list"></ul>
+		<script>
+			var text = document.getElementById("text");
+			var btn = document.getElementById("btn");
+			var list = document.getElementById("list");
+			
+			btn.onclick = function(){
+				var str = text.value;
+				text.value = "";
+				list.innerHTML+= "<li>"+str+"</li>";
+			}
+		</script>
+	</body>
+</html>

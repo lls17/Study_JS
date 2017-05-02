@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/*#box1{
+				
+			}
+			#box2{
+				
+			}
+			#box3{
+				
+			}*/
+			/*div{
+				
+			}*/
+			
+			#list1 li{
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1">1</div>
+		<div id="box2">2</div>
+		<div id="box3">3</div>
+		<ul id="list1">
+			<li>1</li>
+			<li>1</li>
+			<li>1</li>
+		</ul>
+		<ul id="list2">
+			<li>2</li>
+			<li>2</li>
+			<li>2</li>
+		</ul>
+		<!--
+			通过标签名的方式获取元素
+				document.getElementsByTagName("标签名");
+				元素.getElementsByTagName("标签名");
+				
+					比如：
+						list1.getElementsByTagName("li")
+				
+				获取到的是一组元素（类似于数组），如果要操作集合中的某一个元素，一定要用下标形式
+				
+				获取到的 一组元素有length属性
+				
+					比如 document.getElementsByTagName("div").length
+		-->
+		<script>
+//			document.getElementById("box1");
+//			document.getElementById("box2");
+//			document.getElementById("box3");
+
+//			alert( document.getElementsByTagName("div") );//[object HTMLCollection]
+//			alert( document.getElementsByTagName("div")[0] );//[object HTMLDivElement]
+
+//			alert( document.getElementsByTagName("div").length );
+
+			//获取页面中所有的li:
+//			document.getElementsByTagName("li")
+//			alert( document.getElementsByTagName("li").length );
+			
+			var list1 = document.getElementById("list1");
+//			list1.getElementsByTagName("li")
+//			alert( list1.getElementsByTagName("li").length );
+//			console.log( 1 );//在控制台中打印内容，不会阻止下面代码的执行
+//			console.log( list1.getElementsByTagName("li") );
+		</script>
+	</body>
+</html>

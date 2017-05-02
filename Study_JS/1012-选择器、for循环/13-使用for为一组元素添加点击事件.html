@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			需求：
+				点击每个div都弹一个1
+			思路：
+				1获取到所有的div
+				2点击每一个div的时候都做一些事情
+				3弹1
+		-->
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>3</div>
+		<div>4</div>
+		<script>
+//			1获取到所有的div
+			var divs = document.getElementsByTagName("div");
+//			console.log( divs );
+//			divs[0].onclick = function(){//一定要记得加下标
+//				alert(1);
+//			}
+//			divs[1].onclick = function(){//一定要记得加下标
+//				alert(1);
+//			}
+//			divs[2].onclick = function(){//一定要记得加下标
+//				alert(1);
+//			}
+//			divs[3].onclick = function(){//一定要记得加下标
+//				alert(1);
+//			}
+//			2点击每一个div的时候都做一些事情
+			for(var i = 0;i<divs.length;i++){
+				divs[i].onclick = function(){
+					alert(1);
+				}
+			}
+			alert( i );//for循环结束的时候i已经变成了4
+		</script>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				background-color:black;
+			}
+			div{
+				position:relative;
+			}
+			#img1{
+				display:block;
+				margin:0 auto;
+				width:200px;
+				height:400px;
+				vertical-align:top;
+				border:none;				
+			}
+			#btn1{
+				position:absolute;
+				top:20px;
+				left:580px;
+			}
+			#btn2{
+				position:absolute;
+				top:20px;
+				right:580px;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="img/IMG_1WcqA5.PNG" alt="" id="img1"/>
+		<div>
+			<input type="button" value="上一张" id="btn1"/>
+			<input type="button" value="下一张" id="btn2"/>
+		</div>
+		<script>
+			var img1 = document.getElementById("img1");
+			var btn1 = document.getElementById("btn1");
+			var btn2 = document.getElementById("btn2");
+			
+			var picArr = ["img/IMG_1WcqA5.PNG","img/IMG_43ea1.PNG","img/IMG_9mdaq.PNG","img/IMG_r3e57.PNG","img/IMG_UmHs1.PNG","img/IMG_yHl1s.PNG"];
+			var num = 0;
+			img1.src = picArr[num];
+			btn1.onclick = function(){
+				num--;
+				if(num<0){
+					num = picArr.length-1;
+				}
+				img1.src = picArr[num];
+			}
+			btn2.onclick = function(){
+				num ++;
+				if(num>=picArr.length){
+					num = 0;
+				}
+				img1.src = picArr[num];
+			}
+		</script>
+	</body>
+</html>

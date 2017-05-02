@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			div{
+				width:200px;
+				height:200px;
+				background-color:peachpuff;
+				transition:2s;
+			}
+		</style>
+	</head>
+	<body>
+		属性：<input type="text" value="" id="text1"/>
+		值：<input type="text" value="" id="text2"/>
+		<input type="button" value="click" id="btn"/>
+		<div id="box">div</div>
+		<script>
+			var text1 = document.getElementById("text1");
+			var text2 = document.getElementById("text2");
+			var btn = document.getElementById("btn");
+			var box = document.getElementById("box");
+			
+			btn.onclick = function(){
+				var attr = text1.value;
+				var result = text2.value;
+				box.style[attr] = result;
+			}
+		</script>
+	</body>
+</html>

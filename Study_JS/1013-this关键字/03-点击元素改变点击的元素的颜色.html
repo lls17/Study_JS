@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			需求：
+				点击每个div，把点击的div背景色变成黄色
+				
+			
+		-->
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<script>
+//			获取元素
+		    var divs = document.getElementsByTagName("div");
+//		  	为所有的div添加点击事件处理函数
+			for (var i = 0; i < divs.length; i++) {
+				divs[i].onclick = function(){
+//					改变点击的div 的背景颜色
+//					alert( i );//注意在for循环执行完之后，i的值已经变成4了
+//					divs[i].style.background = "yellow";
+					this.style.background = "yellow";//此处的this指的是点击的那个div
+				}
+			}
+			
+		</script>
+	</body>
+</html>

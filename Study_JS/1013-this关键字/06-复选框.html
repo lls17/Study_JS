@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 25px;
+				height: 25px;
+				border: 1px solid #000;
+				display: inline-block;
+			}
+			.active{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<input type="checkbox" name="hob" id="" />吃饭
+		<input type="checkbox" name="hob" id="" />睡觉
+		<input type="checkbox" name="hob" id="" />打多多-->
+		<div class="box1"></div>吃饭
+		<div></div>睡觉
+		<div></div>打多多
+		<!--
+			需求：
+				模拟复选框
+				
+			思路：
+				1获取元素
+				2为所有div添加点击事件处理函数
+					3	如果点击的这个元素是已被选中的(如果class是active)
+							去掉class
+						否则
+							添加class
+			
+		-->
+			
+		<script>
+//		1获取元素
+		    var divs = document.getElementsByTagName("div");
+//		    var onoff = true//用true对应没有选中（没有“active”）用false对应选中（有“active”）
+//		2为所有div添加点击事件处理函数
+		    for (var i = 0; i < divs.length; i++) {
+		    	divs[i].onoff = true;
+		    	divs[i].onclick = function(){
+		    		//如果点击的这个元素是已被选中的(如果class是active)
+//		    		if( this.className == "active" ){//注意：如果直接使用class做判断，无法确定这个元素身上到底有多少class，所以判断条件不好写，我们使用变量对应了“active”是否存在
+					if( this.onoff == false ){//判断点击的元素身上的开关
+//		    			去掉class
+						this.className = "";
+						this.onoff = true;
+		    		}else{
+		    			this.className = "active";
+		    			this.onoff = false;
+		    		}
+//		    		console.log( "divs[0]身上的开关是"+divs[0].onoff+"，divs[1]身上的开关是"+divs[1].onoff+"，divs[2]身上的开关是"+divs[2].onoff );
+		    	}
+		    }
+		</script>
+	</body>
+</html>

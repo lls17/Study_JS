@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			需求：
+			
+				改变list下所有li 的背景颜色为黄色
+			
+		-->
+		<ul id="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<script>	
+//			1获取list
+			var list = document.getElementById("list");
+//			2获取list下面所有的li(通过标签名获取)
+			var lis = list.getElementsByTagName("li");
+			//当然上面的两句话可以写成下面的这一句话，但是不推荐。防止null的情况
+//			var lis = document.getElementById("list").getElementsByTagName("li");
+
+//			lis.style.background = "yellow";//不可以，获取到的是一组元素，一定要记得使用下标
+			lis[0].style.background = "yellow";
+			lis[1].style.background = "yellow";
+			lis[2].style.background = "yellow";
+			lis[3].style.background = "yellow";
+			lis[4].style.background = "yellow";
+		</script>
+	</body>
+</html>

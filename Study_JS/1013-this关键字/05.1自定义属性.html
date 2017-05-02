@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			需求：
+				点击div弹出这个div是第几个
+			
+			元素.属性名 
+			元素.属性名 = 值
+			
+			自定义属性：
+				当js中的属性已经不能满足编程需要了，那么我们需要自己定义属性，这个自己定义的属性就叫做自定义属性
+				
+			为元素添加自定义属性
+			
+			元素.属性名 = 值
+			
+		-->
+		
+		<!--
+			问题1：自定义属性加在哪了？审查元素时无法在行内样式看到？
+			问题2：JS设置的自定义属性 和 HTML元素里自定义属性的关系？  怎样获取调用？
+			
+		-->
+		<div a="10000">a</div>
+		<div>b</div>
+		<div>c</div>
+		<div>d</div>
+		<div>d</div>
+		<div>d</div>
+		<script>
+			var divs = document.getElementsByTagName("div");
+//			为元素添加自定义属性,对应元素是div中的第几个
+//			divs[0].a = 0;
+//			divs[1].a = 1;
+//			divs[2].a = 2;
+//			divs[3].a = 3;
+//			可以写成下面for循环的形式
+//			for(var i = 0;i<divs.length;i++){
+//				divs[i].a = i;
+//			}
+			
+//			alert( divs[2].a );
+			
+			for (var i = 0; i < divs.length; i++) {
+				divs[i].a = i;
+				divs[i].onclick = function(){
+					//点的是谁就弹出谁身上的a
+					alert( this.a+1 );
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			需求：
+				改变list下所有li 的背景颜色为黄色
+			
+		-->
+		<ul id="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<script>
+			var list = document.getElementById("list");
+			var lis = list.getElementsByTagName("li");
+//			lis[0].style.background = "yellow";
+//			lis[1].style.background = "yellow";
+//			lis[2].style.background = "yellow";
+//			lis[3].style.background = "yellow";
+//			lis[4].style.background = "yellow";
+
+//			控制所有li的样式
+//			for(var i = 0;i<10;i++){
+			for(var i = 0;i<lis.length;i++){
+				lis[i].style.background = "yellow";
+			}
+			/*
+			i = 0
+			i<5
+			lis[0].style.background = "yellow";
+			
+			i++ i变成1
+			i<5
+			lis[1].style.background = "yellow";
+			
+			i++ i变成2
+			i<5
+			lis[2].style.background = "yellow";
+			
+			...
+			lis[4].style.background = "yellow";
+			
+			i++ i变成5
+			i<5
+				条件不成立 跳出循环
+			*/
+			
+		</script>
+	</body>
+</html>

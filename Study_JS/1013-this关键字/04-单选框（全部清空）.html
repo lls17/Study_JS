@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box2 span{
+				width: 25px;
+				height: 25px;
+				border: 1px solid #000;
+				display: inline-block;
+			}
+			.active{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<input type="radio" name="sex"/>男
+		<input type="radio" name="sex"/>女
+		<input type="radio" name="sex"/>？-->
+		<div id="box2">
+			<span class="active"></span>男
+			<span></span>女
+			<span></span>不详
+		</div>
+		<!--
+			需求：
+				模拟单选框效果
+				
+			思路：
+				1获取元素
+				2为所有span添加点击事件处理函数
+					3把所有span的class全部去掉
+					4给点击的span添加上class
+		-->
+		<script>
+//		1获取元素
+//		    var box2 = document.getElementById("box2");
+//		    var spans = box2.getElementsByTagName("span");
+		    var spans = document.querySelectorAll("#box2 span");
+//		2为所有元素添加点击事件处理函数
+			for(var i = 0;i<spans.length;i++){
+				spans[i].onclick = function(){
+					
+//					3把所有span的class全部去掉
+					for(var i = 0;i<spans.length;i++){
+						spans[i].className = "";
+					}
+//					alert(1);
+//					4给点击的span添加上class
+					this.className = "active";
+				}
+			}
+		</script>
+	</body>
+</html>

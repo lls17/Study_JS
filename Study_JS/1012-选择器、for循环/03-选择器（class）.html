@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#list1 .active{
+				
+			}
+			#list li{
+				
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			通过class名获取元素
+			
+				document.getElementsByClassName("class名");
+				元素.getElementsByClassName("class名");//从元素内部获取所有指定class的元素
+					
+			
+				获取到的是一组元素（类似于数组），如果要操作集合中的某一个元素，一定要用下标形式[]
+				获取到的 一组元素有length属性
+				
+					比如 document.getElementsByClassName("box1").length
+		-->
+		<div class="box1">box1</div>
+		<div class="box2">box2</div>
+		<div class="box2">box2</div>
+		<ul id="list1">
+			<li class="active">1</li>
+			<li>1</li>
+			<li>1</li>
+		</ul>
+		<ul id="list2">
+			<li>2</li>
+			<li>2</li>
+			<li>2</li>
+		</ul>
+		<script>	
+//			document.getElementsByClassName("box1");
+//			console.log( document.getElementsByClassName("box1") );
+
+//			获取list1下面所有class为active的元素
+//			var list1 = document.getElementById("list1");
+//			console.log( list1.getElementsByClassName("active") );
+			
+//			获取list1下面所有class为active的元素,添加背景颜色为黄色
+//				注意:操作一组元素的时候,一定要记得是针对这个集合中的某一个元素进行设置的,一定要加下标
+			var list1 = document.getElementById("list1"); 
+			list1.getElementsByClassName("active")[0].style.background = "yellow";
+//			比如10月10日js班是一个聚合,集合是没有性别的,只有集合中的元素（单独的个人）才会有性别属性,所以需要加上下标
+//			10月10日js班[0].性别（√）
+//			10月10日js班.性别（X）
+		</script>
+	</body>
+</html>

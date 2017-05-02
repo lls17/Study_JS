@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box= document.getElementById("box");
+			var str = "";
+			console.time("生成1000个div");
+//			for (var i = 0; i < 3000; i++) {
+//				box.innerHTML += "<div></div>";//注意：尽量不要在for中渲染页面,在此时渲染了3000次页面
+//			}
+			for (var i = 0; i < 300000; i++) {
+				str += "<div></div>";
+			}
+			box.innerHTML = str;//渲染一次页面
+			console.timeEnd("生成1000个div");
+		</script>
+	</body>
+</html>
