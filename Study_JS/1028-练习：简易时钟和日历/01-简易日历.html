@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			li{
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				float: left;
+				width: 100px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				border: 1px solid #000;
+				box-sizing: border-box;
+			}
+			
+			#list{
+				width: 700px;
+				height: 50px;
+			}
+			#content{
+				width: 700px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			前面空几格：
+				这个月的第一天是周几？
+			
+			一共生成多少个li：
+				这个月有多少天？+这个月第一天是周几？
+		-->
+		<div id="box">
+			<ul id="list">
+				<li>日</li>
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+				<li>六</li>
+			</ul>
+			<ul id="content">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<script>
+			var content = document.getElementById("content");
+			var now = new Date();
+			now.setDate(1);//设置日期为这个月的第一天
+//			console.log( now );
+			var week = now.getDay();
+			console.log( week );//这个月的第一天是周几
+			
+//			获取这个月有多少天?
+//				设置月份为下个月,再设置日期为0，就会把时间设置为这个月的最后一天，再获取这个时间的日期
+			var nowMonth = now.getMonth();//获取当前月份值
+			nowMonth++;
+//			alert(nowMonth);
+			now.setMonth( nowMonth );
+//			console.log( now );//11月1日
+			now.setDate(0);
+			console.log( now );//10月31日
+			var monthLength = now.getDate();//31
+//			alert( monthLength );
+//			通过monthLength和week生成li
+			var str = "";
+			for (var i = 0; i < monthLength+week; i++) {
+				if( i<week ){
+					str+="<li style='opacity:0'></li>";
+				}else{
+					str+="<li>"+(i-week+1)+"</li>";
+				}
+			}
+			content.innerHTML = str;
+		</script>
+	</body>
+</html>

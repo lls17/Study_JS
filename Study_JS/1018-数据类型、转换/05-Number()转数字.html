@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			Number(数据)
+				把数据转变成数字，返回这个数字
+					但是不会转变括号中数据的类型
+				
+			如果数据的内容是纯粹的数字，才可以转成数字
+				否则会转换出NaN
+				
+			NaN：
+				not a number不是数字
+					数据类型是Number
+				注意：NaN和任何东西都不相等，包括他自己
+			
+		-->
+		<script>
+//		    alert( Number("1") )//1
+//			alert( Number(" 1") )//1
+//			alert( Number( "" ) );//0
+
+//			alert( Number("~!1") )//NaN
+//			alert( Number("100px") )//NaN
+			alert( NaN == 0 )//number
+//			alert( 1213123 == 1213123 )//true
+//			alert( NaN == 1 );//false
+//			alert( NaN == NaN );//false NaN和自己都不相等	
+		</script>
+	</body>
+</html>

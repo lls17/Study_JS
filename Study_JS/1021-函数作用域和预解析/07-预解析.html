@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			
+			预解析：
+				在执行函数之前，先把所有的var、function关键字 提前到当前作用域的最顶端，然后再从上往下执行代码
+				注意：只会把var 和变量提前，不会把赋值操作在预解析的时候就进行
+				
+				
+		-->
+		<script>
+//		    fn1();  //虽然在调用之后才声明函数fn1，但已在调用前预解析了function
+//		    function fn1(){
+//		    	alert(1);
+//		    }
+			
+//		    alert(a);
+//			var a = 1;//预解析的时候只会把变量申明提前，不会进行赋值操作
+//		   	alert(a);
+
+//			var a = 3;
+//			function fn1 () {
+//				fn2();
+//				var a = 2;
+//				function fn2 () {
+////					var a = 1;
+//					alert(a);
+//				}
+//			}
+//			fn1();
+			
+//			function a () {
+//				alert(1)
+//			}
+//			var a = 1;
+//			alert( a );
+			
+			
+//			function a () {
+//				alert(1)
+//			}
+//			alert( a );//function a(){alert(1)}
+//			var a = 1;
+//			alert( a );//1
+			
+//		预解析结果：-----------------------
+//			var a;
+//			function a () {
+//				alert(1)
+//			}
+//			alert( a );
+//			a = 1;
+//			alert( a );
+
+
+//			var a = 0;
+//			function a(){
+//				alert(1)
+//			}
+//			a ++;
+//			function a(){
+//				alert(2)
+//			}
+//			a --;
+//			alert(a);
+			//预解析结果：
+//				var a
+//				function a(){
+//					alert(1)
+//				}
+//				function a(){
+//					alert(2)
+//				}
+//				a = 0;
+//				a ++;
+//				a --;
+//				alert(a);
+
+//			var a = 0;
+//			function a(){
+//				a++;
+//				function b(){
+//					a = 1;
+//					alert(a);
+//				}
+//				b();
+//			}
+//			a();
+//			预解析:
+//				var a;
+//				function a(){
+//					function b(){
+//						a = 1;
+//						alert(a);
+//					}
+//					a++;
+//					b();
+//				}
+//				a = 0;
+//				a();
+
+			
+		</script>
+	</body>
+</html>

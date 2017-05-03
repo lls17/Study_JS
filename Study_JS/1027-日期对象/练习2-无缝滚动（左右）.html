@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 400px;
+				height: 300px;
+				border: 10px solid #000;
+				/*overflow: hidden;*/
+				position: relative;
+			}
+			img{
+				border: none;
+				vertical-align: top;
+				width: 400px;
+				height: 300px;
+				float: left;
+			}
+			#box>div{
+				width: 2000px;
+				height: 300px;
+				position: absolute;
+				left:0px;
+				top: 0px;
+			}
+			#test{
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="imgBox">
+				<img src="img1/1.jpg" alt="" />
+				<img src="img1/2.jpg" alt="" />
+				<img src="img1/3.jpg" alt="" />
+				<img src="img1/4.jpg" alt="" />
+				<img src="img1/1.jpg" alt="" />
+			</div>
+		</div>
+		<div id="test"></div>
+		<button id="btn">开滚~</button>
+		<button id="btn1">开停顿滚~</button>
+		<script type="text/javascript">
+			var obox = document.getElementById("box");
+			var ibox = document.getElementById("imgBox");
+			var obtn = document.getElementById("btn");
+			var obtn1 = document.getElementById("btn1");
+			var imgs = obox.getElementsByTagName("img");
+			
+			var count = 0;
+			window.onload = function(){
+				//1、复制imgArr的首张作为尾张，作为假首张
+				//2、当移动到尾张即(假)首张时，利用回调函数，将imgArr的盒子拽回(调整盒子left值)初始状态
+//				document.onclick = function(){
+//					count++;
+//					move(ibox,{"left":-400*count},500,function(){
+//						if(count == imgs.length-1){
+//							count = 0;
+//							ibox.style.left = 0;
+//						}
+//					});
+//				};
+				
+				obtn.onclick = function(){
+					move(ibox,{"left":-1600},4000,function(){
+						ibox.style.left = 0;
+					});
+					
+					obtn.timer = setInterval(function(){
+						move(ibox,{"left":-1600},4000,function(){
+							ibox.style.left = 0;
+						});
+					},4020);
+				};
+				obtn1.onclick = function(){
+					setInterval(function(){
+						count++;
+						move(ibox,{"left":-400*count},1000,function(){
+							if(count == imgs.length-1){
+								count = 0;
+								ibox.style.left = 0;
+							}
+						});
+					},2000);
+				};
+			};
+			
+			
+			function move(obj,strJson,duration,fn){
+				var startTime = new Date();
+				
+				var tar = {};
+				var astyle = getComputedStyle(obj);
+				for(var strKey in strJson){
+					tar[strKey] = {};
+					tar[strKey].origin = parseFloat(astyle[strKey]);
+					tar[strKey].between = parseFloat(strJson[strKey]) - tar[strKey].origin;
+					tar[strKey].speed = parseFloat(tar[strKey].between) / duration;
+				}
+				obj.timer = setInterval(function(){
+					var bt = new Date() - startTime;
+					bt = bt>=duration? duration :bt;
+					for(var strKey in tar){
+						obj.style[strKey] = tar[strKey].origin+tar[strKey].speed*bt + "px";
+					}
+					if(bt == duration){
+						clearInterval(obj.timer);
+						fn&&fn();
+					}
+				},16);
+			}
+			
+			// 测试move函数
+			var otest = document.getElementById("test");
+			var strJson = {
+				"height":400,
+				"width":600
+			}
+			otest.onclick = function(){
+				move(otest,strJson,2000);
+			};
+			
+		</script>
+	</body>
+</html>

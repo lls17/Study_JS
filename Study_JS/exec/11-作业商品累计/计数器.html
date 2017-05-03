@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>无标题文档</title>
+	</head>
+	<body>
+		<ul id="list">
+			<li>
+			  	<input type="button" value="-" />
+			    <strong>0</strong>
+			  	<input type="button" value="+" />
+				单价：<em>12.5元</em>
+				小计：<span>0元</span>
+		    </li>
+			<li>
+			  	<input type="button" value="-" />
+			    <strong>0</strong>
+			  	<input type="button" value="+" />
+			    单价：<em>10.5元</em>
+			    小计：<span>0元</span>
+		  	</li>
+			<li>
+			  	<input type="button" value="-" />
+			    <strong>0</strong>
+			  	<input type="button" value="+" />
+				单价：<em>8.5元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+			  	<input type="button" value="-" />
+			    <strong>0</strong>
+			  	<input type="button" value="+" />
+				单价：<em>8元</em>
+				小计：<span>0元</span>
+		  	</li>
+			<li>
+			  	<input type="button" value="-" />
+			    <strong>0</strong>
+			  	<input type="button" value="+" />
+		    	单价：<em>14.5元</em>
+		    	小计：<span>0元</span>
+		  	</li>
+		</ul>
+		<p id="total">
+			商品合计共：<span>0</span>件，共花费了：<span>0</span>元<br />
+			其中最贵的商品单价是：<span>0</span>元
+		</p>
+		<script>
+			var olist = document.getElementById("list");
+			var lis = olist.getElementsByTagName("li");
+			var op = document.getElementById("total");
+			var spans = op.getElementsByTagName("span");
+			
+			//每一商品行
+			function persum(oli, count){
+				var vprice = parseFloat(oli.getElementsByTagName("em")[0].innerHTML);
+				oli.getElementsByTagName("span")[0].innerHTML = count*vprice + "元";
+			}
+			//总商品统计
+			function total(){
+				var total_count = 0;
+				var total_price = 0;
+				for(var i=0; i<lis.length; i++){
+					total_count += parseInt(lis[i].getElementsByTagName("strong")[0].innerHTML);
+					total_price += parseFloat(lis[i].getElementsByTagName("span")[0].innerHTML);
+				}
+				spans[0].innerHTML = total_count;
+				spans[1].innerHTML = total_price;
+			}
+			
+			function tab(n){
+				var ips = lis[n].getElementsByTagName("input");
+				var ostrong = lis[n].getElementsByTagName("strong")[0];
+				var ospan = lis[n].getElementsByTagName("span")[0];
+				
+				var count = ostrong.innerHTML;
+				var price = parseInt(ospan.innerHTML);
+				ips[0].onclick = function(){ //-
+					count--;
+					if(count < 0){
+						count = 0;
+					}
+					ostrong.innerHTML = count;
+					persum(lis[n], count);
+					total();
+				};
+				ips[1].onclick = function(){ //+
+					count++;
+					ostrong.innerHTML = count;
+					persum(lis[n], count);
+					total();
+				};
+			}
+			for (var i=0; i<lis.length; i++) {
+				tab(i);
+			}
+		</script>
+	</body>
+</html>

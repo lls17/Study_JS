@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				border: none;
+				vertical-align: top;
+				width: 400px;
+				height: 300px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<img src="img/0.jpg" alt="" />
+		<input type="button" value="click" />
+		<input type="button" value="stop" />
+		<!--
+			问题:
+				当多次点击“click”按钮的时候，会开启多个定时器，每个定时器都会让图片切换，就会导致错乱。
+				
+			解决方案：
+				每次点击的时候先清除掉
+					但是这样写会导致一个问题： 一直点击这个按钮的时候，会把之前的定时器清除，开启下一个定时器，
+					     但是图片切换会在1000ms之后才执行，在1000ms之间进行点击了，就会有把这个定时器清除，所以图片不会进行切换
+		-->
+		<script>
+			var arrPic = ["img/0.jpg","img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+			var img = document.getElementsByTagName("img")[0];
+			var inp = document.getElementsByTagName("input")[0];
+			var stop = document.getElementsByTagName("input")[1];
+			var num = 0;
+			var timer = null;
+			inp.onclick = function(){
+				clearInterval( timer );//先清除之前的定时器
+				timer = setInterval(fn,1000);//再开启新的定时器
+				console.log( timer );	
+			}
+			
+			stop.onclick = function(){
+				clearInterval( timer );
+			}
+			function fn(){
+				num++;
+				num%=arrPic.length;
+				img.src = arrPic[num];
+			}
+		</script>
+	</body>
+</html>

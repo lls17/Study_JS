@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" value="16"/>时
+		<input type="text" value="20"/>分
+		<input type="text" value="03"/>秒
+		<input type="button" value="倒计时" />
+		<div id="box">???</div>
+		<!--
+			h = Math.floor(Time%86400/3600);
+			m = Math.floor(Time%86400%3600/60);
+			s = Math.floor(Time%60);
+		-->
+		<script>
+			
+			var inps = document.getElementsByTagName("input");
+			var box = document.getElementById("box");
+			var timer;
+			inps[3].onclick = function(){
+				timer = setInterval(function(){
+		//			获取当前时间
+					var t1 = new Date();
+					var h = inps[0].value;
+					var m = inps[1].value;
+					var s = inps[2].value;
+					//设置未来时间
+					var t2 = new Date();
+					t2.setHours(h);
+					t2.setMinutes(m);
+					t2.setSeconds(s);
+		//			console.log( t2 );//设置好未来时间
+					var differTime = Math.floor((t2-t1)/1000);
+		//			console.log( differTime );
+					if(differTime<0){
+						alert("时间已到");
+						clearInterval( timer );
+					}else{
+						var differS = differTime%60//秒
+						var differM = Math.floor(differTime%86400%3600/60);//分钟
+						var differH = Math.floor(differTime%86400/3600);//小时
+						console.log( differH,differM,differS );
+						box.innerHTML = differH+":"+differM+":"+differS;
+					} 
+				},1000)
+			}
+			
+			
+		</script>
+	</body>
+</html>

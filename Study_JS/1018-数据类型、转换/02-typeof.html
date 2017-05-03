@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			typeof 用来检测数据类型的
+				注意：返回值是一个字符串 类型 "number"、"function"
+					typeof 出的结果首字母都是小写的
+				比如：
+					typeof 数据
+					typeof(数据)
+				
+			typeof 出的数据类型
+				String  =》 string
+				Number =》 number 
+				Boolean =》 boolean
+				Undefined =》  undefined
+				Null =》 object 
+				函数 =》 function
+			
+		-->
+		<script>	
+			var a = "abc";
+//			alert( typeof a );//"string"
+//			alert( typeof(a) );//"string"
+
+			var b = 12;
+//			alert( typeof b );//"number"
+
+			var c = true;
+//			alert( typeof c );//"boolean"
+			
+			var d;
+//			alert( typeof d );//"undefined"
+			
+			var e = null; 
+//			alert( typeof e )//"object"
+			
+			var f = {};
+//			alert( typeof f )//"object"
+			
+			var g = function(){}
+//			alert( typeof g );//"function"
+			
+//			alert( typeof "123" );//string
+
+//			alert( typeof typeof g );
+//								↓
+//				alert(typeof "function");
+//							↓
+//					alert("string");
+		</script>
+	</body>
+</html>

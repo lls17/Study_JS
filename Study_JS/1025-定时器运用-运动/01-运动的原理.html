@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 300px;
+				top: 0;
+				/*transition: 1s;*/
+			}
+			#line{
+				width: 5px;
+				height: 300px;
+				background-color: #000;
+				position: absolute;
+				left: 300px;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			运动的原理：
+				每次在原来位置的基础上，往右边走一点
+			
+			
+			注意：定时器的时间间隔是16，但是不同浏览器的情况可能不一样，16ms是2015年的chrome的数据
+		-->
+		<div id="box"></div>
+		<div id="line"></div>
+		<script>
+			var box = document.getElementById("box");
+			var timer = null;
+//			box.onclick = function(){
+//				this.style.left = "100px";
+//			}
+			//步长版的运动，有很多变量要考虑处理。
+//				通常我们使用时间来控制运动的长短
+			
+			document.onclick = function(){
+//				console.log( getComputedStyle(box).left );
+//				setTimeout()//延迟型定时器
+				timer =  setInterval(function(){
+					var ori = parseFloat(getComputedStyle(box).left);//带单位的字符串
+					var v = ori - 9;//10就是步长
+					console.log( v );
+//					if(v == 300){//只会在刚好300像素像素的地方停止，如果步长为7，那么久不会刚好为300
+					if(v >= 300){
+						v = 300;
+						clearInterval( timer );
+					}
+					box.style.left = v + "px";
+				},16)//间隔型定时器
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 400px;
+				height: 300px;
+				border: 10px solid #000;
+				position: relative;
+				/*overflow: hidden;*/
+			}
+			#content{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+			}
+			img{
+				border: none;
+				vertical-align: top;
+				width: 400px;
+				height: 300px;
+				position: absolute;
+			}
+			#img1{
+				left: 0;
+				top: 0;
+			}
+			#img2{
+				left: 0px;
+				top: -300px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="content">
+				<img src="img1/1.jpg" alt="" id="img1" />
+				<img src="img1/1.jpg" alt="" id="img2" />
+			</div>
+		</div>
+		<script>
+			var content = document.getElementById("content");
+			var img1 = document.getElementById("img1");
+			var img2 = document.getElementById("img2");
+			var arr = ["img1/1.jpg","img1/2.jpg","img1/3.jpg"];
+			var now = 0; //当前看到的图片地址的下标;
+			document.onclick = function(){
+				var next = now + 1;//下一张图片地址的下标
+				next %= arr.length;
+				img2.src = arr[next];//img2的src变成下一张
+				
+				move( content,{"top":300},500,function(){
+					content.style.top = 0;//拉回来
+					img1.src = arr[next];//改img1src成为下一张;
+					now ++;
+//					now %= arr.length;
+				})
+			}
+		    function move (obj,object1,duration,fn) {
+		    	var startTime = new Date();
+		    	var d = duration;
+		    	var j = {};
+		    	for( var a in object1){
+		    		j[a] = {};
+		    		j[a].b = parseFloat(getComputedStyle(obj)[a]);
+		    		j[a].c = object1[a] - j[a].b; 
+		    	}
+		    	console.log( j );
+		    	obj.timer = setInterval(function(){
+		    		
+		    		var t = new Date() - startTime;
+		    		if(t>=d){
+		    			t = d;
+		    		}
+		    		for(var a in j){
+		    			var c = j[a].c;
+		    			var b = j[a].b;
+						var v = c/d*t+b;
+		    			if(a == "opacity"){
+		    				obj.style[a] = v ;
+		    			}else{
+		    				obj.style[a] = v + "px";
+		    			}
+		    		}
+		    		if(t==d){
+		    			clearInterval(obj.timer);
+		    			fn&&fn();
+		    		}
+		    	},16)
+		    }
+		</script>
+	</body>
+</html>

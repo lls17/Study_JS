@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			日期对象是可以获取具体内容，也可以设置具体内容的
+				但是设置日期对象的时候只是在操作这个对象，没有操作本机的系统时间
+			设置日期对象具体时间的方法
+			setFullYear() 	    设置年
+			setMonth()    	    设置月  (月份从0开始计算)
+			setDate()     	    设置日 
+			setHours()   	    设置小时
+			setMinutes()  	    设置分钟
+			setSeconds()  	    设置秒钟
+			setMilliseconds() 设置毫秒
+			setTime()      	获取1970-01-01 00:00:00到目前日期对象的时间差（单位:毫秒）
+			
+			设置完日期对象后，返回值是设置完之后的时间戳
+		-->
+		<script>
+		    var t = new Date();
+//		    t.setFullYear(2017);//设置的是对象中的年份，设置完之后日期对象会变成2017年的具体时间
+//		    t.setMonth(1)  //设置月  (月份从0开始计算)设置的是2月
+//			t.setDate(15)     	    //设置日 
+//			t.setHours(16)   	    //设置小时
+//			t.setMinutes(10)  	    //设置分钟
+//			t.setSeconds(50)  	    //设置秒钟
+//			t.setMilliseconds() 	//设置毫秒
+
+//			t.setMonth(12);
+//			t.setDate(0);//设置日期为0
+//			t.setDate(32);//不会报错，会自动向下一个月进位
+			
+		    console.log( t );
+		</script>
+	</body>
+</html>

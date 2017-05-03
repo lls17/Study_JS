@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+//			var b = 2;//在函数外部申明的变量,全局变量 ,可以在整个程序中访问
+//		    function fn1(){
+//		    	var a = 1;//在函数内部申明的变量，局部变量
+//		    	alert(b);
+//		    }
+//		    alert(b);
+//			fn1();
+
+//			alert(a);//报错，因为在fn1中申明的a，是一个局部变量，只能在fn1中使用，在fn1函数外部使用的话，会报错
+
+			function fn1(){
+				function fn2 () {//是在fn1中申明的函数，所以是一个局部函数，只能在fn1中使用
+					alert(1);
+				}
+//				fn2();
+			}
+////			fn2();//报错
+//			fn1();
+			
+		</script>
+	</body>
+</html>

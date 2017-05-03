@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:black;
+				margin: 100px auto;
+				box-shadow: 0 0 100px 0px #000;
+				transition: .5s linear;
+				font-size: 100px;
+				color: #fff;
+			}
+			#box.no{
+				box-shadow: 0 0 0px 0px #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">:</div>
+		<script>
+		    setInterval(function(){
+		    	box.className = "no";
+		    	box.innerHTML = "";
+		    	setTimeout(function(){
+		    		box.className = "";
+		    		box.innerHTML = ":";
+		    	},500)
+		    },1000)
+		    
+		</script>
+	</body>
+</html>

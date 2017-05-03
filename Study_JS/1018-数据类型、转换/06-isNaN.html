@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			isNaN(数据)
+				判断数据是不是NaN
+					会把数据先使用Number进行转换，转换完之后在判断是不是NaN
+			
+				如果数据是NaN那么返回true
+				如果数据不是NaN返回false
+		-->
+		<script>
+//			alert( isNaN(100) );//false
+//			alert( isNaN("100") );//false
+
+//			alert( isNaN("100px") );//true
+//							↓
+//					isNaN( Number("100px") )//内部先使用Number进行转换
+//							↓
+//					isNaN( NaN )//再判断转换结果是不是NaN
+//							↓
+//							true
+
+			alert(isNaN(NaN)); //true
+		</script>
+	</body>
+</html>

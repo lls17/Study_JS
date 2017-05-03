@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				border: none;
+				vertical-align: top;
+				width: 400px;
+				height: 300px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<img src="img/0.jpg" alt="" />
+		<input type="button" value="click" />
+		<!--
+			需求：
+				点击按钮的时候，进行图片切换
+			
+			思路：
+				1、获取元素
+				2、点击按钮，开启定时器，让图片切换（通过改变变量值，来修改图片的src）
+		-->
+		<script>
+			var arrPic = ["img/0.jpg","img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+			var img = document.getElementsByTagName("img")[0];
+			var inp = document.getElementsByTagName("input")[0];
+			var num = 0;
+			inp.onclick = function(){
+				setInterval(function(){
+//					console.log(1);
+					num++;
+					num%=arrPic.length;
+					img.src = arrPic[num];
+				},1000);
+			}
+		</script>
+	</body>
+</html>

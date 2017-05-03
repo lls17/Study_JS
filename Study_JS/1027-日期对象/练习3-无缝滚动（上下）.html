@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 400px;
+				height: 300px;
+				border: 10px solid #000;
+				margin: 400px auto;
+				position: relative;
+				/*overflow: hidden;*/
+			}
+			#content{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+			}
+			img{
+				border: none;
+				vertical-align: top;
+				width: 400px;
+				height: 300px;
+				position: absolute;
+			}
+			#img1{
+				left: 0;
+				top: 0;
+			}
+			#img2{
+				left: 0px;
+				top: -300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="content">
+				<img src="img1/1.jpg" alt="img111" id="img1" />
+				<img src="img1/2.jpg" alt="img222" id="img2" />
+			</div>
+		</div>
+		<script>
+			var content = document.getElementById("content");
+			var img1 = document.getElementById("img1");
+			var img2 = document.getElementById("img2");
+			var arr = ["img1/1.jpg","img1/2.jpg","img1/3.jpg","img1/4.jpg"];
+			var now = 1; 
+			window.onload = function(){
+				document.onclick = function(){
+					move(content, {"top":300},1000,function(){
+						img1.src = img2.src;   //copy正版相同src
+						content.style.top = 0;  //拽回盗版
+						now = now+1>=arr.length?0:now+1;
+						img2.src = arr[now];  //将正版置为下一张src，准备下一次
+					});
+				};
+			};
+			
+			function move(obj,strJson,duration,fn){
+				var startTime = new Date();
+				
+				var tar = {};
+				var astyle = getComputedStyle(obj);
+				for(var strKey in strJson){
+					tar[strKey] = {};
+					tar[strKey].origin = parseFloat(astyle[strKey]);
+					tar[strKey].between = parseFloat(strJson[strKey]) - tar[strKey].origin;
+					tar[strKey].speed = parseFloat(tar[strKey].between) / duration;
+				}
+				obj.timer = setInterval(function(){
+					var bt = new Date() - startTime;
+					bt = bt>=duration? duration :bt;
+					for(var strKey in tar){
+						obj.style[strKey] = tar[strKey].origin+tar[strKey].speed*bt + "px";
+					}
+					if(bt == duration){
+						clearInterval(obj.timer);
+						fn&&fn();
+					}
+				},16);
+			}
+		</script>
+	</body>
+</html>

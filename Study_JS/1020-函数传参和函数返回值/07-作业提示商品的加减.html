@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="list">
+			<li>
+				<input type="button" value="-" />
+				<span>0</span>
+				<input type="button" value="+" />
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<span>0</span>
+				<input type="button" value="+" />
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<span>0</span>
+				<input type="button" value="+" />
+			</li>
+		</ul>
+		<script>
+			var list = document.getElementById("list");
+		    var lis = list.getElementsByTagName("li");
+		    //传入数值，让对应li里面的按钮具有点击事件处理函数，
+//		    	参数是数值,第几个li传入0，代表从第0个li下获取元素
+//				没有返回值
+		    function tab(n){
+		    	var inps = lis[n].getElementsByTagName("input");
+			    var span = lis[n].getElementsByTagName("span")[0];
+			    var num = 0;
+			    inps[0].onclick =  function(){//点击-
+			    	num--;
+			    	if(num<0){
+			    		num = 0;
+			    	}
+			    	span.innerHTML = num; 
+			    }
+			    inps[1].onclick =  function(){//点击+
+			    	num++;
+			    	span.innerHTML = num;
+			    }
+		    }
+//		    tab(0);
+//		    tab(1);
+//		    tab(2);
+			for (var i = 0; i < lis.length; i++) {
+				tab( i );
+			}
+		</script>
+	</body>
+</html>

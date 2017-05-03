@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" value="16"/>时
+		<input type="text" value="55"/>分
+		<input type="text" value="3"/>秒
+		<input type="button" value="倒计时" />
+		<div id="box">???</div>
+		
+		<script type="text/javascript">
+			var ipts = document.getElementsByTagName("input");
+			
+			ipts[3].onclick = function(){
+				var h = add0(ipts[0].value);
+				var m = add0(ipts[1].value);
+				var s = add0(ipts[2].value);
+				var tar = new Date();
+				tar.setHours(h);
+				tar.setMinutes(m);
+				tar.setSeconds(s);
+				
+				var timer = setInterval(function(){
+					var now = new Date();
+					var between = tar - now;
+					if(between <= 0){
+						document.getElementById("box").innerHTML = "已到时间！";
+						clearInterval(timer);
+						return;
+					}
+					var bs = parseInt(between/1000%60);
+					var bm = parseInt(between/(1000*60)%60);
+					var bh = parseInt(between/(1000*60*60)%60);
+					var bd = parseInt(between/(1000*60*60*24)%24);
+					document.getElementById("box").innerHTML = "剩余时间为："+bd+"d,"+bh+"h:"+bm+"m:"+bs+"s";
+				},1000);
+			};
+			
+			function add0(num){
+				return num<10?"0"+num:""+num;
+			}
+			
+//			1s = 1000ms;
+//			1min = 60s = 60*1000ms = 60000ms;
+//			1h = 60min = 60*60000ms;
+//			1d = 24h = 24*60*60000ms;
+			
+		</script>
+		<!--
+			h = Math.floor(Time%86400/3600);
+			m = Math.floor(Time%86400%3600/60);
+			s = Math.floor(Time%60);
+		-->
+	</body>
+</html>

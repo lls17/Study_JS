@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				list-style: none;
+				width: 350px;
+			}
+			#list:after{
+				content: "";
+				clear: both;
+				display: inline-block;
+			}
+			li{
+				float: left;
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				border: 1px solid black;
+				box-sizing: border-box;
+			}
+			li.active{
+				color: #fff;
+				background-color: blueviolet;
+			}
+		</style>
+	</head>
+		<!--
+			坑点1：  要先取星期，再取月份！否则			
+			当下个月没有当前月份日期时，如当前日期为1月30日，若先取月份则为2月30日即跳到3月2号，跨月了！！
+			
+			坑点2： 从小设置起，即set的设置顺序为：日->月->年
+		-->
+	<body>
+		年份：<input type="text" value="2016" />
+		月份：<input type="text" value="10" />  <br />
+		<input type="button" value="走起~" />
+		<hr />
+		<button>&lt;</button>
+		<span id="year"></span>年<span id="month"></span>月
+		<button>&gt;</button>
+		<ul id="list"></ul>
+		<script>
+			var oyear = document.getElementById("year");
+			var omonth = document.getElementById("month");
+		
+			var ipts = document.getElementsByTagName("input");
+			ipts[2].onclick = function(){
+				var year = ipts[0].value;
+				var month = ipts[1].value;
+				var day = ipts[2].value;
+				
+				var now = new Date();
+				//坑2：  注意要先赋值月，再赋值年。否则还是“某月未必有当天号日期”会导致窜日期
+				//从小设置起，即set的设置顺序为：日->月->年
+				now.setMonth(month);
+				now.setFullYear(year);
+				showList(now);
+			};
+		
+			function showList(now){
+				//1、先获取当月第一天是星期几
+				showDate(now.getFullYear(), now.getMonth()+1);
+				var ndate = now.getDate(); //今天几号
+				var nday = now.getDay();  //今天周几
+				now.setDate(1);
+				var fday = now.getDay(); //月初第一天是周几
+				
+				//2、再本月有多少天
+				now.setMonth(now.getMonth()+1); //设置为下个月的一号
+				now.setDate(0); //转为本月的最后一天
+				var total = now.getDate();
+				
+				//3、补上当月所有日期
+				var olist = document.getElementById("list");
+				olist.innerHTML = "<li>日</li><li>一</li>	<li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>";
+				for(var i=0; i<total+fday; i++){
+					if(i<fday){
+						olist.innerHTML += "<li></li>";
+					}else if(i-fday+1==ndate){
+						olist.innerHTML += "<li class='active'>"+(i-fday+1)+"</li>";
+					}else{
+						olist.innerHTML += "<li>"+(i-fday+1)+"</li>";
+					}
+				}
+			}
+			
+			// 日期回填 
+			function showDate(year, month){
+				oyear.innerHTML = year;
+				omonth.innerHTML = month;
+			}
+			
+			var now = new Date();
+			showList(now);
+			
+			var btns = document.getElementsByTagName("button");
+			for(var i=0; i<btns.length; i++){
+				btns[i].index = i;
+				btns[i].onclick = function(){
+					var curyear = oyear.innerHTML;
+					var curmonth = omonth.innerHTML;
+					var cur = new Date();
+					cur.setFullYear(curyear);
+					if(this.index == 0){
+						cur.setMonth(curmonth - 2);
+					}else{
+						cur.setMonth(curmonth);
+					}
+					showDate(cur.getFullYear(), cur.getMonth()+1);
+					showList(cur);
+				};
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			需求：
+				实现计算器加法效果
+			
+			思路：
+				1获取元素
+				2为按钮的点击事件添加事件处理函数
+				3 把inp[0]的内容和inp[1]的内容加起来，值赋给span的innerHTML
+			
+		-->
+		<input type="text" />+
+		<input type="text" />
+		<input type="button" value="=" />
+		<span>???</span>
+		<script>
+			var inps = document.getElementsByTagName("input");
+			var spans = document.getElementsByTagName("span");
+			inps[2].onclick = function(){
+				spans[0].innerHTML = inps[0].value + inps[1].value; 
+			}
+//			因为 inps[0]和inps[1]的value都是字符串，所以“+”做的是字符串拼接 
+//				需要把字符串改变成数字类型,然后再进行相加
+		</script>
+	</body>
+</html>

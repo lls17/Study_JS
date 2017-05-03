@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/clock.css"/>
+	</head>
+	<body>
+		<div id="box">
+			<div class="heart"></div>
+		</div>
+		
+		<script type="text/javascript">
+			var obox = document.getElementById("box");
+			//加上刻度
+			for(var i=0; i<60; i++){
+				var str = "";
+				if(i%5==0){
+					obox.innerHTML += '<div class="dot" style="transform:rotate('+(i*6)+'deg);height:30px"></div>';
+				}else{
+					obox.innerHTML += '<div class="dot" style="transform:rotate('+(i*6)+'deg)"></div>';
+				}
+			}
+			
+			//加上时针、分针、秒针
+			obox.innerHTML += "<div id='hour'></div><div id='min'></div><div id='sec'></div>";
+			var sec = document.getElementById("sec");
+			var min = document.getElementById("min");
+			var hour = document.getElementById("hour");
+			
+			//测试：让一个点跑一圈
+//			setInterval(function(){
+//				var odot = document.querySelector("#box .dot");
+//				odot.style.transition = "2s";
+//				odot.style.transform = "rotate(360deg)";
+//			},1000);
+//			测试：让时针跑一圈
+//			setTimeout(function(){
+//				sec.style.transition = "2s";
+//				sec.style.transform = "rotate(360deg)";
+//			},1000);
+			
+			
+			setInterval(function(){
+				tab();
+			},1000);
+			
+			function tab(){
+				var now = new Date();
+				var h = now.getHours();
+				var m = now.getMinutes();
+				var s = now.getSeconds();
+				hour.style.transform = "rotate("+ (h+m/60)*30 +"deg)";
+				min.style.transform = "rotate("+ (m+s/60)*6 +"deg)";
+				sec.style.transform = "rotate("+ s*6 +"deg)";
+			}
+		</script>
+	</body>
+</html>

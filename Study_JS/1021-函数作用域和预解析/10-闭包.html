@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			当一个函数申明内嵌套另一个函数申明的时候就形成了一个闭包环境
+			内层函数可以使用外层函数的变量
+			外层函数不能使用内层函数的变量
+			
+			函数自执行
+				function(){
+					alert(1)
+				}
+		-->
+		<script>
+//			function fn1 () {
+//				var a = 1
+//				alert(b);//外层函数不能使用内层函数的变量
+//				function fn2 () {
+//					var b = b;
+//					alert(a)//内层函数可以使用外层函数的变量
+//				}
+//			}
+//			(function(){//匿名函数自执行
+//				alert(1);
+//			})();
+			(function(){
+				var num = 0;//你写的代码
+				function fn1(){
+					num++;
+				}
+			})()
+			
+			(function(){
+				var num = 0;//你同事的代码
+				function fn1(){
+					num++;
+				}
+			})()
+			
+			
+		</script>
+	</body>
+</html>

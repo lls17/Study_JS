@@ -1,0 +1,72 @@
+@wbox: 400px;
+@wheart: 30px;
+@hdot: 16px;
+@wdot: 4px;
+@hhour: 100px;
+@whour: 14px;
+@hmore: 14px;
+@hmin: 150px;
+@wmin: 8px;
+@mmore: 10px;
+@hsec: 190px;
+@wsec: 4px;
+@smore: 20px;
+
+#box{
+    position: relative;
+    width: @wbox;
+    height: @wbox;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin: 50px auto;
+}
+.heart{
+    height: @wheart;
+    width: @wheart;
+    border-radius: 50%;
+    background-color: black;
+    position: absolute;
+    z-index: 2;
+    top: (@wbox - @wheart)/2;
+    left: (@wbox - @wheart)/2;
+}
+.dot{
+    height: @hdot;
+    width: @wdot;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: (@wbox - @wdot)/2;
+    transform-origin: @wdot/2 @wbox/2;
+//  transform: rotate(45deg); //测试一个点用
+}
+#hour{
+    height: @hhour;
+    width: @whour;
+    background-color: palevioletred;
+    position: absolute;
+    left: (@wbox - @whour)/2;
+    top: @wbox/2 - @hhour + @wheart/2 + @hmore;
+    transform-origin: @whour/2 @hhour - @hmore - @wheart/2;
+    transform: rotate(45deg);
+}
+#min{
+    height: @hmin;
+    width: @wmin;
+    background-color: palevioletred;
+    position: absolute;
+    left: (@wbox - @wmin)/2;
+    top: @wbox/2 - @hmin + @wheart/2 + @mmore;
+    transform-origin: @wmin/2 @hmin - @mmore - @wheart/2;
+    transform: rotate(60deg);
+}
+#sec{
+    height: @hsec;
+    width: @wsec;
+    background-color: orange;
+    position: absolute;
+    left: (@wbox - @wsec)/2;
+    top: @wbox/2 - @hsec + @wheart/2 + @smore;
+    transform-origin: @wsec/2 @hsec - @smore - @wheart/2;
+    transform: rotate(90deg);
+}

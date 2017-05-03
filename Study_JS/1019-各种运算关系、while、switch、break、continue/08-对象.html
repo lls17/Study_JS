@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			对象 
+				用一对{}包起来的，由0对或多对 键名和键值组成的对组成，每对键值对之间用","隔开,最后不用加","
+				
+				当键名不符合变量命名规范的时候，一定要用引号包起来
+			
+			取对象中的值
+					对象.键名
+				如果键名不符合变量命名规范，那么使用[]来取值
+					对象["键名"]
+				
+			遍历对象的方法
+				for in
+				
+		-->
+		<script>
+			var obj = {
+				"1":"a",//当键名不符合变量命名规范的时候，一定要用引号包起来
+				"name":"tong",
+				"age":27
+			}
+			console.log( obj );
+			console.log( obj.name );
+			console.log( obj["1"] );
+			
+			for( var attr in obj ){
+//				console.log( attr );//键名
+//				console.log( obj.attr );//键名这么写实际上是找obj中有没有attr这个值相当于 obj.attr,是错的，达不到预期效果
+//				console.log( obj[attr] );//键值
+//				console.log( attr +":"+ obj[attr]);
+			}
+		</script>
+	</body>
+</html>

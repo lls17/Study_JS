@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			setInterval()
+				间隔型定时器
+					每隔一段时间执行一段代码
+					
+			setInterval(函数,时间间隔)
+				比如setInterval(fn,20)
+				 每隔20 毫秒执行一段函数
+				 	时间间隔的单位 ： 是毫秒（ms）
+				 	1s = 1000ms
+				 	
+			关闭定时器：
+				clearInterval(定时器的编号)
+				因为定时器每次开启的时候，都会有一个新的编号
+				但是我们停止定时器的时候需要这个定时器的编号
+				所以，我们把每次开启时的定时器编号存储在变量中，当需要清除定时器的时候，只需要照这个变量就可以了
+			
+			注意：
+				定时器开启的时候，内部执行的函数不是立刻执行的，
+				要等待第一次时间间隔
+		-->
+		<div id="box">0</div>
+		<script>
+		    var box = document.getElementById("box");
+		    var num = 0;
+//		    num++;
+//		    box.innerHTML = num;
+//		    num++;
+//		    box.innerHTML = num;
+
+//			开启定时器;每隔1s执行num++;box.innerHTML = num;
+			
+			setInterval(function(){
+				num++;
+				box.innerHTML = num;//这段代码不是立即执行的，要等待1s
+			},1000)
+		</script>
+	</body>
+</html>

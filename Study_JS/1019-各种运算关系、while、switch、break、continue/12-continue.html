@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			continue
+			
+				跳出本次for循环，终止本次for循环后面的代码的执行，然后执行下一次for循环
+			
+		-->
+		<script>
+		    for(var i= 0;i<4;i++){
+		    	if(i == 1 || i == 2){
+//		    		break;//跳出整个for循环
+					continue;//跳出本次for循环，本次for循环后面的代码都不会执行了，继续执行下一次for循环
+		    	}
+		    	alert(i);
+		    }
+		    
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#line{
+				width: 5px;
+				height: 200px;
+				background-color: #000;
+				position: absolute;
+				left: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			元素位置 = （总路程/总时间）*已过时间 + 初始位置；
+			v : 元素位置
+			c : 总路程
+				目标点位置-初始位置
+			d : 总时间（duration）
+			t : 已过时间
+			b : 初始位置（begin）
+			
+			公式：
+				v = （c/d）*t + b 
+		-->
+		<div id="box"></div>
+		<div id="line"></div>
+		<script>
+			var box = document.getElementById("box");
+			var timer = null;
+		    document.onclick = function(){
+		    	var startTime = new Date();
+		    	var target = 300;//目标位置
+		    	var b = parseFloat(getComputedStyle(box).left);//元素初始位置 box.style.left
+		    	var c = target - b ;//总路程
+		    	var d = 1000;//总持续时间 
+		    	timer = setInterval(function(){
+		    		var t = new Date() - startTime;//已过时间 = 当前实时时间 - 点击时的初始时间
+		    		if(t>=d){
+		    			t = d;
+		    			clearInterval(timer);//清除定时器，清除的是定时器下一次的运行
+		    			alert(1);
+		    		}
+		    		var v = (c/d)*t + b ;
+		    		box.style.left = v+"px";
+		    	},16)
+		    }
+		</script>
+	</body>
+</html>

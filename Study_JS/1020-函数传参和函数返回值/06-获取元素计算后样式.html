@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+			}
+			#box1{
+				width: 200px;
+				height: 200px;
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="box1"></div>
+		<!--
+			
+			getComputedStyle(元素)
+				获取元素计算后样式
+				获取到的是所有样式的集合
+					注意：获取到的是字符串，
+						带单位
+			
+		-->
+		<script>
+		    var box = document.getElementById("box");
+		    var box1 = document.getElementById("box1");
+//		    alert( box.style.width );//获取到的元素的行间的样式
+//			console.log( getComputedStyle(box) );//获取box计算后样式
+//			console.log( getComputedStyle(box).width );//获取box计算后样式的宽度//"100px"带单位
+			//获取元素的计算后样式，参数obj代表元素，attr代表样式名称，返回值是元素计算后样式
+			function getCss(obj,attr){
+				return getComputedStyle(obj)[attr];
+			}
+			console.log( getCss(box1,"width") );
+		</script>
+	</body>
+</html>

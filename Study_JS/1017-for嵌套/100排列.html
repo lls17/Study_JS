@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#box{
+				width:500px;
+				height:500px;
+				border:3px solid #3fd222;
+				position:relative;
+			}
+			#box div{
+				width:50px;
+				height:50px;
+				background-color:pink;
+				display:inline-block;
+				text-align:center;
+				font: 20px/50px "微软雅黑";
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	<script>
+		var box = document.getElementById("box");
+		var str = "";
+	//法1:
+		for(var i = 0;i<100;i++){
+			str += "<div style='position=absolute;top:"+Math.floor(i/10)*50+"px;left:"+50*(i%10)+"px'>"+(i+1)+"</div>";				
+		}
+	//法2：
+//		for(var i = 0;i<10;i++){
+//			for(var k = 0;k<10;k++){
+//				str += "<div style='position=absolute;top:"+Math.floor(k/10)*50+"px;left:"+50*(k%10)+"px'>"+(i*10+k+1)+"</div>";				
+//			}
+//		}
+		box.innerHTML = str;
+	</script>
+	</body>
+</html>

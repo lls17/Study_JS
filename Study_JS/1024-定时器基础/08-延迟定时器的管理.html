@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				border:none;
+				vertical-align: top;
+				width: 800px;
+				height: 500px;
+				position: absolute;
+				left: 50%;
+				margin-left: -400px;
+				top: 50%;
+				margin-top: -1000px;
+				transition: 1s;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			setTimeout()
+				延迟型定时器
+					隔一段时间执行一段代码
+					
+			setTimeout(函数,时间间隔)
+				setTimeout(fn,20)
+				 隔20 毫秒执行一段函数
+				 	时间间隔的单位 ： 是毫秒（ms）
+				 	1s = 1000ms
+				 	
+			关闭定时器：
+				clearTimeout(定时器的编号)
+			
+		-->
+		<!--
+			1、需求：
+				点击出来，让图片在页面中居中（margin-top: -250px;）
+				点击回去，让图片回到原来位置（margin-top: -1000px;）
+			2、需求：
+				页面加载之后隔2秒，让图片居中
+				页面加载之后隔7秒，让图片回到初始位置
+				
+			3、需求：
+				页面加载之后隔2秒，让图片居中
+				页面加载之后隔7秒，让图片回到初始位置
+				点击回去按钮,广告不会出现
+		-->
+		<img src="img/0.jpg"/>
+		<input type="button" value="出来" />
+		<input type="button" value="回去(屏蔽广告)" />
+		<script>
+			var img = document.getElementsByTagName("img")[0];
+			var inp = document.getElementsByTagName("input");
+//			inp[0].onclick = function(){
+//				img.style.marginTop = "-250px";
+//			}
+//			inp[1].onclick = function(){
+//				img.style.marginTop = "-1000px";
+//			}
+
+//			需求：
+//			页面加载之后隔2秒，让图片居中
+//			页面加载之后隔7秒，让图片回到初始位置
+//			setTimeout(function(){
+//				img.style.marginTop = "-250px";
+//			},2000)
+//			setTimeout(function(){
+//				img.style.marginTop = "-1000px";
+//			},7000)
+			
+//			需求：
+//				页面加载之后隔2秒，让图片居中
+//				页面加载之后隔7秒，让图片回到初始位置
+//				在广告出来之前点击回去按钮,广告不会出现
+			var timer = null;
+			inp[1].onclick = function(){
+//				清除定时器
+				clearTimeout( timer );
+			}
+			
+			timer = setTimeout(function(){//2秒后广告出现
+				img.style.marginTop = "-250px";
+			},2000)
+			
+			setTimeout(function(){
+				console.log( 1 );
+				img.style.marginTop = "-1000px";
+			},7000)
+		</script>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			数据：
+				变量，数组...存的内容
+				
+			类型：
+				职业：
+					厨师，老师，医生，护士，明星，演员...
+				高，富，帅，白，富，美，矮，矬，穷...
+				...
+			
+			js数据类型（首字母大写）：
+				基本（简单）数据类型
+					String Number Boolean Undefined Null 
+					String：
+						字符串：
+							由成对的单引号或者双引号包起来的0个或多个字符组成的串
+					
+					Number:
+						数字：
+							-Infinity~Infinity之间
+							分为小数（浮点数）和整数
+							
+					Boolean：
+						布尔值：
+							true、false
+							一般用布尔值判断真假，进行流程控制
+							
+					Undefined（未定义）：
+						申明一个变量，并未给其赋值，那么这个变量内存储的就是undefined；
+						一般来说不希望看到undefined
+					
+					Null:
+						值只有一个null，是一个对象
+						
+				复合（复杂）数据类型
+					复合类型是由简单和复合的数据类型组成的
+						对象：
+							由一对{}包起来的，0对或者多对键名和键值组成的对,每对键值对 之间用","隔开，最后一个不要加","
+							比如{
+								key1:value1,
+								key2:value2
+							}
+							或者：{}
+							{
+								name:"duoduo",
+								age:20,
+								isMarried:true,
+								children:{
+									name:"a",
+									age:1
+								}
+							}
+							
+		-->
+		<script>
+		     var a = "abc";
+//		    alert( a );//"abc"
+//		    alert( a+"1" );//"abc1"
+//			alert( a.length )//3
+			// alert( a.charAt(0) );//"a"
+
+//			alert( Infinity );//js中最大的值
+//			alert( 3/7 );
+
+//			下面的会弹什么?
+			if(false){
+				if(false == false){
+					alert(1);
+				}else{
+					alert(2);
+				}
+			}
+			 var b;
+//			 alert( b );
+			
+			 alert( null );
+			
+		</script>
+	</body>
+</html>
