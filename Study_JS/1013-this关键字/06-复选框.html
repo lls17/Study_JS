@@ -45,7 +45,8 @@
 		    	divs[i].onoff = true;
 		    	divs[i].onclick = function(){
 		    		//如果点击的这个元素是已被选中的(如果class是active)
-//		    		if( this.className == "active" ){//注意：如果直接使用class做判断，无法确定这个元素身上到底有多少class，所以判断条件不好写，我们使用变量对应了“active”是否存在
+//		    		if( this.className == "active" ){
+//注意：如果直接使用class做判断，无法确定这个元素身上到底有多少class，所以判断条件不好写，我们使用变量对应了“active”是否存在
 					if( this.onoff == false ){//判断点击的元素身上的开关
 //		    			去掉class
 						this.className = "";

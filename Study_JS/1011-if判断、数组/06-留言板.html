@@ -25,10 +25,18 @@
 		var list = document.getElementById("list");
 		btn.onclick = function(){//2按钮点击的时候发生事情
 //			3获取输入框的内容
-			var str = text1.value;//js获取到的都是字符串形式的值
-//			alert( str );
-			list.innerHTML = "<li>"+str+"</li>" + list.innerHTML;//"<li>"+"1"+"</li>"
-			text1.value ="";
+			addText(text1.value);
+		};
+		document.onkeydown = function(event){
+			if(event.keyCode == 13){
+				addText(text1.value);
+			}
+		};
+		function addText(val){
+			if(val != ""){
+				list.innerHTML = "<li>"+val+"</li>" + list.innerHTML;//"<li>"+"1"+"</li>"
+				text1.value = "";
+			}
 		}
 	</script>
 </body>

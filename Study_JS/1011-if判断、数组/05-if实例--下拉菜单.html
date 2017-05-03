@@ -35,7 +35,7 @@
 			js操作的都是元素的行间样式
 			
 			解决方案：
-				使用变量 来对应元素的样式（list的display）
+				使用变量（开关） 来对应元素的样式（list的display）
 		-->
 		<script>
 //			1获取元素
@@ -43,12 +43,11 @@
 			var list = document.getElementById("list");
 //			申明变量对应元素的显示隐藏
 
-//			自己定的规矩:
+//			自己定的规则:
 //			变量为true对应 元素 none（隐藏）
 //			变量为false对应 元素 block（显示）
 
 //			当元素的显示或者隐藏切换了,那么开关也要切换
-
 			var onoff = true;
 			//2点击按钮的时候发生一些事情
 			btn.onclick = function(){

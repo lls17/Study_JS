@@ -24,9 +24,10 @@
 			var box = document.getElementById("box");
 			
 			btn.onclick = function(){
-				var attr = text1.value;
+				var attr1 = text1.value;
 				var result = text2.value;
-				box.style[attr] = result;
+				console.log(attr1, result);
+				box.style[attr1] = result;
 			}
 		</script>
 	</body>
