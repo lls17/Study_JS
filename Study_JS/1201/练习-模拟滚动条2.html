@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#father{
+				position: absolute;
+				height: 300px;
+				width: 50px;
+				background-color: cadetblue;
+				border: 10px solid darkseagreen;
+			}
+			#son{
+				position: absolute;
+				top: 0;
+				width: 50px;
+				height: 50px;
+				background-color: lightcyan;
+			}
+			#box{
+				position: absolute;
+				left: 100px;
+				width: 300px;
+				height: 300px;
+				border: 1px solid blueviolet;
+				/*overflow: auto;*/
+				overflow: hidden;
+			}
+			#inner{
+				position: absolute;
+				top: 0;
+				left: 0;
+				font: 20px/50px "微软雅黑";
+			}
+		</style>
+	</head>
+	<body>
+		<div id="father">
+			<div id="son"></div>
+		</div>
+		<div id="box">
+			<div id="inner">
+				大望叫我来巡山~ 我把人间转一转~ 抓个和尚当晚餐~ 不羡鸳鸯不羡仙~
+				大望叫我来巡山~ 我把人间转一转~ 抓个和尚当晚餐~ 不羡鸳鸯不羡仙~
+				大望叫我来巡山~ 我把人间转一转~ 抓个和尚当晚餐~ 不羡鸳鸯不羡仙~
+				大望叫我来巡山~ 我把人间转一转~ 抓个和尚当晚餐~ 不羡鸳鸯不羡仙~
+				大望叫我来巡山~ 我把人间转一转~ 抓个和尚当晚餐~ 不羡鸳鸯不羡仙~
+			</div>
+		</div>
+		<!--
+			当滚动条滚动的时候，改变inner的top值
+				当前scroll的top 占 最大可滚动高度 maxTop的百分比 =  inner的top值 占 inner可滚动的最大的top值的百分比
+		-->
+		<script type="text/javascript">
+			var boxW = box.clientWidth;
+			var boxH = box.clientHeight;
+			var toValue = 300; //目标值
+			var innerMaxTop = inner.offsetHeight - box.clientHeight; 
+			var maxY = father.clientHeight - son.clientHeight;
+			var y = 0;
+			son.onmousedown = function(ev){
+				var oriY = ev.clientY - son.offsetTop;
+				
+				document.onmousemove = function(ev){
+					y= ev.clientY - oriY;
+					y = y<0?0:y;
+					y = y>maxY?maxY:y;
+					son.style.top = y + "px";
+					
+					//当前son移动的和总能移动距离占比
+					var k = y/maxY;
+					inner.style.top = -k*innerMaxTop + "px";
+				};
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				};
+			};
+			
+			//鼠标滚动处理函数
+			function addScroll(obj, fnUp, fnDown){
+				obj.onmousewheel = fn;  //chrome绑定
+				obj.addEventListener("DOMMouseScroll", fn); //FF绑定
+				
+				function fn(ev){
+					if(ev.detail){ //FF的详情
+						ev.detail>0?fnUp():fnDown();
+					}
+					if(ev.wheelDelta){
+						ev.wheelDelta>0?fnUp():fnDown();
+					}
+				}
+			}
+			addScroll(box, goUp, goDown);
+			
+			function goUp(){
+				y -= 50;
+				y = y<0?0:y;
+				son.style.top = y + "px";
+				
+				var k = y/maxY;
+				inner.style.top = -k*innerMaxTop + "px";
+			}
+			function goDown(){
+				y += 50;
+				var maxY = father.clientHeight - son.clientHeight;
+				y = y>maxY?maxY:y;
+				son.style.top = y + "px";
+				
+				var k = y/maxY;
+				inner.style.top = -k*innerMaxTop + "px";
+			}
+		</script>
+	</body>
+</html>

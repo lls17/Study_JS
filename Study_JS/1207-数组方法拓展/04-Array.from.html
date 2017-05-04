@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				Array.from()
+					作用：
+						可以将一个类数组对象转换成真正的数组
+					用法：
+						Array   Array.from(obj,[callback],[thisArg])
+
+					参数：
+						obj 类数组
+						callback 对转成数组每一项进行处理
+					返回值
+						新数组
+
+			*/
+
+
+		</script>
+	</head>
+
+	<body>
+		<ul id="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<script>
+
+			var allLi = document.getElementsByTagName("li");
+
+			//拿到每一个li中的包含的内容，放在数组中
+
+			//当拿到类数组中的每一项，都会执行后面的回调函数
+			var arrLi = Array.from(allLi,function (value,index){
+				console.log(this)
+				//新数组的值由这个函数的返回值决定
+				console.log( value );
+				return value.innerHTML;
+			},"abc")
+
+			console.log( arrLi );
+
+
+		</script>
+	</body>
+</html>

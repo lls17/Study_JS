@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				arr.find():
+					作用：
+						返回数组中满足测试条件的第一个值，如果没有满足条件的，则返回undefind
+					用法：
+						Any arr.find([callback],[thisArg])
+						
+					参数：
+						callback
+
+					返回值：
+						任意类型的值
+
+			*/
+			var arr = [1,2,3,4,5,5];
+
+			//符合规则的第一个数据
+			var val = arr.find(function (value,index){
+				return value > 15;	
+			})
+
+			console.log( val );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

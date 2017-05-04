@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#wrap{
+				width: 50px;
+				height: 400px;
+				background-color: pink;
+				position: relative;
+				border: 10px solid #000;
+			}
+			#scroll{
+				width: 50px;
+				height: 50px;
+				background-color: cornflowerblue;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="scroll"></div>
+		</div>
+		<script>
+			var wrap = document.getElementById("wrap");
+			var scroll = document.getElementById("scroll");
+			scroll.onmousedown = function(e){
+				var disY = e.clientY - scroll.offsetTop;
+				var maxTop = wrap.clientHeight - scroll.offsetHeight //可滚动的最大top值
+//				console.log(maxTop);
+				document.onmousemove = function(e){
+					var y = e.clientY - disY;
+					y = y<0?0:y;
+					y = y>maxTop?maxTop:y;
+					
+					scroll.style.top = y + "px";
+					
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+				return false;
+			}
+		</script>
+	</body>
+</html>

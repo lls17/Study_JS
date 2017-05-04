@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				Array.from()
+					作用：
+						可以将一个类数组对象转换成真正的数组
+					用法：
+						Array   Array.from(obj,[callback],[thisArg])
+
+					参数：
+						obj 类数组
+						callback 对转成数组每一项进行处理
+						thisArg 改变回调函数中this的指向
+					返回值
+						新数组
+
+			*/
+
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="按钮" />
+		<ul id="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<script>
+			var btn = document.getElementById("btn");
+			var allLi = document.getElementsByTagName("li");
+
+			//["按钮1","按钮2"]
+			btn.onclick = function (){
+				var arr = Array.from(allLi,function (value){
+					var innerHTML = this.value + ":" + value.innerHTML;
+					return 	innerHTML;
+				},this)	
+
+				console.log( arr );
+			};
+
+		</script>
+	</body>
+</html>

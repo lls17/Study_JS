@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				arr.filter()
+					作用
+							使用指定函数测试所有元素，
+							并创建一个包含所有通过测试的元素的新数组。
+					语法
+							Array arr.filter(callback,[thisArg])
+					参数
+							callback(value,index,arr)
+								value为循环的值
+								index为下标
+								arr为被操作的数组	
+					返回值
+							新数组
+						描述
+							filter 为数组中的每个元素调用一次 callback 函数，
+							callback返回值为true，则把值放入新数组中，否则不放入。
+
+			*/
+
+			var arr = [1,2,3,4,5,6,7,3,3,3];
+
+			//找到小于4的所有的数组中值，放在数组中
+
+			var newArr = arr.filter(function (value,index){
+				//console.log( this );
+				//循环到数组中的每一项，都会指执行这个回到函数
+				//如果这个回调函数的返回值为true，就把这一项放在新数组中
+				//返回的是false，忽略
+				return value > 4;	
+			})
+
+			console.log( newArr );
+
+
+
+			/*var newArr = [];
+			//循环数组中的每一项
+			for( var i = 0; i < arr.length; i++ ){
+				//给每一项一个规则 
+				if( arr[i] < 4 ){
+					newArr.push(arr[i])
+				}
+			}
+
+			console.log( newArr );*/
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="按钮" />
+		<ul id="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<script>
+
+
+		</script>
+	</body>
+</html>

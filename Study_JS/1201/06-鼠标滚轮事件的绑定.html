@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				border: 1px solid #000;
+				font-size: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">0</div>
+		<script>
+//			在box上滚动鼠标滚轮
+			var box = document.getElementById("box");
+//			在chrome下,使用onmousewheel绑定
+			box.onmousewheel = function(){
+				console.log( 1 );
+			}
+			
+//			在firefox下,使用DOMmousescroll 事件侦听绑定
+			box.addEventListener("DOMMouseScroll",function(){
+				console.log(22);
+			})
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#father{
+				position: absolute;
+				height: 300px;
+				width: 50px;
+				background-color: cadetblue;
+				border: 10px solid darkseagreen;
+			}
+			#son{
+				position: absolute;
+				top: 0;
+				width: 50px;
+				height: 50px;
+				background-color: lightcyan;
+			}
+			#box{
+				position: absolute;
+				left: 100px;
+				width: 100px;
+				height: 100px;
+				background-color: gold;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="father">
+			<div id="son"></div>
+		</div>
+		<div id="box"></div>
+		
+		<script type="text/javascript">
+			var boxW = box.clientWidth;
+			var boxH = box.clientHeight;
+			var toValue = 300; //目标值
+			
+			son.onmousedown = function(ev){
+				var disY = ev.clientY - son.offsetTop;
+				
+				document.onmousemove = function(ev){
+					var y = ev.clientY - disY;
+					y = y<0?0:y;
+					var maxY = father.clientHeight - son.clientHeight;
+					y = y>maxY?maxY:y;
+					son.style.top = y + "px";
+					
+					//当前son移动的和总能移动距离占比
+					var k = y/maxY;
+					console.log(k);
+					box.style.height = boxH + (toValue-boxH)*k + "px"; 
+					box.style.width = boxW + (toValue-boxW)*k + "px"; 
+				};
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				};
+			};
+		</script>
+	</body>
+</html>

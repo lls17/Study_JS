@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度音乐的全选操作</title>
+	<style>
+		html, body, ul {
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			list-style: none;
+		}
+		#songs {
+			border: 1px solid #eee;
+			width: 400px;
+			margin: 20px auto;
+			font-size: 14px;
+		}
+		#list li {
+			height: 30px;
+			line-height: 30px;
+		}
+		#toolbar {
+			border-top: 1px solid #DEDEDE;
+			border-bottom: 2px solid #424242;
+			width: 100%;
+			height: 35px;
+			line-height: 35px;
+		}
+		#toolbar li {
+			float: left;
+			width: 100px;
+			text-align: left;
+		}
+		#toolbar .button{
+			border: 1px solid #CECECE;
+			height: 20px;
+			margin: 6px 5px;
+			width: 60px;
+			line-height: 24px;
+			padding-left: 10px;
+			border-radius: 5px;
+			text-align: center;
+			opacity: 0.3;
+		}
+		#list .title {
+			display: inline-block;
+			width: 280px;
+		}
+		.red{
+			background: red;
+		}
+		.blue {
+			background: blue;
+			color: #fff;
+		}
+		.white {
+			background: #fff;
+		}
+	</style>
+<script>
+			
+</script>
+</head>
+<body>
+	<div id="songs">
+		<ul id="list">
+			<li>
+				<input type="checkbox">
+				<span class="title">私奔</span>
+				<span class="singer">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span class="title">北京北京</span>
+				<span class="singer">梁博、黄勇</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span class="title">我爱你中国</span>
+				<span class="singer">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span class="title">花火</span>
+				<span class="singer">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span class="title">回来</span>
+				<span class="singer">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span class="title">爱要有你才完美</span>
+				<span class="singer">梁博、那英</span>
+			</li>
+		</ul>
+		<ul id="toolbar">
+			<li>
+				<input id="allChecked" type="checkbox">全选
+			</li>
+			<li>
+				<div class="button" id="favorite">收藏</div>
+			</li>
+			<li>
+				<div class="button" id="add">添加</div>
+			</li>
+			<li>
+				<div class="button" id="delete">删除</div>
+			</li>
+		</ul>
+	</div>
+	<script>
+		var ipts = document.querySelectorAll("#list input");
+		var checkAll = document.getElementById("allChecked");
+		
+		//全选-反选
+		checkAll.onclick = function(){
+			Array.from(ipts).forEach(function(item){
+				item.checked = this.checked;
+			},this);
+		};
+		
+		//单选
+		Array.from(ipts).forEach(function(item){
+			item.onclick = function(){
+				checkAll.checked = Array.from(ipts).every(function(value){
+					return value.checked;
+				});
+			}
+		});
+	</script>
+</body>
+</html>

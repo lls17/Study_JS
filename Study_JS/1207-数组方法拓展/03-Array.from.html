@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				Array.from()
+					作用：
+						可以将一个类数组对象转换成真正的数组
+					用法：
+						Array   Array.from(obj,[callback],[thisArg])
+
+					参数：
+						obj 类数组
+						callback 对转成数组每一项进行处理
+					返回值
+						新数组
+
+			*/
+
+
+		</script>
+	</head>
+
+	<body>
+		<ul id="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<script>
+
+			/*function changeArray(likeArray){
+				var arr = [];
+				for( var i = 0; i < likeArray.length; i++ ){
+					arr.push(likeArray[i])		
+				}	
+
+				return arr;
+			}*/
+
+			//每一个li添加点击处理
+			var allLi = document.getElementsByTagName("li");
+
+			//var arrLi = changeArray(allLi);  //转成数组
+
+			//使用内置提供的方法
+
+			var arrLi = Array.from(allLi);
+
+			console.log( arrLi.push );
+
+			arrLi.forEach(function (item){
+				item.onclick = function (){
+						
+				}	
+			})
+
+			//类数组不能使用数组的方法
+
+
+
+			/*for( var i = 0; i < allLi.length; i++ ){
+				allLi[i].onclick = function (){
+						
+				}
+			}*/	
+
+		</script>
+	</body>
+</html>

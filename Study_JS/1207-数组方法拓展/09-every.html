@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./data.js"></script>
+		<script>
+
+			/*
+				arr.every()
+					作用
+						测试数组的所有元素是否都通过了指定函数的测试
+					语法
+						Boolean arr.every(callback,[thisArg])
+
+			*/
+
+			var arr = [6,6,6,6,6,5];
+
+			//判断这个数组中所有的元素是否都等于6
+
+			var bl = arr.every(function (value){
+				//循环数组中的每一项，都会执行这个回到函数
+				//如果数组中所有的元素都通过的规则，every函数返回的是true
+				//如果数组中有一项没有符合规则，every函数返回的是false
+				return value == 6;	
+			})
+
+			console.log( bl );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

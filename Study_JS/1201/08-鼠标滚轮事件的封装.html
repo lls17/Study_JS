@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				border: 1px solid #000;
+				font-size: 50px;
+			}
+		</style>
+	</head>
+	<body style="height: 4000px;">
+		<div id="box">0</div>
+		<script>
+//			在box上滚动鼠标滚轮
+			var box = document.getElementById("box");
+			
+//			box.onmousewheel = function(e){//chrome
+//				console.log( e.wheelDelta );//向下滚动-120
+//			}
+//			
+//			box.addEventListener("DOMMouseScroll",function(e){//firefox
+//				console.log( e.detail );//向下滚动3
+//			})
+			
+//			函数封装
+			var num = 0;
+			addScroll (box,function(){
+//				console.log( "上" );
+				num--;
+				box.innerHTML = num;
+			},function(){
+//				console.log( "下" );
+				num++;
+				box.innerHTML = num;
+			})
+			
+			function addScroll (obj,fnUp,fnDown) {
+				//为obj添加鼠标滚轮事件处理函数
+				obj.onmousewheel = fn;
+				obj.addEventListener("DOMMouseScroll",fn);
+				
+				function fn (e) {//只要滚动滚轮了，就会触发fn
+					if(e.wheelDelta){//chrome
+						e.wheelDelta<0? fnDown(): fnUp();
+						return false;
+					}
+					if(e.detail){//firefox
+						e.detail>0? fnDown(): fnUp();
+						e.preventDefault();
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#wrap{
+				width: 50px;
+				height: 400px;
+				background-color: pink;
+				position: relative;
+				border: 10px solid #000;
+				float: left;
+			}
+			#scroll{
+				width: 50px;
+				height: 50px;
+				background-color: cornflowerblue;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#box{
+				width: 420px;
+				height: 420px;
+				border: 1px solid #000;
+				float: left;
+				margin-left: 50px;
+				line-height: 100px;
+				/*overflow: hidden;*/
+				position: relative;
+			}
+			#inner{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body style="height: 4000px;">
+		<!--
+			当滚动条滚动的时候，改变inner的top值
+				当前scroll的top 占 最大可滚动高度 maxTop的百分比 =  inner的top值 占 inner可滚动的最大的top值的百分比
+		-->
+		<div id="wrap">
+			<div id="scroll"></div>
+		</div>
+		<div id="box">
+			<div id="inner">
+				床前明月光，疑是地上霜，举头望明月，低头喝鸡汤。
+				拍碎双玉斗，慷慨一何多。满腔都是血泪，无处着悲歌。拍碎双玉斗，慷慨一何多。满腔都是血泪，无处着悲歌。拍碎双玉斗，慷慨一何多。满腔都是血泪，无处着悲歌。拍碎双玉斗，慷慨一何多。满腔都是血泪，无处着悲歌。拍碎双玉斗，慷慨一何多。满腔都是血泪，无
+			</div>
+		</div>
+		<script>
+			var wrap = document.getElementById("wrap");
+			var scroll = document.getElementById("scroll");
+			var box = document.getElementById("box");
+			var inner = document.getElementById("inner");
+			
+			var boxOriWidth = box.offsetWidth;
+			var boxOriHeight = box.offsetHeight;
+//			inner可滚动的最大的top值 = inner的高度 - box的高度
+			var innerMaxTop = inner.offsetHeight - box.clientHeight;
+			var maxTop = wrap.clientHeight - scroll.offsetHeight //可滚动的最大top值
+			var y = 0;
+//			console.log( innerMaxTop );
+			scroll.onmousedown = function(e){
+				var disY = e.clientY - scroll.offsetTop;
+				
+//				console.log(maxTop);
+				document.onmousemove = function(e){
+					y = e.clientY - disY;
+					y = y<0?0:y;
+					y = y>maxTop?maxTop:y;
+//					计算当前top值占总可移动距离的top的百分比
+					var s = y/maxTop;
+					
+					inner.style.top = -s * innerMaxTop +"px";
+					
+					scroll.style.top = y + "px";
+					
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+				return false;
+			}
+			addScroll (wrap,goUp,goDown)
+			
+			addScroll (inner,goUp,goDown)
+			
+			function goUp(){//滚动条向上走，页面主体内容往下移动
+				console.log(y);
+//				限制y
+				y-=50;
+				y = y<0?0:y;
+//				计算比例
+				var s = y/maxTop;
+				inner.style.top = -s * innerMaxTop +"px";
+				scroll.style.top = y + "px";
+			}
+			function goDown(){//滚动条向下走，页面主体内容往上移动
+				console.log(y);
+				y+=50;
+				y = y>maxTop?maxTop:y;
+				var s = y/maxTop;
+				inner.style.top = -s * innerMaxTop +"px";
+				scroll.style.top = y + "px";
+			}
+			
+			function addScroll (obj,fnUp,fnDown) {
+				//为obj添加鼠标滚轮事件处理函数
+				obj.onmousewheel = fn;
+				obj.addEventListener("DOMMouseScroll",fn);
+				
+				function fn (e) {//只要滚动滚轮了，就会触发fn
+					if(e.wheelDelta){//chrome
+						e.wheelDelta<0? fnDown(): fnUp();
+						return false;//阻止默认行为，防止页面滚动
+					}
+					if(e.detail){//firefox
+						e.detail>0? fnDown(): fnUp();
+						e.preventDefault();
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
