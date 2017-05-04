@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			冒泡排序原理：
+				把大的数往后 放
+			
+			如果当前轮比较的时候没有发生位置变换，那相当于已经排好了
+		-->
+		<script>
+		    var arr = [5,2,1,8,4,7];
+//		    var arr = [1,2,3,4,5,6];
+		    var num = 0;
+//		    arr.sort();//js内部写好的
+//		    console.log( arr );
+			for (var i = 0; i < arr.length-1; i++) {//几轮
+				//进行这一轮比较的时候申明变量onoff为true
+				var onoff = true;
+				for(var j = 0;j<arr.length-1-i;j++){
+					num++;
+					if(arr[j] > arr[j+1]){//[2,1]
+						var temp = arr[j];//temp中存2
+						arr[j] = arr[j+1];//arr[j] = 1 [1,1]
+						arr[j+1] = temp;//arr[j+1] =temp[1,2] 
+						onoff = false;
+					}
+				}
+				if(onoff == true){//如果onoff还是true则说明没有进行位置交换，则相当于已经排好。跳出for
+					break;
+				}
+			}
+			console.log( arr );
+			console.log( num );//5+4+3
+		</script>
+	</body>
+</html>

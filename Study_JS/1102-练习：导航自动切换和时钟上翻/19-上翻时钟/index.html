@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		ul,li{
+			margin: 0px;
+			padding: 0;
+			list-style: none;
+		}
+		#list{
+			height: 70px;
+			overflow: hidden;
+			width: 400px;
+			margin: 100px auto;
+		}
+		#list li{
+			width: 50px;
+			float: left;
+			position: relative;
+			top: 0;
+		}
+		img {
+			border: none;
+			vertical-align: top;
+			width: 50px;
+			height: 70px;
+		}
+	</style>
+</head>
+<body>	
+	<ul id="list">
+		<li>
+			<img src="img/0.jpg"/>
+			<img src="img/0.jpg"/>
+		</li>
+		<li>
+			<img src="img/0.jpg"/>
+			<img src="img/0.jpg"/>
+		</li>
+		<li>
+			<img src="img/0.jpg"/>
+			<img src="img/0.jpg"/>
+		</li>
+		<li>
+			<img src="img/0.jpg"/>
+			<img src="img/0.jpg"/>
+		</li>
+		<li>
+			<img src="img/0.jpg"/>
+			<img src="img/0.jpg"/>
+		</li>
+		<li>
+			<img src="img/0.jpg"/>
+			<img src="img/0.jpg"/>
+		</li>
+		<li>
+			<img src="img/0.jpg"/>
+			<img src="img/0.jpg"/>
+		</li>
+		<li>
+			<img src="img/0.jpg"/>
+			<img src="img/0.jpg"/>
+		</li>
+	</ul>
+	<script>
+		var now = new Date();
+		var h = now.getHours();
+		var m = now.getMinutes();
+		var s = now.getSeconds();
+		var str1 = add0(h)+":"+add0(m)+":"+add0(s);
+		var lis = document.getElementsByTagName("li");
+		for (var i = 0; i < lis.length; i++) {
+			if(i==2||i==5){
+				lis[i].getElementsByTagName("img")[0].src = "img/c.jpg";
+			}else{
+				lis[i].getElementsByTagName("img")[0].src = "img/"+ str1.charAt( i ) +".jpg";
+			}
+		}
+//		go( 7,0 );
+//		go( 6,1 );
+		
+		setInterval(function(){
+			checkDiffer()
+		},1000)
+		
+		function checkDiffer(){//比较当前时间和上一秒的区别
+				var now2 = new Date();
+				var h2 = now2.getHours();
+				var m2 = now2.getMinutes();
+				var s2 = now2.getSeconds();
+				var str2 = add0(h2)+":"+add0(m2)+":"+add0(s2);
+//				console.log( check( str1,str2 ) );
+				var differArr = check( str1,str2 );
+				for(var i = 0;i<differArr.length;i++){
+					go( differArr[i][0],differArr[i][1] );
+				}
+				str1 = str2; 
+		}
+		function check(a,b) {//比较a和b之间的区别，把不同字符的位置返回出来，同时返回这个位置上b的字符
+			var arr = [];
+			for (var i = 0; i < a.length; i++) {
+				if(a.charAt(i) != b.charAt(i)){
+					arr.push( [i,b.charAt(i)] )
+				}
+			}
+			return arr;
+		}
+//		console.log( check( "abc","def" ) );//
+
+		function go( index,srcNum ){
+			lis[index].getElementsByTagName("img")[1].src = "img/"+srcNum+".jpg";
+			move (lis[index],{"top":-70},500,function(){
+				lis[index].style.top = 0;
+				lis[index].getElementsByTagName("img")[0].src = "img/"+srcNum+".jpg";
+			})
+		}
+		function move (obj,object1,duration,fn) {
+		    	var startTime = new Date();
+		    	var d = duration;
+		    	var j = {};
+		    	for( var a in object1){
+		    		j[a] = {};
+		    		j[a].b = parseFloat(getComputedStyle(obj)[a]);
+		    		j[a].c = object1[a] - j[a].b; 
+		    	}
+		    	console.log( j );
+		    	obj.timer = setInterval(function(){
+		    		var t = new Date() - startTime;
+		    		if(t>=d){
+		    			t = d;
+		    		}
+		    		for(var a in j){
+		    			var c = j[a].c;
+		    			var b = j[a].b;
+						var v = c/d*t + b;
+		    			if(a == "opacity"){
+		    				obj.style[a] = v ;
+		    			}else{
+		    				obj.style[a] = v + "px";
+		    			}
+		    		}
+		    		if(t==d){
+		    			clearInterval(obj.timer);
+		    			fn&&fn();
+		    		}
+		    	},16)
+		    }
+		
+		function add0(n){
+			return n<10 ? "0"+n : ""+n
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			substring
+			作用
+				截取指定位置之间的字符串
+			语法
+				string string.substring(indexStart [, indexEnd])
+			参数
+				indexStart
+					截取的起始位置
+				indexEnd
+					截取的结束位置，默认为最后一个字符的位置+1
+			返回值
+				返回截取后的字符串
+				
+			会根据起始位置和结束位置的大小先进行参数位置的变换，再进行截取
+			会把负值转换成0
+		-->
+		<script>
+		    var a = "miaovketang";
+//		    console.log( a.substring( 4 ) ); //从第四位开始截取到最后
+		    console.log( a.substring( 0,4 ) ); //miao
+		    console.log(a);
+			
+//			console.log( a.substring( 4,0 ) );//"miao"先进行参数位置的变换，再进行截取
+//			console.log( a.substring( -1,4 ) );//"miao" 负值会转换成0
+//			console.log( a.substring( -2,4 ) );//"miao"  负值会转换成0
+//			console.log( a.substring( 4,-2 ) );//"miao"
+		</script>
+	</body>
+</html>

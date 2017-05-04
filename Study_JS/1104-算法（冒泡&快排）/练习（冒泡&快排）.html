@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			oArr = [4,2,5,1,7,6,9];
+			console.log("原数组："+ oArr);
+//			console.log("冒泡排序：" + bubbleSort(oArr));
+			console.log("快速排序：" + fastSort(oArr));
+			
+			/* 冒泡排序
+			 *   每次排序找出最大的，放在末位
+			 * 	1、外层循环：即需比较的轮次，arr.length-1
+			 *  2、内层循环：即每轮需比较的元素个数，arr.length-1-第x轮次
+			 */
+			function bubbleSort(arr){
+				for (var i = 0; i < arr.length-1; i++) {
+					var flag = true;
+					for (var j = 0; j < arr.length-1-i; j++) {
+						if(arr[j] > arr[j+1]){
+							flag = false;
+							var temp = arr[j];
+							arr[j] = arr[j+1];
+							arr[j+1] = temp;
+						}
+					}
+					if(flag){
+						break;					
+					}
+					console.log("第"+i+"次冒泡：" + arr);
+				}
+				return arr;
+			}
+			
+			/*
+			 * 快速排序
+			 * 1、以temp为基准，比temp小的存在其左边的数组，比起大的存在其右边的数组，即 [4,2]5[9,7,8]
+			 * 2、将左右数组按如上规则递归。注意递归一定要有判断条件，以防溢出
+			 * */
+			var count = 0;
+			function fastSort(arr){
+				if(arr.length <= 1){
+					return arr;
+				}
+				//count++;
+				console.log("第"+count+"次快速~");
+				var temp = arr[0]; // 找比较基准值
+				var leftArr = [];
+				var rightArr = [];
+				for (var i = 1; i < arr.length; i++) {
+					if(arr[i] > temp){
+						rightArr.push(arr[i]);
+					}else{
+						leftArr.push(arr[i]);
+					}
+				}
+				return fastSort(leftArr).concat(temp, fastSort(rightArr));
+			}
+		</script>
+	</body>
+</html>

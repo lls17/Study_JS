@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			li{
+				list-style: none;
+				cursor: pointer;	
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				border: 5px solid #E7E7E7;
+				height:400px;
+				width: 800px;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			#box>ul{
+				width:100px;
+				height: 100%;
+				float: left;
+			}
+			#box>ul li{
+				line-height: 99px;
+				text-align: center;
+				background-color: #000;
+				border-bottom: 1px solid #E7E7E7;
+				color:white;
+			}
+			#box>ul .active{
+				background-color: red;
+				color:black;
+			}
+			#box div{
+				float: left;
+				width: 700px;
+				height: 100%;
+				position: relative;
+				display: none;
+			}
+			#box img{
+				width: 100%;
+				height: 100%;
+			}
+			#box div ul{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			#box div li{
+				float: left;
+				border-right: 1px solid white;
+				background-color: black;
+				opacity: .7;
+				line-height: 30px;
+				margin-right: -1px;
+				color:white;
+				text-align: center;
+			}
+			#box div .active{
+				background-color: #EF3163;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			var arr=[
+						[ 
+							"暖色调",
+							[
+								"暖色键盘",
+								"惬意时光",
+								"午后",
+								"一杯苦咖啡"
+							],
+							[
+								"images/img1.gif",
+								"images/img2.gif",
+								"images/img3.gif",
+								"images/img4.gif"
+							]
+						],
+						[
+							"金色夕阳",
+							[
+								"街边夕阳",
+								"金色稻草"
+							],
+							[
+								"images/img5.gif",
+								"images/img6.gif"
+							]
+						],
+						[
+							"灰色格调",
+							[
+								"灰色通讯",
+								"咖啡'配'饼干",
+								"孤单键盘",
+								"枯树"
+							],
+							[
+								"images/img7.gif",
+								"images/img8.gif",
+								"images/img9.gif",
+								"images/img10.gif"
+							]
+						],
+						[
+							"baby",
+							[
+								"baby素材一",
+								"baby素材二"
+							],
+							[
+								"images/img11.gif",
+								"images/img12.gif"
+							]
+						]
+					];
+			var str = "<ul>"
+			for (var i = 0; i < arr.length; i++) {
+				str += "<li>" + arr[i][0] + "</li>";
+			}	
+			str += "</ul>";
+			
+			for (var i = 0; i < arr.length; i++) {
+				str += "<div>";
+				str += "<img src='"+arr[i][2][0]+"' />";
+				str += "<ul>";
+				for (var j = 0; j < arr[i][1].length; j++) {
+					str += "<li style='width:"+(700/arr[i][1].length)+"px'>" + arr[i][1][j] + "</li>";
+				}
+				str += "</ul></div>";
+			}
+			box.innerHTML = str;
+			
+			var father = 0; //父级（左）选项卡
+			var son = 0;    //子级（底）选项卡
+			var timer ;
+			var fLis = document.querySelectorAll("#box>ul li");
+			var divs = document.querySelectorAll("#box>div");
+			tab();
+			autoPlay();
+			
+			//为fatherList绑定点击事件
+			for (var i = 0; i < fLis.length; i++) {
+				fLis[i].index = i;
+				fLis[i].onclick = function(){
+					father = this.index;
+					son = 0;
+					tab();
+				};
+			}
+			//为sonList绑定点击事件
+			for (var i = 0; i < divs.length; i++) {
+				var sLis = divs[i].getElementsByTagName("li");
+				for (var j = 0; j < sLis.length; j++) {
+					sLis[j].index = j;
+					sLis[j].onclick = function(){
+						son = this.index;
+						tab();
+					};
+				}
+			}
+			
+			function tab(){ //根据全局变量father和son，进行两个选项卡的切换
+				for (var i = 0; i < fLis.length; i++) {
+					fLis[i].className = "";
+					divs[i].style.display = "none";
+				}
+				fLis[father].className = "active";
+				divs[father].style.display = "block";
+				
+				var sLis = divs[father].getElementsByTagName("li");
+				var img = divs[father].getElementsByTagName("img")[0];
+				for (var i = 0; i < sLis.length; i++) {
+					sLis[i].className = "";
+				}
+				sLis[son].className = "active";
+				img.src = arr[father][2][son];
+			}
+			
+			function autoPlay(){
+				timer = setInterval(function(){
+					son++;
+					if(son == arr[father][1].length){
+						son = 0;
+						father++;
+					}
+					if(father == arr.length){
+						father = 0;
+					}
+					tab();
+				},700);
+				return timer;
+			}
+			
+			
+			box.onmouseover = function(){
+				clearInterval(timer);
+			};
+			box.onmouseout = autoPlay;
+		</script>
+	</body>
+</html>

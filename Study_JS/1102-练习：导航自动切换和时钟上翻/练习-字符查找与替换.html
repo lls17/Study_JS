@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				border: 5px solid #E7E7E7;
+				height:400px;
+				width: 800px;
+				margin: 30px auto;
+				border-radius: 4px;
+				padding: 20px;
+				box-sizing: border-box;
+			}
+			#content{
+				display: block;
+				height: 200px;
+				width: 700px;
+				border: 1px solid #7D7D7D;
+				border-radius: 4px;
+				resize: none;
+				font-size: 16px;
+				line-height: 18px;
+			}
+			#opt{
+				height: 100px;
+				width: 700px;
+				margin-top: 10px;
+				border: 1px solid #7D7D7D;
+				border-radius: 4px;
+			}
+			#nav{
+				padding: 10px;
+				list-style: none;
+				height: 20px;
+			}
+			a{
+				text-decoration: none;
+				float: left;
+				height: 20px;
+				padding: 5px 20px;
+				border: 1px solid black;
+				color: black;
+				margin-left: 4px;
+			}
+			a.active{
+				background-color: orange;
+			}
+			span{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="content" >啦啦啦啦~ 我是卖报的小行家~ 不等天明去卖报~ 一边走~一边叫~ 今天的新闻真正好~ 7个铜板就卖2份报纸~</div>
+			<div id="opt">
+				<nav id="nav">
+					<a href="javascript:;" class="active">查找</a>
+					<a href="javascript:;">替换</a>
+				</nav>
+				<div id="search">
+					<input type="text" />
+					<button>开始</button>
+				</div>
+				<div id="replace">
+					<input type="text" />
+					<input type="text" />
+					<button>开始</button>
+				</div>
+			</div>
+		</div>
+		<script>
+			var content = document.getElementById("content");
+			var cont = content.innerHTML.trim();
+			var nav = document.getElementById("nav");
+			var search = document.getElementById("search");
+			var replace = document.getElementById("replace");
+			
+			search.getElementsByTagName("button")[0].onclick = function(){
+				var serKey = search.getElementsByTagName("input")[0].value.trim();
+				if(serKey == ""){
+					alert("请输入要搜索的内容！");
+					return;
+				}
+				if(cont.indexOf(serKey) < 0){
+					alert("无搜索结果！");
+					return;
+				}
+//				innerText 会将span当字符显示到页面，而没有样式渲染
+				content.innerHTML = cont.split(serKey).join("<span>"+serKey+"</span>");
+			};
+			replace.getElementsByTagName("button")[0].onclick = function(){
+				var serKey = replace.getElementsByTagName("input")[0].value.trim();
+				var repKey = replace.getElementsByTagName("input")[1].value.trim();
+				if(serKey == ""){
+					alert("请输入要搜索的内容！");
+					return;
+				}
+				if(repKey == ""){
+					alert("请输入要替换的内容！");
+					return;
+				}
+				if(cont.indexOf(serKey) < 0){
+					alert("无搜索结果！");
+					return;
+				}
+				content.innerHTML = cont.split(serKey).join("<span>"+repKey+"</span>");
+				cont = cont.split(serKey).join(repKey);
+			};
+			
+		</script>
+	</body>
+</html>

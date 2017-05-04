@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			首先把字符串变成数组（单词形式）
+			遍历数组，把每个单词的第0个取出来变成大写，然后拼接上单词后面的部分
+		-->
+		<script>
+		    var str = "some say love it is a river";
+		    var arr = str.split(" ");
+		    console.log( arr );
+//		    var res = "";
+//		    for (var i = 0; i < arr.length; i++) {
+////		    	arr[i].charAt(0)//首字母
+////				console.log( arr[i].charAt(0).toUpperCase()+ arr[i].slice(1) );
+//				res += arr[i].charAt(0).toUpperCase() + arr[i].slice(1)+" ";
+//		    }
+//		    console.log( res.substring(0,res.length-1) );
+		    
+		    // 方法二：通过修改数组，再拼接（可省去处理最后一个空格的拼接问题）
+			for (var i = 0; i < arr.length; i++) {
+				arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+			}	    
+			console.log(arr.join(" "));
+		    
+		</script>
+	</body>
+</html>

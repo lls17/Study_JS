@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			arr.sort()
+				作用
+					对数组的元素进行排序
+			语法
+					array arr.sort([compareFunction])
+				参数
+					compareFunction
+			    		可选。用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的诸个字符的Unicode位点进行排序。 
+			返回值
+					排序后的数组			
+		-->
+		<script>
+//			var arr = [3,1,2,4,7,0];
+			var arr = ["f","a","b","z","c"];
+//			arr.sort();
+//			arr.sort(function(){
+////				return -1//返回值是小于等于0的数不交换顺序
+////				return 1//返回值是大于0的数交换顺序
+//			})
+			
+//			alert( "b"-"a" );
+//			alert( "f">"z" );
+
+			arr.sort(function(a,b){				
+//				return -1//返回值是小于等于0的数不交换顺序
+//				return 1//返回值是大于0的数交换顺序
+//				return a - b;//从小到大
+//					return b - a;//从大到小	
+				if( a>b ){
+					return 1
+				}else{
+					return -1
+				}
+			})
+
+//			arr.sort(function(){
+//				return Math.random()-0.5;//打乱数组元素顺序
+//			})
+			
+			console.log( arr );
+		</script>
+	</body>
+</html>

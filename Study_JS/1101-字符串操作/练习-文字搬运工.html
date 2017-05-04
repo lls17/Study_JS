@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				height: 200px;
+				width: 750px;
+				border: 5px solid #CFCFCF;
+				padding: 10px;
+				margin: 50px auto;
+				font-size: 16px;
+			}
+			.fl{
+				float: left;
+			}
+			.fr{
+				float: right;
+			}
+			#in, #out{
+				height: 200px;
+				width: 300px;
+				border: 1px solid black;
+				box-sizing: border-box;
+			}
+			#opt{
+				width: 150px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			#btn{
+				display: block;
+				text-decoration: none;
+				height: 30px;
+				width: 130px;
+				margin: 0 auto;
+				line-height: 30px;
+				font-weight: bold;
+				background-color: orange;
+				color: white;
+			}
+			#info, #wait{
+				width: 130px;
+				margin: 10px auto;
+				text-align: center;
+			}
+			#btn:hover{
+				background-color: red;
+			}
+			#in{
+				resize: none;				
+			}
+			#out{
+				overflow-y: scroll;
+			}
+			#wait{
+				display: none;
+			}
+			#wait span{
+				display: inline-block;
+				height: 12px;
+				width: 10px;
+				float: left;
+				margin: 2px;
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<textarea id="in" class="fl">太阳当空照~ 花儿对我笑~ 小鸟说早！早！早！ 你为什么背上小书包~</textarea>
+			<div id="opt" class="fl">
+				<a href="javascript:;" id="btn">把文字右移</a>
+				<div id="info">0/0</div>
+				<div id="wait">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div id="out" class="fr"></div>
+		</div>
+		
+		<script type="text/javascript">
+			var timer; 
+			var timerShow;
+			$("btn").onclick = function(){
+				timer&&clearInterval(timer);
+				var content = $("in").value;
+				var total = content.length;
+				this.style.backgroundColor = "rgba(255,0,0,.3)";
+				
+				var count = 0;
+				timer = setInterval(function(){
+					$("in").value = content.slice(count);
+					$("out").innerHTML = content.slice(0, count);
+					$("info").innerHTML = count + "/" + total;
+					count++;
+					if(count == total+1){
+						clearInterval(timer);
+						timerShow&&clearInterval(timerShow);
+						$("btn").style.backgroundColor = "orange";
+						$("wait").style.display = "none";
+					}
+				},100);
+				showWait();
+			}
+			
+			function showWait(){
+				$("wait").style.display = "block";
+				var spans = $("wait").getElementsByTagName("span");
+				var now =0;
+				timerShow = setInterval(function(){
+					if(now == 0){
+						spans[now].style.backgroundColor = "red";
+						spans[spans.length-1].style.backgroundColor = "orange";
+					}else{
+						spans[now-1].style.backgroundColor = "orange";
+						spans[now].style.backgroundColor = "red";
+					}
+					now++;
+					if(now == spans.length){
+						now = 0;
+					}
+				},100);
+			}
+			
+			function $(id){
+				return document.getElementById(id);
+			}
+		</script>
+	</body>
+</html>

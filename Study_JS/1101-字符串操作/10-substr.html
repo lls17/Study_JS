@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			substr
+			作用
+				截取指定起始位置和长度的子字符串
+			语法
+				string string.substr(start [, length])
+			参数
+				start 
+					截取的起始位置
+				length
+					截取的字符串长度，默认为字符长度
+			返回值
+				返回截取后的字符串
+		-->
+		<script>
+		     var a = "miaovketang";
+//		     console.log( a.substr( 4 ) );//"vketang";
+//		     console.log( a.substr( 4,5 ) );//"vketa";第二个参数是长度
+		     
+		     var str = "LiuChengWang";
+//		     console.log(str.substr(2,6)); //"uCheng"
+//			 console.log(str.substr(-4));  //"Wang"
+//			 console.log(str.substr(-4,3));  //"Wan"
+		     console.log(str.substr(-4,6)); //"Wang"
+		</script>
+	</body>
+</html>

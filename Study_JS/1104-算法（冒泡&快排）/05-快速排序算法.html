@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			快速排序算法：
+				1、在数组中找到一个值temp，
+				2、把数组中剩余值中比temp小的放在这个数的左边数组，比temp大的放在这个数的右边数组
+				3、然后对左边数组和右边数组进行相同的操作
+				4、返回左边数组拼上temp再拼上右边数组
+			
+		-->
+		<script>
+		    var arr = [5,1,2,3,6,7,8,9,1,2];
+		    console.log( quickSort(arr) );
+		    function quickSort(arr1){
+		    	if(arr1.length <= 1){
+		    		return arr1;
+		    	}
+		    	var temp = arr1.splice(0,1);//从数组中删除第0个，并且把删除掉的赋值给temp
+//		    	var temp = arr1[0];//从数组中删除第0个，并且把删除掉的赋值给temp
+		    	var leftArr = [];
+		    	var rightArr = [];
+		    	for (var i = 0; i < arr1.length; i++) {
+//		    	for (var i = 1; i < arr1.length; i++) {
+		    		if(arr1[i]<temp){
+		    			leftArr.push( arr1[i] );
+		    		}else{
+		    			rightArr.push( arr1[i] );
+		    		}
+		    	}
+//		    	if(leftArr.length == 0 || rightArr.length==0){
+//		    		return leftArr.concat( rightArr );
+//		    	}
+//		    	console.log( leftArr,rightArr );
+		    	return quickSort( leftArr ).concat( temp,quickSort( rightArr ) )
+		    }
+		</script>
+	</body>
+</html>

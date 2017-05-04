@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li{
+				margin: 0px;
+				padding: 0;
+				list-style: none;
+			}
+			#list{
+				height: 70px;
+				overflow: hidden;
+				width: 400px;
+				margin: 100px auto;
+			}
+			#list li{
+				width: 50px;
+				float: left;
+				position: relative;
+				top: 0;
+			}
+			img {
+				border: none;
+				vertical-align: top;
+				width: 50px;
+				height: 70px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list">
+			<li>
+				<img src="img/0.jpg"/>
+				<img src="img/0.jpg"/>
+			</li>
+			<li>
+				<img src="img/0.jpg"/>
+				<img src="img/0.jpg"/>
+			</li>
+			<li>
+				<img src="img/c.jpg"/>
+				<img src="img/c.jpg"/>
+			</li>
+			<li>
+				<img src="img/0.jpg"/>
+				<img src="img/0.jpg"/>
+			</li>
+			<li>
+				<img src="img/0.jpg"/>
+				<img src="img/0.jpg"/>
+			</li>
+			<li>
+				<img src="img/c.jpg"/>
+				<img src="img/c.jpg"/>
+			</li>
+			<li>
+				<img src="img/0.jpg"/>
+				<img src="img/0.jpg"/>
+			</li>
+			<li>
+				<img src="img/0.jpg"/>
+				<img src="img/0.jpg"/>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var now = new Date();
+			var h = now.getHours();
+			var m = now.getMinutes();
+			var s = now.getSeconds();
+			var str = add0(h)+":"+add0(m)+":"+add0(s);
+			
+			var lis = document.querySelectorAll("#list li");
+			for (var i = 0; i < lis.length; i++) {
+				if(i==2||i==5){
+					lis[i].getElementsByTagName("img")[0].src = "img/c.jpg";
+				}else{
+					lis[i].getElementsByTagName("img")[0].src = "img/"+str.charAt(i)+".jpg";
+				}
+			}
+			
+			setInterval(function(){
+				checkDiff();
+			},1000);
+			
+			//找不同
+			function checkDiff(){ //比较当前时间和上一秒不同位
+				var newNow = new Date();
+				console.log(newNow);
+				var nh = newNow.getHours();
+				var nm = newNow.getMinutes();
+				var ns = newNow.getSeconds();
+				var str2 = add0(nh)+":"+add0(nm)+":"+add0(ns);
+				var arr = checkStr(str, str2);
+				for (var i = 0; i < arr.length; i++) {
+					getChange(arr[i][0], arr[i][1]);
+				}
+				str = str2;
+			}
+			
+			function checkStr(str1, str2){
+				var result = [];
+				for (var i = 0; i < str1.length; i++) {
+					if(str1.charAt(i) != str2.charAt(i)){
+						result.push([i, str2.charAt(i)]);
+					}
+				}
+				return result;
+			}
+			
+			//将第pos位置的内容换为num
+			function getChange(pos, num){
+				lis[pos].getElementsByTagName("img")[1].src = "img/"+num+".jpg";
+				//注意：运动时间不能>1s
+				move(lis[pos],{"top":-70},500,function(){
+					lis[pos].getElementsByTagName("img")[0].src = "img/"+num+".jpg";
+					lis[pos].style.top = 0;
+				});
+			}
+			
+			//十位补0
+			function add0(num){
+				return num<10?"0"+num:num;
+			}
+			
+			function move(obj,strJson,duration,fn){
+				var startTime = new Date();
+				
+				var tar = {};
+				var astyle = getComputedStyle(obj);
+				for(var strKey in strJson){
+					tar[strKey] = {};
+					tar[strKey].origin = parseFloat(astyle[strKey]);
+					tar[strKey].between = parseFloat(strJson[strKey]) - tar[strKey].origin;
+					tar[strKey].speed = parseFloat(tar[strKey].between) / duration;
+				}
+				obj.timer = setInterval(function(){
+					var bt = new Date() - startTime;
+					bt = bt>=duration? duration :bt;
+					for(var strKey in tar){
+						obj.style[strKey] = tar[strKey].origin+tar[strKey].speed*bt + "px";
+					}
+					if(bt == duration){
+						clearInterval(obj.timer);
+						fn&&fn();
+					}
+				},16);
+			}
+		</script>
+	</body>
+</html>
