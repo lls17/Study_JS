@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			所有的元素都有事件，我们做的只是为他们的事件绑定函数
+			
+			当元素发生事件的时候就会触发对应的函数
+			
+		-->
+		<input type="button" value="click" id="btn" />
+		<script>
+			var btn = document.getElementById("btn");
+			btn.onclick = function(){}
+			console.log( btn );
+			console.dir( btn );
+		</script>
+	</body>
+</html>

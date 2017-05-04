@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#list{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				width: 330px;
+				margin: 100px auto;
+			}
+			li{
+				float: left;
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+				margin: 5px;
+			}
+			.box{
+				border: 1px dotted #000;
+				position: absolute;
+				background-color: rgba(0,112,255,0.1);
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script>
+			var list = document.getElementById("list");
+			var lis = list.getElementsByTagName("li");
+		    document.onmousedown = function(e){
+		    	var div = document.createElement("div");
+		    	div.className = "box";
+		    	document.body.appendChild(div);
+		    	
+		    	var oriX = e.clientX ;
+		    	var oriY = e.clientY ;
+		    	
+		    	div.style.left = oriX + "px";
+		    	div.style.top = oriY + "px";
+		    	
+		    	document.onmousemove = function(e){
+		    		div.style.width = Math.abs( e.clientX - oriX ) + "px";
+		    		div.style.height = Math.abs( e.clientY - oriY ) + "px";
+		    		div.style.left = Math.min( e.clientX,oriX ) + "px";
+		    		div.style.top = Math.min( e.clientY,oriY ) + "px";
+		    		for (var i = 0; i < lis.length; i++) {//让div和每一个li进行碰撞检测
+		    			if( peng(div,lis[i]) ){//没碰到
+		    				lis[i].style.background = "pink";
+		    			}else{
+		    				lis[i].style.background = "red";
+		    			}
+		    		}
+		    	}
+		    	document.onmouseup = function(){
+		    		document.onmousemove = null;
+		    		document.body.removeChild( div );
+		    	}
+		    	return false;
+		    }
+		    function peng(obj1,obj2){//返回结果如果为true，说明没有碰到
+		    	var pos1 = obj1.getBoundingClientRect();
+		    	var pos2 = obj2.getBoundingClientRect();
+		    	
+		    	return pos1.right < pos2.left || pos1.left > pos2.right || pos1.bottom < pos2.top || pos1.top > pos2.bottom;
+		    }
+		</script>
+	</body>
+</html>

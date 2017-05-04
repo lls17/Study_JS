@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>函数对象event.clientX的应用</title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				position: absolute;
+				height: 100px;
+				width: 100px;
+				border-radius: 50%;
+				opacity: .5;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var count = 0;
+			var num = 0;
+			var cArr = ["yellow","orange","green","blue","purple"];
+			document.onmousemove = function(ev){
+				count++;
+				if(count%10 == 0){
+					num++;
+					num%=25;
+					var cake = document.createElement("div");
+					cake.style.background = cArr[parseInt(num/5)];
+					cake.style.top = ev.clientY - 50 + "px";
+					cake.style.left = ev.clientX - 50 + "px";
+					document.body.appendChild(cake);
+					
+					setTimeout(function(){
+						document.body.removeChild(cake);
+					},500);
+				}
+			};
+		</script>
+	</body>
+</html>

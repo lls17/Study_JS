@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var keyCodeMap = {
+				"37":false,
+				"38":false,
+				"39":false,
+				"40":false
+			}
+			var timer;
+			var isStop = true;//是停的；
+			function go(){
+				timer = setInterval(function(){
+					console.log( 1 );
+					if( keyCodeMap["37"] ){//左
+						box.style.left = box.offsetLeft - 1 +"px";
+					}
+					if( keyCodeMap["38"] ){//上
+						box.style.top = box.offsetTop - 1 +"px";
+					}
+					if( keyCodeMap["39"] ){//右
+						box.style.left = box.offsetLeft + 1 +"px";
+					}
+					if( keyCodeMap["40"] ){//下
+						box.style.top = box.offsetTop + 1 +"px";
+					}
+				},10)
+			}
+			
+			document.onkeydown = function(e){
+				console.log( typeof e.keyCode );
+				keyCodeMap[ e.keyCode ] = true;
+				console.log( keyCodeMap );
+				if(isStop){
+					go();
+					isStop = false;
+				}
+				
+			}
+			document.onkeyup = function(e){
+				keyCodeMap[ e.keyCode ] = false;
+				console.log( keyCodeMap );
+				for(var attr in keyCodeMap){
+					if( keyCodeMap[attr] ){
+						return
+					}
+				}
+				clearInterval( timer );
+				isStop = true;
+			}
+		</script>
+	</body>
+</html>

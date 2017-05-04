@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body style="height: 3000px;width: 2000px;">
+		<!--
+			event.clientX
+				获取事件触发的时候鼠标指针到可视区左侧的距离
+			event.clientY
+				获取事件触发的时候鼠标指针到可视区顶部的距离
+		-->
+		<script>
+		    document.onclick = function(e){
+		    	console.log( e.clientX,e.clientY );
+		    }
+		</script>
+	</body>
+</html>

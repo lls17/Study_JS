@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				position: absolute;
+				left: 200px;
+				top: 100px;
+				width: 400px;
+				height: 200px;
+				background-color: orange;
+				opacity: .7;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+		//可移动的标识：按下时且在边缘
+			//因自己absolute，故原始宽高为0
+			document.body.style.height = window.innerHeight + "px";
+			document.body.style.width = window.innerWidth + "px";
+		
+			var box = document.getElementById("box");
+			var sizable = false; //默认不能修改大小
+			var bet = 10; //感应距离
+			var minW = 30; //最小宽
+			var minH = 30; //最小高
+			var dir = ""; //方向
+			
+			//1-box里边缘划过变cursor
+			box.onmousemove = changeCursor;
+			function changeCursor(ev){
+				dir = "";  //每次在box上move时，均重置方向
+				if(ev.clientY - box.offsetTop < bet){ //上
+					dir += "n";
+				}
+				if(box.getBoundingClientRect().bottom - ev.clientY < bet){ //下
+					dir += "s";
+				}
+				if(ev.clientX - box.offsetLeft < bet){ //左
+					dir += "w";
+				}
+				if(box.getBoundingClientRect().right - ev.clientX < bet){ //右
+					dir += "e";
+				}
+				if(dir == ""){
+					box.style.cursor = "default";
+				}else{
+					box.style.cursor = dir + "-resize";
+				}
+			}
+			//2-当1时，并且box上按下，则document的cursor定住
+			box.onmousedown = function(ev){ 
+				if(dir != ""){
+					document.body.style.cursor = getComputedStyle(box).cursor;
+					box.onmousemove = null;
+				}
+				//3-当1&2，在document上移动时候，resize
+				document.onmousemove = function(ev){
+					if(dir.indexOf("n")>-1){//上，只有top,height变
+						var h = box.getBoundingClientRect().bottom - ev.clientY;
+						if(h >= minH){
+							box.style.top = ev.clientY + "px";
+							box.style.height = h + "px";
+						}
+					}
+					if(dir.indexOf("s")>-1){//下，只有height变
+						var h = ev.clientY - box.offsetTop;
+						if(h >= minH){
+							box.style.height = h + "px";
+						}
+					}
+					if(dir.indexOf("w")>-1){//左，只有left、width变
+						var w = box.getBoundingClientRect().right - ev.clientX;
+						if(w >= minW){
+							box.style.left = ev.clientX + "px";
+							box.style.width = w + "px";
+						}
+					}
+					if(dir.indexOf("e")>-1){//右，只有width变
+						var w = ev.clientX - box.offsetLeft;
+						if(w >= minW){
+							box.style.width = w + "px";
+						}
+					}
+				}
+			}
+			//4-document上抬起，end!
+			document.onmouseup = function(){
+				dir = "";
+				document.body.style.cursor = "default";
+				box.onmousemove = changeCursor;
+				document.onmousemove = null;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 50px;	
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value=" click" id="btn" />
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			var btn = document.getElementById("btn");
+			var pos = []; //记录位置
+			var timer ;
+			btn.onclick = function(){
+				pos.reverse(); //倒带，返置数组
+				var num = 0;
+				timer = setInterval(function(){
+					box.style.left = pos[num][0]+"px";
+					box.style.top = pos[num][1]+"px";
+					num++;
+					if( num == pos.length ){
+						clearInterval( timer );
+					}
+				},10)
+			}
+			drag( box );
+			function drag ( obj ) {
+				obj.onmousedown = function(e){
+					var disX = e.clientX - obj.offsetLeft;
+					var disY = e.clientY - obj.offsetTop;
+					pos = [[obj.offsetLeft,obj.offsetTop]];
+					document.onmousemove = function(e){
+						obj.style.left = e.clientX - disX+"px";
+						obj.style.top = e.clientY - disY+"px";
+						pos.push( [obj.offsetLeft,obj.offsetTop] );
+					}
+					document.onmouseup = function(){
+//						console.log( pos );
+						document.onmousemove = null;
+					}
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>

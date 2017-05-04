@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			img{
+				width: 300px;
+				height: 200px;
+				position: absolute;
+				left: 0;
+				top: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		我是一段文字
+		<div id="box"></div>
+		<img src="img/0.jpg" id="img1"/>
+		<script>
+//		在拖拽的过程中会选择到页面中的文字
+//			解决:
+//				在鼠标按下的时候组织浏览器的默认行为
+
+		    var box = document.getElementById("box");
+		    var img1 = document.getElementById("img1");
+			box.onmousedown = function( e ){
+				var disX = e.clientX - box.offsetLeft;
+				var disY = e.clientY - box.offsetTop;
+				
+				document.onmousemove = function( e ){
+					box.style.left = e.clientX - disX + "px";
+					box.style.top = e.clientY - disY + "px";
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+				return false;
+			}
+			
+//		拖拽图片的时候会触发浏览器的默认行为
+//			在img1上按下鼠标的时候,阻止浏览器的默认行为
+			img1.onmousedown = function( e ){
+				var disX = e.clientX - img1.offsetLeft;
+				var disY = e.clientY - img1.offsetTop;
+				document.onmousemove = function( e ){
+					img1.style.left = e.clientX - disX + "px";
+					img1.style.top = e.clientY - disY + "px";
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+				return false;
+			}
+		</script>
+	</body>
+</html>

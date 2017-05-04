@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			焦点：
+				一个页面中只能有一个焦点
+				不是所有的元素都可以获得焦点的
+				当元素获得焦点之后，就可以对他进行一些操作（编辑内部的内容，或者跳转）
+			
+			切换焦点的方式：
+				点击
+				tab(切换焦点)
+					tabindex 从1开始
+				js
+					元素.focus()
+						使元素获得到焦点
+						元素.onfocus = function(){}事件，当元素获得焦点的时候触发
+					元素.blur()
+						使元素失去焦点
+						元素.onblur = function(){}事件，当元素失去焦点的时候触发
+		-->
+		<input type="text" tabindex="1" />
+		<input type="text" tabindex="3" />
+		<input type="text" tabindex="2" />
+		<input type="text" tabindex="4" />
+		<a href="#">miaov</a>
+		<div>div</div>
+		
+		<script>
+		    var inps = document.getElementsByTagName("input");
+//		    inps[2].focus();
+//			inps[2].onfocus = function(){
+//				alert( "focus" )
+//			}
+			
+//			inps[2].blur();
+//			inps[2].onblur = function(){
+//				alert( "blur" );
+//			}
+		</script>
+	</body>
+</html>

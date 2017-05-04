@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				font-size: 50px;
+			}
+		    #box1{
+		    	padding: 100px;
+		    	background-color:red;
+		    }
+		    #box2{
+		    	padding: 100px;
+		    	background-color: orange;
+		    }
+		    #box3{
+		    	padding: 100px;
+		    	background-color: pink;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="box1">box1
+			<div id="box2">box2
+				<div id="box3">box3</div>
+			</div>
+		</div>
+		<!--
+			
+		    元素.addEventListener();
+		    	第三个参数：是否捕获
+		    	
+		    		默认值是false（不捕获）冒泡，添加在冒泡阶段
+			
+		-->
+		<script>
+		    var box1 = document.getElementById("box1");
+		    var box2 = document.getElementById("box2");
+		    var box3 = document.getElementById("box3");
+		    function fn1 () {
+		    	alert( "点击了box1" );
+		    }
+		    function fn2 () {
+		    	alert( "点击了box2" );
+		    }
+		    function fn3 () {
+		    	alert( "点击了box3" );
+		    }
+		    box1.addEventListener("click",fn1,false);//把fn1绑定在box1的点击事件的冒泡阶段触发
+		    box2.addEventListener("click",fn2,false);
+		    box3.addEventListener("click",fn3,false);
+		    
+		    box1.addEventListener("click",fn1,true);//把fn1绑定在box1的点击事件的捕获阶段触发
+		    box2.addEventListener("click",fn2,true);
+		    box3.addEventListener("click",fn3,true);
+		</script>
+	</body>
+</html>

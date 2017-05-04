@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var keyCodeMap = {
+				"37":false,
+				"38":false,
+				"39":false,
+				"40":false
+			}
+			console.log( keyCodeMap );
+			
+			setInterval(function(){
+				console.log( 1 );
+				if( keyCodeMap["37"] ){//左
+					box.style.left = box.offsetLeft - 1 +"px";
+				}
+				if( keyCodeMap["38"] ){//上
+					box.style.top = box.offsetTop - 1 +"px";
+				}
+				if( keyCodeMap["39"] ){//右
+					box.style.left = box.offsetLeft + 1 +"px";
+				}
+				if( keyCodeMap["40"] ){//下
+					box.style.top = box.offsetTop + 1 +"px";
+				}
+			},10)
+			
+			document.onkeydown = function(e){
+				keyCodeMap[ e.keyCode ] = true;
+				console.log( keyCodeMap );
+			}
+			document.onkeyup = function(e){
+				keyCodeMap[ e.keyCode ] = false;
+				console.log( keyCodeMap );
+			}
+		</script>
+	</body>
+</html>

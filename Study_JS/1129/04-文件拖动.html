@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" class="box">
+			<input type="button" value="click" />
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			box.onmousedown = function(e){
+				var copy = box.cloneNode( true );
+				copy.id = "copy";
+				copy.style.opacity = 0.5;
+				document.body.appendChild( copy );
+				var disX = e.clientX - box.offsetLeft;
+				var disY = e.clientY - box.offsetTop;
+				document.onmousemove = function(e){
+					copy.style.left = e.clientX - disX + "px";
+					copy.style.top = e.clientY - disY + "px";
+				}
+				document.onmouseup = function(){
+					console.log( copy.offsetLeft,copy.offsetTop );
+					box.style.left = copy.offsetLeft + "px";
+					box.style.top = copy.offsetTop + "px";
+					document.onmousemove = null;//解绑了鼠标移动
+					document.onmouseup = null;
+					
+					document.body.removeChild( copy );
+				}
+			}
+		</script>
+	</body>
+</html>

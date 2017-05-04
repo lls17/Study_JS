@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var last = "";
+			box.onclick = function(){
+				var now = new Date();
+				if(last != ""){
+					var mis = now - new Date(last);
+//					console.log("间隔时间：" + mis/1000 + "s");
+					if(mis < 1000){
+						console.log("双击时间小于1s");
+					}
+				}
+				last = now;
+			};
+		</script>
+	</body>
+</html>

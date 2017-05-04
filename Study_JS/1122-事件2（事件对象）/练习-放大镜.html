@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				border: 0;
+			}
+			#box{
+				margin-top: 100px;
+				margin-left: 100px;
+				position: relative;
+				height: 400px;
+				width: 400px;
+				border: 20px solid #7d7d7d;
+			}
+			#pic{
+				height: 400px;
+				width: 400px;
+			}
+			#show{
+				position: absolute;
+				top: 100px;
+				left: 600px;
+				border: 1px solid #7d7d7d;
+				/*background: url(img/big.jpg) no-repeat;*/
+				background-size: 600px 600px;
+				height: 300px;
+				width: 450px;
+			}
+			#cake{
+				position: absolute;
+				height: 200px;
+				width: 300px;
+				opacity: .5;
+				background: orange;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/big.jpg" id="pic" />
+			<div id="cake"></div>
+		</div>
+		<div id="show"></div>
+		
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var pic = document.getElementById("pic");
+			var show = document.getElementById("show");
+			var cake = document.getElementById("cake");
+			
+			var boxOL = box.offsetLeft;  
+			var boxOT = box.offsetTop;
+			var boxOW = box.offsetWidth;
+			var boxOH = box.offsetHeight;
+			var boxBL = parseInt(getComputedStyle(box).borderLeftWidth);
+			var boxBT = parseInt(getComputedStyle(box).borderTopWidth);
+			var boxCW = box.clientWidth;
+			var boxCH = box.clientHeight;
+			
+//			console.log("offsetLeft:"+boxOL); //100
+//			console.log("offsetWidth:"+boxOW); //440
+//			console.log("clientWidth:"+boxCW); //400
+			
+			box.onmouseenter = function(ev){
+				showAll();
+				setPos(ev);
+			};
+			box.onmouseleave = hide;
+			box.onmousemove = function(ev){
+				setPos(ev);
+			};
+			
+			function showAll(){
+				show.style.backgroundImage = "url(img/big.jpg)";
+				cake.style.display = "block";
+			}
+			function hide(){
+				show.style.backgroundImage = "";
+				cake.style.display = "none";
+			}
+			
+			function setPos(ev){
+				//注意：两个元素位置做对比时，要找个基准（如均距离可视区域）！！
+				var x = ev.clientX - boxOL - boxBL;
+				var y = ev.clientY - boxOT - boxBT;
+				if(x<0 || y<0 || x>boxCW || y>boxCH){
+					hide();
+					return;
+				}
+				showAll();
+				
+				var cakeOW = cake.offsetWidth;  //宽+padding+border
+				var cakeOH = cake.offsetHeight;
+				if(x < cakeOW/2){
+					x = 0;
+				}else if(x > boxCW- cakeOW/2){
+					x = boxCW- cakeOW;
+				}else{
+					x = x - cakeOW/2;
+				}
+				
+				if(y < cakeOH/2){
+					y = 0;
+				}else if(y > boxCH- cakeOH/2){
+					y = boxCH- cakeOH;
+				}else{
+					y = y - cakeOH/2;
+				}
+				
+				cake.style.top = y + "px";
+				cake.style.left = x + "px";
+				
+				var backSX = parseInt(getComputedStyle(show).backgroundSize.split(" ")[0]);
+				var backSY = parseInt(getComputedStyle(show).backgroundSize.split(" ")[1]);
+				//计算比例，  cakex/boxw = bgpositionx/bgsizew
+				var xb = backSX / boxCW;
+				var yb = backSY / boxCH;
+				show.style.backgroundPosition = -xb*x+"px "+(-yb*y)+"px";
+				
+				
+			}
+		</script>
+	</body>
+</html>

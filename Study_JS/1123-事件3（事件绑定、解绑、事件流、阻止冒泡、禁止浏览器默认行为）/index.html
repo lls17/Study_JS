@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			box.onclick = function(){
+				console.log(arguments); // mouseEvent
+			};
+			
+			function go(){
+				console.log(arguments); //[]
+			}
+			go();
+			
+		</script>
+	</body>
+</html>

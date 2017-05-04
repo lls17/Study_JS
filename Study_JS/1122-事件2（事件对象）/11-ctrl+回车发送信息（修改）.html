@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			按下ctrl+回车发送消息（添加li）到list中
+		-->
+		<input type="text" id="text1" value="12"/>
+		<!--<input type="button" id="btn" value="发送" />-->
+		<select name="">
+			<option value="">回车发送</option>
+			<option value="">ctrl + 回车发送</option>
+		</select>
+		<ul id="list"></ul>
+		<script>
+			var text1 = document.getElementById("text1");
+			var btn = document.getElementById("btn");
+			var list = document.getElementById("list");
+//			btn.onclick = function(){
+//				var li = document.createElement("li");
+//				li.innerHTML = text1.value;
+//				list.appendChild(li);
+//			}
+			document.onkeyup = function(e){
+//				console.log( e.keyCode );
+				if(e.keyCode == 13 && e.ctrlKey){
+					//keyCode不可能即等于13又等于17,所以我们使用ctrlKey来检测ctrl是否被按下
+					var li = document.createElement("li");
+					li.innerHTML = text1.value;
+					list.appendChild(li);
+				}
+			}
+		</script>
+	</body>
+</html>

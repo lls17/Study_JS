@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			img{
+				width: 300px;
+				height: 200px;
+				position: absolute;
+				left: 0;
+				top: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		一段文字
+		<div id="box"></div>
+		<img src="img/0.jpg" id="img1"/>
+		<script>
+		    var box = document.getElementById("box");
+		    var img1 = document.getElementById("img1");
+//		    只有当鼠标按下的时候,元素才会具有鼠标移动事件
+			drag( box );
+			drag( img1 );
+			
+			function drag( obj ){
+				obj.onmousedown = function( e ){
+					var disX = e.clientX - obj.offsetLeft;
+					var disY = e.clientY - obj.offsetTop;
+					document.onmousemove = function( e ){
+						obj.style.left = e.clientX - disX + "px";
+						obj.style.top = e.clientY - disY + "px";
+					}
+					document.onmouseup = function(){
+							document.onmousemove = null;
+					}
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		    function fn1 () {
+		    	console.log( event );  //undefined
+				console.log(arguments.length); //0
+		    }
+		    fn1();//这个函数是直接调用的,不是由事件触发的，所以没有event对象
+//		    window.fn1();
+		    
+		    
+		</script>
+	</body>
+</html>

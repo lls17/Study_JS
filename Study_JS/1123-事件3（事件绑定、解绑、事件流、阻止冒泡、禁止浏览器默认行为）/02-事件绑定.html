@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    #box{
+		    	width:100px;
+		    	height:100px;
+		    	background-color:red;
+		    }
+		</style>
+	</head>
+	<body>
+		<!--
+			
+			当使用on来绑定元素的事件处理函数的时候，如果为同一个元素的同一个事件进行绑定，
+			那么后绑定的会覆盖先前绑定的，只能保存后绑定的。
+			
+		-->
+		<div id="box">div</div>
+		<script>
+			var box = document.getElementById("box");
+//			你写的
+			box.onclick = function(){
+				alert(1);
+			}
+
+			//你的同事写的
+			box.onclick = function(){
+				alert(5);
+			}
+			
+//			var a = 1;
+//			
+//			a = 5;
+//			
+//			alert( a );
+		</script>
+	</body>
+</html>

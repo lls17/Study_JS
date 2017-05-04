@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				opacity: .5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var step = 5;
+			
+			//注意：按键按下时，第一次会顿挫——防止误触
+			document.onkeydown = function(ev){
+				switch (ev.keyCode){
+					case 37: //左
+						box.style.left = parseInt(getComputedStyle(box).left)-step+"px";
+						break;
+					case 38: //上
+						box.style.top = parseInt(getComputedStyle(box).top)-step+"px";
+						break;
+					case 39: //右
+//						box.style.left = parseInt(getComputedStyle(box).left)+step+"px";
+						box.style.left = box.offsetLeft+step+"px";
+						break;
+					case 40: //下
+//						box.style.top = parseInt(getComputedStyle(box).top)+step+"px";
+						box.style.top = box.offsetTop+step+"px";
+						break;
+					default:
+						break;	
+				}
+			};
+		</script>
+	</body>
+</html>

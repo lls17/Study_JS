@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				border: 0;
+			}
+			#box{
+				position: absolute;
+				/*margin: 30px 0 0 30px;*/
+				width: 100px;
+				height: 100px;
+				border-radius: 10px;
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<div id="box" draggable="true"></div>-->
+		<div id="box"></div>
+		<script type="text/javascript">
+		//2、问题：mousemove函数处理需要时间，当鼠标移动过快时(超出box)则不能继续执行box上的mousemove函数，不能移动
+			var box = document.getElementById("box");
+			var movable = false;
+			var disX;
+			var disY;
+			box.onmousedown = function(ev){
+				movable = true;
+				disX = ev.clientX - box.offsetLeft;
+				disY = ev.clientY - box.offsetTop;
+			};
+			box.onmousemove = function(ev){
+				if(movable){  //1、只有当鼠标按下时，元素才能被拖拽。故用flag标识
+					box.style.left =  ev.clientX - disX + "px";
+					box.style.top =  ev.clientY - disY + "px";
+				}
+			};
+			box.onmouseup = function(ev){
+				movable = false;
+			};
+		</script>
+	</body>
+</html>

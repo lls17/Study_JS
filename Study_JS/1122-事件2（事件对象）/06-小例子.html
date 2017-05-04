@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    img{
+		    	width: 100px;
+		    	height: 100px;
+		    	position: absolute;
+		    }
+		    div{
+		    	width:100px;
+		    	height:100px;
+		    	background-color:red;
+		    	border-radius: 50%;
+		    }
+		</style>
+	</head>
+	<body>
+		<!--<img src="img/qun_0.png"/>-->
+		<script>
+			var num = 0;
+			var n = 0;
+			document.onmousemove = function(e){
+				n++;
+				if(n%5 == 0){
+//					console.log( e.clientX,e.clientY );
+					num ++;
+					num %= 25;
+					var img = document.createElement("img");
+					img.src = "img/qun_"+ Math.floor(num/5) +".png";
+					img.style.left = e.clientX-50 + "px";
+					img.style.top = e.clientY-50 + "px";
+					document.body.appendChild(img);
+					setTimeout(function(){
+	//					img.style.opacity = 0;
+						document.body.removeChild( img );
+					},200)
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			
+			阻止冒泡：
+				首先你要知道，是哪个元素的冒泡，元素的什么事件
+				然后阻止
+					1、通过on绑定的事件
+						event.cancelBubble=true;
+					
+					2、通过addEventListener绑定的事件
+						event.stopPropagation();
+		-->
+		<input type="text" id="text1" />
+		<script>
+			var text1 = document.getElementById("text1");
+//			text1.onclick = function(e){
+//				text1.value = "请输入";
+//				//通过on绑定的事件
+//				e.cancelBubble = true;
+//			}
+			
+			text1.addEventListener("click",function(e){
+				text1.value = "请输入";
+				e.stopPropagation();
+			})
+			
+			document.onclick = function(){
+				text1.value = "";
+			}
+			
+		</script>
+	</body>
+</html>

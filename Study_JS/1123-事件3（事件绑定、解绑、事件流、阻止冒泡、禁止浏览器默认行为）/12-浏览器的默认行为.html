@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				width: 400px;
+				height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			
+			浏览器的默认行为：
+			
+				浏览器默认为我们提供的功能
+				比如页面跳转，右键菜单，文字拖动，图片拖动
+			
+			阻止浏览器的默认行为：
+				
+				1、需要知道默认行为是在何时触发的
+					
+				2、on绑定的事件，需要使用return false来阻止默认行为
+				
+					addEventListener，event.preventDefault()
+
+		-->
+		<a href="01-事件绑定.html">01-事件绑定</a>
+		<div>div</div>
+		<img src="img01.jpg"/>
+		<script>
+//		    document.onclick = function(){
+//		    	return false;
+//		    }
+//		    document.oncontextmenu = function(){
+//		    	alert(1);
+//				return false;
+//		    }
+//			document.onmousedown = function(){//阻止页面中内容被选中的
+//				return false;
+//			}
+			
+			document.addEventListener("contextmenu",function(e){
+				alert(1);
+				e.preventDefault();
+			})
+		</script>
+	</body>
+</html>

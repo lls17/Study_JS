@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			针对按键的操作
+				键盘事件一般是加在document身上的，方便进行全局的监控
+				
+		-->
+		<script>
+		
+			//keydown
+//				键盘按下的时候触发
+//				如果按键一直按下,会一直触发
+//				只能记录后按的按键.如先按a，不松开再按p，则打印出的是p
+		    document.onkeydown = function(){
+		    	console.log( "按键按下-keydown" );
+		    }
+//			keyup
+//				键盘抬起的时候触发
+//		    document.onkeyup = function(){
+//		    	console.log( "按键抬起" );
+//		    }
+
+//			keypress
+//				类似于keydown,按键按下会触发
+//				注意:功能键不会触发keypress,会触发keydown
+//			document.onkeypress = function(){
+//				console.log( "按键按下-keypress" );
+//			}
+		</script>
+	</body>
+</html>

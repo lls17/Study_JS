@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+				height: 800px;
+				width: 800px;
+			}
+			.line{
+				position: absolute;
+				left: 0;
+				top: 0;
+				border: 2px solid orangered;
+				height: 0;
+				width: 0;
+				transform-origin: top left;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			document.onmousedown = function(ev){
+				var oX = ev.clientX;
+				var oY = ev.clientY;
+				var line = document.createElement("div");
+				line.className = "line";
+				document.body.appendChild(line);
+				line.style.left = oX + "px";
+				line.style.top = oY + "px";
+				
+				document.onmousemove = function(ev){
+					line.style.width = Math.sqrt(Math.pow(ev.clientX-oX, 2)+Math.pow(ev.clientY-oY, 2)) + "px";
+					var d = angle(oX, oY, ev.clientX, ev.clientY);
+					console.log(d);
+					line.style.transform = "rotate("+d+"deg)";
+				};
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+			};
+			
+			function angle(sX, sY, eX, eY){ //返回角度不是弧度
+				var difX = eX - sX;
+				var difY = eY - sX;
+				return 360 * Math.atan(difY/difX) / (2*Math.PI);
+			}
+
+		</script>
+	</body>
+</html>

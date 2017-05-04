@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			不是键盘事件独有的,鼠标事件也有
+				event.ctrlKey
+					当事件发生的时候ctrl键是不是被按下的
+				event.shiftKey
+					当事件发生的时候shift键是不是被按下的
+				event.altKey
+					当事件发生的时候alt键是不是被按下的
+				
+					true代表是被按下的
+					false代表未被按下
+		-->
+		<script>
+//		    document.onkeydown = function(e){
+//		    	console.log( e );
+//		    }
+			document.onclick = function(e){
+				console.log( "ctrlKey:"+e.ctrlKey );
+				console.log( "altKey:"+e.altKey );
+				console.log( "shiftKey:"+e.shiftKey );
+			}
+		</script>
+	</body>
+</html>

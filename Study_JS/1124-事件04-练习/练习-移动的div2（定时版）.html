@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				opacity: .5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var step = 5;
+			var dir = "";
+			//通过定时器，避免keydown的第一次卡顿
+			setInterval(function(){
+				if(dir == "right"){
+					box.style.left = box.offsetLeft + step + "px";
+				}else if(dir == "left"){
+					box.style.left = box.offsetLeft - step + "px";
+				}else if(dir == "up"){
+					box.style.top = box.offsetTop - step + "px";
+				}else if(dir == "down"){
+					box.style.top = box.offsetTop + step + "px";
+				}
+			},10);
+			
+			document.onkeydown = function(ev){
+				switch (ev.keyCode){
+					case 37: //左
+						dir = "left";
+						break;
+					case 38: //上
+						dir = "up";
+						break;
+					case 39: //右
+						dir = "right";
+						break;
+					case 40: //下
+						dir = "down";
+						break;
+					default:
+						break;	
+				}
+			};
+			document.onkeyup = function(){
+				dir = "";
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>招贤纳士-社会招聘</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+		<!--<base target="_blank" />-->
+		<script src="js/data.js"></script>
+		
+	</head>
+	<body>
+		<div id="wrap">
+			<div class="left">
+				<h2>招贤纳士</h2>
+				<ul id="nav">
+					<!--<li class="focus"><a href="javascript:;">社会招聘</a></li>
+      				<li><a href="javascript:;">校园招聘</a></li> -->
+				</ul>
+			</div>
+			<div class="right">
+				<div class="title">
+					<img src="" id="title"/>
+				</div>
+				<div class="info" id="info1">
+
+					<!-- <p class="zp">
+        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+          <span>需求人数：2名</span>
+         	<span class="date">2013年7月30日</span>
+        </p>
+      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+        </p>
+
+      	<p class="zp">
+        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+          <span>需求人数：12名</span>
+         	<span class="date">2013年7月30日</span>
+        </p>
+      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+        </p>
+
+      	<p class="zp">
+        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+          <span>需求人数：21名</span>
+         	<span class="date">2013年7月30日</span>
+        </p>
+      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+        </p> -->
+
+				</div>
+				<div class="pages">
+					<span class="prev" id="prev1">
+          <a href="javascript:;">
+            <img src="img/pre.gif">
+          </a>
+        </span>
+					<span class="next" id="next1">
+          <a href="javascript:;">
+            <img src="img/next.gif">
+          </a>
+        </span>
+					<p id="page1">
+						<!--<span class="focus">
+            <a href="javascript:;">1</a>
+          </span>
+          <span>
+            <a href="javascript:;">2</a>
+          </span>
+          <span>
+            <a href="javascript:;">3</a>
+          </span>-->
+					</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<script>
+			// 目标：?search#hash   来进行页面的跳转与条目的选中
+			var nav = document.getElementById("nav");
+			var page = document.getElementById("page1");
+			var spans = page.getElementsByTagName("span");
+			var info = document.getElementById("info1");
+			var pre = document.getElementById("prev1");
+			var next = document.getElementById("next1");
+			var title = document.getElementById("title");
+			var ser = window.location.search.slice(1);
+			var dataNow;
+			var perNum = 2; //每页个数
+			
+			// 根据search选中相应导航; 注意:search改变时，会刷新页面
+			ser = ser==""?"sh":ser;
+			dataNow = aData[ser];
+			var str = "";
+			for (var i = 0; i < aData.list.length; i++) {
+				if(ser == aData.list[i].lx){
+					str += '<li class="focus"><a href="exe_list.html?'+aData.list[i].lx+'">'+aData.list[i].text+'</a></li>'
+				}else{
+					str += '<li><a href="exe_list.html?'+aData.list[i].lx+'">'+aData.list[i].text+'</a></li>';
+				}
+			}
+			nav.innerHTML = str;
+			title.src = dataNow.img;
+			
+			// 生成page信息，根据hash显示数据
+			var totalCount = dataNow.text.length;
+			var totalPage = Math.ceil(totalCount/perNum);
+			var curPage = window.location.hash.slice(1);
+			curPage = curPage==""?0:curPage;
+			
+			str = "";
+			for (var i = 0; i < totalPage; i++) {
+				if(curPage == i){
+					str += '<span class="focus"><a href="#'+i+'">'+(i+1)+'</a></span>';
+				}else{
+					str += '<span><a href="#'+i+'">'+(i+1)+'</a></span>';
+				}
+			}
+			page.innerHTML = str;
+			
+			window.onhashchange = function(){
+				curPage = window.location.hash.slice(1);
+				curPage = curPage==""?0:curPage;
+				for (var i = 0; i <spans.length; i++) {
+					if(curPage == i){
+						spans[i].className = "focus";
+					}else{
+						spans[i].className = "";
+					}
+				}
+				showData(curPage);
+			}
+			
+			showData(curPage);
+			function showData(curPage){
+				str = "";
+				info.innerHTML = str;
+				var endNum = curPage*perNum+perNum;
+				endNum = endNum>dataNow.text.length?dataNow.text.length:endNum;
+				for (var i = curPage*perNum; i < endNum; i++) {
+					str += '<p class="zp">'
+						+'<span><a href="exe_content.html?'+ser+'#'+i+'">'
+						+'★ 职位需求：'+dataNow.text[i].zw
+						+'</a></span><span>需求人数：'+dataNow.text[i].rs+'名</span>'
+         				+'<span class="date">'+aData.date(dataNow.text[i].sj,0)+'</span></p>';
+         			str += '<p class="yq">'+dataNow.text[i].info[0].l
+         				+'[<a href="exe_content.html?'+ser+'#'+i+'">查看详情</a>]</p>';
+				}
+				info.innerHTML = str;
+			}
+			pre.onclick = function(){
+				curPage--;
+				curPage = curPage<0?0:curPage;
+				window.location.hash = curPage;
+			};
+			next.onclick = function(){
+				curPage++;
+				curPage = curPage>totalPage-1?totalPage-1:curPage;
+				window.location.hash = curPage;
+			};
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			按下回车发送消息（添加li）到list中
+			
+		-->
+		<input type="text" id="text1" value="12"/>
+		<input type="button" id="btn" value="发送" />
+		<ul id="list"></ul>
+		<script>
+			var text1 = document.getElementById("text1");
+			var btn = document.getElementById("btn");
+			var list = document.getElementById("list");
+//			btn.onclick = function(){
+//				var li = document.createElement("li");
+//				li.innerHTML = text1.value;
+//				list.appendChild(li);
+//			}
+			
+			//若为onkeydown，如果一直按下不抬起，则会一直触发
+			//若为onkeypress，则无法检测到功能键 
+			document.onkeyup = function(e){
+				if(e.keyCode == 13){//如果抬起的是回车键（回车的键值是13）
+					var li = document.createElement("li");
+					li.innerHTML = text1.value;
+					list.appendChild(li);
+				}
+			}
+		</script>
+	</body>
+</html>

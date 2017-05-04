@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">div</div>
+		<script>
+			var box = document.getElementById("box");
+//		    document.onclick = function(){
+//		    	box.onclick = function(){
+//		    		console.log( this.innerHTML,Math.random() );
+//		    	}
+//		    }
+		    document.onclick = function(){
+		    	//每进行一次document的点击，都会通过事件侦听的方式绑定上事件处理函数，当点击的次数越多，绑定上的事件处理函数就越多
+		    	box.addEventListener("click",function(){
+		    		console.log( this.innerHTML,Math.random() );
+		    	})
+		    }
+		</script>
+	</body>
+</html>

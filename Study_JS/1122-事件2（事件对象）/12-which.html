@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			keyCode 只能检测到按键的键值
+			
+			which 可以检测到其他设备的输入值（比如鼠标，键盘）
+			
+		-->
+		<script>	
+//			document.onkeydown = function(e){
+//				console.log( e.which );
+//			}	
+			document.onclick = function(e){
+				console.log( e.which );
+			}
+		</script>
+	</body>
+</html>

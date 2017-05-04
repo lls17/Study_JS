@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				display: none;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input type="button" value="click" id="btn" />
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			var btn = document.getElementById("btn");
+			document.oncontextmenu = function(e){
+				box.style.display = "block";
+				box.style.left = e.clientX + "px";
+				box.style.top = e.clientY + "px";
+//				阻止系统的右键菜单
+				return false;
+			}
+			document.onclick = function(){
+				box.style.display = "none";
+			}
+			btn.onclick = function(e){
+				e.cancelBubble = true;
+				alert(1);
+			}
+		</script>
+	</body>
+</html>

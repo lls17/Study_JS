@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:400px;
+				height:100px;
+				background-color:red;
+			}
+			#box div{
+				height: 300px;
+				width: 50px;
+				background-color: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div></div>
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			
+//			click(点击)
+//				鼠标在元素上按下,并且在元素上抬起才会触发
+//			box.onclick = function(){
+//				console.log( "box-click" );
+//			}
+			
+//			mousedown(鼠标按下)
+//				鼠标在元素上按下才会触发
+//			box.onmousedown = function(){
+//				console.log( "box-mousedown" );
+//			}
+			
+//			mouseup (鼠标抬起)
+//				鼠标在元素上抬起才会触发(可以不是在元素上的按下)
+//			box.onmouseup = function(){
+//				console.log( "box-mouseup" );
+//			}
+			
+//			dblclick( 鼠标双击 )
+//				鼠标在元素上快速地点两下才会触发(点击的间隔根据系统设置来的)
+//			box.ondblclick = function(){
+//				console.log( "box-dblclick" );
+//			}
+
+//			mouseover
+//				鼠标在元素上移入才会触发
+//				注意:从元素身上移入到他的子级身上也会触发鼠标移入
+//			box.onmouseover = function(){
+//				console.log( "box-mouseover" );
+//			}
+
+//			mouseout
+//				鼠标在元素上移出才会触发
+//				注意:从元素身上移入到他的子级身上也会触发鼠标移出
+//			box.onmouseout = function(){
+//				console.log( "box-mouseout" );
+//			}
+
+//			mouseenter
+//				鼠标在元素上移入才会触发
+//			box.onmouseenter = function(){
+//				console.log( "box-mouseenter" );
+//			}
+		
+//			mouseleave
+//				鼠标在元素上移出才会触发
+//				注意:只有鼠标完全从元素身上完全移出（并且移出它的子级）才会触发leave
+//			box.onmouseleave = function(){
+//				console.log( "box-mouseleave" );
+//			}
+	
+//			mousemove
+//				鼠标在元素上移动时触发
+//				根据移动的时间间隔触发
+
+//			var num = 0
+//			box.onmousemove = function(){
+//				num++;
+//				console.log( "box-mousemove" );
+//				console.log( num );
+//			}
+		</script>
+	</body>
+</html>

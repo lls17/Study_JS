@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				position: absolute;
+				left: 50px;
+				top: 50px;
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				opacity: .7;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="回 放" id="btn"/>
+		<div id="box"></div>
+		<!--
+			          正                                                反
+			第1s  动1			第1s  动3
+			第2s  动2			第2s  动2
+			第5s  动3			第5s  动1
+		-->
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var btn = document.getElementById("btn");
+			var arr = [];
+			
+			box.onmousedown = function(ev){
+				var dirX = ev.clientX - box.offsetLeft;
+				var dirY = ev.clientY - box.offsetTop;
+				var now = new Date();
+				document.onmousemove = function(ev){
+					var x = ev.clientX - dirX + "px";
+					var y = ev.clientY - dirY + "px";
+					box.style.left = x;
+					box.style.top = y;
+					arr.push([x,y,new Date()-now]);
+				};
+			};
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			};
+			btn.onclick = function(){
+				for (var i = arr.length-1; i>-1 ; i--) {
+					reSize(arr[i][0], arr[i][1], arr[arr.length-1-i][2]);
+				}
+				arr = [];
+			};
+			function reSize(x, y, bt){
+				setTimeout(function(){
+					box.style.left = x;
+					box.style.top = y;
+				}, bt);
+			}
+		</script>
+	</body>
+</html>

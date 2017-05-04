@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+		    var box = document.getElementById("box");
+//		    只有当鼠标按下的时候,元素才会具有鼠标移动事件
+			box.onmousedown = function( e ){
+				var disX = e.clientX - box.offsetLeft;
+				var disY = e.clientY - box.offsetTop;
+				box.onmousemove = function( e ){
+//					console.log( 1 );
+					box.style.left = e.clientX - disX + "px";
+					box.style.top = e.clientY - disY + "px";
+				}
+				box.onmouseup = function(){
+					//把鼠标移动事件解绑
+					box.onmousemove = null;
+				}
+			}
+//			问题：
+//				当鼠标移动过快的时候,会导致元素无法被拖拽了(拖丢了)
+//			原因：
+//				只有当在box上移动的时候,才能改变元素的位置，
+//				但是mousemove触发是有间隔时间的,如果在下一次mousemove出发之前移出了元素,那就会导致拖丢了
+//				对应的鼠标抬起,只有在元素身上抬起才会解绑元素的鼠标移动事件
+		</script>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				position: absolute;
+				border: 2px solid orange;
+			}
+			.circle{
+				border-radius: 50%;
+				border-color: pink;
+				border-width: 6px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="圆"/>
+		<input type="button" value="方块"/>
+		<script type="text/javascript">
+			var oX;
+			var oY;
+			var box;
+			var cName;
+			var btns = document.getElementsByTagName("input");
+			btns[1].onclick = function(){
+				cName = "";
+			}
+			btns[0].onclick = function(){
+				cName = "circle";
+			}
+			document.onmousedown = function(ev){
+				oX = ev.clientX;
+				oY = ev.clientY;
+				box = document.createElement("div");
+				box.className = cName;
+				document.body.appendChild(box);
+				
+				document.onmousemove = function(ev){
+					var nX = ev.clientX;
+					var nY = ev.clientY;
+					box.style.width = Math.abs(oX - nX) + "px";
+//					box.style.left = (oX>nX?nX:oX) + "px";
+					box.style.left = Math.min(oX, nX) + "px";
+					
+					box.style.height = Math.abs(oY - nY) + "px";
+//					box.style.top = (oY>nY?nY:oY) + "px";
+					box.style.top = Math.min(oY, nY) + "px";
+				};
+			};
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				box = null;
+			}
+		</script>
+	</body>
+</html>

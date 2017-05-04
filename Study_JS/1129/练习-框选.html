@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#list{
+				height: 330px;
+				width: 330px;
+				margin: 50px auto;
+				list-style: none;
+			}
+			li{
+				float: left;
+				height: 100px;
+				width: 100px;
+				margin: 5px;
+				background: pink;
+			}
+			.box{
+				border: 1px solid #7d7d7d;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script type="text/javascript">
+			document.oncontextmenu = function(){
+				return false;
+			};
+			var list = document.getElementById("list");
+			var lis = list.getElementsByTagName("li");
+			document.onmousedown = function(ev){
+				var div = document.createElement("div");
+				div.innerHTML = "我是副本~";
+				div.className = "box";
+				document.body.appendChild(div);
+				var oriX = ev.clientX;
+				var oriY = ev.clientY;
+				
+				document.onmousemove = function(ev){
+					div.style.width = Math.abs(ev.clientX - oriX) + "px";
+					div.style.height = Math.abs(ev.clientY - oriY) + "px";
+					div.style.left = Math.min(ev.clientX, oriX) + "px";
+					div.style.top = Math.min(ev.clientY, oriY) + "px";
+					for (var i = 0; i < lis.length; i++) {
+						if(crash(lis[i],div)){
+							lis[i].style.background = "pink";
+						}else{
+							lis[i].style.background = "deeppink";
+						}
+					}
+				};
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					document.body.removeChild(div);
+				};
+			};
+			
+			function crash(obj1, obj2){ //false-碰撞上了
+				var pos1 = obj1.getBoundingClientRect();
+				var pos2 = obj2.getBoundingClientRect();
+				return pos1.right < pos2.left || pos1.bottom < pos2.top
+						|| pos1.left > pos2.right || pos1.top > pos2.bottom;
+			}
+			
+		</script>
+	</body>
+</html>

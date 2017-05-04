@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#list{
+				position: relative;
+				margin: 30px auto;
+				height: 330px;
+				width: 330px;
+				list-style: none;
+			}
+			li{
+				float: left;
+				height: 100px;
+				width: 100px;
+				background: pink;
+				margin: 5px;
+			}
+			.box{
+				position: absolute;
+				background-color: blue;
+				opacity: .3;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script type="text/javascript">
+			var lis = document.getElementsByTagName("li");
+			
+			//框选
+			document.onmousedown = function(ev){
+				var oriX = ev.clientX;
+				var oriY = ev.clientY;
+				var box = document.createElement("div");
+				box.className = "box";
+				document.body.appendChild(box);
+				document.onmousemove = function(ev){
+					box.style.left = Math.min(ev.clientX, oriX) + "px";
+					box.style.top = Math.min(ev.clientY, oriY) + "px";
+					box.style.height = Math.abs(ev.clientY - oriY) + "px";
+					box.style.width = Math.abs(ev.clientX - oriX) + "px";
+					for (var i = 0; i < lis.length; i++) {
+						if(!crash(box, lis[i])){
+							lis[i].sel = true;
+							lis[i].style.background = "red";
+						}else{
+							lis[i].sel = false;
+							lis[i].style.background = "pink";
+						}
+					}
+				};
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					document.body.removeChild(box);
+				};
+				return false;
+			};
+			
+			//碰撞检查
+			function crash(obj1, obj2){ //true-没碰到
+				var pos1 = obj1.getBoundingClientRect();
+				var pos2 = obj2.getBoundingClientRect();
+				return pos1.right<pos2.left || pos1.left>pos2.right 
+					|| pos1.bottom<pos2.top || pos1.top>pos2.bottom;
+			}
+			
+			//拖拽
+			function drag(obj){
+				obj.onmousedown = function(ev){
+					var oriX = ev.clientX;
+					var oriY = ev.clientY;
+					obj.sel = true;
+					obj.style.background = "red";
+					var arr = [];
+					for (var i = 0; i < lis.length; i++) {
+						if(lis[i].sel){
+							arr.push(lis[i]);
+							lis[i].oriX = ev.clientX - lis[i].offsetLeft;
+							lis[i].oriY = ev.clientY - lis[i].offsetTop;
+						}
+					}
+					
+					document.onmousemove = function(ev){
+//						obj.style.left = ev.clientX - oriX + "px";
+//						obj.style.top = ev.clientY - oriY + "px";
+						for (var i = 0; i < arr.length; i++) {
+							arr[i].style.left = ev.clientX - arr[i].oriX + "px";
+							arr[i].style.top = ev.clientY - arr[i].oriY + "px";
+						}
+					};
+					document.onmouseup = function(ev){
+						document.onmousemove = null;
+					};
+					ev.cancelBubble = true;
+					return false;
+				};
+			}
+			
+			//布局转换
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.left = lis[i].offsetLeft + "px";
+				lis[i].style.top = lis[i].offsetTop + "px";
+				drag(lis[i]);
+			}
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.position = "absolute";
+				lis[i].style.float = "none";
+				lis[i].style.margin = 0;
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    #box{
+		    	width:100px;
+		    	height:100px;
+		    	background-color:red;
+		    }
+		</style>
+	</head>
+	<body>
+		<!--
+			
+			通过事件侦听的方式绑定事件处理函数
+				(可以为一个元素的同一个事件绑定上很多函数)
+				元素.addEventListener()
+				第一个参数：事件名
+						（click、mouseover...）
+						
+				第二个参数：绑定的函数
+						（有名函数、匿名函数）
+				
+				第三个参数：
+						是否捕获
+						默认值：false
+		-->
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			
+//			使用事件侦听的方式绑定事件处理函数的机制类似于下面这种写法:
+//			元素.事件={
+//				"click":[fn1,fn2],
+//				"mouseover":[],
+//				"mouseout":[],
+//				...
+//			}
+
+//			box.onclick = function(){
+//				
+//			}
+			box.addEventListener("click",fn1);
+			box.addEventListener("click",fn2);
+			
+			function fn1(){
+				alert(1)
+			}
+			function fn2(){
+				alert(2)
+			}
+		</script>
+	</body>
+</html>

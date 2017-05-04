@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			
+			模拟placeholder
+				鼠标移入输入框，让输入框获得焦点
+					如果里面是“请输入内容”，把内容清空
+					如果里面有内容了，把里面的内容全选
+				输入框失去焦点，
+					如果里面没有内容，让内容变成请输入内容
+			
+		-->
+		<!--<input type="text" name="" id=""  placeholder="输入姓名"/>-->
+		<input type="text" name="" id="ipt"  value="请输入内容"/>
+		<script>
+			var ipt = document.getElementById("ipt");
+			ipt.onmouseover = function(){
+				if(ipt.value == "请输入内容"){
+					ipt.value = "";
+				}else if(ipt.value != ""){
+					ipt.select();
+				}
+				ipt.focus();
+			};
+			ipt.onmouseout = function(){
+				var value = ipt.value.trim();
+				if(value == ""){
+					value = "请输入内容";
+				}
+				ipt.value = value;
+				ipt.blur();
+			};
+		</script>
+	</body>
+</html>

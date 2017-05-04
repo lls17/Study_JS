@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				opacity: .5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var step = 5;
+			var arr = [false,false,false,false]; //上下左右
+			//通过定时器，避免keydown的第一次卡顿
+			setInterval(function(){
+				if(arr[0]){
+					box.style.top = box.offsetTop - step + "px";
+				}
+				if(arr[1]){
+					box.style.top = box.offsetTop + step + "px";
+				}
+				if(arr[2]){
+					box.style.left = box.offsetLeft - step + "px";
+				}
+				if(arr[3]){
+					box.style.left = box.offsetLeft + step + "px";
+				}
+			},10);
+			
+			document.onkeydown = function(ev){
+				switch (ev.keyCode){
+					case 37: //左
+						arr[2] = true;
+						break;
+					case 38: //上
+						arr[0] = true;
+						break;
+					case 39: //右
+						arr[3] = true;
+						break;
+					case 40: //下
+						arr[1] = true;
+						break;
+					default:
+						break;	
+				}
+			};
+			document.onkeyup = function(ev){
+				switch (ev.keyCode){
+					case 37: //左
+						arr[2] = false;
+						break;
+					case 38: //上
+						arr[0] = false;
+						break;
+					case 39: //右
+						arr[3] = false;
+						break;
+					case 40: //下
+						arr[1] = false;
+						break;
+					default:
+						break;	
+				}
+			};
+		</script>
+	</body>
+</html>

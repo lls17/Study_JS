@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			解除事件绑定：
+				解除事件和函数的关联
+			
+					通过on绑定上的事件处理函数
+						为这个事件重新赋值，赋值一个非函数的值（建议为null）
+			
+					通过事件侦听的方式绑定上的事件处理函数
+						元素.removeEventListener()
+							第一个参数：事件名
+							第二个参数：
+								要解除的函数
+									当解除匿名函数会有问题
+							第三个参数：
+								是否捕获
+		-->
+		<script>
+//		    document.onclick = function(){//绑定
+//		    	alert(1);
+//		    }
+//		    document.onclick = null;//解绑
+			
+			function fn1 () {
+				alert(1)
+			}
+			function fn2 () {
+				alert(2)
+			}
+			//为document的点击绑定上fn1和fn2
+			document.addEventListener("click",fn1);
+			document.addEventListener("click",fn2);
+			
+			//通过事件侦听和on绑定上的事件处理函数之间没有关系
+//		    document.onclick = function(){
+//		    	alert(5);
+//		    }
+//		    document.onclick = function(){
+//		    	alert(6);
+//		    }
+//		    document.onclick = null;
+		    
+		    
+		    //把document的点击事件处理函数 集合 中的 fn1解除
+		    document.removeEventListener("click",fn1);
+		    
+		    
+		    
+		</script>
+	</body>
+</html>

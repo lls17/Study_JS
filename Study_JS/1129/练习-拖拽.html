@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+				height: 800px;
+				width: 800px;
+			}
+			#box{
+				height: 100px;
+				width: 100px;
+				background: orange;
+				opacity: .7;
+				position: absolute;
+				margin: 30px 0 0 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			// 思路一： 按下时clone一个副本，移动时移动副本，松开时干掉原体，留副本
+			move(box);
+			function move(obj){
+				obj.onmousedown = function(ev){
+					var div = obj.cloneNode(); //注意：clone不能克隆其事件 
+					var disX = ev.clientX - obj.offsetLeft;
+					var disY = ev.clientY - obj.offsetTop;
+					document.body.appendChild(div);
+					document.onmousemove = function(ev){
+						div.style.left = ev.clientX - disX + "px";
+						div.style.top = ev.clientY - disY + "px";
+						div.style.background = "pink";
+					};
+					document.onmouseup = function(ev){
+						//解决方案2：删除副本，将原本拉至副本位置
+//						document.body.removeChild(div);
+//						obj.style.left = div.offsetLeft + "px";
+//						obj.style.top = div.offsetTop + "px";
+						
+						document.onmousemove = null;
+						document.body.removeChild(obj);
+						div.style.background = "orange";
+						move(div); //解决方案1：因无法克隆其身上的事件，故要重新绑定
+						document.onmouseup = null; //自杀式执行，只执行一次；之后再重绑定
+					};
+					return false;
+				};
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    #box{
+		    	width:100px;
+		    	height:100px;
+		    	background-color:red;
+		    	position: absolute;
+		    	left: 0;
+		    	top: 0;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>	
+			
+			var box = document.getElementById("box");
+//			按键按下的时候，有一次顿挫
+//				原因:
+//					系统在 按键按下的时候为了防止用户误触(抬起按键过慢)，会打出很多相同的字符
+//					设置了,当按键按下时,第一次按键和第二次按键起效果之间会有一个时间间隔
+
+			document.onkeydown = function(e){
+				console.log( new Date().getTime() );
+				if( e.keyCode == 39 ){//如果按键键值是39，说明按下了右键
+					//把box向右移动,在box当前位置的基础上往右移动
+					box.style.left = box.offsetLeft + 5 + "px";
+				}
+				if( e.keyCode == 37 ){//左
+					box.style.left = box.offsetLeft - 5 + "px";
+				}
+				if( e.keyCode == 38 ){//上
+					box.style.top = box.offsetTop - 5 + "px";
+				}
+				if( e.keyCode == 40 ){//下
+					box.style.top = box.offsetTop + 5 + "px";
+				}
+			}
+		</script>
+	</body>
+</html>

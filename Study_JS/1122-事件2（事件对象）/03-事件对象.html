@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			event对象是在事件处理函数中的第一个参数,保存的是该事件处理函数触发的时候的所有详细信息
+			比如说，鼠标事件中的鼠标位置
+					键盘事件中的按键按下的是哪一个
+					
+				不同事件中的event对象可能有不同。
+		-->
+		<script>
+//		    document.onclick = function(e){
+//		    	console.log( e );
+//		    }
+			
+			document.onkeydown = function(e){
+				console.log( e );
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				opacity: .5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var step = 5;
+			
+			//!!巧用对象——比较好扩展
+			var obj = {};
+			var timer;  //需要时开启，不需要时关闭以免影响性能
+			//通过定时器，避免keydown的第一次卡顿
+			var flag = false; //标识“未动”
+			
+			function go(){
+				console.log(obj);
+				timer = setInterval(function(){ 
+					if(obj[38]){
+						box.style.top = box.offsetTop - step + "px";
+					}
+					if(obj[40]){
+						box.style.top = box.offsetTop + step + "px";
+					}
+					if(obj[37]){
+						box.style.left = box.offsetLeft - step + "px";
+					}
+					if(obj[39]){
+						box.style.left = box.offsetLeft + step + "px";
+					}
+				},10);
+			}
+			document.onkeydown = function(ev){
+				obj[ev.keyCode] = true;
+				if(!flag){
+					flag = true;
+					go();
+				}
+			};
+			document.onkeyup = function(ev){
+				obj[ev.keyCode] = false;
+				for(var keyStr in obj){
+					if(obj[keyStr]){  
+						//但凡有一个为true,说明没有全抬起来，则定时器不能关
+						return;
+					}
+				}
+				clearInterval(timer);
+				flag = false;
+			};
+		</script>
+	</body>
+</html>

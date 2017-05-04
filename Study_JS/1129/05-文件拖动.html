@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" class="box">
+			<input type="button" value="click" id="btn" />
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			var btn = document.getElementById("btn");
+			btn.onclick = function(){
+				console.log( "点击" );
+			}
+//			btn.onmousedown = function(){
+//				console.log( "按下" );
+//			}
+//			btn.onmouseup = function(){
+//				console.log( "抬起" );
+//			}
+			box.onmousedown = function(e){
+				var copy = box.cloneNode( true );
+				copy.id = "copy";
+				copy.style.opacity = 0.5;
+				copy.style.zIndex = -1;//为生成出来的copy修改层级，为了可以点击到input。（在input上完成点击并且抬起，一次完整的click）
+				document.body.appendChild( copy );
+				var disX = e.clientX - box.offsetLeft;
+				var disY = e.clientY - box.offsetTop;
+				document.onmousemove = function(e){
+					box.style.left = e.clientX - disX + "px";
+					box.style.top = e.clientY - disY + "px";
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;//解绑了鼠标移动
+					document.onmouseup = null;
+					
+					document.body.removeChild( copy );
+				}
+				return false;
+			}
+		</script>
+	</body>
+</html>

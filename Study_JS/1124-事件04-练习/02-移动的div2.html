@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    #box{
+		    	width:100px;
+		    	height:100px;
+		    	background-color:red;
+		    	position: absolute;
+		    	left: 0;
+		    	top: 0;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			var dir = "";
+			setInterval(function(){//油门——用定时器监控是否有按键
+				if(dir == "r"){
+					box.style.left = box.offsetLeft + 1 + "px";
+				}
+				if(dir == "l"){
+					box.style.left = box.offsetLeft - 1 + "px";
+				}
+				if(dir == "t"){
+					box.style.top = box.offsetTop - 1 + "px";
+				}
+				if(dir == "b"){
+					box.style.top = box.offsetTop + 1 + "px";
+				}
+			},16)
+			document.onkeydown = function(e){//确定方向
+				if( e.keyCode == 39 ){//右
+					dir = "r";
+				}
+				if( e.keyCode == 37 ){//左
+					dir = "l";
+				}
+				if( e.keyCode == 38 ){//上
+					dir = "t";
+				}
+				if( e.keyCode == 40 ){//下
+					dir = "b";
+				}
+			}
+			document.onkeyup = function(){
+				dir = "";
+			}
+		</script>
+	</body>
+</html>

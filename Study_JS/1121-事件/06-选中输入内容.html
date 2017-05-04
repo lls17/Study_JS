@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			input.select()/textarea.select()
+				选中里面输入的内容
+				
+		-->
+		<input type="text" id="text"/>
+		<input type="text" id="text2"/>
+		<div id="box">我是一大段话</div>
+		<input type="button" value="选中输入内容" id="btn"/>
+		<script>
+			var text1 = document.getElementById("text");
+			var text2 = document.getElementById("text2");
+			var btn = document.getElementById("btn");
+			var box = document.getElementById("box");
+			
+			btn.onclick = function(){
+				text1.select();
+//				text2.select();
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        input{
+            width: 100%;
+            height: 30px;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            display: none;
+        }
+        li{
+            list-style: none;
+            background-color: #009999;
+            margin-top: 3px;
+            line-height: 30px;
+            width: 100%;
+        }
+        a{
+            text-decoration: none;
+            color:white;
+            display: block;
+            width: 100%;
+        }
+        a:hover,.hover{
+            background-color: #00FF99;
+        }
+        #box{
+            width: 500px;
+            margin: 100px auto 0;
+        }
+        .select{
+            background-color: #60625b;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+        	var box = document.getElementById("box");
+        	var ser = document.getElementById("ser");
+        	var list = document.getElementById("list");
+        	var as = list.getElementsByTagName("a"); 
+        	
+        	//1、绑定onmouseenter函数，否则用onmouseover当移入子元素时也会触发；而mouseenter和mouseleave是完全离开元素（包括子元素）
+        	//2、给最大的盒子box绑定
+        	box.onmouseenter = function(){
+        		ser.focus();
+        		list.style.display = "block";
+        	};
+        	box.onmouseleave = function(){
+        		ser.blur();
+        		list.style.display = "none";
+        	};
+        	
+        	//事件代理
+        	list.onclick = function(ev){
+        		var obj = ev.target;
+        		if(obj.nodeName != "A"){ //预防点击li之间的空隙
+        			return false;
+        		}
+        		var cname = obj.className;
+        		if(!ev.ctrlKey){ //未按ctrl时
+        			for (var i = 0; i < as.length; i++) {
+        				as[i].className = "";
+        			}
+        			ser.value = "";
+        		}
+		        if(cname == "select"){
+		        	obj.className = "";
+		        	ser.value = ser.value.split(obj.innerHTML).join("");
+		        }else{
+		        	obj.className = "select";
+		        	ser.value += obj.innerHTML;
+		        }
+        	};
+        	
+        	//禁止input的输入行为
+        	ser.onkeydown = function(){
+        		return false;
+        	};
+        	
+        	var index = -1;//记录当前抚摸focusindex
+        	document.onkeydown = function(ev){
+        		var kcode = ev.keyCode;
+        		switch (kcode){
+        			case 37:
+        			case 38: //左&上
+        				if(index == -1){//首次按下
+        					list.style.display = "block";
+							index = 0;
+        				}else{ 
+        					if(as[index].flag){
+	        					as[index].className = "select";
+        					}else{
+        						as[index].className = "";
+        					}
+        					index--;
+        					index = index<0?as.length-1:index;
+        				}
+						as[index].className = "hover";
+        				break;
+        			case 39:
+        			case 40: //右&下
+        				if(index == -1){//首次按下
+        					list.style.display = "block";
+							index = 0;
+        				}else{
+        					if(as[index].flag){
+	        					as[index].className = "select";
+        					}else{
+        						as[index].className = "";
+        					}
+        					index++;
+        					index = index>as.length-1?0:index;
+        				}
+        				as[index].className = "hover";
+        				break;
+        			case 13: //回车
+        				if(index == -1){//首次按下
+        					list.style.display = "block";
+							index = 0;
+        				}else{
+        					if(!ev.ctrlKey){ //非多选
+        						for (var i = 0; i < as.length; i++) {
+        							if(i == index){
+        								continue;
+        							}
+        							as[i].flag = false;
+        							as[i].className = "";
+        						}
+        						ser.value = "";
+        					}
+        					if(as[index].flag){ //取消选中
+        						as[index].flag = false;
+        						ser.value = ser.value.split(as[index].innerHTML).join("");
+        					}else{ //选中
+        						as[index].flag = true;
+				        		ser.value += as[index].innerHTML;
+        					}
+        				}
+        				as[index].className = "hover";
+        				break;
+        			default: //其他键
+        				console.log("default");
+        				return;
+        		}
+        	};
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+	<!--
+    	input 的属性 autocomplete="off"  关闭自动匹配
+    		如浏览器会记录用户经常输入的内容
+    -->
+    <input type="text" id="ser" autocomplete="off"/>
+    <ul id="list">
+        <li><a href="javascript:;">《第七个读者》</a></li>
+        <li><a href="javascript:;">《 心理罪 画像》</a></li>
+        <li><a href="javascript:;">《 心理罪 教化场》</a></li>
+        <li><a href="javascript:;">《 心理罪 暗河》</a></li>
+        <li><a href="javascript:;">《 心理罪 城市之光》</a></li>
+        <li><a href="javascript:;">《地球往事》</a></li>
+        <li><a href="javascript:;">《黑暗森林》</a></li>
+        <li><a href="javascript:;">《死神永生》</a></li>
+        <li><a href="javascript:;">《乡村教师》</a></li>
+        <li><a href="javascript:;">《地球大炮》</a></li>
+    </ul>
+</div>
+</body>
+</html>

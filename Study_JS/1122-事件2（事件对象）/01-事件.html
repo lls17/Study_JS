@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			事件：
+				当用户对页面进行操作的交互时，会触发对应元素的事件
+			
+			事件对象：
+				当发生事件，执行事件处理函数的时候，该时刻的详细信息
+		-->
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			box.onclick = function(){//为元素的点击事件添加事件处理函数
+				console.log( event );
+			}
+		</script>
+	</body>
+</html>

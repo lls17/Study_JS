@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+				height: 800px;
+				width: 800px;
+			}
+			#box{
+				height: 100px;
+				width: 100px;
+				background: orange;
+				opacity: .7;
+				position: absolute;
+				margin: 30px 0 0 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			// 思路二： 按下时clone一个副本，移动时移动原体，松开时干掉副本，留原体
+			box.onmousedown = function(ev){
+				var div = box.cloneNode(); //注意：clone不能克隆其事件 
+				div.innerHTML = "我是副本~";
+				var disX = ev.clientX - box.offsetLeft;
+				var disY = ev.clientY - box.offsetTop;
+				document.body.appendChild(div);
+				document.onmousemove = function(ev){
+					box.style.left = ev.clientX - disX + "px";
+					box.style.top = ev.clientY - disY + "px";
+					box.style.background = "pink";
+				};
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					document.body.removeChild(div);
+					box.style.background = "orange";
+					document.onmouseup = null;
+				};
+				return false;
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			var dirL = false;
+			var dirR = false;
+			var dirB = false;
+			var dirT = false;
+			setInterval(function(){
+				if( dirL ){//当前需要往左走
+					box.style.left = box.offsetLeft - 1 +"px";
+				}
+				if( dirT ){//当前需要往上走
+					box.style.top = box.offsetTop - 1 +"px";
+				}
+				if( dirR ){//当前需要往右走
+					box.style.left = box.offsetLeft + 1 +"px";
+				}
+				if( dirB ){//当前需要往下走
+					box.style.top = box.offsetTop + 1 +"px";
+				}
+			},10)
+			document.onkeydown = function(e){
+//				console.log( e.keyCode );
+				if(e.keyCode == 37){
+					dirL = true;
+				}
+				if(e.keyCode == 38){
+					dirT = true;
+				}
+				if(e.keyCode == 39){
+					dirR = true;
+				}
+				if(e.keyCode == 40){
+					dirB = true;
+				}
+			}
+			document.onkeyup = function(e){
+//				console.log( e.keyCode );
+				if(e.keyCode == 37){
+					dirL = false;
+				}
+				if(e.keyCode == 38){
+					dirT = false;
+				}
+				if(e.keyCode == 39){
+					dirR = false;
+				}
+				if(e.keyCode == 40){
+					dirB = false;
+				}
+			}
+		</script>
+	</body>
+</html>

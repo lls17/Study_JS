@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+		    var box = document.getElementById("box");
+//		    只有当鼠标按下的时候,元素才会具有鼠标移动事件
+			box.onmousedown = function( e ){
+				var disX = e.clientX - box.offsetLeft;
+				var disY = e.clientY - box.offsetTop;
+				
+//				如果把鼠标移动事件加在document身上,利用冒泡的特性
+				document.onmousemove = function( e ){
+//					console.log( 1 );
+					box.style.left = e.clientX - disX + "px";
+					box.style.top = e.clientY - disY + "px";
+				}
+				document.onmouseup = function(){
+					//把鼠标移动事件解绑
+					document.onmousemove = null;
+				}
+			}
+		</script>
+	</body>
+</html>

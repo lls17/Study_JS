@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" value = "123"/>
+		<input type="button" value="click" />
+		<ul id="list">
+			<li>li</li>
+		</ul>
+		<script>
+		    var inps = document.getElementsByTagName("input");
+		    var list = document.getElementById("list");
+		    var lis = list.getElementsByTagName("li");
+		    inps[1].onclick = function(){
+		    	list.innerHTML += "<li>"+ inps[0].value + new Date().getTime() +"</li>";
+//		    	console.log( lis[0].onclick );
+		    }
+		    list.onclick = function(e){
+//		    	console.log( e.target );
+		    	alert( e.target.innerHTML );
+		    }
+			
+			
+//			所有元素的点击事件都会冒泡到document身上
+//				我们在document的点击事件触发的时候看事件对象中的target
+//					target(触发事件的源)
+//			document.onclick = function(e){
+//				console.log( e.target );
+//			}
+		    
+//		    事件代理:
+//		    	不直接给子元素添加事件处理函数,这样会添加很多重复事件处理函数
+//		    	我们给父级添加事件处理函数,利用点击子级,子级的事件会冒泡到父级身上的冒泡特性,在父级的事件处理函数中寻找触发事件的源,找到触发事件的子级
+//		    	可以减少事件的添加,仅仅给父级添加一个事件处理函数
+	</script>
+	</body>
+</html>

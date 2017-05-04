@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#list{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				width: 330px;
+				margin: 100px auto;
+			}
+			li{
+				float: left;
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+				margin: 5px;
+			}
+			.box{
+				border: 1px dotted #000;
+				position: absolute;
+				background-color: rgba(0,112,255,0.1);
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script>
+			var list = document.getElementById("list");
+			var lis = list.getElementsByTagName("li");
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.left = lis[i].offsetLeft + "px";
+				lis[i].style.top = lis[i].offsetTop + "px";
+			}
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.position = "absolute";
+				lis[i].style.margin = "0";
+				lis[i].style.float = "none";
+				drag( lis[i] )
+			}
+			
+			function drag (obj) {
+				//当鼠标在obj上按下，会为document的鼠标移动事件和鼠标抬起事件绑定事件处理函数，但是在obj上按下的时候，鼠标按下事件首先会冒泡到document身上，在document的鼠标按下事件中，重新为document的鼠标移动事件和鼠标抬起事件绑定事件处理函数（框选），所以当鼠标在document上移动的时候回变成框选效果
+				obj.onmousedown = function(e){
+					//确定可以拖动的元素；
+					obj.isSelected = true;
+					obj.style.background = "red";
+					var elems = [];
+					for (var i = 0; i < lis.length; i++) {
+						if( lis[i].isSelected ){
+							elems.push(lis[i])
+							//保存鼠标按下的时候鼠标距离每一个被选中的元素左侧的长度存到它的自定义属性中
+							lis[i].disX = e.clientX - lis[i].offsetLeft;
+							lis[i].disY = e.clientY - lis[i].offsetTop;
+						}
+					}
+					console.log( elems );
+					document.onmousemove = function(e){
+//						循环所有被选中的元素，更改他们的left和top
+						for (var i = 0; i < elems.length; i++) {
+							elems[i].style.left = e.clientX - elems[i].disX + "px";
+							elems[i].style.top = e.clientY - elems[i].disY + "px"; 
+						}
+					}
+					document.onmouseup = function(){
+						document.onmousemove = null;						
+					}
+					e.cancelBubble =true;
+					return false;
+				}
+			}
+			
+			//框选
+		    document.onmousedown = function(e){
+		    	var div = document.createElement("div");
+		    	div.className = "box";
+		    	document.body.appendChild(div);
+		    	
+		    	var oriX = e.clientX ;
+		    	var oriY = e.clientY ;
+		    	
+		    	div.style.left = oriX + "px";
+		    	div.style.top = oriY + "px";
+		    	
+		    	document.onmousemove = function(e){
+		    		div.style.width = Math.abs( e.clientX - oriX ) + "px";
+		    		div.style.height = Math.abs( e.clientY - oriY ) + "px";
+		    		div.style.left = Math.min( e.clientX,oriX ) + "px";
+		    		div.style.top = Math.min( e.clientY,oriY ) + "px";
+		    		for (var i = 0; i < lis.length; i++) {//让div和每一个li进行碰撞检测
+		    			if( peng(div,lis[i]) ){//碰到
+		    				lis[i].style.background = "red";
+		    				lis[i].isSelected = true;
+		    			}else{
+		    				lis[i].style.background = "pink";
+		    				lis[i].isSelected = false;
+		    			}
+		    		}
+		    	}
+		    	document.onmouseup = function(){
+		    		document.onmousemove = null;
+		    		document.body.removeChild( div );
+		    	}
+		    	return false;
+		    }
+		    function peng(obj1,obj2){//返回结果如果为true，说明碰到
+		    	var pos1 = obj1.getBoundingClientRect();
+		    	var pos2 = obj2.getBoundingClientRect();
+		    	
+		    	return pos1.right > pos2.left && pos1.left < pos2.right && pos1.bottom > pos2.top && pos1.top < pos2.bottom;
+		    }
+		</script>
+	</body>
+</html>

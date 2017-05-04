@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				width: 200px;
+				height: 150px;
+			}
+			div{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			拖拽：
+				我们可以借助h5的属性完成拖拽，但是当我们需要拖拽元素并且改变位置的时候，我们一般借助js
+			
+			
+			拖拽步骤：
+				申明一个变量代表元素是不是可以被拖动的（默认是false代表不可以拖动）
+				1、在元素身上按下
+					让变量为true（代表元素可以被拖拽）
+					
+				2、鼠标移动
+					判断这个变量是什么状态
+						如果是true 可以拖动，改变元素的位置
+					
+				3、鼠标抬起，让元素不再移动（让元素失去移动的功能）
+					让变量变成false
+		-->
+		<!--<img src="img/0.jpg"/>-->
+		<!--<div draggable="true"></div>-->
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+//		    申明一个变量代表元素是不是可以被拖动的（默认是false代表不可以拖动）
+			var isDown = false;  //(元素是不可以被拖动的)
+			var disX;
+			var disY;
+//			1、在元素身上按下
+//					让变量为true（代表元素可以被拖拽）
+			box.onmousedown = function(e){
+//				鼠标按下时距离可视区左侧距离-div到可视区左侧的距离(红线)
+				disX = e.clientX - box.offsetLeft;
+				disY = e.clientY - box.offsetTop;
+//				console.log( disX );
+				isDown = true;//（代表元素可以被拖动了）
+			}
+			box.onmousemove = function(e){
+				if( isDown ){
+					//改变元素的位置
+					box.style.left = e.clientX - disX + "px";
+					box.style.top = e.clientY - disY + "px";
+				}
+			}
+			box.onmouseup = function(){
+				isDown = false;//（代表元素不可以被拖动了）
+			}
+		</script>
+	</body>
+</html>

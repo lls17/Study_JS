@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				border: 1px solid #000;
+				position: absolute;
+			}
+			#line{
+				width:400px;
+				height:400px;
+				background-color:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="line"></div>
+		
+		<script>
+			document.onmousedown = function(e){
+				var box = document.createElement("div");
+				box.className = "box";
+				//记录鼠标按下时的初始位置
+				var oriX = e.clientX ;
+				var oriY = e.clientY ;
+				
+				box.style.left = e.clientX + "px";
+				box.style.top = e.clientY + "px";
+				document.body.appendChild( box );
+				document.onmousemove = function(e){
+//					宽度为鼠标位置-初始位置 的 绝对值
+
+					box.style.width = Math.abs( e.clientX - oriX ) + "px";
+					box.style.height = Math.abs( e.clientY - oriY ) + "px";
+//					box.style.left = Math.min( e.clientX,oriX ) + "px";
+//					box.style.top = Math.min( e.clientY,oriY ) + "px";
+
+//					元素的left值 在 初始点位置和鼠标位置中选择较小的那一个
+					box.style.left = (e.clientX<oriX?e.clientX:oriX) + "px";
+					box.style.top = (e.clientY<oriY?e.clientY:oriY) + "px";
+
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+			}
+//			console.log( Math.min(2,3,4,1) );//返回传入的参数中的最小值
+		</script>
+	</body>
+</html>

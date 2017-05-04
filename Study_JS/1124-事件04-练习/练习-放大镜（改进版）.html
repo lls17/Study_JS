@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				border: 0;
+			}
+			#box{
+				margin: 100px 0 0 100px;
+				position: relative;
+				height: 350px;
+				width: 350px;
+				background-size: 350px 350px;
+				background: url(img/small.jpg) no-repeat;
+				border: 20px solid #7d7d7d;
+			}
+			#cake{
+				position: absolute;
+				height: 175px;
+				width: 175px;
+				opacity: .5;
+				background: orange;
+				display: none;
+			}
+			#show{
+				position: absolute;
+				top: 100px;
+				left: 500px;
+				border: 1px solid #7d7d7d;
+				background: url(img/big.jpg) no-repeat;
+				background-size: 800px 800px;
+				height: 400px;
+				width: 400px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="cake"></div>
+		</div>
+		<div id="show"></div>
+		
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var cake = document.getElementById("cake");
+			var show = document.getElementById("show");
+			var boxBorder = parseInt(getComputedStyle(box).borderWidth);
+			
+			box.onmousemove = function(ev){
+				cake.style.display = "block";
+				show.style.display = "block";
+			    // cake当前未约束时的位置：鼠标距box左边框的内距离
+				var x = ev.clientX - box.offsetLeft - cake.offsetWidth/2 - boxBorder;
+				var y = ev.clientY - box.offsetTop - cake.offsetHeight/2 - boxBorder;
+				// cake可移动达到的最边缘位置
+				var maxX = box.clientWidth - cake.offsetWidth;
+				var maxY = box.clientHeight - cake.offsetHeight;
+				
+				x = x<0?0:x;
+				x = x>maxX?maxX:x;
+				y = y<0?0:y;
+				y = y>maxY?maxY:y;
+				
+				cake.style.left = x + "px";
+				cake.style.top = y + "px";
+//				var xplus = show.style.backgroundSize/box.clientWidth;
+				show.style.backgroundPosition = -x*800/350 + "px " + (-y*800/350) + "px";
+				
+			};
+			box.onmouseout = function(ev){
+				cake.style.display = "none";
+				show.style.display = "none";
+			};
+		</script>
+	</body>
+</html>

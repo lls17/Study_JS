@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position: absolute;
+				left: 400px;
+				top: 200px;
+				/*cursor: nw-resize;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			var dir = "";
+			var changeCursor = true;//是否可以改变鼠标指针
+			box.onmousemove = function(e){
+				if(!changeCursor){
+					return
+				}
+				dir = "";
+				box.style.cursor = "default";
+				var pos = box.getBoundingClientRect();
+				if( e.clientY< pos.top+10 ){
+					dir += "n";
+				}
+				if( e.clientY> pos.bottom-10 ){
+					dir += "s";
+				}
+				if( e.clientX< pos.left+10){//移到的是左侧部分
+					dir += "w";
+				}
+				if( e.clientX> pos.right-10 ){
+					dir += "e";
+				}
+				console.log(dir);
+				box.style.cursor = dir+"-resize";
+			}
+			box.onmousedown = function(e){
+				changeCursor = false;
+				var oriX = e.clientX;
+				var oriY = e.clientY;
+				var oriW = box.offsetWidth;
+				var oriH = box.offsetHeight;
+				var oriL = box.offsetLeft;
+				var oriT = box.offsetTop;
+				document.onmousemove = function(e){
+					if( dir.indexOf("e")!=-1 ){
+						box.style.width = e.clientX - oriX + oriW + "px";
+					}
+					if( dir.indexOf("s")!=-1 ){
+						box.style.height = e.clientY - oriY + oriH + "px";
+					}
+					if( dir.indexOf("w")!=-1 ){
+						box.style.width = oriX - e.clientX + oriW + "px";
+						box.style.left = e.clientX - (oriX-oriL) + "px";
+					}
+					if( dir.indexOf("n")!=-1 ){
+						box.style.height = oriY - e.clientY + oriH + "px";
+						box.style.top = e.clientY - (oriY-oriT) + "px";
+					}
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					changeCursor = true;
+				}
+			}
+		</script>
+	</body>
+</html>
