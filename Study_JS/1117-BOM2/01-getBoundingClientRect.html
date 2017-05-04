@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+		    #box{
+		    	width:150px;
+		    	height:100px;
+		    	background-color:red;
+		    	margin-left: 100px;
+		    	margin-top: 130px;
+		    }
+		</style>
+	</head>
+	<body>
+		<!--
+			
+			获取元素的盒模型信息 
+				返回值为一个对象
+					left  top bottom right width height
+					相对于浏览器可视区域
+
+			
+		-->
+		<div id="box"></div>	
+		<script>
+			var box = document.getElementById("box");
+			console.log( box.getBoundingClientRect() );
+			console.log( box.getBoundingClientRect().bottom );
+		</script>
+	</body>
+</html>

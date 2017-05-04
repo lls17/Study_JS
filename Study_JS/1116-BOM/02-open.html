@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			window.open() --- 打开一个新窗口
+				参数：
+				1.指定要打开的页面地址。
+					如果不写http代表打开的是本地地址
+					
+				2.打开方式 ： _blank _self ... iframName
+					
+				3.浏览器的窗口特征 （宽，高，窗口位置等）
+					
+				注意:当设置第三个参数的时候,第二个参数必须要是"_blank"
+
+				不传入参数，
+					默认打开新的空白页面
+				
+			返回值是打开的窗口
+		-->
+		<input type="button" value="打开" id="btn" />
+		<iframe src="ifra.html" name="f1" ></iframe>
+		<script>
+			var btn = document.getElementById("btn");
+			btn.onclick = function(){
+//				window.open();
+//				window.open("http://www.miaov.com");
+//				window.open("pleaseOpenMe.html");
+				
+//				window.open("pleaseOpenMe.html","_blank");//在新窗口中打开网址
+				
+//				window.open("pleaseOpenMe.html","_self");//在在当前页面中打开网址
+//				window.open("pleaseOpenMe.html","f1");//在在当前页面中打开网址
+
+//				window.open("pleaseOpenMe.html","_blank","width=300px,height=100px");//在新窗口中打开网址
+				
+//				window.open("pleaseOpenMe.html","_self","width=300px,height=100px");//
+
+//				window.open("pleaseOpenMe.html","f1","width=300px,height=100px");//
+			}
+		</script>
+	</body>
+</html>

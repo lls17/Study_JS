@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:150px;
+				padding: 30px;
+				background-color:red;
+				border: 50px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			获取可视区的宽度、高度
+			window.innerWidth
+			window.innerHeight
+				
+				BOM 方法
+					是w3c标准规定的，但是不兼容
+					（移动端可以用BOM方法获取可视区宽度）
+				
+			document.documentElement.clientWidth
+			document.documentElement.clientHeight
+				DOM 方法
+					不是w3c规定的，但是兼容
+					(PC建议使用DOM方法获取)
+					
+				用来获取元素宽高的时候是包括padding的
+				
+			注意：都是不带单位的
+		-->
+		<div id="box"></div>
+		<script>
+			
+//			console.log( window.innerWidth );
+//			console.log( window.innerHeight );
+			
+//			console.log( document.documentElement.clientWidth );
+//			console.log( document.documentElement.clientHeight );
+			
+			var box = document.getElementById("box");
+			console.log( box.clientWidth );//100
+			console.log( box.clientHeight );//100
+		</script>
+	</body>
+</html>

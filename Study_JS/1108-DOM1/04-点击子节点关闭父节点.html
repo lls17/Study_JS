@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<section>
+			欢迎大家1
+			<div>
+				<span>X</span>
+			</div>
+		</section>
+		<div>
+			欢迎大家2
+			<span>X</span>
+		</div>
+		<div>
+			欢迎大家3
+			<span>X</span>
+		</div>
+		<div>
+			欢迎大家4
+			<span>X</span>
+		</div>
+		<script>
+//		 	使用之前的写法
+//			1获取元素
+//			2点击span的时候发生事情
+//			3让对应的div隐藏
+//			var spans = document.getElementsByTagName("span");
+//			var divs = document.getElementsByTagName("div");
+//			for (var i = 0; i < spans.length; i++) {
+//				spans[i].index = i;
+//				spans[i].onclick = function(){
+//					divs[ this.index ].style.display = "none";
+//				}
+//			}
+			
+//			使用DOM操作的写法
+//			1为所有的span添加点击事件处理函数
+//			2把点击的span的父级隐藏
+			var spans = document.getElementsByTagName("span");
+			for (var i = 0; i < spans.length; i++) {
+				spans[i].onclick = function(){
+					this.parentNode.style.display = "none";
+				}
+			}
+			
+		</script>
+	</body>
+</html>

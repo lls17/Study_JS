@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<form action="" id="form1">
+		<input type="text" name="userName" />
+		<input type="text" name="password" /><br />
+		<input type="radio" name="sex" value="man" />男
+		<input type="radio" name="sex" value="woman" />女
+		<input type="radio" name="sex" value="secret" />保密<br />
+		<input type="checkbox" name="hobbies" value="chifan"/>吃饭
+		<input type="checkbox" name="hobbies" value="shuijiao"/>睡觉
+		<input type="checkbox" name="hobbies" value="dayb"/>打yb<br />
+		年龄：<select name="age" id="">
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+		</select><br />
+		<input type="submit" value="提交" name="submit1" />
+		<input type="reset" value="重置" />
+		<input type="button" value="我是打酱油的" id="btn" />
+		<textarea name="text1" rows="" cols="">12123123123</textarea>
+	</form>
+	<script>
+//			事件:
+//			onclick，onmouseover，onmouseout
+	    //onchange
+	    //oninput
+	    //onsubmit
+	    //onreset
+	    var form1 = document.getElementById("form1");
+//		    form1.userName.onclick = function(){
+//	    form1.userName.onchange = function(){//当表单控件的值发生改变的时候触发
+//	    	alert(1);
+//	    }
+	    
+//	    form1.userName.oninput = function(){//当输入 表单控件 进行修改内部内容的时候触发，只要输入就会触发
+//	    	console.log(1);
+//	    }
+	    
+	    
+//	    form1.onsubmit = function(){//当表单提交的时候触发
+//	    	alert( 1 );
+//	    }
+			
+//		form1.onreset = function(){//当表单重置的时候触发
+//			alert(2);
+//		}
+	</script>
+</body>
+</html>

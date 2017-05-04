@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			children
+				获取节点的一级的元素子节点，返回的是集合
+			
+			childNodes
+				获取节点的子节点，可能获取到元素节点，文本节点，注释节点，返回的是集合
+			
+		-->
+		<div id="box">
+			<span>span</span>
+			<ul>
+				<li>li</li>
+				<li>li</li>
+				<li>li</li>
+			</ul>
+		</div>
+		<script>
+			var	box = document.getElementById("box");
+//			console.log( box.children );
+			box.children[0].style.background = "red";
+		</script>
+	</body>
+</html>

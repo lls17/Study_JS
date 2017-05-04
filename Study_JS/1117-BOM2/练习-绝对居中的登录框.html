@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+				height: 1000px;
+				width: 2000px;
+				/*position: relative;*/
+			}
+			#box{
+				/*width: 500px;*/
+				padding: 0 50px;
+				height: 200px;
+				background-color: #f00;
+				position: absolute;
+				/*left: 50%;
+				top: 50%;*/
+				/*transform: translateX(-250px) translateY(-150px);*/
+				/*margin-left: -250px;
+				margin-top: -150px;*/
+				transition: 500;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">我是一段非常长的文字我是一段非常长的文字</div>
+		<script>
+			var box = document.getElementById("box");
+			//可视区宽高、box宽高不会变
+			var screenH = document.documentElement.clientHeight;
+			var screenW = document.documentElement.clientWidth;
+			var boxH = box.offsetHeight;
+			var boxW = box.offsetHeight;
+			rePos();
+			
+			function rePos(){
+				var scrollT = document.body.scrollTop || document.documentElement.scrollTop;
+				var scrollL = document.body.scrollLeft || document.documentElement.scrollLeft;
+				box.style.left = (screenW-boxW)/2+scrollL + "px"; 
+				box.style.top = (screenH-boxH)/2+scrollT + "px"; 
+			}
+			window.onscroll = rePos;
+			window.onresize = function(){
+				screenH = document.documentElement.clientHeight;
+				screenW = document.documentElement.clientWidth;
+				rePos()
+			};
+		</script>
+	</body>
+</html>

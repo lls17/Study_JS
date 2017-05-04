@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			常用节点类型：
+				元素节点 - 1
+				属性节点 - 2
+				文本节点 - 3
+				注释节点 - 8
+				文档节点 - 9
+				
+			查看节点类型 node.nodeType (返回的是数字)
+
+		-->
+		<div id="box" class="div1">
+			<!--你好帅-->
+			<span>
+				<a href="#"></a>
+			</span>
+		</div>
+		<span id="span">span</span>
+		<script>
+			var box = document.getElementById("box");
+			var span = document.getElementById("span");
+//			console.log( box.nodeType ); //1
+//			console.log( typeof box.nodeType ); //number
+//			console.log( box.nodeName );//DIV
+
+//			console.log( span.nodeType ); //1
+//			console.log( typeof span.nodeType ); //number
+//			console.log( span.nodeName );//SPAN
+			
+//			console.log( box.attributes );//元素节点身上的属性(获取到的是集合)
+//			console.log( typeof box.attributes); //object
+//			console.log( box.attributes[0] );//元素节点身上的属性
+
+//			console.log( box.attributes[0].nodeType );//2
+//			console.log( typeof box.attributes[0].nodeType );//number
+//			console.log( box.attributes[0]);
+//			console.log( box.attributes[0].nodeName );//id
+			
+			console.log( box.childNodes );//childNodes一级的子节点(会获取到文本节点、注释节点、元素节点...)
+			console.log( box.childNodes[0].nodeType );//3
+			console.log( box.childNodes[0].nodeName );//#text
+
+			
+//			console.log( box.childNodes );
+//			console.log( box.childNodes[1].nodeType );//8
+//			console.log( box.childNodes[1].nodeName );//#comment
+
+//			console.log( document.nodeType );//9
+//			console.log( document.nodeName );//#document
+
+			
+		</script>
+	</body>
+</html>

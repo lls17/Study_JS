@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:150px;
+				padding: 30px;
+				background-color:red;
+				border: 50px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			获取元素的宽高（带边框的）
+			
+			offsetWidth
+			offsetHeight
+				
+			注意：都是不带单位的
+			
+			offsetWidth = 元素的width + padding + border
+			clientWidth = 元素的width + padding
+		-->
+		<div id="box"></div>
+		<script>
+			
+			var box = document.getElementById("box");
+			
+			console.log( box.clientWidth );//100
+			console.log( box.clientHeight );//100
+			
+			console.log( box.offsetWidth );//100
+			console.log( box.offsetHeight );//100
+			
+			
+		</script>
+	</body>
+</html>

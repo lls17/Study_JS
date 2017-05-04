@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			span{
+				background-color: yellow;
+				margin-left: 10px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" value="" />
+		<input type="button" value="生成" />
+		<ul id="list">
+			<li>初始内容</li>
+		</ul>
+		<script>
+			var list = document.getElementById("list");
+			var inps = document.getElementsByTagName("input");
+			var list_li = list.getElementsByTagName("li");
+			list_li[0].onclick = function(){
+				alert( this.innerHTML );
+			}
+			inps[1].onclick = function(){
+				var li = document.createElement("li");//创建一个li
+				li.innerHTML = inps[0].value;//添加内容
+				var span = document.createElement("span");
+				span.innerHTML = "X";
+				span.onclick = function(){
+//					this.parentNode.style.display = "none";
+					li.style.display = "none";
+				}
+				li.appendChild(span);
+				list.appendChild( li );//放入ul中
+				inps[0].value = "";
+			}
+		</script>
+	</body>
+</html>

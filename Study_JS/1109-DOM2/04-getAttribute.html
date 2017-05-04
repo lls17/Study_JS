@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			node.getAttribute(attr)
+				获取元素指定属性名的属性值
+				元素行间自定义属性 	本身属性（比如id		js添加的自定义属性
+getAttribute 	能获取				能获取				null
+.[]				undefined			能获取				能获取
+			
+		-->
+		<div id="box" a="0" ></div>
+		<script>
+		    var box = document.getElementById("box");
+		    box.b = 1;
+		    
+//		    alert( box.a );//undefined
+//		    alert( box.id );//box
+//		    alert( box.b );//1
+		    
+//		    alert( box["a"] );//undefined
+//		    alert( box["id"] );//box
+//			alert( box["b"] );//1
+		    
+//			alert( box.getAttribute("a") );//0
+//			alert( box.getAttribute("id") );//box
+			alert( box.getAttribute("b")  );//null;
+			
+		</script>
+	</body>
+</html>

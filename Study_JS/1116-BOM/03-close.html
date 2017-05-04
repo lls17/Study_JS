@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			窗口.close()
+			window.close();
+				
+				firefox（当前版本下） 只能关闭由open打开的窗口
+						不能关闭自身
+						
+				chrome 可以关闭自身
+			
+		-->
+		<input type="button" value="打开" id="btn" />
+		<input type="button" value="关闭新窗口" id="close1" />
+		<input type="button" value="关闭自身" id="close2" />
+		<script>
+		    var btn = document.getElementById("btn");
+		    var close1 = document.getElementById("close1");
+		    var close2 = document.getElementById("close2");
+		    var a;
+		    btn.onclick = function(){
+		    	a = window.open();
+		    	console.log( a );
+		    }
+		    close1.onclick = function() {
+		    	a.close();
+		    }
+		    close2.onclick = function(){
+		    	window.close();
+		    }
+		</script>
+	</body>
+</html>

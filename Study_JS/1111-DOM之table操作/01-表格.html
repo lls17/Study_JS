@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			table{
+				border-collapse: collapse;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<table id="tab" border="1">
+			<thead>
+				<tr>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>第1项</td>
+					<td>第2项</td>
+					<td>第3项</td>
+					<td>第4项</td>
+				</tr>
+				<tr>
+					<td>第1项</td>
+					<td>第2项</td>
+					<td>第3项</td>
+					<td>第4项</td>
+				</tr>
+				<tr>
+					<td>第1项</td>
+					<td>第2项</td>
+					<td>第3项</td>
+					<td>第4项</td>
+				</tr>
+				<tr>
+					<td>第1项</td>
+					<td>第2项</td>
+					<td>第3项</td>
+					<td>第4项</td>
+				</tr>
+			</tbody>
+			
+			<tfoot>
+				<tr>
+					<td>第1项尾</td>
+					<td>第2项尾</td>
+					<td>第3项尾</td>
+					<td>第4项尾</td>
+				</tr>
+			</tfoot>
+		</table>
+		<script>
+		//操作表格可以使用tagname来获取，但是这样会很复杂，而且当表格行数增减之后都会发生相应的变化
+//		    var ths = document.getElementsByTagName("th");
+//		    var tds = document.getElementsByTagName("td");
+//		    ths[0].style.background = "red";
+//		    tds[6].style.background = "yellow";
+
+//			table.tHead---获取表格头部(单数，获取到的是一个元素)
+			var tab = document.getElementById("tab");
+//			console.log( tab.tHead );
+			tab.tHead.style.background = "red";
+			
+//			table.tFoot---获取表格底部(单数，获取到的是一个元素)
+//			console.log( tab.tFoot );
+			tab.tFoot.style.background = "yellow";
+			
+//			table.tBodies---获取表格主体(复数)
+//				获取到的是一个集合
+//			console.log( tab.tBodies );
+			tab.tBodies[0].style.background = "green";
+			
+//			tBodies[n].rows/tHead.rows/tFoot.rows(复数)
+//				获取到的是一个集合
+//				表格的行 就是tr
+//			console.log( tab.tBodies[0].rows );
+			tab.tBodies[0].rows[0].style.background = "pink";
+			
+
+//			rows[n].cells(复数)
+//				获取到的是一个集合
+//				就是表格的td/
+//			console.log( tab.tBodies[0].rows[1].cells[0] );
+			tab.tBodies[0].rows[1].cells[0].style.background = "purple";
+			tab.tHead.rows[0].cells[0].style.background = "orange";
+		</script>
+	</body>
+</html>

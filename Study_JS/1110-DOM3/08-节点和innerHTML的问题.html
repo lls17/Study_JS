@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			var span = document.createElement("span");
+//			下面的写法是错误的
+//			box.innerHTML = span;//把节点转换成字符串<span></span>
+
+//			正确写法:
+//			box.innerHTML = "<span></span>";
+//			box.appendChild( span );
+		</script>
+	</body>
+</html>

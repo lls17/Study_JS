@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" value="" />
+		<input type="button" value="生成" />
+		<ul id="list">
+			<li>初始内容</li>
+		</ul>
+		<script>
+			var list = document.getElementById("list");
+			var inps = document.getElementsByTagName("input");
+			var list_li = list.getElementsByTagName("li");
+			list_li[0].onclick = function(){
+				alert( this.innerHTML );
+			}
+			inps[1].onclick = function(){
+				list.innerHTML += "<li>"+ inps[0].value +"</li>";  //重写了innerHTML的内容，之前内容里的元素绑定的事件失效！
+//				var list_li = list.getElementsByTagName("li");
+//				for (var i = 0; i < list_li.length; i++) {
+//					list_li[i].onclick = function(){
+//						alert( this.innerHTML );
+//					}
+//				}
+				console.log(list_li.length);
+			}
+			
+			
+		</script>
+		
+	</body>
+</html>

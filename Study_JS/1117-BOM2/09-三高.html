@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 300px;
+				height: 300px;
+				border: 30px solid #000;
+				padding: 50px;
+				/*overflow: hidden;*/
+				overflow: auto;
+			}
+			#content{
+				width: 200px;
+				/*height: 200px;*/
+				height: 400px;
+				background-color: #f00;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			clientHeight
+				元素的height + padding
+			
+			offsetHeight
+				元素的height + padding + border
+			
+			scrollHeight
+				元素被子元素撑开的高度
+		-->
+		<div id="box">
+			<div id="content"></div>
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			console.log( box.clientHeight );
+			console.log( box.offsetHeight );
+			console.log( box.scrollHeight );
+		</script>
+	</body>
+</html>

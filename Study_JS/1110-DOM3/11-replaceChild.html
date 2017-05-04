@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			
+			<span id="span1">span</span>
+		</div>
+		<div id="box1">我是老王家的div</div>
+		<!--
+			parentNode.replaceChild(node,childNode)
+				node用来替换的节点，childNodes被替换的子节点
+				两个参数都必须写。
+		-->
+		<script>
+			var box = document.getElementById("box");
+			var span1 = document.getElementById("span1");
+			var box1 = document.getElementById("box1");
+//			var div = document.createElement("div");
+//			div.innerHTML = "狸猫div";
+//			box.replaceChild( div,span1 );//使用div替换span
+
+			box.replaceChild( box1,span1 );//使用box1替换span
+		</script>
+	</body>
+</html>

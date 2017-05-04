@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			如果通过appendChild/insertBefore插入的是一个已有的元素，那么会做剪切操作
+		-->
+		<div id="box">
+			<div id="div1">div1</div>
+			<p id="p1">p1</p>
+			<div id="div2">div2</div>
+		</div>
+		<script>
+		    var div1 = document.getElementById("div1");
+		    var div2 = document.getElementById("div2");
+		    
+		    var box = document.getElementById("box");
+		    document.onclick = function(){
+//		    	box.appendChild( div1 );
+//		    	div2.appendChild( div1 );
+				box.insertBefore( div1,div2 );
+		    }
+		</script>
+	</body>
+</html>

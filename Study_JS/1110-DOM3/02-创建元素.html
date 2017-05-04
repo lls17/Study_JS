@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			document.createElement(tagName)
+				通过标签名的形式创建一个元素			
+		-->
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+//			box.index = 1;
+				
+			var span = document.createElement("span");//在文档中创建一个span元素
+			
+			span.innerHTML = "我是创建出的span";
+			span.id = "span1";
+			span.className = "text";
+			span.index = 1;
+			span.onclick = function(){
+				alert(1);
+			}
+			console.log(span);//只是创建一个元素，仅仅执行这个操作，不会再页面中直接显示
+		</script>
+	</body>
+</html>

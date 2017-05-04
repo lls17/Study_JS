@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form {
+            margin: 10px 0;
+        }
+        table{
+        	border-collapse: collapse;
+        }
+        td {
+            text-align: center;
+        }
+        /*tbody tr:nth-child(2n){
+        	background-color: lightcyan;
+        }
+        tbody tr:nth-child(2n+1){
+        	background-color: lightgrey;
+        }
+        tbody tr.active{
+        	background-color: lightsalmon;
+        }*/
+       	.c1{
+        	background-color: pink;
+        }
+        .c2{
+        	background-color: yellow;
+        }
+        .sel{
+        	/*选中*/
+        	background-color: green;
+        }
+        .hover{
+        	/*移入*/
+        	background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+	<form id="myForm">
+	    <input type="text" name="username" placeholder="姓名" value="Lwang"/>
+	    <select name="sex">
+	        <option value="">请选择一个性别</option>
+	        <option value="男" selected>男</option>
+	        <option value="女">女</option>
+	    </select>
+	    <input type="text" name="age" placeholder="年龄" value="17"/>
+	    <input type="button" value="提交" name="add">
+	
+	<!--选做-->
+	<p>
+	    <select name="orderName">
+	        <option value="">选择一个排序字段</option>
+	        <option value="id" selected>编号</option>
+	        <option value="age">年龄</option>
+	    </select>
+	    <select name="orderBy">
+	        <option value="">选择一个排序方式</option>
+	        <option value="asc">升序</option>
+	        <option value="desc" selected>降序</option>
+	    </select>
+	    <input type="button" value="排序" name="iptSort">
+	    <input type="button" value="删除选中" name="delSel">
+	</p>
+	<table border="1" width="100%" id="tab1">
+	    <thead>
+		    <tr>
+		        <th>全选 <input type="checkbox" name="checkAll"></th>
+		        <th>编号</th>
+		        <th>姓名</th>
+		        <th>性别</th>
+		        <th>年龄</th>
+		        <th>操作</th>
+		    </tr>
+	    </thead>
+	    <tbody></tbody>
+	</table>
+	</form>
+	<script>
+
+        /*
+        * 1.通过表单，可以添加数据到表格中显示
+        * 2.id自动根据已有的最大id值进行累加，删除一条记录的时候
+        * 3.隔行变色，新增加的行应该也需要隔行变色的
+        * 4.鼠标移入高亮
+        * 5.全选/全不选（checkAll和下面的每一个checkbox是有关联的）
+        * 6.选中变色
+        * 7.上移/下移
+        * 8.删除
+        *
+        * 9.选做：排序
+        * */
+		
+        var data = [
+            {
+                "id": 1,
+                "name" : '刘伟',
+                "sex" : '男',
+                "age" : 32
+            },
+            {
+                "id": 2,
+                "name" : '莫涛',
+                "sex" : '男',
+                "age" : 28
+            },
+            {
+                "id": 3,
+                "name" : '小美',
+                "sex" : '女',
+                "age" : 18
+            }
+        ];
+       
+       	var tab1 = document.getElementById("tab1");
+       	var form = document.getElementById("myForm");
+       	var trs = tab1.tBodies[0].getElementsByTagName("tr");
+       	var maxId = data.length; 
+       	
+       	for (var i = 0; i < data.length; i++) {
+       		createTr(data[i]);
+       	}
+       	changeColor();
+       	
+		function createTr(obj){
+			var tr = document.createElement("tr");
+			var td = document.createElement("td");
+			var ipt = document.createElement("input");
+			ipt.type = "checkbox";
+			td.appendChild(ipt);
+			tr.appendChild(td);
+			td = document.createElement("td");
+			td.innerHTML = obj.id;
+			tr.appendChild(td);
+			td = document.createElement("td");
+			td.innerHTML = obj.name;
+			tr.appendChild(td);
+			td = document.createElement("td");
+			td.innerHTML = obj.sex;
+			tr.appendChild(td);
+			td = document.createElement("td");
+			td.innerHTML = obj.age;
+			tr.appendChild(td);
+			td = document.createElement("td");
+			var btn1 = document.createElement("input");
+			btn1.type = "button";
+			btn1.value = "上移";
+			td.appendChild(btn1);
+			var btn2 = document.createElement("input");
+			btn2.type = "button";
+			btn2.value = "下移";
+			td.appendChild(btn2);
+			var btn3 = document.createElement("input");
+			btn3.type = "button";
+			btn3.value = "删除";
+			td.appendChild(btn3);
+			
+			tr.appendChild(td);
+			tab1.tBodies[0].appendChild(tr);
+			
+			btn3.onclick = function(){
+				tab1.tBodies[0].removeChild(tr);
+				changeColor();
+				for (var i = 0; i < trs.length; i++) {
+					if(!trs[i].cells[0].children[0].checked){
+						form.checkAll.checked = false;//循环所有的checkbox如果有一个checkbox是未被选中的，则取消全选,停止函数执行
+						return;
+					}
+				}
+	//			如果程序顺利走到这里，则说明全被选中的，把全选勾上
+				form.checkAll.checked = true;
+			}
+			btn1.onclick = function(){
+				if(tr.previousElementSibling){
+					tab1.tBodies[0].insertBefore(tr, tr.previousElementSibling);
+				}
+				changeColor();
+			};
+			btn2.onclick = function(){
+				if(tr.nextElementSibling){
+					tab1.tBodies[0].insertBefore(tr.nextElementSibling, tr);
+				}
+				changeColor();
+			};
+			
+			tr.onmouseover = function(){
+				if(!ipt.checked){//看当前tr中的checkbox是不是选中的
+					tr.className = "hover";
+				}
+			};
+			tr.onmouseout = function(){
+				if(!ipt.checked){//看当前tr中的checkbox是不是选中的
+					tr.className = this.oldColor;//找回本色
+				}
+			};
+			ipt.onclick = function(){
+//		如果,这个checkbox是 取消的,则把全选框取消
+//		如果,这个checkbox是 选中的,开一个for循环，循环所有的checkbox如果有一个checkbox是未被选中的，则取消全选，停止for循环，如果for循环执行结束了，说明全被选中的，把全选勾上
+				if(this.checked){
+					tr.className = "sel";
+					for (var i = 0; i < trs.length; i++) {
+						if(!trs[i].cells[0].children[0].checked){
+							form.checkAll.checked = false;
+							return;
+						}
+					}
+					form.checkAll.checked = true;
+				}else{
+					tr.className = "hover";
+					form.checkAll.checked = false;
+				}
+			};
+		}
+		
+		form.add.onclick = function(){
+			var name = form.username.value.trim();
+       		var sex = form.sex.value;
+       		var age = form.age.value.trim();
+       		if(name == ""){
+       			alert("请输入您的姓名！");
+       			return;
+       		}
+       		if(age == ""){
+       			alert("请输入您的年龄！");
+       			return;
+       		}
+       		if(!Number(age)){
+       			alert("请输入数字格式的年龄！");
+       			return;
+       		}
+       		maxId++;
+       		createTr({
+       			"id" : maxId,
+       			"name" : name,
+       			"sex" : sex,
+       			"age" : age
+       		});
+       		changeColor();
+       		//因为添加的tr是一定没有被选中的，所以直接把checkAll取消掉
+       		form.checkAll.checked = false;
+		}
+		
+		function changeColor(){
+			for (var i = 0; i < trs.length; i++) {
+				if(i%2==0){ //加自定义属性，记录自己原来的颜色
+					trs[i].oldColor = "c1";
+					trs[i].className = "c1";
+				}else{
+					trs[i].oldColor = "c2";
+					trs[i].className = "c2";
+				}
+				if( trs[i].cells[0].children[0].checked) {
+					trs[i].className = "sel";
+				}
+			}
+		}
+		form.checkAll.onclick = function(){
+			for (var i = 0; i < trs.length; i++) {
+				trs[i].cells[0].children[0].checked = this.checked;
+			}
+			changeColor();
+		};
+		form.delSel.onclick = function(){
+			for (var i = trs.length-1; i > -1; i--) { //注：从后往前删
+				if(trs[i].cells[0].children[0].checked){
+					tab1.tBodies[0].removeChild(trs[i]);
+					form.checkAll.checked = false;
+				}
+			}
+			changeColor();
+		};
+		form.iptSort.onclick = function(){
+			var orderName = form.orderName.value;
+			var orderBy = form.orderBy.value;
+			if(orderName=="" || orderBy==""){
+				alert(" 请输入正确的排序字段和排序方式 ");
+				return;
+			}
+			bubbleSort(orderName, orderBy);
+			changeColor();
+		};
+		function bubbleSort(orderName, orderBy){
+			var v1,v2;
+			for (var i = 0; i < trs.length-1; i++) {
+				for (var j = 0; j < trs.length-1-i; j++) {
+					if(orderName == "id"){
+						v1 = Number( trs[j].cells[1].innerHTML );
+						v2 = Number( trs[j+1].cells[1].innerHTML );
+					}
+					if(orderName == "age"){
+						v1 = Number( trs[j].cells[4].innerHTML );
+						v2 = Number( trs[j+1].cells[4].innerHTML );
+					}
+					if(orderBy == "asc"){//升序
+						if( v1 > v2 ){
+							tab1.tBodies[0].insertBefore( trs[j+1],trs[j] )
+						}
+					}
+					if(orderBy == "desc"){//降序
+						if( v1 < v2 ){
+							tab1.tBodies[0].insertBefore( trs[j+1],trs[j] )
+						}
+					}
+				}
+			}
+		}
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<p id="p1">我是p标签</p>
+		</div>
+		<!--
+			parentNode.insertBefore(childNode1,childNode2)
+				往一个节点的指定子节点前边插入一个节点
+				如上：childNode1插入到childNode2前边；
+				
+			如果第二个参数没有，会报错
+			如果第二个参数是null,相当于appendChild
+		-->
+		<script>
+		    var box = document.getElementById("box");
+		    var span = document.createElement("span");
+		    var p1 = document.getElementById("p1");
+		    
+		    span.innerHTML = "创建出的span";
+//		    box.appendChild(span);
+//			box.insertBefore(span,p1);//把span插入到p1的前面
+//			box.insertBefore(span);//报错
+			box.insertBefore(span,null);//如果第二个参数是null,相当于appendChild
+			
+			
+		</script>
+	</body>
+</html>

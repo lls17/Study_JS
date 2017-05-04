@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="box">
+			<li>11<button>上移</button><button>下移</button></li>
+			<li>22<button>上移</button><button>下移</button></li>
+			<li>33<button>上移</button><button>下移</button></li>
+			<li>44<button>上移</button><button>下移</button></li>
+		</ul>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var btns = box.getElementsByTagName("button");
+			for (var i = 0; i < btns.length; i++) {
+				btns[i].index = i;
+				btns[i].onclick = function(){
+					if(this.index%2==0){//上移
+						if(this.parentNode.previousElementSibling){
+							box.insertBefore(this.parentNode, this.parentNode.previousElementSibling);
+						}
+					}else{//下移
+						if(this.parentNode.nextElementSibling){
+							box.insertBefore(this.parentNode.nextElementSibling, this.parentNode);
+						}
+					}
+				};
+			}
+		</script>
+	</body>
+</html>

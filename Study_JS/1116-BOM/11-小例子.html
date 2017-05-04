@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" value="联盟" id="btn1"/>
+		<input type="button" value="部落" id="btn2" />
+		<div id="content">
+			<!--<div>
+				<div>职业：法师</div>
+				<div>性别：女</div>
+			</div>-->
+		</div>
+		<nav id="nav">
+			<!--<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>-->
+		</nav>
+		<script>
+			data = [
+				//联盟
+				[
+					{
+						"job":"法师",
+						"sex":"女"
+					},
+					{
+						"job":"战士",
+						"sex":"男"
+					},
+					{
+						"job":"圣骑",
+						"sex":"男"
+					}
+				],[//部落
+					{
+						"job":"巨魔",
+						"sex":"女"
+					},
+					{
+						"job":"祭祀",
+						"sex":"女"
+					},
+					{
+						"job":"吴彦祖",
+						"sex":"男"
+					},
+					{
+						"job":"tong",
+						"sex":"男"
+					}
+				]
+			]
+			var nav = document.getElementById("nav");
+			var content = document.getElementById("content");
+			var btn1 = document.getElementById("btn1");
+			var btn2 = document.getElementById("btn2");
+			
+			var sea = window.location.search.substr(1);
+//			因为第一次加载该页面的时候没有search,所以,sea是"";
+			if(sea == ""){//是首次加在进来了
+				sea = 0;
+			}
+			tab(sea,0);
+			
+			btn1.onclick = function(){
+				window.location.search = 0;
+				//如果在此处进行tab函数的调用，会受到上一句修改search的影响属性了页面，从而重新加载优惠初始化为tab(0,0);
+			}
+			btn2.onclick = function(){
+				window.location.search = 1;
+			}
+			
+			function tab (a,b) {//a是数字
+				var str = "";
+				for(var i = 0;i<data[a].length;i++){
+					str += "<span>"+ (i+1) +"</span>";
+				}
+				content.innerHTML = "<div><div>职业："+ data[a][b].job +"</div><div>性别："+ data[a][b].sex +"</div></div>";
+				nav.innerHTML = str;
+			}
+			
+		</script>
+		
+	</body>
+</html>

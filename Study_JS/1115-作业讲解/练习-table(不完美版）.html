@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form {
+            margin: 10px 0;
+        }
+        table{
+        	border-collapse: collapse;
+        }
+        td {
+            text-align: center;
+        }
+        tbody tr:nth-child(2n){
+        	background-color: lightcyan;
+        }
+        tbody tr:nth-child(2n+1){
+        	background-color: lightgrey;
+        }
+        tbody tr.active{
+        	background-color: lightsalmon;
+        }
+    </style>
+</head>
+
+<body>
+	<form id="myForm">
+	    <input type="text" name="username" placeholder="姓名"/>
+	    <select name="sex">
+	        <option value="">请选择一个性别</option>
+	        <option value="男">男</option>
+	        <option value="女">女</option>
+	    </select>
+	    <input type="text" name="age" placeholder="年龄"/>
+	    <input type="button" value="提交" name="sub">
+	
+	<!--选做-->
+	<p>
+	    <select name="orderName">
+	        <option value="">选择一个排序字段</option>
+	        <option value="id">编号</option>
+	        <option value="age">年龄</option>
+	    </select>
+	    <select name="orderBy">
+	        <option value="">选择一个排序方式</option>
+	        <option value="asc">升序</option>
+	        <option value="desc">降序</option>
+	    </select>
+	    <input type="button" value="排序" name="iptSort">
+	    <input type="button" value="删除选中" name="delSel">
+	</p>
+	<table border="1" width="100%" id="tab1">
+	    <thead>
+		    <tr>
+		        <th>全选 <input type="checkbox" name="checkAll"></th>
+		        <th>编号</th>
+		        <th>姓名</th>
+		        <th>性别</th>
+		        <th>年龄</th>
+		        <th>操作</th>
+		    </tr>
+	    </thead>
+	    <tbody></tbody>
+	</table>
+	</form>
+	<script>
+
+        /*
+        * 1.通过表单，可以添加数据到表格中显示
+        * 2.id自动根据已有的最大id值进行累加，删除一条记录的时候
+        * 3.隔行变色，新增加的行应该也需要隔行变色的
+        * 4.鼠标移入高亮
+        * 5.全选/全不选（checkAll和下面的每一个checkbox是有关联的）
+        * 6.选中变色
+        * 7.上移/下移
+        * 8.删除
+        *
+        * 9.选做：排序
+        * */
+		
+        var data = [
+//          {
+//              "id": 1,
+//              "name" : '刘伟',
+//              "sex" : '男',
+//              "age" : 32
+//          },
+//          {
+//              "id": 2,
+//              "name" : '莫涛',
+//              "sex" : '男',
+//              "age" : 28
+//          },
+            {
+                "id": 3,
+                "name" : '小美',
+                "sex" : '女',
+                "age" : 18
+            }
+        ];
+       
+       	var tab1 = document.getElementById("tab1");
+       	var form = document.getElementById("myForm");
+       	
+       	form.checkAll.onchange = function(){
+       		//只有一个时候，length不生效？！
+// 			for (var i = 0; i < form.checkOpt.length; i++) {
+//     			form.checkOpt[i].checked = this.checked;
+//     		}
+       	};
+       	form.iptSort.onclick = function(){
+       		var name = form.orderName.value;
+       		var by = form.orderBy.value;
+       		data.sort(function(a,b){
+   				if(Number(a[name]) > Number(b[name])){  //注意：此处要将String类型转为Number类型来做比较	
+   					return by=="asc"?1:-1;
+   				}else{
+   					return by=="asc"?-1:1;
+   				}
+       		});
+       		showData(data);
+       	};
+       	form.delSel.onclick = function(){
+//     		console.log(form.checkOpt);
+//     		console.log(form.checkOpt.length);
+       		for (var i = form.checkOpt.length; i >0 ; i--) {
+       			if(form.checkOpt[i-1].checked){
+       				del(form.checkOpt[i-1]);
+       			}
+       		}
+       	};
+       	
+       	showData(data);
+       	form.sub.onclick = function(){
+       		var name = form.username.value.trim();
+       		var sex = form.sex.value;
+       		var age = form.age.value.trim();
+       		if(name == ""){
+       			alert("请输入您的姓名！");
+       			return;
+       		}
+       		if(age == ""){
+       			alert("请输入您的年龄！");
+       			return;
+       		}
+       		if(!Number(age)){
+       			alert("请输入数字格式的年龄！");
+       			return;
+       		}
+       		
+       		var obj = {};
+//     		var temp = data;  //注意这种复制法不对，会将temp与data指向同一对象
+       		var temp = data.concat();  //复制数组内容的好办法，哈哈哈！
+       		temp.sort(function(a,b){
+       			return Number(a["id"])>Number(b["id"])?-1:1;
+       		});
+       		obj.id = temp.length==0?1:Number(temp[0]["id"])+1;
+       		obj.name = name;
+       		obj.sex = sex;
+       		obj.age = Number(age);
+       		data.push(obj);
+			
+			var oTr = document.createElement("tr");
+   			var oTd = document.createElement("td");
+   			var oCheck = document.createElement("input");
+   			oCheck.type = "checkbox";
+   			oCheck.name = "checkOpt";
+   			oTd.appendChild(oCheck);
+   			oTr.appendChild(oTd);
+       		oTd = document.createElement("td");
+			oTd.innerHTML = obj.id;
+			oTr.appendChild(oTd);
+       		oTd = document.createElement("td");
+			oTd.innerHTML = obj.name;
+			oTr.appendChild(oTd);
+       		oTd = document.createElement("td");
+			oTd.innerHTML = obj.sex;
+			oTr.appendChild(oTd);
+       		oTd = document.createElement("td");
+			oTd.innerHTML = obj.age;
+			oTr.appendChild(oTd);
+			//上移、下移
+   			oTd = document.createElement("td");
+   			ipt1 = document.createElement("input");
+   			ipt1.type = "button";
+   			ipt1.value = "上移";
+   			oTd.appendChild(ipt1);
+   			var ipt2 = ipt1.cloneNode();
+   			ipt2.value = "下移";
+   			var ipt3 = ipt1.cloneNode();
+   			ipt3.value = "删除";
+   			oTd.appendChild(ipt2);
+   			oTd.appendChild(ipt3);
+   			oTr.appendChild(oTd);
+   			tab1.tBodies[0].appendChild(oTr);
+   			
+   			ipt1.onclick = moveUp;
+   			ipt2.onclick = moveDown;
+   			ipt3.onclick = del;
+   			oTr.onclick = function(){
+				if(this.className == ""){
+					this.className = "active";
+					this.firstElementChild.firstElementChild.checked = "checked";
+				}else{
+					this.className = "";
+					this.firstElementChild.firstElementChild.checked = "";
+				}
+			//this.className==""?:"active":"";
+			};
+       	};
+       	
+       	function showData(arr){
+       		tab1.tBodies[0].innerHTML = ""; //先清空原内容，再加载数组！
+			var oTr;
+       		for (var i = 0; i < arr.length; i++) {
+       			oTr = document.createElement("tr");
+       			var oTd = document.createElement("td");
+       			var oCheck = document.createElement("input");
+       			oCheck.type = "checkbox";
+       			oCheck.name = "checkOpt";
+       			oTd.appendChild(oCheck);
+       			oTr.appendChild(oTd);
+       			for(var keyStr in arr[i]){
+		       		oTd = document.createElement("td");
+       				oTd.innerHTML = arr[i][keyStr];
+       				oTr.appendChild(oTd);
+       			}
+       			//上移、下移
+       			oTd = document.createElement("td");
+       			ipt1 = document.createElement("input");
+       			ipt1.type = "button";
+       			ipt1.value = "上移";
+       			oTd.appendChild(ipt1);
+       			var ipt2 = ipt1.cloneNode();
+       			ipt2.value = "下移";
+       			var ipt3 = ipt1.cloneNode();
+       			ipt3.value = "删除";
+       			oTd.appendChild(ipt2);
+       			oTd.appendChild(ipt3);
+       			oTr.appendChild(oTd);
+       			tab1.tBodies[0].appendChild(oTr);
+       			
+       			ipt1.onclick = moveUp;
+       			ipt2.onclick = moveDown;
+       			ipt3.onclick = del;
+				oTr.onclick = function(){
+					if(this.className == ""){
+						this.className = "active";
+						this.firstElementChild.firstElementChild.checked = "checked";
+					}else{
+						this.className = "";
+						this.firstElementChild.firstElementChild.checked = "";
+					}
+				//this.className==""?:"active":"";
+				};
+       		}
+       	}
+       	
+       	function moveUp(){
+       		var oTr = this.parentNode.parentNode; //当前tr
+       		if(oTr.previousElementSibling){
+       			tab1.tBodies[0].insertBefore(oTr, oTr.previousElementSibling);
+	       		
+	       		var index = oTr.cells[1].innerHTML;
+	       		for (var i = 0; i < data.length; i++) {
+	       			if(data[i].id == index){
+	       				var temp = data[i];
+	       				data[i] = data[i-1];
+	       				data[i-1] = temp;
+	       				break;
+	       			}
+	       		}
+       		}
+       	}
+       	function moveDown(){
+       		var oTr = this.parentNode.parentNode;
+       		if(oTr.nextElementSibling){
+       			tab1.tBodies[0].insertBefore(oTr.nextElementSibling, oTr);
+       			
+       			var index = oTr.cells[1].innerHTML;
+	       		for (var i = 0; i < data.length; i++) {
+	       			if(data[i].id == index){
+	       				var temp = data[i];
+	       				data[i] = data[i+1];
+	       				data[i+1] = temp;
+	       				break;
+	       			}
+	       		}
+       		}
+       	}
+		function del(obj){//注意：参数为空时，arguments的长度为1，event
+			console.log("要删除："+obj.nodeName);
+			obj = obj.parentNode?obj:this;  
+       		var oTr = obj.parentNode.parentNode;
+       		tab1.tBodies[0].removeChild(oTr);
+			var index = oTr.cells[1].innerHTML;
+       		for (var i = 0; i < data.length; i++) {
+       			if(data[i].id == index){
+       				data.splice(i,1);
+       				break;
+       			}
+       		}
+       	}
+		
+    </script>
+</body>
+</html>

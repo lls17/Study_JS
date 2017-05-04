@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+    		img{
+				margin-top: 1000px;
+				display: block;
+				width: 500px;
+				height: 400px;
+			}
+		</style>	
+	</head>
+	<body>
+		<img src="" _src="img/img01.jpg" />
+		<img src="" _src="img/img02.jpg" />
+		<img src="" _src="img/img03.jpg" />
+		<script>
+			var imgs = document.getElementsByTagName("img");
+			window.onscroll = function(){
+				var vTop = document.documentElement.clientHeight;  //可视区的高度
+				for (var i = 0; i < imgs.length; i++) {
+					var mTop = imgs[i].getBoundingClientRect().top;  //元素距可视区顶部的距离
+					if(mTop < vTop){
+						imgs[i].src = imgs[i].getAttribute("_src");
+					}
+				}
+			};
+		</script>
+	</body>
+</html>

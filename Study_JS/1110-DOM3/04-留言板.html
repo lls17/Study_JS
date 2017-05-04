@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" value="" />
+		<input type="button" value="生成" />
+		<ul id="list">
+			<li>初始内容</li>
+		</ul>
+		<script>
+			var list = document.getElementById("list");
+			var inps = document.getElementsByTagName("input");
+			var list_li = list.getElementsByTagName("li");
+			list_li[0].onclick = function(){
+				alert( this.innerHTML );
+			}
+			inps[1].onclick = function(){
+				var li = document.createElement("li");
+				li.innerHTML = inps[0].value;
+				li.onclick = function(){
+					alert( this.innerHTML );
+				}
+				list.appendChild( li );
+			}
+		</script>
+	</body>
+</html>

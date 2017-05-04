@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<table id="tab">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>年龄</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>-->
+			</tbody>
+		</table>
+		<script>
+		    var data = [
+	            {
+	                id: 1,
+	                name : '刘伟',
+	                sex : '男',
+	                age : 32
+	            },
+	            {
+	                id: 2,
+	                name : '莫涛',
+	                sex : '男',
+	                age : 18
+	            },
+	            {
+	                id: 3,
+	                name : '小美',
+	                sex : '女',
+	                age : 20
+	            },
+	            {
+	            	id:4,
+	            	name : "duoduo",
+	            	sex : "男",
+	            	age : 28
+	            }
+	       	];
+			var tbody = document.getElementById("tab").tBodies[0];
+			for (var i = 0; i < data.length; i++) {
+				var tr = document.createElement("tr");
+				
+				var td1 = document.createElement("td");
+				td1.innerHTML = data[i].id;
+				tr.appendChild(td1);
+				
+				var td2 = document.createElement("td");
+				td2.innerHTML = data[i].name;
+				tr.appendChild(td2);
+				
+				var td3 = document.createElement("td");
+				td3.innerHTML = data[i].sex;
+				tr.appendChild(td3);
+				
+				var td4 = document.createElement("td");
+				td4.innerHTML = data[i].age;
+				tr.appendChild(td4);
+				
+				tbody.appendChild( tr );
+				
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			node.previousElementSibling 上一个元素兄弟节点
+			node.nextElementSibling 下一个元素兄弟节点
+				previousElementSibling
+				nextElementSibling 都有可能获取到script标签
+		-->
+		<div id="box">
+			<span>111</span>
+			<span id="span">222</span>
+			<span>333</span>
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			var span = document.getElementById("span");
+			
+			console.log( box.previousElementSibling );//null
+			console.log( box.nextElementSibling );
+//			console.log( box.nextElementSibling.nodeName );
+//			console.log( span.previousElementSibling );
+//			console.log( span.nextElementSibling );
+		</script>
+	</body>
+</html>

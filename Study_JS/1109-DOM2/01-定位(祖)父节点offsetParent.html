@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				border: 1px solid #000;
+				margin-left:80px;
+				margin-top:80px;
+			}
+			#box{
+				/*position: relative;*/
+			}
+			#div1{
+				/*position: static;默认值,静态定位*/
+				/*position: relative;
+				position: fixed;
+				position: absolute;*/
+			}
+			#div2{
+				position: absolute;
+				left: 160px;
+				top: 160px;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			node.offsetParent
+			
+				offsetParent 就是最近的有定位属性(position值为：relative\absolute\fixed)的祖先节点。
+				
+				注意：如果没有定位父级，那么offsetParent是body
+			
+		-->
+		<div id="box">
+			<div id="div1">
+				<div id="div2"></div>
+			</div>
+		</div>
+		<script>
+			var div1 = document.getElementById("div1");
+			var div2 = document.getElementById("div2");
+//			console.log( div1.parentNode );//box
+//			console.log( div2.parentNode );//div1
+//			console.log( div2.parentNode.parentNode );//box	
+//			console.log( div2.offsetParent );//div2的定位父级
+		</script>
+	</body>
+</html>

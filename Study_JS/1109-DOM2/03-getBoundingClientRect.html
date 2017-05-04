@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				
+			}
+			/*#wrap{
+				position: relative;
+				margin: 100px;
+			}*/
+			#box{
+				width:100px;
+				height:100px;
+				padding: 10px;
+				background-color:red;
+				margin-left: 100px;
+				margin-top: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			node.getBoundingClientRect()
+				返回值是一个对象，包含了元素盒模型的详细信息(可视大小)；
+			
+			取对象中详细的属性值(相对于浏览器可视区域)
+				node.getBoundingClientRect().width
+				
+			left：元素左侧到可视区左侧的距离
+			top：元素顶部到可视区顶部的距离
+				
+			right：元素右侧到可视区左侧的距离
+			bottom：元素底部到可视区顶部的距离
+			
+		-->
+		<div id="wrap">
+			<div id="box"></div>
+		</div>
+		<script>
+			var box = document.getElementById("box");
+//			console.log( box.getBoundingClientRect() );
+//			console.log( box.getBoundingClientRect().width );
+			console.log( box.getBoundingClientRect().right );
+		</script>
+	</body>
+</html>

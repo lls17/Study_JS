@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				width: 300px;
+				height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			node.setAttribute(attr,value)
+			
+				设置元素指定属性名的属性值
+				
+			node.removeAttribute(attr)
+				
+				删除元素指定属性
+
+			
+		-->
+		<img id="img1" src="img/0.jpg" _src="img/1.jpg" />
+		<a id="a1" href="http://www.baidu.com">baidu</a>
+		<script>
+			var img1 = document.getElementById("img1");
+			var a1 = document.getElementById("a1");
+			img1.onclick = function(){
+//				img1.setAttribute("src","_src")//X
+//				img1.setAttribute("src",img1._src)//X
+//				img1.setAttribute("src",img1.getAttribute("_src"));
+//				img1.src = img1.getAttribute("_src");
+
+				img1.removeAttribute("src");
+			}
+//			a1.setAttribute("href","http://www.miaov.com");
+//			a1.removeAttribute("href");
+			
+		</script>
+	</body>
+</html>

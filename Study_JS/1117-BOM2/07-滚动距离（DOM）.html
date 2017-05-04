@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body style="height: 4000px;">
+		<script>
+			document.onclick = function(){
+//				alert( document.body.scrollTop )//chrome下面获取正常
+//				alert( document.documentElement.scrollTop )//firefox下面获取正常
+
+				scrollT = document.body.scrollTop || document.documentElement.scrollTop
+				console.log( scrollT );
+				
+			}
+		</script>
+	</body>
+</html>

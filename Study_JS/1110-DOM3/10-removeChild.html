@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			
+			parentNode.removeChild(childNode)
+			
+				从一个节点中删除指定的子节点。
+				
+			注意，返回值是你删除的节点
+			
+		-->
+		<div id="box">
+			<div>div</div>
+			<span id="span1">span</span>
+			<p>p</p>
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			var span1 = document.getElementById("span1");
+//			console.log( box.removeChild( span1 ) ) ;
+
+//			box.removeChild( box.firstElementChild )
+//			box.removeChild( box.children[0] );
+//			box.removeChild( box.children[0] );
+//			box.removeChild( box.children[0] );
+//			box.removeChild( box.children );//报错（后面放一个要删除的节点）
+		</script>
+	</body>
+</html>

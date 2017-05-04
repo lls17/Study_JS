@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.text{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<!--
+			parentNode.appendChild(childNode)
+				往一个节点里边添加一个子节点，注意是添加在最后
+			
+			parentNode:父节点（需要把节点放入哪个容器的内部）
+			childNode:子节点（需要放的节点）
+		-->
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			var span = document.createElement("span");
+			
+			span.innerHTML = "我是创建出的span";
+			span.className = "text";
+			span.onclick = function(){
+				alert( this.innerHTML );
+			}
+			
+			box.appendChild( span );//在box 的内部的最后面插入span
+		</script>
+			
+		
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			table{
+				border-collapse: collapse;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+//			if("10">9){
+//				console.log("'10'>9");
+//			}else{
+//				console.log("'10'<9");
+//			}
+//			
+//			if("10">"9"){
+//				console.log("'10'>'9'");
+//			}else{
+//				console.log("'10'<'9'");
+//			}
+			
+//			alert(Number("23px")); //NaN
+//			alert(parseInt("23px")); //23
+
+//			var str = "20px";
+//			alert(str++); //NaN
+			
+//			var num = "1";
+//			alert(num++);  //++计算可隐式转换
+//			alert(num++);
+//			alert(num++);
+			
+			//浏览器可视窗口的宽高
+//			window.innerHeight;  //移动端
+//			document.documentElement.clientWidth;  //PC端
+//			//obj的盒模型信息
+//			box.getBoundingClientRect().width;
+//			//obj的宽高
+//			box.clientHeight;  // 自身height + padding
+//			box.offsetHeight;  // 自身height + padding + border
+//			//页面滚动距离
+//			window.pageXOffset;   //BOM方法
+//			document.documentElement.scrollTop || document.body.scrollTop; //DOM方法
+			
+			//同样都是通过改window.location来实现页面跳转，但是未点击的不能后退页面！
+			document.onclick = function(){
+//				console.log(window.location);
+//				window.location = "temp.html";
+//				window.location.href = "temp.html";  //如同search、hash等只改了location对象中的局部，需注意是否会刷新页面
+			}
+//			window.location = "temp.html";  //不能后退了
+		</script>
+	</body>
+</html>

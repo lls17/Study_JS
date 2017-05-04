@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				margin: 20px 0 0 0;
+				padding: 0;
+				list-style: none;
+			}
+			li{
+				position: relative;
+				float: left;
+				height: 130px;
+				width: 120px;
+				padding: 10px;
+				margin: 10px;
+				text-align: center;
+				/*border: 1px solid blue;*/
+			}
+			.clearfix:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.opt a{
+				padding: 5px;
+				border: 1px solid #7d7d7d;
+				text-decoration: none;
+			}
+			li img{
+				width: 60px;
+				height: 84px;
+				vertical-align: top;
+			}
+			li span{
+				display: inline-block;
+				width: 100%;
+				height: 46px;
+				font: 16px/46px "微软雅黑";
+				text-align: center;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			li input{
+				width: 100%;
+				height: 20px;
+				margin-top: 13px;
+				font: 16px/20px "微软雅黑";
+				text-align: center;
+			}
+			li i{
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+				width: 15px;
+				height: 15px;
+				cursor: pointer;
+				background: url(img/pen.png) no-repeat;
+				background-size: 15px 15px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="opt">
+				<a href="javascript:;" id="newMir">新建文件夹</a>
+				<a href="javascript:;" id="delMir">删除选中</a>
+			</div>
+			<ul id="list" class="clearfix">
+				<li>
+					<img src="img/book.png"/>
+					<span>新建文件夹1</span>
+					<i></i>
+				</li>
+				<li>
+					<img src="img/book.png"/>
+					<span>新建文件夹22221</span>
+					<i></i>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var list = document.getElementById("list");
+			var lis = list.getElementsByTagName("li");
+			var is = list.getElementsByTagName("i");
+			var newMir = document.getElementById("newMir");
+			var delMir = document.getElementById("delMir");
+			var arrCount = []; //记录新建文件夹的个数，命名用
+			var count = 0;
+			var arr = []; //记录选中要删除的li
+			
+			newMir.onclick = function(){
+				var li = document.createElement("li");
+				var img = document.createElement("img");
+				var span = document.createElement("span");
+				var oi = document.createElement("i");
+				img.src = "img/book.png";
+				while(arrCount[count] != undefined){
+					count = arrCount[count] +1;
+				}
+				span.innerHTML = "新建文件夹 ("+count+")";
+				arrCount[count] = count;
+				count++;
+				li.flag = false; //false代表没被选中
+				li.onclick = function(){
+					if(this.flag){
+						this.style.background = "";
+						arr.splice(arr.indexOf(this),1);
+					}else{
+						this.style.background = "#cce8ff";
+						arr.push(this);
+					}
+					this.flag = !this.flag;
+				};
+				oi.flag = false; //false代表是确定(非改名状态)
+				oi.onclick = function(){
+					var li = this.parentElement;
+					var obj;
+					if(this.flag){ //确认改名
+						obj = document.createElement("span");
+						obj.innerHTML = this.previousElementSibling.value;
+					}else{ //准备改名
+						obj = document.createElement("input");
+						obj.type = "text";
+						obj.value = this.previousElementSibling.innerHTML;
+					}
+					li.replaceChild(obj,this.previousElementSibling);
+					this.flag = !this.flag;
+				}
+				
+				li.appendChild(img);
+				li.appendChild(span);
+				li.appendChild(oi);
+				list.appendChild(li);
+			};
+			
+			delMir.onclick = function(){
+				if(arr.length == 0){
+					alert("请选中要删除的文件夹！");
+					return;
+				}
+				count -= arr.length;
+				for (var i = 0; i < arr.length; i++) {
+					list.removeChild(arr[i]);
+				}
+				arr = [];
+			};
+			
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].onclick = function(){
+					alert(1);
+				}
+			}
+		</script>
+	</body>
+</html>

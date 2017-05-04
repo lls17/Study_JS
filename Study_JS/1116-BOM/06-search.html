@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			search
+			 	地址栏查询信息 （问号到#号之间的所有内容）
+			 	可以读，写
+			 	但是 为search 赋值 的时候会刷新页面
+			 	
+			 	注意：设置search最好通过事件来实现（比如加在点击事件中）
+			
+			
+		-->
+		<input type="button" value="设置search为a" id="btn" />
+		<script>
+//			window.location.search = "a"; //如果直接 设置 search 会刷新页面
+			var btn = document.getElementById("btn");
+			
+			console.log( window.location.search );//?a
+			
+			btn.onclick = function(){
+				window.location.search = "a";//会设置search值，刷新页面
+			}
+			
+		    
+		</script>
+	</body>
+</html>

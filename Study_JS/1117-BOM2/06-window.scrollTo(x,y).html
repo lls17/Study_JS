@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+		    #box{
+		    	width:100px;
+		    	height:100px;
+		    	background-color:red;
+		    	margin: 100px;
+		    }
+		</style>
+	</head>
+	<!--
+		window.scrollTo(X,Y)
+			设置页面滚动距离的
+			页面对应滚动到X,Y的位置
+		
+	-->
+	<body style="width: 2000px;height: 5000px;">
+		<div id="box"></div>
+		<script>
+			document.onclick = function(){
+				var num = 0;
+				timer = setInterval(function(){
+					num++;
+					window.scrollTo( num,num );
+					if( num == 100 ){
+						clearInterval(timer);
+					}
+				},100)
+			}
+		</script>
+	</body>
+</html>

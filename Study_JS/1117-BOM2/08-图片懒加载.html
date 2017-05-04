@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+    		img{
+				margin-top: 1000px;
+				display: block;
+				width: 500px;
+				height: 400px;
+			}
+		</style>	
+	</head>
+	<body>
+		<img src="" _src="img/img01.jpg" />
+		<img src="" _src="img/img02.jpg" />
+		<img src="" _src="img/img03.jpg" />
+		<script>
+			var imgs = document.getElementsByTagName("img");
+			window.onscroll = function(){//页面滚动触发
+//				console.log( 1 );
+//				如果元素距离可视区顶部的距离,小于可视区的高度,说明元素出现在可视区中
+
+//					元素距离可视区顶部的距离:
+//						imgs[0].getBoundingClientRect().top
+					
+//					可视区高度:
+//						document.documentElement.clientHeight
+				for (var i = 0; i < imgs.length; i++) {
+					var disT = imgs[i].getBoundingClientRect().top;
+					var Wheight = document.documentElement.clientHeight;
+					if(disT < Wheight ){
+	//					console.log( "元素出现了！" );
+						imgs[i].src = imgs[i].getAttribute("_src");
+					}
+				}
+				
+			}
+			
+			
+//			imgs[0].src = imgs[0].getAttribute("_src");
+			
+		</script>
+	</body>
+</html>

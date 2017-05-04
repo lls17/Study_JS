@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			node.cloneNode(boolean)
+				克隆一个节点
+				boolean:
+					是否进行深度克隆
+					
+					true：克隆元素和元素包含的子孙节点
+					flase：克隆元素但不包含元素的子孙节点
+
+			注意：
+				克隆的时候会把节点的id也克隆下来，所以要注意单独设置节点的id
+		-->
+		<div id="box">
+			<p>p
+				<span>span</span>
+			</p>
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			
+//			console.log( box.cloneNode(false) );
+
+			console.log( box.cloneNode(true) );//进行深度克隆，克隆该节点的子孙级节点
+			var clone = box.cloneNode(true);
+			clone.id = "box1"; 
+			document.body.appendChild( clone );
+		</script>
+	</body>
+</html>

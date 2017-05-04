@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="" id="form1">
+			<input type="text" name="userName" />
+			<input type="text" name="password" /><br />
+			<input type="radio" name="sex" value="man" />男
+			<input type="radio" name="sex" value="woman" />女
+			<input type="radio" name="sex" value="secret" />保密<br />
+			<input type="checkbox" name="hobbies" value="chifan"/>吃饭
+			<input type="checkbox" name="hobbies" value="shuijiao"/>睡觉
+			<input type="checkbox" name="hobbies" value="dayb"/>打yb<br />
+			年龄：<select name="age" id="">
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+			</select><br />
+			<input type="submit" value="提交" />
+			<input type="reset" value="重置" />
+			<input type="button" value="我是打酱油的" id="btn" />
+			<textarea name="text1" rows="" cols="">12123123123</textarea>
+		</form>
+		<script>
+		
+//		我们可以使用dom获取元素的方式去 获取表单元素 .同时也可以使用表单控件的name来获取对应的元素
+//		但是不推荐给表单以外的元素添加name属性来获取元素
+		
+//		获取表单控件的值
+//			input
+//				text/radio/checkbox
+//			select
+//			textarea
+//			统一使用node.value获取值
+
+		
+		    var form1 = document.getElementById("form1");
+		    var btn = document.getElementById("btn");
+		    var inps = form1.getElementsByTagName("input");
+		    btn.onclick = function(){
+//		    	console.log( form1.userName );
+//		    	console.log( form1.userName.value );
+//		    	inps[0].value = 123;
+//		    	alert( inps[0].value ) ;
+
+//		    	console.log( form1.password.value );
+				
+//				console.log( form1.sex );//获取到的是所有name为sex的一组
+//		    	console.log( form1.sex.value );//如果通过form1.sex选择了多个元素，其中有某个是被选中的那么form1.sex.value找的就是这个被选中的元素的值
+
+//				console.log( form1.age );
+//				console.log( form1.age.value );
+				
+//				console.log( form1.text1.value );
+		    }
+		</script>
+	</body>
+</html>
