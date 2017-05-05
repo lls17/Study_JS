@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*function fn(){
+				console.log(this);
+				return function (){
+					console.log( this );	
+				}
+			}
+			document.onclick = fn.call({a:1});*/
+
+			function Person(){
+	
+				}
+			Person.prototype.arr = [1,2,3,4];
+			Person.prototype.fn = function (){
+				console.log(123);	
+			}
+
+			Person.abc = {a:1};
+
+			Person.abc.a = 1000;
+
+			console.log( Person.abc );
+
+			var p = new Person();
+
+			p.fn = 10;  //添加属性并给这个属性赋值
+
+			console.log( p.arr );  //找属性对应的值
+			console.log( p.arr[0] );
+
+			p.arr[0] = "b";
+
+			console.log( p.arr );
+
+
+
+			//1+3-2*3
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

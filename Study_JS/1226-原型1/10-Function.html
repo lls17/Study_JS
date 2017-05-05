@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				原型（prototype）
+					每定义一个函数，都有一个属性，这个属性叫做prototype
+
+					prototype对应的值为一个对象
+
+				每一个对象都有一个__proto__
+					__proto__的值指向构造这个实例的构造函数的原型
+			*/
+
+			var fn = new Function("a","b","alert(a);alert(b)");
+
+			fn(123,456);
+
+			function fn1(){
+					
+			}
+
+			console.dir( fn1 );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100px;
+				width: 100px;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			function Drag(elem){
+				this.elem = elem;
+				this.init();
+			}
+			Drag.prototype.init = function(){
+				var _this = this;
+				this.elem.onmousedown = function(ev){
+					var disX = ev.clientX - _this.elem.offsetLeft;
+					var disY = ev.clientY - _this.elem.offsetTop;
+					
+					document.onmousemove = function(ev){
+						_this.elem.style.left = Math.abs(ev.clientX - disX) + "px";
+						_this.elem.style.top = Math.abs(ev.clientY - disY) + "px";
+					}
+					document.onmouseup = function(ev){
+						document.onmousemove = null;
+					}
+					ev.preventDefault = true;
+				}
+			};
+			
+			new Drag(document.getElementById("box"));  //注意：该处要用new，否则构造函数内部的this指向不对
+		</script>
+	</body>
+</html>

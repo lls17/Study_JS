@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+			/*
+				制定规则
+				QQ号码规则：
+					全是数字
+					不能以0开头
+					5-12位
+			*/
+
+
+
+		</script>
+	</head>
+
+	<body>
+		<input id="QQInput" />
+
+		<script>
+		//12345727273737474757575
+			var re = /^[1-9]\d{4,11}$/;
+
+			QQInput.oninput = function (){
+				var value = trim(this.value);  //去除前后空格
+
+				if( re.test(value) ){
+					console.log("是QQ");
+				}else{
+					console.warn("不是QQ");
+				}
+
+			};
+
+			//去除前后空格
+
+			/*
+				\s 一个空格
+			*/
+
+			var str = "  a   bc  ";
+
+			//匹配到字符串前后空格，替换为""
+
+			/*
+				^ 行首
+				$ 结尾
+			*/
+
+			function trim(str){
+				var re = /^\s+|\s+$/g;
+
+				return str.replace(re,"");	
+			}
+
+			
+
+
+		</script>
+	</body>
+</html>

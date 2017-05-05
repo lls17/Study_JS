@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		
+		//1——用函数模拟面向对象(内部声明一个对象，经过封装后返回这个对象)
+//			function createCat(name, age, sex){
+//				var cat = {};
+//				cat.name = name;
+//				cat.age = age;
+//				cat.sex = sex;
+//				cat.sound = function(){
+//					console.log("小猫叫~ 喵喵喵~");
+//				};
+//				return cat;
+//			}
+//			var cat1 = createCat("小白", "2", "男");
+//			console.log(cat1);
+//			cat1.sound();
+		
+		//2——用构造函数方法，new对象出来（驼峰标识-构造函数，this指向隐藏的对象，用new声明）
+			function Cat(name, age, sex){
+				this.name = name;
+				this.age = age;
+				this.sex = sex;
+			}
+			var c2 = new Cat("小黑", "4", "女");
+//			c2.sound();
+		
+		//3——每个函数都有个prototype原型属性
+		    //3.1 给构造函数的原型添加属性
+			Cat.prototype.info = "cute cat!"; 
+			//3.2 每个实例都有__proto__属性，其值指向这个构造函数的原型prototype
+			console.log(c2.__proto__ === Cat.prototype); //true
+//			c2.info = "c2.info";
+//			console.log(c2.__proto__.info);  //cute cat;
+			c2.__proto__.info = "c2.__proto__.info";
+			console.log(c2.info);  //先找自身属性，无的情况下顺着原型链向上找
+			
+		</script>
+	</body>
+</html>

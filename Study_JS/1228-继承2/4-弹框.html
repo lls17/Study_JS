@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#drag {
+				width: 300px;
+				height: 200px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top:0;
+			}
+			#drag h3{
+				width: 100%;
+				height: 30px;
+				background:green;
+				margin: 0;
+				color: #fff;
+				position: absolute;
+				left: 0;
+				top:0;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="demo.css">
+		<script>
+			function Dialog(options){
+				options = options || {};
+
+				//传入了参数，但不是对象，那么抛出错误
+				if( options.constructor !== Object ){
+					//throw new Error("请传入对象");
+					//return;
+					options = {};
+				}
+
+				this.defaults = {
+					title:"这是一个弹框",
+					content:"这是内容"
+				}
+
+				for( var attr in options ){
+					if( options.hasOwnProperty(attr) ){
+						this.defaults[attr] = options[attr];
+					}
+				}
+
+
+
+				this.init();	
+			}
+
+			Dialog.prototype = {
+				constructor:Dialog,
+				init(){
+					//弹框的结构放在body中
+					document.body.appendChild(this.createHtml());
+
+				},
+				//弹框的结构
+				createHtml(){
+					var diaDiv = document.createElement("div");
+					diaDiv.className = "full-pop";
+
+					var diaHtml = `<h3>
+						<p class="title">${this.defaults.title}</p>
+						<a href="javascript:void(0);" class="close" title="关闭">×</a>
+						</h3>
+						<div class="content">
+							${this.defaults.content}
+						</div>
+						<div class="pop-btns">
+							<span class="error"></span>
+							<a href="javascript:void(0)" class="confirm">确定</a>
+							<a href="javascript:void(0)" class="cancel">取消</a>
+						</div>`;
+
+					diaDiv.innerHTML = diaHtml;
+
+					return diaDiv;
+				}
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="弹框" id="dialogBtn" />
+		<script>
+			dialogBtn.onclick = function (){
+				new Dialog(123);
+				/*new Dialog({
+					title:"元旦快乐，我又长一岁了，好开森啊！"
+				});	*/
+			};
+		</script>
+	</body>
+</html>

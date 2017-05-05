@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				贪婪模式，尽可能匹配多的字符
+				懒惰模式，尽可能少的匹配字符
+
+					*? 开启懒惰模式
+			*/
+			var str = 'a1a1a11ca2a2a33cggggg';
+
+			//规则：a开头，c结尾 ，中间是任意字符
+
+			var re = /a.*?c/
+
+			console.log( str.match(re) );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

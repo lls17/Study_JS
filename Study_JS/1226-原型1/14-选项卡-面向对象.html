@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			p {display: none;}
+		</style>
+		<script>
+			/*
+				面向对象
+			*/
+
+			function Tab(parent){
+				//使用var是局部变量
+				this.inputs = parent.getElementsByTagName("input");	
+				this.ps = parent.getElementsByTagName("p");
+
+				this.len = this.inputs.length;
+
+				this.n = 0;
+
+				this.timer = null;
+
+				this.init();  //初始化一下
+			}
+
+			Tab.prototype.init = function (){
+
+				//init这个函数的this指向实例
+
+				var _this = this;  //定义变量保存实例
+
+				//给inputs添加点击处理
+
+				
+				for( var i = 0; i < this.inputs.length; i++ ){
+					this.inputs[i].index = i;
+					this.inputs[i].onclick = function (){
+
+						//这个函数中的this指向的是触发事件的input
+						_this.change(this.index);
+					};
+				}	
+			};
+
+			Tab.prototype.change = function (index){
+				//this指向实例
+				for( var i = 0; i < this.inputs.length; i++ ){
+					this.inputs[i].style.background = "";	
+					this.ps[i].style.display = "none";	
+				}
+				
+				this.inputs[index].style.background = "yellow";
+				this.ps[index].style.display = "block";	
+			};
+
+			Tab.prototype.autoPlay = function (){
+				var _this = this;
+				this.timer = setInterval(function (){
+					_this.n++;
+					if( _this.n > _this.len - 1 ){
+						_this.n  = 0;
+					}
+					_this.change(_this.n );
+				},1000)	
+			};
+
+			Tab.prototype.stop = function (){
+				//清空定时器
+				clearInterval(this.timer)
+				this.timer = null;	
+			};
+
+			Tab.prototype.status = function (){
+				//当前tab是在暂停还是播放
+				return 	!!this.timer;
+			};
+
+
+
+			/*
+				启动选项卡
+					new Tab(parent)
+
+				实例方法：
+					autoPlay 自动播放
+					stop 停止
+					status 状态
+			*/
+
+			//封装  使用面向对象编程 易扩展
+
+			window.onload = function(){
+				var div1 = document.getElementById("div1");
+				var div2 = document.getElementById("div2");
+
+
+				var t1 = new Tab(div1);
+				var t2 = new Tab(div2);
+
+				t2.autoPlay();
+
+
+				//第二个停止播放 
+				btn1.onclick = function (){
+					t2.stop();	
+				};
+
+				//第一个开始播放
+
+				btn2.onclick = function (){
+					if( !t1.status() ){
+						t1.autoPlay();
+					}					
+				};
+
+				//两个翻转（播放的要暂停，暂停的要播放）
+				btn3.onclick = function (){
+					//知道当前tab是正在播放还是在暂停
+
+					if( t1.status() ){
+						t1.stop();
+					}else{
+						t1.autoPlay();
+					}
+
+					if( t2.status() ){
+						t2.stop();
+					}else{
+						t2.autoPlay();
+					}
+
+				};
+
+			};
+
+			/*
+				第二个选项卡一上来自动轮播
+			*/
+		</script>
+	</head>
+	
+	<body>
+		<div id="div1">
+			<input type="button" value="按钮一" style="background: yellow;" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p style="display: block;">内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		
+		<div id="div2">
+			<input type="button" value="按钮一" style="background: yellow;" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p style="display: block;">内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+	
+		<input type="button" id="btn1" value="第二个停止播放" />
+		<input type="button" id="btn2" value="第一个开始播放" />
+		<input type="button" id="btn3" value="两个翻转（播放的要暂停，暂停的要播放）" />
+
+
+	</body>
+</html>

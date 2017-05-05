@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+			/*
+				人类
+					名字
+					性别
+					说话
+					直立行走
+
+				程序员
+					名字
+					性别
+					说话
+					直立行走
+
+					写代码
+
+				设计师
+					名字
+					性别
+					说话
+					直立行走
+
+					会玩ps
+
+				一个类拥有另一个类的所有的属性和方法，就是继承
+			*/
+
+			function Person(userName,sex){
+				this.userName = userName;	
+				this.sex = sex;
+			}
+
+			Person.prototype.color = "yellow";
+
+			Person.prototype.run = function (){
+				console.log("我是："+this.userName+"，我会直立行走");	
+			};
+
+			Person.prototype.say = function (){
+				console.log("我是："+this.userName+"，我会说话");	
+			};
+
+			Person.prototype.fire = function (){
+				console.log("我会用火");	
+			};
+
+
+
+			var p1 = new Person("leo","男");
+			var p2 = new Person("duoduo","男");
+
+			console.log( p1 );
+
+			//程序员
+			function Coder(userName,sex,money){
+				this.userName = userName;	
+				this.sex = sex;
+
+				this.money = money;
+			}
+
+			Coder.prototype.run = function (){
+				console.log("我是："+this.userName+"，我会直立行走");		
+			};
+
+			Coder.prototype.say = function (){
+				console.log("我是："+this.userName+"，我会说话");	
+			};
+			
+
+			Coder.prototype.coding = function (){
+				console.log("我是：程序员，我会coding");	
+			};
+
+			var c = new Coding("zhong","男",10000);
+
+			//设计师
+			function Designer(userName,sex,ps){
+				this.userName = userName;	
+				this.sex = sex;
+
+				this.ps = ps;
+			}
+
+			Designer.prototype.run = function (){
+				console.log("我是："+this.userName+"，我会直立行走");		
+			};
+
+			Designer.prototype.say = function (){
+				console.log("我是："+this.userName+"，我会说话");	
+			};
+
+			Designer.prototype.designing = function (){
+				console.log("我是：程序员，我会designing");	
+			};
+
+			var d = new Designer("zhong","男",10000);
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

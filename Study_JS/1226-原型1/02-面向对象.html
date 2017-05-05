@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				面向对象编程（Object Oriented Programming，OOP，面向对象程序设计）是一种计算机编程架构
+				javascript  js中没有类的概念
+
+				类描述了一组有相同特性（属性）和相同行为（方法）的对象
+				对象 对类的具体实现
+			*/
+
+			//搜集学员的信息
+
+			/*
+				姓名
+				性别
+				所在地
+				敲代码
+			*/
+
+			//1个学员
+			/*{
+				userName:"leo",
+				sex:"男",
+				city:"北京",
+				coding:function (){
+					console.log("我要coding");	
+				}
+			}*/
+			//工厂方法
+			function info(userName,sex){
+				var obj = {};
+				obj.userName = userName;
+				obj.sex = sex;
+				obj.city = "北京";
+				obj.coding = function (){
+					console.log("我要coding");	
+				}
+				return obj;
+			}
+
+			var p1 = info("leo","男");
+			var p2 = info("duoduo","男");
+
+			console.log( p1 );
+			console.log( p2 );
+
+			//内置的函数
+			var arr = Array(1,2,3,4);
+
+			console.log( arr );
+
+			
+
+			/*class Info{
+				constructor(userName){
+					this.userName=userName
+				}
+				coding(){
+
+				}
+			}*/
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

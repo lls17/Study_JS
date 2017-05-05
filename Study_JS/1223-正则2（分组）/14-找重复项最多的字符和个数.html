@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				反向引用
+					引用整个正则中，分组内的内容
+				\1 \2 \3 
+				\1 引用第一组
+				\2 引用第二组
+				.....
+			*/
+			var str = "aaagghhhhhhjjjjjjlllll";
+			//找重复项最多的字符和个数
+			/*
+				[
+					{
+						char:"a",
+						length:3
+					}
+				]
+			*/
+			//\w匹配到了a aaa   gg hhhhhh
+			//\w只能匹配到一个字符；再反向引用这个分组来重复多次
+			//而\w* 匹配到的可能不是相同字符
+			var re = /(\w)\1*/g;
+
+			var newarr = str.match(re).map(function (item){
+				return {
+					char:item.charAt(0),
+					length:item.length
+				}	
+			}).sort(function (a,b){
+				return b.length - a.length;	
+			})
+
+			console.log( newarr );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

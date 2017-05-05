@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				position: absolute;
+				height: 100px;
+				width: 100px;
+			}
+			#box1{
+				left: 0;
+				background: yellow;
+			}
+			#box2{
+				left: 100px;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1"></div>
+		<div id="box2"></div>
+		<script type="text/javascript">
+			//创建一个构造函数，使传入的elem具有过拽功能（封装组件）
+			function Drag(elem){
+				this.elem = elem;
+				this.init();
+			}
+			//重写原型
+			Drag.prototype = {
+				constructor:Drag,
+				init(){ //绑定事件
+					//fn.bind(thisArg, 参数)重定向this，且不调用函数
+					this.elem.onmousedown = this.downFn.bind(this);
+//					this.elem.onmousedown = function(ev){
+//						_this.downFn(ev); //on事件函数里，this指向触发该事件的元素
+//					}
+				},
+				downFn(ev){
+					this.disX = ev.clientX - this.elem.offsetLeft;
+					this.disY = ev.clientY - this.elem.offsetTop;
+					document.onmousemove = this.moveFn.bind(this);
+					document.onmouseup = this.upFn;
+					ev.preventDefault = true;
+				},
+				moveFn(ev){
+					this.elem.style.left = ev.clientX - this.disX + "px";
+					this.elem.style.top = ev.clientY - this.disY + "px";
+				},
+				upFn(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+			};
+			
+			//在Drag构造函数基础上，扩展限制活动区域的拖拽 —— 本次利用继承
+			function DragLimit(elem){
+				Drag.call(this, elem); //1-拥有Drag自身的属性和方法
+			}
+			//2-拥有Drag原型上的属性和方法
+			for(var attr in Drag.prototype){
+				if(Drag.prototype.hasOwnProperty(attr)){
+					DragLimit.prototype[attr] = Drag.prototype[attr];
+				}
+			}
+			DragLimit.prototype.constructor = DragLimit;
+			
+			//拓展或重写其中方法
+			DragLimit.prototype.moveFn = function(ev){
+				this.elem.style.left = ev.clientX - this.disX + "px";
+				this.elem.style.top = ev.clientY - this.disY + "px";
+				if(ev.clientX - this.disX < 0){
+					this.elem.style.left = 0;
+				}
+				if(ev.clientX - this.disX > document.documentElement.clientWidth - this.elem.offsetWidth){
+					this.elem.style.left = document.documentElement.clientWidth - this.elem.offsetWidth + "px";
+				}
+				if(ev.clientY - this.disY < 0){
+					this.elem.style.top = 0;
+				}
+				if(ev.clientY - this.disY > document.documentElement.clientHeight - this.elem.offsetHeight){
+					this.elem.style.top = document.documentElement.clientHeight - this.elem.offsetHeight + "px";
+				}
+			};
+			
+			new Drag(document.getElementById("box1"));
+			new DragLimit(document.getElementById("box2"));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				反向引用
+					引用整个正则中，分组内的内容
+				\1 \2 \3
+				\1 引用第一组
+				\2 引用第二组
+				.....
+			*/
+			var str = 'a1a1a11ca2a2a33c';
+
+			//规则：a和一个数字开始，可以重复多次，以c结尾
+
+			var re = /(a(\d))\1*\2c/g;
+
+			console.log( str.match(re) );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

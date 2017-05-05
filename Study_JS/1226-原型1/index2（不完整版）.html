@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<input type="button" value="按钮一" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p>内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		<div id="div2">
+			<input type="button" value="按钮一" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p>内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		<div id="opt">
+			<input type="button" value="第二个停止播放" />
+			<input type="button" value="第一个开始播放" />
+			<input type="button" value="反转（暂停的播放，播放的暂停）" />
+		</div>
+		<script type="text/javascript">
+			function SuperDiv(id, isPlay){
+				this.id = id;
+				this.timer = null;
+				this.isPlay = isPlay;
+				if(isPlay){
+					this.play();
+				}else{
+					this.tab();
+				}
+			}
+			SuperDiv.prototype.tab = function (){
+				var d1 = document.getElementById(this.id);
+				var ipt1s = d1.getElementsByTagName("input");
+				var p1s = d1.getElementsByTagName("p");
+				ipt1s[0].style.backgroundColor = "yellow";
+				p1s[0].style.display = "block";
+				for (var i = 0; i < ipt1s.length; i++) {
+					ipt1s[i].index = i;
+					ipt1s[i].onclick = function(){
+						for (var i = 0; i < ipt1s.length; i++) {
+							ipt1s[i].style.backgroundColor = "";
+							p1s[i].style.display = "none";
+						}
+						this.style.backgroundColor = "yellow";
+						p1s[this.index].style.display = "block";
+					}
+				}
+				this.isPlay = false;
+			}
+			SuperDiv.prototype.play = function (){
+				var d1 = document.getElementById(this.id);
+				var ipt1s = d1.getElementsByTagName("input");
+				var p1s = d1.getElementsByTagName("p");
+				var curIndex = 0;
+				ipt1s[curIndex].style.backgroundColor = "yellow";
+				p1s[curIndex].style.display = "block";
+				this.timer = setInterval(function(){
+					curIndex++;
+					curIndex %= 3;
+					for (var j = 0; j < ipt1s.length; j++) {
+						ipt1s[j].style.backgroundColor = "";
+						p1s[j].style.display = "none";
+					}
+					ipt1s[curIndex].style.backgroundColor = "yellow";
+					p1s[curIndex].style.display = "block";
+				},800);
+				this.isPlay = true;
+			}
+			SuperDiv.prototype.stopPlay = function(){
+				clearInterval(this.timer);
+				this.isPlay = false;
+			}
+			SuperDiv.prototype.toggle = function(){
+				if(this.isPlay){
+					this.stopPlay();
+				}else{
+					this.play();
+				}
+			}
+			
+			var div1 = new SuperDiv("div1", false);
+			var div2 = new SuperDiv("div2", true);
+			
+			var opts = document.querySelectorAll("#opt input");
+			opts[0].onclick = function(){
+				div2.stopPlay();
+			}
+			opts[1].onclick = function(){
+				div1.play();
+			}
+			opts[2].onclick = function(){
+				div1.toggle();
+				div2.toggle();
+			}
+		</script>
+	</body>
+</html>

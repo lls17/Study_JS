@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				[[class]]
+				Object Array Function Date RegExp Math Null Undefined
+
+				[Object 类型]
+
+				toString() 返回的是某个对象分类的一个字符串值
+
+				只有调用Object.prototype.toString 才能打印出类型值
+	
+				内置的对象的原型上都有一个toString方法，在转成字符串的时候，会调用toString方法，根据不同类型的对象打印的值不一样。
+
+			*/
+
+
+
+			var arr = [1,2,3,4];
+			var obj  ={a:1};
+
+			var d = new Date();
+
+			//Object.prototype.toString
+
+			console.log( obj.toString() );
+
+			console.log( {}.toString.call(arr) );
+			console.log( Object.prototype.toString.call(null) );
+			console.log( Object.prototype.toString.call(undefined) );
+			console.log( Object.prototype.toString.call(Math) );
+			console.log( Object.prototype.toString.call(d));
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

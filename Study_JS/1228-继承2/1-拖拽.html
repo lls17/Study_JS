@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#drag {
+				width: 300px;
+				height: 200px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top:0;
+			}
+			#drag h3{
+				width: 100%;
+				height: 30px;
+				background:green;
+				margin: 0;
+				color: #fff;
+			}
+		</style>
+		<script>
+			//https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+
+			/*
+				函数.bind()
+					作用：
+						改变函数中this的指向，不调用函数
+					语法
+						函数.bind(thisArg,[arg1....]);
+
+
+			*/
+
+			function Drag(element){
+				this.element = element;
+				this.init();
+			}
+
+			Drag.prototype = {
+				constructor: Drag,
+				init(){
+					//要把一个函数的this改变为指定的值，并且不调用函数
+					this.element.onmousedown = this.downFn.bind(this);
+				},
+				downFn(ev){
+					//this => 实例
+					this.disX = ev.clientX - this.element.offsetLeft;
+					this.disY = ev.clientY - this.element.offsetTop;
+
+					document.onmousemove = this.moveFn.bind(this);
+					document.onmouseup = this.upFn;
+
+					ev.preventDefault();
+				},
+				moveFn(ev){
+					this.element.style.left = ev.clientX - this.disX + "px";
+					this.element.style.top = ev.clientY - this.disY + "px";
+				},
+				upFn(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<div id="drag">
+			<h3 id="title">标题</h3>
+		</div>
+		<script>
+			new Drag(drag);
+		</script>
+	</body>
+</html>

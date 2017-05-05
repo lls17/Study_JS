@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				[]
+					中括号中放入字符集，匹配中括号中任意一个字符
+
+				^ 排除中括号中任意一个字符
+
+				[^]
+
+				可以在[]中写入区间范围
+
+				[0-9] [1-5]
+				[a-z] [A-Z]  [A-z]
+	
+		[abcdefg]
+				匹配大小写区间
+					[a-zA-Z]
+			*/
+			var str ="11妙味课堂222";
+
+			//匹配中文
+			var re = /[\u4e00-\u9fa5]+/g;
+
+			console.log( str.match(re) );
+
+			console.log( decodeURI("\u4e00") );
+			console.log( decodeURI("\u9fa5") );
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<input type="button" value="按钮一" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p>内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		<div id="div2">
+			<input type="button" value="按钮一" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p>内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		<div id="opt">
+			<input type="button" value="第二个停止播放" />
+			<input type="button" value="第一个开始播放" />
+			<input type="button" value="反转（暂停的播放，播放的暂停）" />
+		</div>
+		<script type="text/javascript">
+			function Tab(parent){
+				this.ipts = parent.getElementsByTagName("input");
+				this.ps = parent.getElementsByTagName("p");
+				
+				this.init();
+			}
+			//初始化——绑定事件处理函数
+			Tab.prototype.init = function(){
+				//原型函数里的this指的是 原型的实例
+				var _this = this; //保存实例
+				for (var i = 0; i < this.ipts.length; i++) {
+					this.ipts[i].index = i;
+					this.ipts[i].onclick = function(){
+						//事件处理函数里的this指的是，触发该事件的对象
+						_this.changeCur(this.index);
+					}
+				}
+			};
+			Tab.prototype.autoPlay = function(){
+				this.stop();
+				var _this = this;
+				var curIndex = 0;
+				this.timer = setInterval(function(){
+					_this.changeCur(curIndex); //注意：定时器里的this指的是window
+					curIndex++;
+					curIndex %= _this.ipts.length;
+				},800);
+			};
+			Tab.prototype.toggle = function(){
+				if(this.timer){
+					this.stop();
+				}else{
+					this.autoPlay();
+				}
+			};
+			Tab.prototype.changeCur = function(curId){
+				for (var i = 0; i < this.ipts.length; i++) {
+					this.ipts[i].style.background = "";
+					this.ps[i].style.display = "none";
+				}
+				this.ipts[curId].style.background = "yellow";
+				this.ps[curId].style.display = "block";
+			};
+			Tab.prototype.stop = function(){
+				clearInterval(this.timer);
+				this.timer = null;
+			};
+			var d1 = new Tab(document.getElementById("div1"));
+			var d2 = new Tab(document.getElementById("div2"));
+			d2.autoPlay();
+			
+			
+			var opts = document.querySelectorAll("#opt input");
+			opts[0].onclick = function(){
+				d2.stop();
+			}
+			opts[1].onclick = function(){
+				d1.autoPlay();
+			}
+			opts[2].onclick = function(){
+				d1.toggle();
+				d2.toggle();
+			}
+		</script>
+	</body>
+</html>

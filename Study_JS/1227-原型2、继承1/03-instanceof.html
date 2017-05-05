@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				instanceof 二元运算符
+
+					运算检测一个函数的原型是否在要检测的实例的原型链上
+					使用：实例 instanceof constructor
+						true：在原型链上
+						false：不在原型链上
+
+			*/
+			//构造函数
+			function Car(color){
+				this.color = color;
+			}
+
+			var c = new Car("red");
+
+			//原型链 1. Car.prototype 2. Object.prototype
+
+			console.log( c instanceof Car );  //Car的原型是否在c实例的原型链上
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

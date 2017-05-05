@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			function fn(){
+				this.a = 10;
+				this.b = 20;
+			}
+
+			fn();
+
+			var obj = {};
+
+			fn.call(obj);
+
+//			console.log( obj );  //Object {a: 10, b: 20}
+			for(var k in obj){
+				if(obj.hasOwnProperty(k)){
+					console.log(k); //a , b
+				}
+			}
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

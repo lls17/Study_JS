@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#drag {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#drag2 {
+				width: 100px;
+				height: 100px;
+				background: blue;
+				position: absolute;
+				left: 100px;
+				top: 0;
+			}
+		</style>
+		<script>
+			function Drag(element){
+				this.element = element;
+				this.init();	
+			}
+
+			Drag.prototype = {
+				constructor:Drag,
+				init(){
+					//this => 实例
+					var _this = this;
+					//this.element.onmousedown = this.downFn
+
+					this.element.onmousedown = function (ev){
+						_this.downFn(ev);	
+					};
+				},
+				downFn(ev){
+					//在downFn中要使用实例，但是this指向了element
+					// this => element
+					//使用的是_this.downFn()调用，那么downFn这个函数中的this就指向实例
+					
+					this.disX = ev.clientX - this.element.offsetLeft;
+					this.disY = ev.clientY - this.element.offsetTop;
+					var _this = this;
+					document.onmousemove = function(ev){
+						_this.moveFn(ev);
+					};
+					document.onmouseup = this.upFn;
+				},
+				moveFn(ev){
+					this.element.style.left = ev.clientX - this.disX + "px";
+					this.element.style.top = ev.clientY - this.disY + "px";
+				},
+				upFn(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+			};
+
+
+
+
+			window.onload = function(){
+				new Drag(drag);
+				new Drag(drag2);
+			};
+		</script>
+	</head>
+
+	<body>
+		<div id="drag"></div>
+		<div id="drag2"></div>
+	</body>
+</html>

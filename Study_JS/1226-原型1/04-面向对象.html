@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				new 一元运算符
+					
+					1+2
+
+					条件 ? : 
+
+				new 调用函数做的事情：
+					1. 在函数的内部创建一个隐藏对象
+					2. 函数中this指向隐藏的对象
+					3. 执行函数，把属性通过this添加在隐藏的对象上
+					4. 返回这个对象
+
+						函数中使用了return 
+							return 后面是非对象类型的，构造函数返回的依然是隐藏的对象
+							return 后面是对象类型的，构造函数返回的是return后面的对象
+						不使用return
+							构造函数返回的依然是隐藏的对象
+
+						构造函数返回值都是一个对象类型的值
+						
+
+				用来创建对象/实例的函数，构造函数
+
+				约定
+					如果一个函数被作为构造函数，函数名遵循大驼峰的命名
+					首字母大写
+				如果要创建对象/实例，必须使用new;否则，不使用new，就是直接调用函数。
+
+			*/
+			//函数模拟类
+
+			function Info(userName,sex){
+				this.userName = userName;
+				this.sex = sex;
+				this.city = "北京";
+				this.coding = function (){
+					console.log("我要coding");	
+				};
+
+				//return [1,2,3];	
+				//return 1;	
+				//return "abc";	
+				//return {a:1}
+			}
+
+			//创建一个学员的信息
+			//实例或对象
+			var p1 = new Info("leo","男");
+			var p2 = new Info("duoduo","男");
+
+			console.log( p1 );
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

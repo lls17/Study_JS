@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				position: absolute;
+				height: 100px;
+				width: 300px;
+				background: yellowgreen;
+			}
+			h3{
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 30px;
+				width: 100%;
+				margin: 0;
+				line-height: 30px;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<h3 id="title">标题</h3>
+		</div>
+		<script type="text/javascript">
+			//创建一个构造函数，使传入的elem具有过拽功能（封装组件）
+			function Drag(opts){
+				// 一、参数必填，且为对象类型
+				if(typeof opts === "undefined"){
+					throw new Error("参数必传！");
+					return;
+				}
+				if(opts.constructor !== Object ){
+					throw new Error("参数必须为对象！");
+					return;
+				}
+				
+				// 二、不能直接操作传入的对象
+				this.defaults = {
+					elemTarget:null,
+					elemMove:null
+				};
+				for(var attr in opts){
+					if(opts.hasOwnProperty(attr)){
+						this.defaults[attr] = opts[attr];
+					}
+				}
+				
+				//this.elem为拖拽的目标
+				if( this.defaults.elemMove ){
+					this.elem = this.defaults.elemMove;
+				}else{
+					this.elem = this.defaults.elemTarget;
+				}
+				this.init();
+			}
+			//重写原型
+			Drag.prototype = {
+				constructor:Drag,
+				init(){ //绑定事件
+					//fn.bind(thisArg, 参数)重定向this，且不调用函数
+					this.defaults.elemTarget.onmousedown = this.downFn.bind(this);
+//					this.elem.onmousedown = function(ev){
+//						_this.downFn(ev); //on事件函数里，this指向触发该事件的元素
+//					}
+				},
+				downFn(ev){
+					this.disX = ev.clientX - this.elem.offsetLeft;
+					this.disY = ev.clientY - this.elem.offsetTop;
+					document.onmousemove = this.moveFn.bind(this);
+					document.onmouseup = this.upFn;
+					ev.preventDefault = true;
+				},
+				moveFn(ev){
+					this.elem.style.left = ev.clientX - this.disX + "px";
+					this.elem.style.top = ev.clientY - this.disY + "px";
+				},
+				upFn(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+			};
+			
+			//在Drag构造函数基础上，扩展限制活动区域的拖拽 —— 本次利用继承
+			function DragLimit(elem){
+				Drag.call(this, elem); //1-拥有Drag自身的属性和方法
+			}
+			//2-拥有Drag原型上的属性和方法
+			for(var attr in Drag.prototype){
+				if(Drag.prototype.hasOwnProperty(attr)){
+					DragLimit.prototype[attr] = Drag.prototype[attr];
+				}
+			}
+			DragLimit.prototype.constructor = DragLimit;
+			
+			//拓展或重写其中方法
+			DragLimit.prototype.moveFn = function(ev){
+				this.elem.style.left = ev.clientX - this.disX + "px";
+				this.elem.style.top = ev.clientY - this.disY + "px";
+				if(ev.clientX - this.disX < 0){
+					this.elem.style.left = 0;
+				}
+				if(ev.clientX - this.disX > document.documentElement.clientWidth - this.elem.offsetWidth){
+					this.elem.style.left = document.documentElement.clientWidth - this.elem.offsetWidth + "px";
+				}
+				if(ev.clientY - this.disY < 0){
+					this.elem.style.top = 0;
+				}
+				if(ev.clientY - this.disY > document.documentElement.clientHeight - this.elem.offsetHeight){
+					this.elem.style.top = document.documentElement.clientHeight - this.elem.offsetHeight + "px";
+				}
+			};
+			
+			//通过一个元素，拖动另一个元素
+			new Drag(
+				{
+					elemTarget:document.getElementById("title"),
+					elemMove:document.getElementById("box")
+				}
+			);
+//			new Drag();
+		</script>
+	</body>
+</html>

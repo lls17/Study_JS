@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 需求1： 把字符串中所有为数字的字符找出来，放在数组中
+			// 需求2： 把字符串中所有连续的数字的字符找出来，放在数组中
+			var str = "focus98sdf121234ljldf13";
+//			console.log(str.match(/\d+/g));
+//			console.log(str.match(/\d/g));
+			
+			
+			var arr1 = str.split("").filter(function(item){
+				//只有数字能用Number()方法
+//				return !!Number(item);
+//				return !isNaN(Number(item));
+				return Number(item) == item;
+			});
+			console.log(arr1);
+			
+			var arr2 = [];
+			var tempStr = "";
+			for (var i = 0; i < str.length; i++) {
+				if(Number(str[i])){
+					tempStr += str[i];
+				}else if(tempStr != ""){
+					arr2.push(tempStr);
+					tempStr = "";
+				}
+			}
+			if(tempStr != ""){ //最后几位数字只来得及+=，未push进去
+				arr2.push(tempStr);
+			}
+			console.log(arr2);
+		</script>
+	</body>
+</html>

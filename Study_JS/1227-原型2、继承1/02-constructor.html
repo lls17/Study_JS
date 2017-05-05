@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				原型是一个对象，原型对象上有一个默认的属性，这个属性叫做constructor
+				
+				constructor指向是拥有这个原型的构造函数
+
+			*/
+			//构造函数
+			function Car(color){
+				this.color = color;
+			}
+
+			//console.log( Car.prototype.constructor === Car );  //对象
+
+			//问题，原型对象能不能被改写？？？
+
+			//原型prototype可以被改写为另一个对象
+			//改写原型为另一个对象，要注意把constructor重新指向构造函数
+			Car.prototype = {
+				constructor:Car,
+				a(){
+					console.log("我是被改写后的方法");
+				},
+				b(){
+
+				},
+				c(){
+
+				}
+			}
+
+			//console.log( Car.prototype.constructor ); //A Car B undefiend C Object D 报错
+
+
+			//实例
+			var c = new Car("blue");
+			//判断某一个实例是否是某一个函数构造出来的，就可以用这个constructor
+			//console.log( c.constructor === Car );
+
+			//-------------------------------------
+
+			var arr = [];
+			var obj = {};
+
+			Array.prototype.constructor = Car;
+			//改写内置数组的方法，这样做法是不可取的
+			Array.prototype.push = function (){
+				console.log("我是被改写的push");	
+			};
+
+			arr.push();
+
+			/*console.log( typeof arr );
+			console.log( typeof obj );*/
+
+			console.log( arr.constructor === Array );
+			console.log( obj.constructor === Object );
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

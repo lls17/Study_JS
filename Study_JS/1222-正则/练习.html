@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#tip{
+				font: 16px/20px "微软雅黑";
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="ipt" type="text" />
+		<div id="tip"></div>
+		<script type="text/javascript">
+			//注：输入过程中的事件触发oninput （即使是copy进去的内容也可触发）
+			ipt.oninput = function(){
+				tip.innerHTML = "";
+				var val = ipt.value;
+				//如果没有输入数字
+				if(!/\d/.test(val)){
+					tip.innerHTML = "没有输入数字！";
+				}else{
+					var arr = val.match(/\d+/g);
+					tip.innerHTML = "输入的数字为：" + arr.join("，").replace(/1|3|5|7/g, "*");
+//					tip.innerHTML = "输入的数字为：" + arr.join("，").replace(/"1"|"3"|"5"|"7"/g, "*");
+					arr.join("，").replace(/1|3|5|7/g, function($0,$1,$2){
+						console.log($0,$1,$2);
+					});
+				}
+			};
+		</script>
+	</body>
+</html>

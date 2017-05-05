@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#tip{
+				font: 16px/20px "微软雅黑";
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="ipt" type="text" />
+		<div id="tip"></div>
+		<script type="text/javascript">
+			//注：输入过程中的事件触发oninput （即使是copy进去的内容也可触发）
+//			var reg = /^[1-9][0-9]{4,11}/;
+			var reg = /^[1-9]\d{4,11}$/;
+			ipt.oninput = function(){
+				tip.innerHTML = "";
+				var val = ipt.value;
+				console.log(val.match(reg));
+				if(reg.test(val)){
+					tip.innerHTML = "输入合法";
+				}
+			};
+		</script>
+	</body>
+</html>

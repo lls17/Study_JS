@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				原型（prototype）
+					每定义一个函数，都有一个属性，这个属性叫做prototype
+
+					prototype对应的值为一个对象
+			*/
+
+			function Info(userName,sex){
+				//实例上只有这两属性
+				this.userName = userName;
+				this.sex = sex;
+				//this.city = "上海"
+			}
+
+
+
+			//console.dir( Info.prototype );  //对应的值为对象Object
+
+			Info.prototype.city = "北京";
+			Info.prototype.coding = function (){
+				console.log("我是："+this.userName+",我要coding");		
+			}
+
+			var p1 = new Info("leo","男");
+			var p2 = new Info("duoduo","男");
+			var p3 = new Info("momo","男");
+
+			//查找一个属性，现在实例自身找，找到了就把对应的值拿到；
+			//如果没有找到，会沿着原型链，去找构造出这个实例的构造函数的prototype上找
+
+			console.log( p1.city );
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

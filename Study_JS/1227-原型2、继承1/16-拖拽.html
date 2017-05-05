@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#drag {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#drag2 {
+				width: 100px;
+				height: 100px;
+				background: blue;
+				position: absolute;
+				left: 100px;
+				top: 0;
+			}
+		</style>
+		<script>
+			function Drag(element){
+				this.element = element;
+				this.init();	
+			}
+
+			Drag.prototype = {
+				constructor:Drag,
+				init(){
+					//this => 实例
+					var _this = this;
+					//this.element.onmousedown = this.downFn
+
+					this.element.onmousedown = function (ev){
+						_this.downFn(ev);	
+					};
+				},
+				downFn(ev){
+					//在downFn中要使用实例，但是this指向了element
+					// this => element
+					//使用的是_this.downFn()调用，那么downFn这个函数中的this就指向实例
+					
+					this.disX = ev.clientX - this.element.offsetLeft;
+					this.disY = ev.clientY - this.element.offsetTop;
+					var _this = this;
+					document.onmousemove = function(ev){
+						_this.moveFn(ev);
+					};
+					document.onmouseup = this.upFn;
+
+					ev.preventDefault();
+					//return false;
+				},
+				moveFn(ev){
+
+					this.element.style.left = ev.clientX - this.disX + "px";
+					this.element.style.top = ev.clientY - this.disY + "px";
+				},
+				upFn(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+			};
+
+			//限制范围的类
+
+			function DargLimit(element){
+				//拥有拖拽的功能 继承Drag就可以了
+				//继承构造函数中的属性
+				Drag.call(this,element);
+
+				//this.element = element;
+			}
+			//继承父级的原型上的所有的方法
+			for( var attr in Drag.prototype ){
+				if(Drag.prototype.hasOwnProperty(attr)){
+					DargLimit.prototype[attr] = Drag.prototype[attr];
+				}
+			}
+			DargLimit.prototype.constructor = DargLimit;
+			//在move的时候限制在可视区范围，所以改写了父级的moveFn
+			DargLimit.prototype.moveFn = function (ev){
+				this.x = ev.clientX - this.disX;
+				this.y = ev.clientY - this.disY;
+				if( this.x < 0 ){
+					this.x = 0;
+				}
+				if( this.x > document.documentElement.clientWidth - this.element.offsetWidth ){
+					this.x = document.documentElement.clientWidth - this.element.offsetWidth;
+				}
+				if( this.y < 0 ){
+					this.y = 0;
+				}
+				if( this.y > document.documentElement.clientHeight - this.element.offsetHeight ){
+					this.y = document.documentElement.clientHeight - this.element.offsetHeight
+				}
+
+				this.element.style.left = this.x + "px";
+				this.element.style.top = this.y + "px";
+			}
+
+
+
+
+
+			window.onload = function(){
+				new Drag(drag);
+				//第二个色块限制范围
+				new DargLimit(drag2);
+			};
+		</script>
+	</head>
+
+	<body>
+		<div id="drag"></div>
+		<div id="drag2"></div>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+
+		</script>
+	</head>
+
+	<body>
+		<textarea id="text"></textarea><input type="button" value="转换为纯文本" id="btn" />
+		<p id="message"></p>
+		<script>
+		//<p>　　“骗子！大骗子！”</p>
+			var re = /<.*?>/g;
+			btn.onclick = function (){
+				var str = text.value.replace(re,"");
+				console.log( str );
+				message.innerHTML = str;
+			};
+			
+//			console.log(document.body.innerHTML);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				\d 一个数字
+				\D 非数字
+			*/
+
+			var str1 = "2016-03-10";
+			var str2 = "2016++++03++++10";
+			var str3 = "2016/////03/////10";
+			var str4 = "2016+===03-====10";
+
+			//需求：格式为 XXXX年XX月XX日
+
+			//提取数字
+
+			//规则：一堆数字非数字一堆数字非数字一堆数字
+	
+			var reg = /(\d+)\D+(\d+)\D+(\d+)/;
+			function formatDate(dateStr){
+				return dateStr.replace(reg, function($0, $1, $2, $3){
+					return $1+"年"+$2+"月"+$3;
+				});
+			}
+			console.log(formatDate(str1));
+			console.log(formatDate(str2));
+			console.log(formatDate(str3));
+			console.log(formatDate(str4));
+			
+			
+			
+//			var re2 = /\d+\D+\d+\D+\d+/;
+//			str2.replace(re2,function($0){
+//				console.log( $0 );
+//				return XXX+"年"+XXX+"月"+XXX+"日";
+//			});
+			
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

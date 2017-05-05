@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+			/*
+				人类
+					名字
+					性别
+					说话
+					直立行走
+
+				程序员
+					名字
+					性别
+					说话
+					直立行走
+
+					写代码
+
+				设计师
+					名字
+					性别
+					说话
+					直立行走
+
+					会玩ps
+
+				一个类拥有另一个类的所有的属性和方法，就是继承
+			*/
+			//基类
+			function Person(userName,sex){
+				this.userName = userName;	
+				this.sex = sex;
+
+			}
+
+			Person.prototype.color = "yellow";
+
+			Person.prototype.run = function (){
+				console.log("我是："+this.userName+"，我会直立行走");	
+			};
+
+			Person.prototype.say = function (){
+				console.log("我是："+this.userName+"，我会说话");	
+			};
+
+			Person.prototype.fire = function (){
+				console.log("我会用火");	
+			};
+
+
+
+			var p1 = new Person("leo","男");
+			var p2 = new Person("duoduo","男");
+
+			//程序员
+			function Coder(userName,sex,money){
+				//拥有Person中所有的属性 继承
+
+				/*
+					当通过Coder来创造实例的时候，同时通过call调用Person这个函数，
+					把Person这个函数的this改变为Coder中的this，
+					在Person函数执行的时候给this添加上了两个属性，其实就是给Coder中的this添加了属性
+				*/
+				//拥有了构造函数中的属性
+				Person.call(this,userName,sex);
+
+				this.money = money;
+			}
+
+			//拥有原型上的属性和方法
+			Coder.prototype = Person.prototype;
+			Coder.prototype.constructor = Coder;
+
+
+			Coder.prototype.coding = function (){
+				console.log("我是：程序员，我会coding");	
+			};
+			//创造一个程序员的实例
+			var c = new Coder("zhong","男",10000);
+
+			console.log( c.userName );
+
+			c.run();
+
+			//设计师
+			function Designer(userName,sex,ps){
+				this.userName = userName;	
+				this.sex = sex;
+
+				this.ps = ps;
+			}
+
+			Designer.prototype.run = function (){
+				console.log("我是："+this.userName+"，我会直立行走");		
+			};
+
+			Designer.prototype.say = function (){
+				console.log("我是："+this.userName+"，我会说话");	
+			};
+
+			Designer.prototype.designing = function (){
+				console.log("我是：程序员，我会designing");	
+			};
+
+			var d = new Designer("zhong","男",10000);
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				for in
+					用来遍历对象，每个不同的属性，语句都会被执行一次
+
+				默认情况，一个对象下的非用户定义的属性/方法，不能通过forin遍历
+		 		用户添加的属性/方法是可以被遍历的，即使是添加到了原型链上
+
+		 		如果是重写了内置的属性或方法，也遍历不出来
+
+			*/
+
+			function Car(color){
+				this.color = color;
+			}
+
+			Car.prototype.run = function (){
+					
+			};
+
+			var c = new Car("red");
+
+			//遍历实例上的属性
+
+			for( var attr in c ){
+				if( c.hasOwnProperty(attr) ){
+					console.log( attr );
+				}
+				
+			}
+
+			if( !Array.prototype.map ){
+				Array.prototype.map = function (){
+					
+				};
+			}
+
+			
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

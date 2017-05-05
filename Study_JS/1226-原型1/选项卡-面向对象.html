@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			p {display: none;}
+		</style>
+		<script>
+			function Tab( obj ){
+				this.tabBtn = obj.getElementsByTagName("input");	
+				this.tabP = obj.getElementsByTagName("p");
+				this.len = this.tabBtn.length;
+
+				this.timer = null;
+
+				this.icur = 0;
+
+				this.init();  //初始化选项卡
+			}
+
+			Tab.prototype.init = function (){
+				console.log( this )  //init里面的this指向的是Tab里面的this
+				var _this = this;  //把this保存一下
+				for( var i = 0; i < this.len; i++ ){
+					this.tabBtn[i].index = i;
+					this.tabBtn[i].onclick = function (){
+						//console.log( this );//指向的是点击的btn
+						//_this.icur = this.index;
+						_this.play(this.index);	
+					};
+				}
+			};
+
+			Tab.prototype.play = function (n){
+				//var _this = this;
+				for( var i = 0; i < this.len; i++ ){
+					this.tabBtn[i].style.background = "";
+					this.tabP[i].style.display = "none";
+				}
+				this.tabP[n].style.display = "block";
+				this.tabBtn[n].style.background = "yellow";	
+			};
+
+			Tab.prototype.autoPlay = function (){
+				var _this = this;  //保存一下this
+				this.timer = setInterval(function (){
+					//定时器中的this，指向的是window
+					_this.icur++;
+					if( _this.icur >= _this.len ){
+						_this.icur = 0;
+					}
+
+					_this.play(_this.icur);
+
+				},500)	
+			};
+
+			Tab.prototype.stop = function (){
+				console.log( this );
+				clearInterval(this.timer);
+				this.timer = null;
+			}
+			Tab.prototype.isStatus  =function (){
+				// 判断是否正在播放的一个状态
+				// 正在播放，返回true
+				// 没有播放 返回false
+					return !!this.timer; //把这个值转成布尔值
+			}
+
+			window.onload = function(){
+				var tab1 = document.getElementById("div1");
+				var tab2 = document.getElementById("div2");
+
+				var t1 = new Tab(tab1);
+				var t2 = new Tab(tab2);
+
+
+				t1.autoPlay();
+
+				var btn1 = document.getElementById("btn1");
+				var btn2 = document.getElementById("btn2");
+				var btn3 = document.getElementById("btn3");
+				var btn4 = document.getElementById("btn4");
+				var btn5 = document.getElementById("btn5");
+
+				btn1.onclick = function (){
+					t2.autoPlay();	
+				};
+
+				btn2.onclick = function (){
+
+					t1.stop();	
+				};
+				btn3.onclick = function (){
+					if( !t1.isStatus() ){
+						t1.autoPlay();
+					}
+					if( !t2.isStatus() ){
+						t2.autoPlay();
+					}
+				};
+				btn4.onclick = function (){
+
+					t1.stop();	
+					t2.stop();	
+				};
+				btn5.onclick = function (){
+					if( t1.isStatus() ){
+						t1.stop()
+					}else{
+						t1.autoPlay()
+					}
+					if( t2.isStatus() ){
+						t2.stop()
+					}else{
+						t2.autoPlay()
+					}
+				};
+
+			};
+
+		</script>
+	</head>
+	
+	<body>
+		<div id="div1">
+			<input type="button" value="按钮一" style="background: yellow;" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p style="display: block;">内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		
+		<div id="div2">
+			<input type="button" value="按钮一" style="background: yellow;" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p style="display: block;">内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		
+		<input type="button" value="开始播放第二个" id="btn1" />
+		<input type="button" value="停止播放第一个" id="btn2" />
+		<input type="button" value="开始播放所有" id="btn3" />
+		<input type="button" value="停止播放所有" id="btn4" />
+		<input type="button" value="反向播放" id="btn5" />
+	</body>
+</html>

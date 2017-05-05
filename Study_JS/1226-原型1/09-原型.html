@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				原型（prototype）
+					每定义一个函数，都有一个属性，这个属性叫做prototype
+
+					prototype对应的值为一个对象
+
+				每一个对象都有一个__proto__
+					__proto__的值指向构造这个实例的构造函数的原型
+			*/
+
+			Object.prototype.coding = function (){
+				console.log("我会coding");	
+			}
+
+			function Info(userName,sex){
+				this.userName = userName;
+				this.sex = sex;
+			}
+
+			console.log( Info.prototype );
+
+			//Info.prototype 是一个对象，这个对象是用Object构造出来的
+
+			/*Info.prototype.coding = function (){
+				console.log("我会coding");	
+			}*/
+
+			var p1 = new Info("leo","男");
+
+			console.log( p1.__proto__ === Info.prototype );
+
+
+
+			//找coding这个属性，先在实例p1自身上找，找p1.__proto__对应的原型（构造出实例的构造函数上的原型）上找，找构造出原型对象的Object.prototype上找，没有找到，返回undefined,这样找的方式，叫做原型链
+			console.log( p1.coding );
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

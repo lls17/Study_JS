@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			function Person(){
+				this.userName = "leo";
+
+				this.init();
+			}
+			Person.prototype.init = function (){
+				console.log( this.userName );	
+			};
+
+			var p = new Person();
+
+
+			//集中式的管理变量
+
+			var val = {
+				a:10,
+				b:300
+			}
+
+			var a = 10;
+
+			function fn1(){
+				console.log(val.a);	
+				
+			}
+
+			function fn2(){
+				console.log(val.a);	
+			}
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				hasOwnProperty
+					作用
+						 用来判断某个对象是否含有指定的自身属性
+					语法
+						boolean object.hasOwnProperty(prop)
+					参数
+						prop
+						       要检测的属性名称。	
+					返回值
+						返回boolean值
+						true：自身属性
+						false：不为自身属性
+
+				注意：不会沿着原型链查找属性，只查找自身属性
+			*/
+
+			Object.prototype.abc = "hello";
+
+			var obj = {
+				a:1,
+				b:2
+			}
+
+			console.log( obj.abc );  //之所以能找到abc，是因为沿着原型链找到Object.prototype上了
+
+			console.log( obj.hasOwnProperty("a") );  //检测a是否是obj的自身属性
+			console.log( obj.hasOwnProperty("abc") ); //false
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

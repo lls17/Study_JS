@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				[]
+					中括号中放入字符集，匹配中括号中任意一个字符
+
+				可以在[]中写入区间范围
+
+				[0-9] [1-5]
+				[a-z] [A-Z]  [A-z]
+
+				匹配大小写区间
+					[a-zA-Z]
+			*/
+
+			var str = "afcadcaFca6ca10ca0ca100c";
+
+			//规则：a开头，c结尾，中间的数字为a-z
+
+			var re = /a[a-zA-Z]c/g;
+			console.log( str.match(re) );
+
+
+
+			/*var str = "a1ca2ca3ca6ca10ca0ca100c";
+
+			//规则：a开头，c结尾，中间的数字为1或2或3或4或5
+
+			var re = /a[0-9]c/g;
+			console.log( str.match(re) );*/
+
+
+			/*var str = "a1c14ca2c";
+
+			//规则：a开头，c结尾，中间的数字为1或2或3
+
+			var re = /a[123]c/g;
+			console.log( str.match(re) );*/
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

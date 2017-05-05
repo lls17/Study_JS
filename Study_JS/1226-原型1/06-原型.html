@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				原型（prototype）
+					每定义一个函数，都有一个属性，这个属性叫做prototype
+
+					prototype对应的值为一个对象
+			*/
+
+			function Info(userName,sex){
+				this.userName = userName;
+				this.sex = sex;
+			}
+
+
+
+			//console.dir( Info.prototype );  //对应的值为对象Object
+
+			Info.prototype.city = "北京";
+			Info.prototype.coding = function (){
+				console.log("我是："+this.userName+",我要coding");		
+			}
+
+			//这个实例都共享city这个属性，coding这会方法。如果把这两个属性写在构造函数函数中，那么每次创建实例的时候，都要重新定义一次，每一个实例具有自己的city和coding，而不是共享的。
+
+			//把实例共享的属性和方法定义在原型上
+
+			var p1 = new Info("leo","男");
+			var p2 = new Info("duoduo","男");
+			var p3 = new Info("momo","男");
+
+			console.log( p1.coding === p3.coding );
+
+
+
+
+
+			/*var arr1 = new Array(1,2,3,4,5,6);
+			var arr2 = new Array(6,7,8,9);*/
+
+			//只要是数组，都有一个共同的方法push
+			/*console.dir( arr1 );
+			console.log( arr1.push === arr2.push );*/
+
+			//console.dir( Array );
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

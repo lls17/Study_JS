@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				原型（prototype）
+					每定义一个函数，都有一个属性，这个属性叫做prototype
+
+					prototype对应的值为一个对象
+
+				每一个对象都有一个__proto__
+					__proto__的值指向构造这个实例的构造函数的原型
+			*/
+
+			var obj = {a:1};
+
+			console.log( obj.__proto__ === Object.prototype );
+
+			var arr = [1,2,3];
+
+			console.log( arr );
+
+			console.log( arr.__proto__ === Array.prototype );
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

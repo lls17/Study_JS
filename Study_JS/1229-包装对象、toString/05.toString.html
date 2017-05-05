@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				[[class]]
+				Object Array Function Date RegExp Math Null Undefined
+
+				[Object 类型]
+
+				toString() 返回的是某个对象分类的一个字符串值
+
+				只有调用Object.prototype.toString 才能打印出类型值
+	
+				内置的对象的原型上都有一个toString方法，在转成字符串的时候，会调用toString方法，根据不同类型的对象打印的值不一样。
+
+			*/
+
+			//判断某一个值是否是指定的类型的
+
+			var classType = {};
+
+			var arr = "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " );
+
+			arr.forEach(function (value){
+				classType["[object "+ value +"]"] = value.toLowerCase();
+			})
+
+			console.log( classType );
+
+
+			function isArray(obj){
+				return 	classType[{}.toString.call(obj)] === "array";
+			}
+			function isFunction(){
+					
+			}
+			function isNumber(){
+					
+			}
+
+			console.log( isArray(1) );
+			console.log( isArray([]) );
+
+			console.log( {}.toString.call(1) );
+
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

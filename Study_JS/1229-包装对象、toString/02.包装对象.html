@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				包装对象
+
+				String Number Boolean
+
+				什么是包装对象
+					当使用原始类型的值（string、number、boolean），在调用对应属性和方法的时候，内部会自动转成对应的对象。隐式创建的这个对象，就成为包装对象
+					内置的对象
+						String、Number、Boolean
+					  
+				包装对象的特点
+					隐式创建对象后，可以调用对应的属性和方法，使用后，立马销毁，所以不能给原始类型的值添加属性和方法
+			*/
+
+				var str = "abc";  //字面量
+
+				//alert(str.length);
+				console.log(str.length); //内部会调用String包装成对象，找到length
+				str.miaov = 10; 
+
+				console.log( str.miaov ); //未定义
+
+				var str2 = new String("abc");//构造函数
+
+				str2.miaov = 10000;
+
+				console.dir(str2.length );
+
+				console.log( str2.miaov );
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				函数是一个对象
+				可以挂载属性
+				访问
+					函数.属性
+			*/
+			function Car(){
+				//局部变量
+				var abc  = 10;
+
+				//this.abc = 100;
+			}
+			//挂载函数上的属性/方法叫做静态属性/方法
+			Car.abc = "miaov";
+			
+			var c = new Car();
+
+			console.log( c.abc );// 1. undefined 2. "miaov"
+
+			
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				用函数模拟类
+			*/
+			//构造函数
+			function Car(color){
+				this.color = color;
+			}
+
+			//把这一类实例共享的方法放在原型上，好处节省内存空间
+			Car.prototype.run = function (){
+				console.log("我会跑");
+			}
+			Car.prototype.fly = function (){
+				console.log("我会跑");
+			}
+			
+
+			//实例
+			var c = new Car("blue");
+			var c2 = new Car("red");
+
+			console.log( c.color );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Animal(name, age, sound){
+				this.name = name;
+				this.age = age;
+				this.sound = sound;
+			}
+			Animal.prototype.exo = function(){
+				console.log(this.name + "叫：" + this.sound);
+			}
+			
+//			var ani = new Animal("小白", 3, "哈哈");
+//			console.log(ani);
+//			console.log(ani.constructor === ani.__proto__.constructor);
+//			console.log(ani.constructor === Animal);
+//			console.log(ani instanceof Animal);
+
+			function Cat(name, age, sound){
+				//拥有了构造函数中的属性
+				Animal.call(this, name, age, sound);
+				//自身的专属属性
+				this.sleep = "呼呼";
+			}
+			//拥有了原型上的方法和属性
+			Cat.prototype = Animal.prototype;
+			//改变原型的构造函数指向
+			Cat.prototype.constructor = Cat;
+			
+			var c = new Cat("小白", 2, "喵喵");
+			c.exo();
+			
+		</script>
+	</body>
+</html>

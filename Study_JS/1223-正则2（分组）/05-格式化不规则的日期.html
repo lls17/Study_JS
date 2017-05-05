@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				\d 一个数字
+				\D 非数字
+			*/
+
+			var str1 = "2016-03-10";
+			var str2 = "2016++++03++++10";
+			var str3 = "2016/////03/////10";
+			var str4 = "2016+===03-====10";
+
+			//需求：格式为 XXXX年XX月XX日
+
+			//提取数字
+
+			//规则：一堆数字非数字一堆数字非数字一堆数字
+
+			var re = /(\d+)\D+(\d+)\D+(\d+)/;
+
+			function formatData(str){
+				return str.replace(re,function($0,$1,$2,$3){
+					//console.log( $0 );
+					return $1+"年"+$2+"月"+$3+"日";
+				});	
+			}
+
+			console.log( formatData(str1) );
+			console.log( formatData(str2) );
+			console.log( formatData(str3) );
+			console.log( formatData(str4) );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			/*
+				系统
+				{
+					document:{
+						onclick:function(){
+	
+						}
+					}
+				}
+				//事件发生了 document onclick
+
+				var event = {
+					type:"click"
+				}
+
+				document.onclick(event);
+			*/
+			/*
+				开发者绑定的事件
+			*/
+
+			/*document.onclick = function (e){
+				console.log(e);
+			};*/
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+			/*
+				函数.call()
+
+					使用这个方法可以执行函数
+
+					作用
+						 调用并改变函数this的指向
+					语法
+						undefined 函数.call(thisArg,[arg1,arg2,...])
+					参数
+						thisArg
+							函数中this指向的值
+						[arg1,arg2,...]
+							调用函数时依次传入的参数	
+					返回值
+						undefined
+
+					注意：thisArg为null或undefined,不传参的时候，函数的this指向window
+
+				函数.apply()
+
+					使用这个方法可以执行函数
+
+					作用
+						 调用并改变函数this的指向
+					语法
+						undefined function.apply(thisArg,[[arg1,arg2,...]])
+					参数
+						thisArg
+							函数中this指向的值
+						[[arg1,arg2,...]]
+							调用函数时传入的参数，为数组或类数组	
+					返回值
+						undefined
+
+					注意：thisArg为null或undefined,不传参的时候，函数的this指向window
+
+			*/
+
+//			function fn(a,b,c){
+//				console.log( a,b,c );
+//				console.log("我被调用了");
+//				console.log( this );	
+//			}
+
+			//fn(1,2);
+
+			//在调用fn的时候，改变fn函数中this的指向
+
+
+			//fn.call([1,2,3],1,2);  //依次给函数传参
+
+			//fn.call(null);
+
+//			fn.apply({a:1},[1,2,3]);  //数组中每一项对应函数的每一个形参
+
+			function P(){
+				
+			}
+			P.prototype.str = "a";
+			P.prototype.arr = [1,2,3,4];
+			var p = new P();
+			console.log(p.str);
+			p.str = "p"; //实例自身添加属性
+			p.arr[0] = "a"; //实例自身无arr属性，故查找到原型链上的arr并重写arr[0]。 故其原型对象被重写
+			console.log(p.str);
+			console.log(P.prototype.str);
+			console.log(P.prototype.arr); //对象可被重写
+			
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>
