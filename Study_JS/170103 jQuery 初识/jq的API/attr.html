@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="../jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$().attr();
+					向元素的行间中设置属性
+
+				http://www.jquery123.com/attr/
+			*/
+
+			$(function (){
+
+
+				$("#demo").attr("index",1);	
+
+				$(document).click(function (){
+					alert( $("#demo").attr("index") )	
+				})
+
+				/*//向内存中存的元素对象添加属性
+				var demo = document.getElementById("demo");
+				demo.abc = 10;
+				//标签元素行间添加属性
+				demo.setAttribute("abc",10000)*/
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		<div id="demo">123</div>
+	</body>
+</html>

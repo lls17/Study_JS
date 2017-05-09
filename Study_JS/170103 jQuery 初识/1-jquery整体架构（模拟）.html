@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				在浏览器中运行jq文件，window是存在的
+				运行在nodejs中，是没有window的
+
+				把window传进去是为了性能考虑的
+			*/
+
+			(function(global,factory){
+				//直接调用jQuery里的factory函数
+				factory(global);
+
+			})(window,function (window,noGlobal){
+				//jQuery的源码	
+				console.log("我是源码，我被执行了");
+
+				//noGlobal的值为undefined,故用noGlobal参数进行undefined的判断
+				//在非严格模式下，undefined值可以被改写,影响判断
+				var undefined = 123;
+				var abc;
+				console.log(abc ===  noGlobal );  //true
+				console.log(abc ===  undefined );  //false
+			});
+
+		</script>
+	</head>
+
+	<body>
+		<div class="abc"></div>
+	</body>
+</html>

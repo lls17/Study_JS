@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		
+		<input type="button" value="给ul添加li" />
+		<input type="button"  value="给list2添加li" />
+		<ul class="list1">
+			<li>111</li>
+			<li>111</li>
+		</ul>
+		<ul class="list2">
+			<li>222</li>
+			<li>222</li>
+		</ul>
+
+		<script>
+
+			/*
+				on(系统提供的事件名|自定义事件名)
+
+				自定义事件要用trigger触发
+			*/
+
+			//A同学些的需求
+			$("input[value='给ul添加li']").on("list1",function (){
+				$("<li>1111</li>").appendTo($(".list1"))
+			});
+			//B同学些的需求
+			$("input[value='给ul添加li']").on("list2",function (){
+				console.log("我被触发了");
+				$("<li>2222</li>").appendTo($(".list2"))
+			})
+
+			//c同学的需求
+
+			$("input[value='给list2添加li']").on("click",function (){
+				//触发自定的事件
+				$("input[value='给ul添加li']").trigger("list2")
+			});
+
+			
+
+		</script>
+	</body>
+</html>

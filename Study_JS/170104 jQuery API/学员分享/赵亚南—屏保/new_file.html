@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				opacity: 0.5;
+				width: 180px;
+				height: 180px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/co1.png" id="img1"/>
+		</div>
+		<script>
+			function FnMove(obj,options){
+				this.obj=obj;
+				this.timer=null
+				this.default={
+					iSpeedX:3,
+					iSpeedY:3
+				}
+				
+				for(var attr in options){
+					this.default[attr]=options[attr]
+				}
+				this.init();
+				new FnDrag(obj);
+			}
+			
+			FnMove.prototype={
+				init(){
+					clearInterval(this.timer);
+					this.move();
+				},
+				move(){
+					
+					var _this=this;
+					
+					this.timer=setInterval(function(){
+						_this.l=_this.obj.offsetLeft+_this.default.iSpeedX;
+						_this.t=_this.obj.offsetTop+_this.default.iSpeedY;
+						//如果碰到了页面的下侧，则将Y轴的速度取反
+						if(_this.t>=tools.view().h-_this.obj.offsetHeight){
+							_this.default.iSpeedY*=-1;
+							_this.t=tools.view().h-_this.obj.offsetHeight;
+							
+						}else if(_this.t<=0){//如果碰到了屏幕上侧，也将y轴速度取反
+							_this.default.iSpeedY*=-1;
+							_this.t=0;
+						}
+						
+						if(_this.l>=tools.view().w-_this.obj.offsetWidth){
+							_this.default.iSpeedX*=-1;
+							_this.l=tools.view().w-_this.obj.offsetWidth
+						}else if(_this.l<=0){
+							_this.default.iSpeedX*=-1;
+							_this.l=0
+						}				
+						_this.obj.style.left=_this.l+"px";
+						_this.obj.style.top=_this.t+"px";
+					},20)
+										
+				}
+			}				
+			function FnDrag(obj){
+				this.obj=obj;
+				this.disX=null;
+				this.disY=null;
+				this.init();
+				
+			}
+			FnDrag.prototype={
+				init(){
+					var _this=this;
+					this.obj.addEventListener("mousedown",function(ev){
+						_this.fnDown(ev)
+					});
+				},
+				fnDown(ev){
+					var _this=this;
+					this.disX=ev.clientX-this.obj.offsetLeft;
+					this.disY=ev.clientY-this.obj.offsetTop;
+					document.onmousemove=function(ev){
+						_this.FnMove(ev)
+					}
+					document.onmouseup=function(ev){
+						_this.fnUp();
+					};
+					ev.preventDefault();
+				},
+				FnMove(ev){
+					
+					this.obj.style.left=ev.clientX-this.disX+"px";
+					this.obj.style.top=ev.clientY-this.disY+"px";					
+				},
+				fnUp(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					
+				}
+			}
+			
+			
+			var tools={
+				view(){
+					return{
+						w:document.documentElement.clientWidth,
+						h:document.documentElement.clientHeight
+					}
+				}
+			}
+			
+			
+			var arr=["img/co1.png","img/co2.png","img/co3.png","img/co4.png","img/co5.png"];
+			for(var i=0;i<10;i++){
+				box.innerHTML+="<img src="+arr[Math.floor(Math.random()*5)]+">"
+			}
+			var imgs=document.getElementsByTagName("img");
+			for(var i=0;i<imgs.length;i++){
+				imgs[i].style.left=Math.floor(Math.random()*tools.view().w)+'px';
+				imgs[i].style.top=Math.floor(Math.random()*tools.view().h)+'px';
+				new FnMove(imgs[i]);
+			}
+//			
+			
+			
+		</script>
+	</body>
+</html>

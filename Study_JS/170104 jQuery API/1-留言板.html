@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<h1>留言板</h1>
+		<input  />
+		<ul class="list">
+			<!-- <li>123</li> -->
+		</ul>
+		<script>
+
+			/*
+				1. keyup的时候，判断是否是13键
+				2. 获取value，为空提醒
+				3. 不为空，添加到ul中
+				4. 生成li结构，然后添加到ul中
+
+			*/
+			
+			var inputText = $("input");
+			var list = $(".list");
+
+			inputText.on("keyup",function (ev){
+				if( ev.keyCode === 13 ){
+					var value = $(this).val().trim();
+					if( !value ){
+						alert("请输入内容")
+					}else{
+						//生成li
+						var newLi = $("<li>"+value+"</li>");
+
+						list.append(newLi);
+					}
+				}	
+			})
+
+		</script>
+	</body>
+</html>

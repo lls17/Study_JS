@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: relative;
+				height: 520px;
+				width: 290px;
+				border: 5px solid rgba(100,200,0,.6);
+				margin: 30px auto;
+				text-align: center;
+				/*overflow: hidden;*/
+			}
+			img{
+				height: 520px;
+				width: 290px;
+			}
+			#opt{
+				position: absolute;
+				bottom: 10px;
+				left: 0;
+				height: 30px;
+				width: 100%;
+				text-align: center;
+				word-spacing: 10px;
+				/*background: rgba(255,255,255,.3);*/
+			}
+			#opt a{
+				display: inline-block;
+				vertical-align: top;
+				position: relative;
+				height: 20px;
+				width: 20px;
+				border-radius: 50%;
+				background: rgba(200,100,0,.7);
+				margin-right: 6px;
+			}
+			#opt a.cur{
+				background: rgba(100,200,0,.6);
+			}
+			#opt a.hover{
+				background: rgba(0,100,200,.6);
+			}
+			#opt a img{
+				position: absolute;
+				top: -220px;
+				left:-48px;
+				height: 208px;
+				width: 116px;
+				display: none;
+				border: 5px solid rgba(0,100,200,.6);
+			}
+			#pre, #next{
+				position: absolute;
+				top: 50%;
+				margin-top: -40px;
+				width: 50px;
+				height: 80px;
+				line-height: 80px;
+				text-align: center;
+				font-size: 30px;
+				color: black;
+				font-weight: bold;
+				background-color: rgba(255,255,255,.5);
+				text-decoration: none;
+				z-index: 1;
+			}
+			#pre{
+				left: 0;
+			}
+			#next{
+				right: 0;
+			}
+			ul, li{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				height: 520px;
+			}
+			ul{
+				position: absolute;
+				width: 870px; /*永3版本*/
+				top: 0;
+				left: -290px; /*初始显示中间这张*/
+			}
+			li{
+				float: left;
+				width: 290px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<a href="javascipt:;" id="pre">&lt;</a>
+			<a href="javascipt:;" id="next">&gt;</a>
+			<ul class="list">
+				<li><img src="" alt="" /></li>  <!--上一张-->
+				<li><img src="" alt="" /></li>  <!--当前张-->
+				<li><img src="" alt="" /></li>   <!--下一张-->
+			</ul>
+			<nav id="opt"></nav>
+		</div>
+		<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var imgArr = ["img/11.jpg","img/12.jpg","img/13.jpg","img/14.jpg"];
+			var total = imgArr.length;
+			function initCenter(index){
+				$("#opt a").removeClass("cur").eq(index).addClass("cur");
+				$(".list li:nth-child(2) img").attr("src", imgArr[index]);
+				$(".list").css("left", -290); //回归中间正位
+			}
+			
+		//1、初始化
+			//操作区
+			$.each(imgArr, function(i, item){
+				$("<a></a>", {
+					src:"javascript:;"
+				}).appendTo($("#opt"));
+			});
+			//图片区
+			initCenter(0);
+			
+		//2、给翻页绑定函数
+			$("#box>a").on("click", function(ev){
+				$(".list").finish();
+				var curIndex = $("#opt a").index($("#opt a.cur"));
+				if(ev.target.id == "pre"){ //往左翻
+					curIndex = curIndex==0?imgArr.length-1:curIndex-1;
+					moveLeft(curIndex);
+				}else{ //往右翻
+					curIndex = curIndex==imgArr.length-1?0:curIndex+1;
+					moveRight(curIndex);
+				}
+			});
+			
+			//3、给opt小点绑定事件（事件代理-属性选择器）
+			$("#opt a").on("click", function(){
+				var nowPos = $("#opt a").index($("#opt a.cur"));
+				var gotoPos =  $("#opt a").index($(this));
+				if(nowPos < gotoPos){ //往右走
+					curIndex(gotoPos);
+				}else if(nowPos > gotoPos){ //往左走
+					moveLeft(gotoPos);
+				}
+			});
+			function moveRight(index){
+				$(".list li:last img").attr("src", imgArr[index]);
+				$(".list").animate({
+					left: "-=290"
+				},800,function(){
+					initCenter(index);
+				});
+			}
+			function moveLeft(index){
+				$(".list li:first img").attr("src", imgArr[index]);
+				$(".list").animate({
+					left: "+=290"
+				},800,function(){
+					initCenter(index);
+				});
+			}
+		</script>
+	</body>
+</html>

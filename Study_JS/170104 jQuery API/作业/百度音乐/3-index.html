@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.bg{
+				background:url("bg1.png") no-repeat;
+				background-size: 100% 100%;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="baidu.css" />
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="baidu">
+				<ul id="list">
+					<li>
+						<div></div>
+						<span>泡沫</span>
+						<span>邓紫棋</span>
+					</li>
+					<li>
+						<div></div>
+						<span>说爱你</span>
+						<span>蔡依林</span>
+					</li>
+					<li>
+						<div></div>
+						<span>稻香</span>
+						<span>周杰伦</span>
+					</li>
+					<li>
+						<div></div>
+						<span>我的梦</span>
+						<span>张靓颖</span>
+					</li>
+					<li>
+						<div></div>
+						<span>怎么说我不爱你</span>
+						<span>萧敬腾</span>
+					</li>
+					<li>
+						<div>️</div>
+						<span>无处安放</span>
+						<span>白若溪</span>
+					</li>
+				</ul>
+				<div class="select">
+					<span class="selectAll"><span>全选</span></span>
+					<div class="others">
+						<span><em></em>收藏</span>
+						<span><em></em>添加</span>
+						<span><em></em>删除</span>
+					</div>
+				</div>
+				<div class="edtor">
+					<p>歌曲：<input type="text"></p>
+					<p>歌手：<input type="text"></p>
+					<input type="button" value="保存" />
+					<input type="button" value="取消" />
+				</div>
+			</div>
+		</div>
+		<script src='../jquery-3.1.1.js'></script>
+		<script>
+			/*
+				选择器 odd
+				
+				find()
+
+				toggleClass() addClass() removeClass()
+
+				on()  绑定事件
+
+
+
+				$("<li>123</li>").html(123)
+
+				append
+
+				remove
+
+				添加和删除要保持隔行变色效果
+
+				$.isArray()
+
+				$().toArray()
+					把jQuery集合中所有DOM元素恢复成一个数组。
+
+			*/
+
+			/*
+				1. 隔行变色的效果
+				2. 鼠标移入和移出 
+					移入为yellow
+					移出为隔行变色的效果
+				3. 单选全选
+			*/
+
+			//隔行变色
+
+			var list = $("#list");
+			var lis = list.find("li");
+
+			list.find("li:odd").css("background","rgba(200,0,0,.3)");
+
+			lis
+				.on("mouseover",function (){
+					$(this).css("background","rgba(200,0,0,.5)")	
+				})
+				.on("mouseout",function (){
+
+					/*if( $(this).index() % 2 === 0 ){
+						$(this).css("background","rgba(255,255,255,0)")
+					}else{
+						$(this).css("background","rgba(200,0,0,.3)")
+					}*/
+
+					if( $(this).find("div").hasClass("bg") ){
+						return;
+					}
+
+					if( $(this).is("#list li:even") ){
+						$(this).css("background","rgba(255,255,255,0)")
+					}else{
+						$(this).css("background","rgba(200,0,0,.3)")
+					}
+							
+				})
+				.on("click",function (ev){
+					var target = $(ev.target).closest("li");
+
+					//有一个方法，先从自身开始找，找不到在向上找祖先级
+
+					target.find("div").toggleClass("bg");
+
+					//要用数组下的every方法  jq对象转成数组
+					//console.log( $.isArray(lis.find("div").toArray()) );
+					var bl = lis.find("div").toArray().every(function (item){
+						return $(item).hasClass("bg");
+					});
+
+					if( bl ){
+						selectAll.addClass("bg")
+					}else{
+						selectAll.removeClass("bg")
+					}
+
+				})
+
+			//全选
+			var selectAll = $(".selectAll");
+
+			selectAll.on("click",function (){
+				//返回值是操作的元素
+				var bl = $(this).toggleClass("bg").hasClass("bg");
+
+				if( bl ){
+					lis.css("background","rgba(200,0,0,.5)").find("div").addClass("bg");
+				}else{
+					list.find("li:odd").css("background","rgba(200,0,0,.3)");
+					list.find("li:even").css("background","rgba(255,255,255,0)");
+					lis.find("div").removeClass("bg");
+				}
+			})
+
+			//获取输入框
+			var inputText = $(".edtor input[type='text']");
+			var inputBtn = $(".edtor input[type='button']");
+
+			//保存
+			inputBtn.eq(0).on("click",function (){
+				var val1 = inputText.eq(0).val().trim();	
+				var val2 = inputText.eq(1).val().trim();
+
+				/*<li>
+						<div>️</div>
+						<span>无处安放</span>
+						<span>白若溪</span>
+					</li>*/
+
+				if( !val1 || !val2 ){
+					alert("请填写内容")
+				}else{
+					var newLi = $("<li></li>",{
+						html:`<div></div>
+						<span>${val1}</span>
+						<span>${val2}</span>`
+					});
+
+					newLi.appendTo(list);
+
+					console.log( newLi.index() );  //添加后获取下标
+					console.log( newLi.is("#list li:even") );
+					if( newLi.is("#list li:even") ){
+						newLi.css("background","rgba(255,255,255,0)")
+					}else{
+						newLi.css("background","rgba(200,0,0,.3)")
+					}
+				}
+
+
+			})
+
+
+		</script>
+	</body>
+
+</html>

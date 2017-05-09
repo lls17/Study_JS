@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body,ul{
+	padding: 0;
+	margin: 0;
+}
+li{
+	list-style: none;
+}
+</style>
+<script>
+
+</script>
+</head>
+
+<body>
+	<input type="" id="inputs" name="">
+	<div>
+		<input type="button" value="第一个元素为red背景">
+		<input type="button" value="最后一个元素为yellow背景">
+	</div>
+	<ul id="ul">
+		<li>123</li>
+		<li>123</li>
+		<li>123</li>
+		<li>123</li>
+		<li>123</li>
+	</ul>
+	<hr>
+	<ul id="demo"></ul>
+	<script src="../jquery-3.1.1.js"></script>
+	<script>
+	var ul = $("#ul");
+	$("input").on("keyup",function (ev){
+		if(ev.keyCode === 13){
+			var val = $(this).val();
+
+			var first = ul.find("li:first");
+
+			var newLi = $("<li></li>",
+							{
+								html:val+"<input type='button' value='删除' />"
+							}
+						);
+			ul.prepend(newLi);
+
+			newLi.find("input").data("index",1);
+
+			newLi.on("click",function (){
+				alert($(this).find("input").data("index"))
+			})
+
+			/*if(first.length){
+				first.before(newLi);
+			}else{
+				ul.append(newLi);
+			}*/
+
+			//ul.append(newLi);
+
+			$(this).val("");
+
+		}	
+	});
+
+	ul.on("click",function (ev){
+		var target = ev.target;
+
+		if( $(target).is("input") ){
+			/*var li = $(target).parent("li").remove();
+
+			$("#demo").append(li);*/
+
+			var li = $(target).parent("li").clone(true,true);
+
+			$("#demo").append(li);
+
+
+		}	
+	});
+
+
+
+	</script>
+</body>
+</html>

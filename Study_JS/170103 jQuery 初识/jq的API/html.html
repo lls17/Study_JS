@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="../jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$().html();
+				$().text();
+
+				
+
+			*/
+
+			$(function (){
+
+				$("div").click(function (){
+
+
+					//console.log( $(this).html() );  //获取
+					//$(this).html("4444444444444444444444444444444444"); //设置
+					//会解析设置的结构
+					//$(this).html("html结构为：<div style='background: red;'>5555555</div>");
+					//不解析设置的结构
+					/*$(this).text("html结构为：<div style='background: red;'>5555555</div>");*/
+
+					//console.log( $(this).html() );
+					console.log( $(this).text() );
+
+				})
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+			<p>1111111</p>
+		</div>
+	</body>
+</html>

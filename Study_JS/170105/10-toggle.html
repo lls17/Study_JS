@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				background:red;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+		</script>
+	</head>
+
+	<body>
+		
+		<input type="button" value="测试hover" />
+		<div></div>
+		<script>
+
+			/*
+				$().toggle()  显示/隐藏
+					做动画
+						默认变化的是宽高透明度
+			*/
+
+			$("input")[0].onclick = function (){
+				alert("-1");		
+			};
+			
+
+			$("input").on("click",function (){
+				/*$("div").toggle(1000,function (){
+					alert("运动结束")
+				});	*/
+				alert(0)
+			})
+			$("input").on("click",function (){
+				alert(1)	
+			});
+
+			$("input")[0].addEventListener("click",function (){
+				alert(2)	
+			})
+			$("input")[0].addEventListener("click",function (){
+				alert(3)	
+			});
+
+
+
+
+		</script>
+	</body>
+</html>

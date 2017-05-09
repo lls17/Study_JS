@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		
+		<input type="button" value="给ul添加li" />
+		<ul class="list1">
+			<li>111</li>
+			<li>111</li>
+		</ul>
+		<ul class="list2">
+			<li>222</li>
+			<li>222</li>
+		</ul>
+
+		<script>
+
+			$("input").click(function (){
+				alert(1)	
+			})
+			$("input").click(function (){
+				alert(1)	
+			})
+			$("input").mouseover(function (){
+				alert(1)	
+			});
+			function fn(){
+				alert(2)	
+			}
+			$("input").mouseover(fn);
+
+			$(document).click(function (){
+				//$("input").off();  //解绑所有事件的处理函数	
+				//$("input").off("mouseover"); 
+				$("input").off("mouseover",fn); 
+			})
+
+
+
+		</script>
+	</body>
+</html>

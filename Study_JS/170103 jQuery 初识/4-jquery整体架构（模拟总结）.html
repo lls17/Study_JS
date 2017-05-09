@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+			 * jQuery构造函数独特之处，解决：
+				1. 无new的实例化，让另一个函数init作为构造函数
+				2. 访问jQuery原型上的方法，需要init.prototype和jQuery.prototype引用同一个对象
+			*/
+
+			(function(global,factory){
+				factory(global);
+			})(window,function (window,noGlobal){
+				//分析整体架构
+				
+				var jQuery = function (){
+					//return new 	jQuery();  //会循环调用
+					return new jQuery.fn.init();
+				};
+
+				//jQuery.fn是jQuery.prototype的别名
+				jQuery.fn = jQuery.prototype = {
+					constructor:jQuery,
+					each:function (){
+						console.log("我是each");	
+					}
+				}
+
+				//可以定义另一个函数，作为构造函数
+				var init = jQuery.fn.init = function (){
+						
+				}
+				//让init原型和jQuery的原型共同引用一个对象
+				init.prototype = jQuery.fn;
+
+				window.jQuery = window.$ = jQuery;
+			});
+
+			//这样调用each方法，调用的是init.prototype上的方法
+			$().each();
+
+		</script>
+	</head>
+
+	<body>
+		<div class="abc"></div>
+	</body>
+</html>

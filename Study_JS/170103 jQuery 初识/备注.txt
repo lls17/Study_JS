@@ -1,0 +1,4 @@
+jQuery作者John Resig
+
+$()中所有的参数说明：
+http://www.jquery123.com/jQuery/

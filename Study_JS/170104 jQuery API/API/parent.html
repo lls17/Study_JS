@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.red{
+				color:red;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$().parent(选择器)
+
+				找到的是唯一的父元素
+
+				$().parents(选择器)  找到所有的祖先节点
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div id="demo">
+			<div id="demo1">
+				<div id="demo2">
+					<span class="test"></span>
+				</div>
+			</div>
+		</div>
+		<div id="demo3">
+			<div id="demo4">
+				<div id="demo5">
+					<span class="test"></span>
+				</div>
+			</div>
+		</div>
+		<script>
+			//console.log( $(".test").parent("#demo1").get(0) );
+			//console.log( $(".test").parent() );  //找到的是集合
+
+			console.log( $(".test").parents("div") );
+			console.log( $(".test").parents("#demo") );
+		</script>
+	</body>
+</html>

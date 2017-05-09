@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$() 先要得到一个jq的实例，才能调用下面的方法
+
+				$().find();
+
+				http://jquery.cuishifeng.cn/find.html
+
+				侵入性
+			*/
+			$(function (){
+				/*$("#demo p")	
+				$("#demo ul li")*/	
+
+				var demo = $("#demo");
+
+				console.log( $("ul",demo) );
+				console.log( $("p","#demo") );
+
+				//var demo = $("#demo");
+
+				//通过一个元素找到这个元素下所有的指定的选择器对应的元素
+
+				/*demo.find("ul");
+				demo.find("p");*/
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<div id="demo">
+			<ul>
+				<li>123</li>
+			</ul>
+			<p>123</p>
+		</div>
+	</body>
+</html>

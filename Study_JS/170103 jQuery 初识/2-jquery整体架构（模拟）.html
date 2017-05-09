@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				在浏览器中运行jq文件，window是存在的
+				运行在nodejs中，是没有window的
+
+				把window传进去是为了性能考虑的
+			*/
+
+			(function(global,factory){
+				factory(global);
+			})(window,function (window,noGlobal){
+
+				//分析整体架构
+
+				var jQuery = function (){
+					//return new 	jQuery();  //会循环调用，造成内存溢出
+
+					return new init();
+				};
+
+				//可以定义另一个函数，作为构造函数
+				function init(){
+						
+				}
+
+				//jQuery.fn是jQuery.prototype的别名
+				jQuery.fn = jQuery.prototype = {
+					constructor:jQuery,
+					each:function (){
+						console.log("我是css函数");	
+					}
+				}
+
+				//挂在window下，这样全局都可以使用
+				window.jQuery = window.$ = jQuery;
+			});
+
+			//在jquery中用的时候，无new的实例化过程；故在构造函数里要return 出jQ对象
+//			console.log( new $().each );
+			
+			//这样调用each方法，调用的是init.prototype上的方法
+//			$().each();
+
+		</script>
+	</head>
+
+	<body>
+		<div class="abc"></div>
+	</body>
+</html>

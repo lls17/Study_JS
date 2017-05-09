@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: relative;
+				height: 520px;
+				width: 290px;
+				border: 5px solid rgba(100,200,0,.6);
+				margin: 30px auto;
+				text-align: center;
+				/*overflow: hidden;*/
+			}
+			img{
+				height: 520px;
+				width: 290px;
+			}
+			#opt{
+				position: absolute;
+				bottom: 10px;
+				left: 0;
+				height: 30px;
+				width: 100%;
+				text-align: center;
+				word-spacing: 10px;
+				/*background: rgba(255,255,255,.3);*/
+			}
+			#opt a{
+				display: inline-block;
+				vertical-align: top;
+				position: relative;
+				height: 20px;
+				width: 20px;
+				border-radius: 50%;
+				background: rgba(200,100,0,.7);
+				margin-right: 6px;
+			}
+			#opt a.cur{
+				background: rgba(100,200,0,.6);
+			}
+			#opt a.hover{
+				background: rgba(0,100,200,.6);
+			}
+			#opt a img{
+				position: absolute;
+				top: -220px;
+				left:-48px;
+				height: 208px;
+				width: 116px;
+				display: none;
+				border: 5px solid rgba(0,100,200,.6);
+			}
+			#pre, #next{
+				position: absolute;
+				top: 50%;
+				margin-top: -40px;
+				width: 50px;
+				height: 80px;
+				line-height: 80px;
+				text-align: center;
+				font-size: 30px;
+				color: black;
+				font-weight: bold;
+				background-color: rgba(255,255,255,.5);
+				text-decoration: none;
+				z-index: 1;
+			}
+			#pre{
+				left: 0;
+			}
+			#next{
+				right: 0;
+			}
+			ul, li{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				height: 520px;
+			}
+			ul{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			li{
+				float: left;
+				width: 290px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<a href="javascipt:;" id="pre">&lt;</a>
+			<a href="javascipt:;" id="next">&gt;</a>
+			<ul class="list"></ul>
+			<nav id="opt"></nav>
+		</div>
+		<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var imgArr = ["img/11.jpg","img/12.jpg","img/13.jpg","img/14.jpg"];
+			var total = imgArr.length;
+			//1、初始化
+			$.each(imgArr, function(i, item){
+				//图片区
+				$("<li></li>", {
+					html:`<img src="${item}"/>`
+				}).appendTo($(".list"));
+				//操作区
+				$("<a></a>", {
+					src:"javascript:;"
+				}).appendTo($("#opt"));
+			});
+			//复制第一个放在最后为备份
+			$("<li></li>", {
+				html:`<img src="${imgArr[0]}"/>`
+			}).appendTo($(".list"));
+			$(".list").css({"width":290*(total+1)+"px"}); //ul初始位置
+			$("#opt a:first").addClass("cur");  //opt操作区初始位置
+			
+			//2、给翻页绑定函数
+			$("#box>a").on("click", function(ev){
+				//用伪类来判断是否动画进行中
+				if($(".list").is(":animated")){
+					return;
+				}
+				
+				if(ev.target.id == "pre"){ //往前翻
+					var $pre = $("#opt .cur").removeClass("cur").prev();
+					if($pre.length > 0){
+						$pre.addClass("cur");
+					}else{ //第一个了
+						$("#opt a:last").addClass("cur");
+						$(".list").css("left",-290*total); //迅速拽回倒数第二张
+					}
+					$(".list").animate({
+						left: "+=290"  //每次移动 +=
+					},300);
+				}else{ //往后翻
+					var $next = $("#opt .cur").removeClass("cur").next();
+					if($next.length > 0){
+						$next.addClass("cur");
+					}else{ //最后一个了
+						$("#opt a:first").addClass("cur");
+					}
+					$(".list").animate({
+						left: "-=290"
+					},300,function(){
+						if($next.length <= 0){
+							$(".list").css("left",0);//最后一个了
+						}
+					});
+				}
+			});
+		
+			//3、给opt小点绑定事件（事件代理-属性选择器）
+			$("#opt a").on("click", function(){
+				var nowPos = $("#opt a").index($("#opt a.cur"));
+				var gotoPos =  $("#opt a").index($(this));
+//				console.log(nowPos, gotoPos);
+				var min = Math.min(nowPos, gotoPos)+1;
+				var max = Math.max(nowPos, gotoPos)+1;
+				if(nowPos != gotoPos){ //选择非当前时才处理
+					$(".list li").each(function(index, item){
+						if( min<index && index<max){
+							//隐藏中间的所有元素
+							$(item).hide();
+							//当目标<当前，则每删除中间的元素，当前则会顶替到删除的位置
+							if(nowPos>gotoPos){
+								$(".list").css("left", "+=290");
+							}
+						}
+					});
+					$(".list").animate({
+						left:nowPos<gotoPos?"-=290":"+=290"
+					},800,function(){
+						$(".list li").show();
+						$(".list").css("left",-(gotoPos+1)*290);
+						$("#opt a").removeClass("cur").eq(gotoPos).addClass("cur");
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="点击" />
+		<script>
+			//事件侦听器 事件处理函数
+
+			//$().click([data],fn)
+
+			$("input").mouseover({a:1},function (ev){
+				console.log( ev.data );  //不是原生的事件对象  通过jq包装过的事件对象
+
+				//获取真实的事件对象
+				console.log( ev.originalEvent );
+
+				//alert(1)
+			});
+
+			
+
+			$("input").mouseover();
+
+			/*$("input").mouseover(function (){
+				//alert(2)	
+			});*/
+
+			var inputs = document.getElementsByTagName("input")[0];
+
+			/*function fn(){
+				alert(1)		
+			};
+
+			inputs.onclick = fn;
+
+			fn();*/
+
+			//在内部通过js把一个标签转成对象，我们操作标签就像操作 对象 一样方便
+
+			//inputs 对象
+
+			//https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model
+
+			/*inputs.onclick = function (){
+				alert(1)	
+			};
+
+			console.log( inputs.constructor );
+
+			console.dir( inputs );
+
+			inputs.onclick();*/
+
+
+		</script>
+	</body>
+</html>

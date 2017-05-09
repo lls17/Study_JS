@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.red{
+				color:red;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				父子级关系
+					append   appendTo  
+					prepend  prependTo
+				兄弟级关系
+					insertBefore before
+
+					remove();
+
+				查找
+					first()  在兄弟级关系起作用
+					last()
+
+				选择器中
+					:first
+					:last
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div id="demo">
+			demo
+		</div>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>5</div>
+		<div>4</div>
+		<script>
+			
+			//console.log( $("div").first().text() );
+			console.log( $("div:last").text() );
+
+		</script>
+	</body>
+</html>

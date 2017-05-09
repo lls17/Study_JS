@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.demo1 {
+				width: 500px;
+				height: 50px;
+				background-color: red;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="添加li" id="btn" />
+		<input type="button" value="统计li的数量" id="btn2" />
+		<ul id="list">
+			<li>123</li>
+			<li>123</li>
+		</ul>
+		<script>
+			//具有动态特性
+			var lis = document.getElementsByTagName("li");
+
+			
+			for( var i = 0; i < lis.length; i++ ){
+				addEvent(lis[i]);
+			}	
+
+			function addEvent(li){
+				li.onmouseover = function (){
+					this.style.background = "yellow";	
+				};
+				li.onmouseout = function (){
+					this.style.background = "";	
+				};	
+			}
+			
+			btn.onclick = function (){
+				var newLi = document.createElement("li");
+				newLi.innerHTML = "hello,我被生成了";
+				list.appendChild(newLi);
+				//新生成的元素没有鼠标移入的事件处理程序
+
+				addEvent(newLi);
+
+			};
+
+			btn2.onclick = function (){
+				console.log( lis.length );	
+			};
+
+
+			/*function fn(callback){
+				callback();
+			}
+
+			function fn1(){
+					
+			}
+
+			fn(fn1)*/
+		</script>
+	</body>
+</html>

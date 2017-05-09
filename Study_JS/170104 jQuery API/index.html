@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<p>
+			<mark>开飞机</mark>的舒克~ <mark>开坦克</mark>的贝塔~
+		</p>
+		
+		<script src="jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$("p mark").replaceWith("<b>开潜水艇</b>");
+		
+			var newP = $("<p></p>",
+				{
+//					"html":"北京欢迎你",
+//					"style":"color:red; font-size:40px"
+					html:"<span>我家大门常打开~</span>",
+					css:{
+						"color":"red",
+						"font-size":"40px"
+					}
+				}
+			);
+		
+			$(document.body).append(newP);
+		</script>
+	</body>
+</html>

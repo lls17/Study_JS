@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="../jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$().index();
+					获取在兄弟节点中所占的位置 从0开始
+
+				如果不传递任何参数给 .index() 方法，则返回值就是jQuery对象中第一个元素相对于它同辈元素的位置。
+
+				如果在一组元素上调用 .index() ，并且参数是一个DOM元素或jQuery对象， .index() 返回值就是传入的元素相对于原先集合的位置。
+
+				如果参数是一个选择器， .index() 返回值就是原先元素相对于选择器匹配元素的位置。如果找不到匹配的元素，则 .index() 返回 -1.
+
+				http://www.jquery123.com/index/
+			*/
+
+			$(function (){
+
+				$("div").click(function (){
+					//alert($(this).index());	
+
+					//alert($("div").index(this));
+
+					//alert($(this).index("p"));  //-1
+
+					alert($(this).index("div"))
+				})
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		<div>123</div>
+		<div>123</div>
+		<p>我是一个p标签</p>
+		<div>1111111</div>
+	</body>
+</html>

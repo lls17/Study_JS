@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.red{
+				color:red;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		
+		<div class="demo1">
+			<div></div>
+		</div>
+		<div class="demo2">
+			<p>我准备披上一层div</p>
+		</div>
+
+		<p>我准备披上一层div</p>
+		<script>
+			//$("p").wrap("<div><span></span></div>");
+
+			var testDiv = $(".demo1 div").clone();
+			//也可以接受jq对象
+			$(".demo2 p").wrap(testDiv);
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="../jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$().css();
+
+				http://www.jquery123.com/css/
+
+			*/
+
+			$(function (){
+
+				$("div").click(function (){
+					//$(this).css("background","red");
+					/*$(this).css({
+						background: "red",
+						"font-size": "50px"
+					});*/
+
+					console.log( $(this).css("width") );;
+
+
+				})
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		<div>123</div>
+		<div>123</div>
+		<p>我是一个p标签</p>
+		<div>1111111</div>
+	</body>
+</html>

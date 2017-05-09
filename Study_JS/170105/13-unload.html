@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			span{
+				display: none;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+		</script>
+	</head>
+
+	<body>
+		
+		
+		<script>
+
+			//当离开窗口之前先询问
+			$(window).unload(function (){ 
+				alert("Bye now!"); 
+			});
+			//关闭窗口之前的询问
+//			$(window).on("beforeunload",function (){
+//				$("body").css("background","red")
+//				return false;	
+//			})
+
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				background:red;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+		</script>
+	</head>
+
+	<body>
+		
+		<input type="button" value="测试hover" />
+		<input type="checkbox" disabled />
+		<input />
+		<div></div>
+		<script>
+			//怎么知道一个事件是否可以冒泡呢？
+
+			/*
+				事件对象中的三个属性
+					bubbles:false        该事件是否可以冒泡  true可以 false不可以
+					cancelBubble:false   阻止该事件冒泡  true阻止冒泡 false可以冒泡
+					cancelable:false     是否可以阻止冒泡  true可以 false不可以
+			*/
+
+			$("input:button")[0].onclick = function (ev){
+				console.log( ev );	
+			};
+			$("input:text")[0].onfocus = function (ev){
+				console.log( ev );	
+			};
+
+		</script>
+	</body>
+</html>

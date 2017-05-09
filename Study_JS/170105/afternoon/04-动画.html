@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				background:yellow;
+				position: absolute;
+				left: 0px;
+				top:50px;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script src="./jquery.easing.1.3.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="点击" />
+		<div></div>
+		<script>
+			/*
+				三个字符串
+					fast  200ms
+					slow  600ms
+					normal 400ms
+			*/
+		$("input").click(function (){
+		//动画一：同时运动。即可写在一个对象中即可
+			/*$("div").animate({
+				left:500,
+				opacity: ".5",
+				width:500
+			},500,"easeInOutBounce",function (){
+				alert(1)	
+			})*/
+		
+		//动画二：依次运动 left -> width -> opacity。 扁平调用即可，相当于有个动画栈队列，依次执行
+			$("div")
+				.animate({
+					left:500
+				})
+				.animate({
+					width:500
+				}).animate({
+					opacity:0.1
+				});
+
+		//callback hell 回调的地狱 —— 虽然可以利用回调来实现依次，但走入了回调地狱
+//			$("div")
+//				.animate({
+//					left:500
+//				},function (){
+//					$("div").animate({
+//						width:500
+//					},function (){
+//						$("div").animate({
+//							opacity:0.1
+//						},function (){
+//								
+//						})	
+//					})	
+//				});
+
+		})
+		</script>
+	</body>
+</html>

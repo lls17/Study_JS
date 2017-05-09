@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+				background: green;
+			}
+			.content{
+				position: absolute;
+				width: 800px;
+				height: 400px;
+				left: 50%;
+				top: 20%;
+				transform: translate(-50%,-50%);
+			}
+			.content div,.content span{
+				position: absolute;
+			}
+			.item{
+				width: 200px;
+				height: 200px;
+				left: 50%;
+				bottom: 70px;
+				transform-origin: center bottom;
+			}
+			.item .some{
+				/*要为父级宽高的一般*/
+				width: 100px;
+				height: 100px;
+				bottom: 0;
+				left: 50%;
+				margin-left: -50px;
+				box-shadow: inset 10px 0px 10px rgba(0,0,0,0.1);
+				/*box-shadow: h-shadow v-shadow blur spread color inset;
+				  h-shadow	必需。水平阴影的位置。允许负值。从左向右添加阴影，负值反向
+				  v-shadow	必需。垂直阴影的位置。允许负值。从上向下添加阴影
+				  blur	可选。模糊距离。	
+				  spread	可选。阴影的尺寸。
+				  color	可选。阴影的颜色。
+				  inset	可选。将外部阴影 (outset) 改为内部阴影。*/
+				border-radius: 50% 50% 50% 50%/60% 60% 35% 35%;
+				/*斜线前的是水平半径，斜线后的是垂直半径，水平半径跟垂直半径成90°不变。
+				一个角对应的两个值相等时，为一个1/4圆。不等时，对应增减。*/
+				animation: bounce 1s ease-in-out infinite;
+				animation-delay: 0.3s;
+			}
+			.item .some .eye{
+				background: #fff;
+				border-radius: 50%;
+				border-top: 2px solid #000;
+			}
+			.item .some .eye span{
+				width: 4px;
+				height: 4px;
+				background: #000;
+				border-radius: 2px;
+			}
+			.item .some .eye.left{/*表示同时拥有这两个class*/
+				width: 30px;
+				height: 30px;
+				top: 30px;
+				left: 20px;
+				transform: rotate(-10deg);
+			}
+			.item .some .eye.left span{
+				top: 14px;
+				left: 15px;
+			}
+			.item .some .eye.right{
+				width: 20px;
+				height: 20px;
+				top: 35px;
+				right: 20px;
+				transform: rotate(10deg);
+			}
+			.item .some .eye.right span{
+				top: 9px;
+				left: 7px;
+			}
+			.item .some .mounth{
+				width: 18px;
+				height: 6px;
+				bottom: 20px;
+				left: 45%;
+				background: #fff;
+				border-radius: 50% 50% 100% 100%;
+				animation: mounth 0.7s ease-in infinite;
+				animation-delay: 0.3s;
+			}
+			.some .arm{
+				width: 15px;
+				height: 16px;
+				bottom: 28px;
+				border-radius: 7px;
+				z-index: -1;
+				animation: are-bounce 0.7s ease-in-out infinite;
+			}
+			.some .arm.left{
+				left: -13px;
+			}
+			.some .arm.right{
+				right: -13px;
+			}
+			.item .shadow{
+				width: 70px;
+				height: 10px;
+				bottom: -10px;
+				left: 0;
+				right: 0;
+				margin: auto;
+				border-radius: 50%;
+				background: #37a45b;
+				box-shadow: 0 0 5px #37a45b;
+				animation: shadow 0.7s ease-in infinite;
+				animation-delay: 0.3s;
+			}
+			/*添加动画*/
+			@keyframes shadow{
+				0%,100%{
+					transform: scaleX(1);
+				}
+				50%{
+					transform: scaleX(0.8);
+				}
+			}
+			@keyframes bounce{
+				0%{
+					bottom: 0;
+				}
+				20%{
+					bottom: 20px;
+				}
+				40%{
+					bottom: 0;
+				}
+				60%{
+					bottom: 10px;
+				}
+				100%{
+					bottom: 0;
+					border-radius: 48% 47% 38% 39%/60% 60% 40% 40%;
+				}
+			}
+			@keyframes are-bounce{
+				0%,100%{
+					transform: scale(1);
+					bottom: 28px;
+				}
+				33%{
+					bottom: 22px;
+				}
+				50%{
+					transform: scale(0.8);
+				}
+			}
+			@keyframes mounth{
+				0%,100%{
+					height: 6px;
+				}
+				50%{
+					height: 10px;
+				}
+			}
+			.item#pink{
+				left: 25%;
+				z-index: 20;
+				transform: scale(0.9);
+			}
+			.item#pink .some,.item#pink .arm{
+				background: pink;
+			}
+			.item#orange{
+				left: 45%;
+				z-index: 19;
+				transform: scale(1.2);
+			}
+			.item#orange .some{
+				animation-delay: 0.6s;
+			}
+			.item#orange .some,.item#orange .arm{
+				background: orange;
+			}
+			.item#blue{
+				left: 65%;
+				z-index: 30;
+				transform: scale(2);
+			}
+			.item#blue .some{
+				animation-delay: 0.7s;
+			}
+			.item#blue .some,.item#blue .arm{
+				background: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="item" id="pink">
+				<div class="some">
+					<div class="eye left"><span></span></div>
+					<div class="eye right"><span></span></div>
+					<div class="mounth"></div>
+					<div class="arm left"></div>
+					<div class="arm right"></div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+			<div class="item" id="orange">
+				<div class="some">
+					<div class="eye left"><span></span></div>
+					<div class="eye right"><span></span></div>
+					<div class="mounth"></div>
+					<div class="arm left"></div>
+					<div class="arm right"></div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+			<div class="item" id="blue">
+				<div class="some">
+					<div class="eye left"><span></span></div>
+					<div class="eye right"><span></span></div>
+					<div class="mounth"></div>
+					<div class="arm left"></div>
+					<div class="arm right"></div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+		</div>
+	</body>
+</html>

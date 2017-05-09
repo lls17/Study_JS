@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="../jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$().eq(index);
+					获取执行位置的jq包装后的元素
+
+				http://www.jquery123.com/eq/
+			*/
+
+			$(function (){
+
+				/*var divs = document.getElementsByTagName("div");
+
+				divs[1]*/
+
+				console.log( $("div")[1] );  //原生的元素
+
+				console.log( $("div").eq(1) ); //jq对象
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+	</body>
+</html>

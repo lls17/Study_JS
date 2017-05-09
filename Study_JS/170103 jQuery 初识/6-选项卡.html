@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 300px;
+				height: 300px;
+				background: red;
+				font-size: 150px;
+				text-align: center;
+				color: #fff;
+				display: none;
+			}
+			.yellow {
+				background-color: yellow;
+			}
+		</style>
+
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				1. window.onload   jq   中是什么？
+				2. 获取元素        jq   中怎么获取元素？
+				3. onclick         jq   怎么绑定事件处理？
+				4. 存下标          jq   怎么存下标？
+			*/
+
+			//当页面中的DOM节点加载完成之后，执行的函数
+			/*$(document).ready(function (){
+				var inputs = document.getElementsByTagName("input");	
+
+				console.log( inputs );
+			});*/
+
+			//如果要想用jq下的方法，需要包装成jq对象
+
+			/*
+				var arr = ["a",2,3];
+
+				$(arr).each(function (index,item){
+					console.log(index,item);	
+				})
+
+				console.log( inputs );
+
+				var inputsNative = document.getElementsByTagName("input");
+
+				$(inputsNative).css("font-size","100px");
+
+				
+			*/
+
+			$(function (){
+				//jq对象
+				var inputs = $("input");
+				
+			});
+
+		</script>
+	</head>
+
+	<body>
+		<input class="yellow" type="button" value="按钮1" />
+		<input type="button" value="按钮2" />
+		<input type="button" value="按钮3" />
+		<div style="display: block;">1</div>
+		<div>2</div>
+		<div>3</div>
+	</body>
+</html>

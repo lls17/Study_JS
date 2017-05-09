@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<ul class="list">
+			<li>
+				<span>今天天气很郁闷</span>
+				<input type="button" class="abc" value="删除" />
+				<p>1111111111111111111111</p>
+			</li>
+			<li>
+				<span>今天天气很郁闷</span>
+				<input type="button" value="删除" />
+				<p>1111111111111111111111</p>
+			</li>
+		</ul>
+		<div>1111111111111111</div>
+		<script>
+
+		//做事件代理
+		//selector
+/*类型: String
+一个选择器字符串，用于过滤出被选中的元素中能触发事件的后代元素。如果选择器是 null 或者忽略了该选择器，那么被选中的元素总是能触发事件。*/
+
+		$(".list").on("click","input.abc,span,p",function (ev){
+			console.log( $(ev.target).hasClass("abc") );	
+		})
+
+		</script>
+	</body>
+</html>

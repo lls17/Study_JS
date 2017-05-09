@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="点击" />
+		<script>
+		//两个事件用同一个事件处理函数，空格隔开事件名称
+			/*$("input").on("mouseover click",{},function (ev){
+				console.log( ev.data );  //事件所传参数
+				console.log( ev.type );  //事件触发类型
+
+				if( ev.type === "mouseover" ){
+	
+				}else if(ev.type === "click"){
+
+				}
+			});*/
+
+		//可将事件处理组放在一个对象中，传给on绑定
+			$("input").on({
+				mouseover:function (){
+					alert(1)	
+				},
+				click:function (){
+					alert(2)	
+				}
+			});
+
+
+		</script>
+	</body>
+</html>

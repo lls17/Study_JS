@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="../jquery-3.1.1.js"></script>
+		<script>
+			/*
+				
+			*/
+
+			$(function (){
+
+				/*var divs = document.getElementById("#demo");
+
+				divs.onclick = function (){
+						
+				};*/
+
+				//无论找没找到元素，jq对象都是存在的
+
+
+				console.log( $("#demo").length );  //判断是否获取到元素
+
+				$("#demo").click(function (){
+					//alert($(this).val());
+					$(this).val("123");
+				})
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		<input id="demo" type="button" value="按钮"  />
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.red{
+				color:red;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$().closest();
+
+				从元素本身开始，逐级向上级元素匹配，并返回最先匹配的元素。
+			*/
+		</script>
+	</head>
+
+	<body>
+		
+		<div class="demo1">
+			<div class="demo2"></div>
+		</div>
+		<script>
+			console.log( $(".demo2").closest(".demo1") );
+		</script>
+	</body>
+</html>

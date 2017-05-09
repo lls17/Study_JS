@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				height: 300px;
+				width: 300px;
+				background: lightblue;
+			}
+		</style>
+		<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="box"></div>
+		<script type="text/javascript">
+			$(function(){
+		//1、用on可为同一元素绑定多个相同类型的事件
+//				$(".box").on("click", function(){
+//					console.log(1);
+//				});
+//				$(".box").on("click", function(){
+//					console.log(2);
+//				});
+//				$(".box").on("click", function(){
+//					console.log(3);
+//				});
+			//如下写法注意要写上自命名，否则会发生覆盖，只执行最后一个	
+//				$(".box").on({
+//					"click.a":function(){
+//						console.log(1);
+//					},
+//					"click.b":function(){
+//						console.log(2);
+//					},
+//					"click":function(){
+//						console.log(3);
+//					}
+//				});
+		//2、用监听方法可以为统一元素绑定多个相同类型的时间
+//				$(".box").click(function(){
+//					console.log(1);
+//				});
+//				$(".box").click(function(){
+//					console.log(2);
+//				});
+//				$(".box").click(function(){
+//					console.log(3);
+//				});
+			});
+		</script>
+	</body>
+</html>

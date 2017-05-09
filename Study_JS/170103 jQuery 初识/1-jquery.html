@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="jquery-3.1.1.js"></script>
+		<script>
+			jQuery(function (){
+//				$(".abc").text("我是被添加的内容");
+				$(".abc").html("我是$().html()方法添加的内容！");
+				
+		//----------------$().css(key, value)------------
+		//----------------$().css( {对象} )------------
+//				$(".abc").css("color","red");
+				$(".abc").css({
+					"background":"orange",
+					"color":"#fff",
+					"font":"bold 20px/40px '微软雅黑'",
+					"height":40
+				});
+		//---------------$().click(匿名函数)----------
+		//---------------事件不会被覆盖，如下click事件会同时触发4次
+//				$(".abc").click(function (){
+//					alert(1)	
+//				})
+//				$(".abc").click(function (){
+//					alert(1)	
+//				})
+//				$(".abc").click(function (){
+//					alert(1)	
+//				})
+//				$(".abc").click(function (){
+//					alert(1)	
+//				})
+
+		//---------------$().bind(事件类型, {参数对象}, function(ev))-------
+//				$(".abc").bind("click", {msg:"新年快乐！"}, function(ev){
+////					console.log(ev);
+//					console.log(ev.data.msg);
+//				});
+
+		//-------------$().one(事件类型, {参数对象}, function(ev))--------
+		//------------事件只能被触发一次---------
+//				$(".abc").one("click", {msg:"元旦快乐！"}, function(ev){
+//					console.log(ev.data.msg);
+//				});
+
+		//---------------$().on(事件类型, {参数对象}, function(ev))-------
+		//--------------同bind方法--------
+				$(".abc").on("click", {msg:"元旦快乐！"}, function(ev){
+					console.log(ev.data.msg);
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="abc"></div>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<h1>留言板</h1>
+		<input  />
+		<ul class="list">
+			<!-- <li>123</li> -->
+		</ul>
+		<hr />
+		<ul class="list2"></ul>
+		<script>
+
+			/*
+				1. keyup的时候，判断是否是13键
+				2. 获取value，为空提醒
+				3. 不为空，添加到ul中
+				4. 生成li结构，然后添加到ul中
+
+			*/
+			
+			var inputText = $("input");
+			var list = $(".list");
+
+			inputText.on("keyup",function (ev){
+				if( ev.keyCode === 13 ){
+					var value = $(this).val().trim();
+					if( !value ){
+						alert("请输入内容")
+					}else{
+						//生成li
+						var newLi = $("<li></li>");
+
+						newLi.html(value+"<input type='button' value='删除' />");
+						//把新生成的li，添加在ul中第一个
+						//先找到ul中第一个元素
+						//var first = list.find("li").first();
+						var first = list.find("li:first");
+
+						//第一个元素可能存在也可能不存在
+						//first是JQ对象，永真；故用length判断
+						if( first.length ){
+							//newLi.insertBefore(first)
+							first.before(newLi);
+						}else{
+							list.append(newLi);
+						}
+
+						var btn = newLi.find("input");
+
+						btn.on("click",function (){
+
+//							console.log(123);
+							//点击按钮，删除父级
+							//remove返回值是删除的元素
+							/*var ele = $(this).parent("li").remove();
+
+							console.log( ele[0] );
+
+							//把删除的元素放在list2这个ul中
+
+							$(".list2").append(ele);*/
+
+							//$(this).parent("li").remove().appendTo($(".list2"));
+							$(this).parent("li").detach().appendTo($(".list2"));
+						//detach()删除与remove()不同的是，所有绑定的事件、附加的数据等都会保留下来。
+
+						})
+
+
+
+					}
+
+
+
+				}	
+			})
+
+		</script>
+	</body>
+</html>

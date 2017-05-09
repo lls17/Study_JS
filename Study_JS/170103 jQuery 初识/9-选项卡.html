@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 300px;
+				height: 300px;
+				background: red;
+				font-size: 150px;
+				text-align: center;
+				color: #fff;
+				display: none;
+			}
+			.yellow {
+				background-color: yellow;
+			}
+		</style>
+
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				1. window.onload   jq   中是什么？
+				2. 获取元素        jq   中怎么获取元素？
+				3. onclick         jq   怎么绑定事件处理？
+				4. 存下标          jq   怎么存下标？
+			*/
+			
+			$(function(){
+				
+			});
+
+			//如果要想用jq下的方法，需要包装成jq对象
+			/*
+				jq中绑定事件处理函数
+
+				事件处理函数中的this指向原生的元素
+
+				$().click(function(){
+				
+				})
+				$().mouseove(function(){
+				
+				})
+			*/
+
+			$(function (){
+				//jq对象
+				var inputs = $("input");
+
+				//循环添加下标
+				inputs.each(function (index,item){
+					$(item).data("index",index);
+				});
+
+				//循环绑定
+				inputs.click(function (){
+					inputs.removeClass("yellow");
+					$(this).addClass("yellow");
+
+					var index = $(this).data("index");
+
+					//拿到下标
+					/*$("div").hide();
+					$("div").eq(index).show();*/
+
+					$("div").css("display","none").eq(index).css("display","block");
+
+				});
+				
+			});
+
+		</script>
+	</head>
+
+	<body>
+		<input class="yellow" type="button" value="按钮1" />
+		<input type="button" value="按钮2" />
+		<input type="button" value="按钮3" />
+		<div style="display: block;">1</div>
+		<div>2</div>
+		<div>3</div>
+	</body>
+</html>

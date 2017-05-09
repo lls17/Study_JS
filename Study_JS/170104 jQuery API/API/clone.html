@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.demo1 {
+				width: 500px;
+				height: 50px;
+				background-color: red;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				$().clone()
+				
+
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div id="demo">
+
+			<div class="demo1">
+				123
+				<input type="button" value="测试" />
+			</div>
+			<hr />
+			
+			
+		</div>
+		<input type="button" value="测试是否复制了数据" id="testData" />
+		<script>
+			$(".demo1").click(function (){
+				alert("demo1")	
+			}).data("demoTest","demoTest");
+			$(".demo1 input").click(function (){
+				alert("input");	
+			}).data("inputTest","inputTest");
+
+
+			//第二个参数决定克隆的元素的子元素是否保留事件处理函数或数据
+			var newDemo1 = $(".demo1").clone(true,false);
+
+			$("#demo").append(newDemo1);
+
+			$("#testData").click(function (){
+				alert(newDemo1.find("input").data("inputTest"))	
+			})
+
+		</script>
+	</body>
+</html>
