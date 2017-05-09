@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				协议
+
+				http://  
+				file:// 
+
+				http://192.168.2.138/myblog/blog.html
+
+				如果要让别人访问到我们自己写的页面，页面放在别人也可以访问到的服务器上
+
+				把自己的电脑当成服务器，需要配置一个服务器环境
+					appche  服务器软件
+
+				安装集成软件
+					wamp
+
+			*/
+		</script>
+	</head>
+
+	<body>
+		<!--
+			action: 提交地址
+			method：提交方式（动作，方法）	
+				get
+					数据放在地址的?后面的，格式是
+						key=value
+						key=value&key=value
+					因为浏览器缓存地址，不安全
+					浏览器对地址栏中的字符有限制，所以如果get的数据超出了浏览器对地址的字符限制，那么会导致发送的数据不完整
+
+				post
+					在系统后台发送
+					相对安全
+					理论上不限制大小，服务器那边限制大小
+
+		-->
+		<form action="http://localhost/2017-01-10/php/post.php" method="post">
+			<p>用户名：<input id="userName" type="" name="user"><input type="button" value="验证用户名是否存在" id="test"></p>
+			<p>密码：<input type="password" name=""></p>
+			<input type="submit" name="" value="提交" />
+		</form>
+
+		<script src="./jq3.js"></script>
+		<script>
+			test.onclick = function (){
+				window.open("http://localhost/2017-01-10/php/get.php?user="+userName.value,"_blank");	
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="file" name="" id="fileInput">
+		<input type="button"  value="上传" id="btn" />
+		<script>
+			/*
+				上传
+					http://localhost/2017-11-12/php/post_file.php
+			*/
+			var url = 'http://localhost/2017-11-12/php/post_file.php';
+			btn.onclick = function (){
+				var xhr = new XMLHttpRequest();
+
+				//上传要POST方式发送请求
+				xhr.open("post",url,true);
+				//存的是要上传资源的路径
+				console.log( fileInput.value );
+				//要上传的资源放在files这个属性中，对应的值是一个数组
+				console.log( fileInput.files[0] );
+
+				xhr.onload  = function (){
+					console.log( xhr.responseText );	
+				}
+
+				//转成二进制上传
+				var f = fileInput.files[0];
+				var fd = new FormData();
+				/*
+					append是fd对象下的方法：	
+						参数：
+							第一个参数 key 前后端约定好的
+							第二个参数 获取到的资源
+				*/
+				fd.append("file",f);
+				console.log( fd );
+
+				//发送的时候获取资源
+				//xhr.send("file="+fileInput.value);
+				xhr.send(fd);
+			};
+		</script>
+	</body>
+</html>

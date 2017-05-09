@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+			var obj1 = {
+				a:1,
+				b:2,
+				c:[1,2,3,4,5,6,7],
+				d:{
+					e:{
+						f:{
+
+						}
+					}
+				}
+			}
+
+			//复制obj1
+			var obj2 = {};
+
+			for( var attr in obj1 ){
+				obj2[attr] = obj1[attr];  //如果是对象 赋址
+			}
+
+			obj2.c.push("miaov")
+
+			console.log( obj1 );
+			console.log( obj2 );
+
+			console.log( obj1.c === obj2.c ); //true
+
+			console.log( obj1 === obj2 );  //false
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

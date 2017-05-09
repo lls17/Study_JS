@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			var abc = 1;     //简单类型的 值
+			var miaov = abc;
+//			console.log( abc );  //1
+//			console.log( miaov );  //1
+
+			var arr = [1,2,3]; 
+
+			var arr2 = arr;  //赋址  arr和arr2用的是同一个地址 
+//			console.log( arr2.push(44) );
+//			console.log( arr ); //[1, 2, 3, 44]
+//			console.log( arr2 ); //[1, 2, 3, 44]
+
+			var obj = {
+				a:1,
+				arr:[1,2,3],
+				s:{}
+			}
+
+			//复制一份obj  和原来的对象长得一模一样，但不是同一个对象
+			//当操复制出来的对象的时候，不影响原有被复制的对象，每个对象是独立存在的，不互相影响
+
+			var obj1 = {};
+
+			obj1.a = obj.a;
+			//obj1.arr = obj.arr; //赋址
+			obj1.arr = [1,2,3];  //创建一个新的数组，把要复制的对象中的数组中的值给到新数组
+
+			obj1.arr.push(1111111111)
+
+//			console.log( obj );
+//			console.log( obj1 );
+
+
+
+		</script>
+	</head>
+
+	<body>
+		<div abc=10>123</div>
+		<div abc=10 k=10>123</div>
+	</body>
+</html>

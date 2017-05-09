@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			ul{
+				margin:0;
+				padding:0;
+				list-style: none;
+				position: relative;
+			}
+			img{
+				width: 300px;
+				height: 100px;
+			}
+			li{
+				width: 300px;
+				height: 100px;
+				float: left;
+				margin:55px 15px;
+				box-sizing: border-box;
+				border:1px dashed #cdcdcd;
+				/*transition: 1s;*/
+				/*在布局转换时是有坑的*/
+			}
+			li div{
+				width: 300px;
+				height: 100px;
+				line-height: 100px;
+				text-align: center;
+				font-size: 50px;
+			}
+			li:hover{
+				border:1px dashed #38f;
+			}
+			.clearfix:after{
+				content:"";
+				display: block;
+				clear:both;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list" class="clearfix">
+			<li class="list-item">
+				<div>音乐</div>
+			</li>
+			<li class="list-item">
+				<div>小说</div>
+			</li>
+			<li class="list-item">
+				<div>视频</div>
+			</li>
+			<li class="list-item">
+				<div>体育</div>
+			</li>
+			<li class="list-item">
+				<div>购物</div>
+			</li>
+			<li class="list-item">
+				<div>推荐</div>
+			</li>
+		</ul>
+		<script>
+		
+		
+			/*
+				第二种思路：
+						1.找出元素定位的规律，比如说元素的left值等于元素在这一行的第几个再加上一个元素的width+左右的margin+自己的margin-left  根据这样去设置元素的定位的left及top
+						2.在拖拽元素时如果碰到就就使用insetbefore将其位置进行转换，再次进行元素定位的重新设置
+			*/
+		
+			
+			var list = document.getElementById("list");
+			var lis = list.getElementsByClassName("list-item");//当顺序改变时这个的顺序并不会改变
+			var disArr = [];//储存初始位置的数组
+			console.log(lis);
+			list.insertBefore(lis[5],lis[2]);
+			console.log(lis);
+			for (var i = 0; i < lis.length; i++) {//布局转换
+				lis[i].style.left = lis[i].offsetLeft + "px";
+				lis[i].style.top = lis[i].offsetTop + "px";
+				disArr.push({//用来鼠标抬起时知道自己的位置
+					left:lis[i].offsetLeft,
+					top:lis[i].offsetTop
+				})
+			}
+			//console.log(disArr)
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.margin = "0px";
+			}
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.position = "absolute";
+			}
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.float = "none";
+			}
+			class Tolls{
+				//同行碰撞
+				collision(collisionEle,touchEle){//检测是否符合碰撞的规则  是则返回true 不是返回false  collisionEle碰撞元素   touchEle被碰撞元素 
+					var c = collisionEle.getBoundingClientRect();
+					var t = touchEle.getBoundingClientRect();
+					if(c.right>(t.left+touchEle.offsetWidth*0.5) && c.left<(t.right-touchEle.offsetWidth*0.3) && (c.bottom>(t.top)) && (c.top<(t.bottom))){
+						return true;
+						
+					}else{
+						return false;
+					}
+					
+				}
+				getIndexEle(index,lis){//根据index找到lis中li的自定义属性index等于index的元素 返回此元素
+					var ele = null;
+					for(var i=0;i<lis.length;i++){
+						if(index === lis[i].index){
+							ele = lis[i];
+							break;
+						}
+					}
+					return ele;
+				}
+				isGoDes(ele,des){//判断左右碰撞的  判断目标元素是否到达目标点   ele 目标元素  des 目标点  到达了返回true，没到达返回false 
+					if(ele.offsetLeft == des){
+						return true;
+					}else{
+						return false;
+					}
+				}
+				isGoTp(ele,des){//判断上下碰撞的 判断目标元素是否到达目标点   ele 目标元素  des 目标点  到达了返回true，没到达返回false 
+					if(ele.offsetTop == des){
+						return true;
+					}else{
+						return false;
+					}
+				}
+			}
+			var tool = new Tolls();//class在域解析的时候是不会像var、function那样提前的，所以要先定义再使用
+			for(var i = 0; i < lis.length; i++){//根据index去判断应该在disArr中对应的数据
+				lis[i].index = i;
+			}
+			class DragSort{
+				constructor(parent,childs){
+					this.parent = parent;//父级元素
+					this.childs = childs;//子元素集
+					this.init();
+					this.lastEle = null;//储存碰到的元素 初始值为null
+				}
+				init(){
+					for(var i = 0;i<this.childs.length;i++){
+						this.childs[i].addEventListener("mousedown",this.downFn.bind(this));
+					}
+				}
+				downFn(ev){//鼠标按下事件处理函数
+					ev.preventDefault();//阻止浏览器默认行为
+					this.self = null;//初始化点击的元素
+					for(var i=0;i<this.childs.length;i++){
+						this.childs[i].style.transition = "0s";
+						if(this.childs[i] == ev.target.parentNode){
+							this.self = this.childs[i];//筛选出点击的元素
+							this.index1 = this.self.index;//鼠标抬起时该返回的位置的下标
+						}
+						this.childs[i].style.zIndex = 10;
+					}
+					this.b = 0;//左右碰撞时只能运行一次，不然会反复进行碰撞检测，所以每次在进行左右碰撞的时候this.b都加1但是只有在this.b=1的时候才运行对应的代码
+					this.self.style.zIndex = 15;//让点击的那个元素层级最高不被其他的覆盖
+					this.move = this.moveFn.bind(this);//在用时间监听器绑定的时候如果用bind改变this的指向会不好解绑，所以先将返回的函数存起来
+					this.up = this.upFn.bind(this);
+					this.disX = ev.clientX - this.self.offsetLeft;//鼠标按下时指针的位置对应的值
+					this.disY = ev.clientY - this.self.offsetTop;
+					document.addEventListener("mousemove",this.move);
+					document.addEventListener("mouseup",this.up);
+					this.onoff = false;//控制走了moveFn函数,保证鼠标抬起时位置的准确性
+					this.onoff1 = false;//当上下碰撞后元素运动没结束时不能再进行再次上下碰撞检测
+				}
+				moveFn(ev){
+					this.onoff = true;//说明点击的元素进行了运动
+					this.self.style.left = (ev.clientX - this.disX) + "px";
+					this.self.style.top = (ev.clientY - this.disY) + "px";
+					var onoff = false;//控制foe循环的停止，当找到点击的这个元素时跳过此次foe循环，因为不能判断自己跟自己碰撞
+					var oswitch = false;//判断是否左右碰到了元素，碰到了则为true  同行碰撞
+					var switchTb = false;//判断是否上下碰到了元素，碰到了则为true 不同行碰撞
+					for(var i=0;i<this.childs.length;i++){
+						if(this.childs[i] == this.self){//如果是自己就结束这次循环，进行下一次
+							onoff = true;
+						}else{
+							onoff = false;
+						}
+						if(onoff){
+							continue;
+						}
+						if(disArr[this.self.index].top !== disArr[this.childs[i].index].top){//如果是上下进行碰撞就进行上下碰撞检测
+							switchTb = tool.collision(this.self,this.childs[i]);//上下碰撞的开关
+						}
+						if(switchTb){//符合上下碰撞条件,跳出循环
+							break;
+						}
+						if(disArr[this.self.index].top === disArr[this.childs[i].index].top){//如果是左右进行碰撞就进行左右碰撞检测
+							oswitch = tool.collision(this.self,this.childs[i]);//左右碰撞的开关
+						}
+						
+						if(oswitch){//符合左右碰撞条件,跳出循环
+							this.lastEle = this.childs[i];//储存碰到的元素
+							this.laseIndex = this.lastEle;//碰撞元素的index
+							break;
+						} 
+					}
+					if(switchTb){//上下碰撞
+						if(this.onoff1){//如果在运动时不能再次进行
+							return;
+						}
+						var tbDownEle = this.self;//按下的元素
+						var tbPengEle = this.childs[i];//碰撞的元素
+						var tbDownIndex = this.self.index;//按下元素的自定义属性index，代表对应在disArr中对应的第几条数据
+						var tbPengIndex = this.childs[i].index;//碰撞元素的自定义属性index，代表对应在disArr中对应的第几条数据
+						this.arr1 = [];//存储需要运动的元素
+						if(tbDownEle.index<tbPengEle.index){//上撞下
+							for(var i = tbDownIndex+1;i<(tbPengEle.index+1);i++){
+								this.arr1.push(tool.getIndexEle(i,lis));
+							}
+							for(var i=0;i<this.arr1.length;i++){
+								this.arr1[i].style.transition = ".2s";
+								this.arr1[i].index--;//运动之后再disArr中的位置也要变化
+							}
+						}else{//下撞上
+							//console.log((tbDownEle.index-1),(tbPengEle.index-1))
+							for(var i = (tbDownEle.index-1);i>(tbPengEle.index-1);i--){
+								this.arr1.push(tool.getIndexEle(i,lis));
+							}
+							for(var i=0;i<this.arr1.length;i++){
+								this.arr1[i].style.transition = ".2s";
+								
+								this.arr1[i].index++;//运动之后再disArr中的位置也要变化
+							}
+						}
+						console.log(this.arr1)
+						for(var i=0;i<this.arr1.length;i++){
+							this.arr1[i].style.left = disArr[this.arr1[i].index].left+"px";
+							this.arr1[i].style.top = disArr[this.arr1[i].index].top+"px";
+							
+						}
+						var self = this;
+						this.fn = function(){
+							self.onoff1 = false;
+							self.b = 0;
+							this.removeEventListener("transitionend",self.fn);
+						}
+						this.arr1[0].addEventListener("transitionend",this.fn);//当运动结束之后要改变self.onoff1，self.b的值，使能再次进行碰撞检测
+						this.self.index = tbPengIndex;
+						this.index1 = tbPengIndex;//当鼠标抬起时点击元素应该回到的位置对应的index
+						this.onoff1 = true;
+					}
+					if(oswitch){//符合左右碰撞条件
+						if(this.onoff1){//如果正在进行上下碰撞就不进行左右运动
+							return;
+						}
+						this.b++;
+						//this.eleIndex上一次碰到的元素 第一次为undefined
+						if(this.eleIndex!==this.laseIndex&&this.eleIndex!==undefined){//如果碰到的不是刚移动的元素且不是undefined
+							
+							this.b = 1;
+							
+						}
+						
+						if(this.b>1){//在左右碰撞完只有检测被碰撞元素是否运动到目标位置，如果是则能进行下一次的运动
+							if(tool.isGoDes(this.laseIndex,disArr[this.indexDes].left)){
+								this.b = 0;
+							}
+						}
+						
+						if(this.b===1){//碰到一个元素只执行一次
+							this.eleIndex = this.laseIndex;//上一次碰撞的
+							this.lastEle.style.transition = ".2s";
+							
+							this.lastEle.style.left = disArr[this.self.index].left + "px";//设置被碰撞元素对应的属性  此时要运动的位置就是点击元素的位置
+							this.lastEle.style.top = disArr[this.self.index].top + "px";
+							this.index1 = this.lastEle.index;//鼠标抬起时该返回的位置的下标
+							this.indexDes = this.self.index;//点击元素在disArr中的位置 在元素左右碰撞时是否运动结束时用到
+							this.self.index = this.lastEle.index;//改变点击元素的index
+							this.lastEle.index = this.indexDes;//改变碰撞元素的index
+							this.onoff1 = false;
+						}
+					}
+					
+				}
+				upFn(ev){
+					if(this.onoff){//当移动触发了移动事件的时候才执行
+						this.self.style.left = disArr[this.index1].left + "px";//当鼠标抬起时点击元素回到对应的位置
+						this.self.style.top = disArr[this.index1].top + "px";
+						this.arr1 = [];//重置上下碰撞元素的数组
+						this.onoff1 = true;//重置上下碰撞的开关   开关作用：当上下碰撞后元素运动没结束时不能再进行再次上下碰撞检测
+					}
+					document.removeEventListener("mousemove",this.move);
+					document.removeEventListener("mouseup",this.up);
+				}
+			}
+			new DragSort(list,lis);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href='index.css' rel='stylesheet' type='text/css'>
+		<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="TweenMax.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul class="nav">
+		  <li class="btn">new game</li>
+		  <li class="btn">options</li>
+		  <li class="btn">credits</li>
+		  <li class="btn">new music</li>
+		  <li class="btn">set option</li>
+		</ul>
+		<div class="instructions">
+		  click the buttons to animate out
+		</div>
+		
+		<script type="text/javascript">
+		//自动进入
+			TweenMax.staggerFrom(".btn", 2, {scale:0.5, opacity:0, delay:0.5, ease:Elastic.easeOut}, 0.2);
+			                 //选择的元素      持续时间        css参数                                 延迟                                     函数                          距前一项时间间隔
+		//点击移出
+			// $(".btn").click(function(){
+			//   TweenMax.staggerTo(".btn", 0.5, {opacity:0, y:-100, ease:Back.easeIn}, 0.1);
+			// });
+		</script>
+	</body>
+</html>

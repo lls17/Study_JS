@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="">
+		<style>
+			
+		</style>
+		<script>
+			function fn(data){
+				console.log( data );
+			}
+
+			/*
+				动态创建script标签，引入某一个文件，文件的内容会执行js代码，内容中会有一个函数执行，会全局的搜索这个函数，这个函数必须写全局函数
+				在函数执行的时候传入数据，可以在函数中使用数据
+			*/
+
+		</script>
+
+	</head>
+
+	<body>
+		<span id="dataBox"></span>
+		<script>
+			var data = {a:1};
+			fn(data)
+		</script>
+	</body>
+</html>

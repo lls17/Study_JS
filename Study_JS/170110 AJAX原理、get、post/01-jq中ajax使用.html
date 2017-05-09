@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				协议
+
+				http://  
+				file:// 
+
+				http://192.168.2.138/myblog/blog.html
+
+				如果要让别人访问到我们自己写的页面，页面放在别人也可以访问到的服务器上
+
+				把自己的电脑当成服务器，需要配置一个服务器环境
+					appche  服务器软件
+
+				安装集成软件
+					wamp
+
+			*/
+		</script>
+	</head>
+
+	<body>
+		<h1>欢迎来到我的小窝</h1>
+		<input type="button" value="换一换" />
+		<div id="demo">
+			<!-- <h2>文章列表</h2>
+			<ul>
+				<li>123</li>
+				<li>123</li>
+				<li>123</li>
+			</ul> -->
+		</div>
+		<script src="./jq3.js"></script>
+		<script>
+			//拿数据 后端会提供一个请求地址 http://localhost/myblog/php/list.php
+
+			//使用ajax拿数据
+
+			$("input").click(function (){
+				$.ajax({
+					url:'http://localhost/myblog/php/list.php',
+					success:function (data){
+						//数据是json格式的，解析为js中的对象，就可以操作了
+						console.log( typeof JSON.parse(data) );
+						console.log(  JSON.parse(data).title );
+
+						data = JSON.parse(data);
+
+						//等请求成功后，拿到了数据，再去把数据展现在页面中
+
+						renderList(data);
+					},
+					error:function (data,a){
+						console.log( data );
+						console.log( a );
+
+						//http状态码  data.status  
+						//状态信息  data.statusText
+					}
+				});	
+			})
+
+			
+
+			function renderList(data){
+					
+				//展示在页面
+				var str = '<h1>'+data.bigTitle+'</h1>';
+				str += "<ul>"
+				for( var i = 0; i < data.list.length; i++ ){
+					str += '<li>'+data.list[i].newTitle+'</li>'
+				}
+				str += "</ul>";
+
+				demo.innerHTML = str;
+			}
+
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				获取数据，呈现在页面
+
+				前端做的事情 拿到数据把数据展示在页面中
+
+				之前学习的数据 都是本地静态的（伪造的）（假的）
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div id="demo">
+			<!-- <h1>今天新闻</h1>
+			<ul>
+				<li>123</li>
+				<li>123</li>
+				<li>123</li>
+				<li>123</li>
+			</ul> -->
+		</div>
+		<script>
+			var data = {
+				bigTitle:"今天新闻",
+				list:[
+					{
+						newTitle:"今天天气好，北京市民全体踏~"
+					},
+					{
+						newTitle:"小程序发布了"
+					}
+				]
+			}
+
+			//展示在页面
+			var str = '<h1>'+data.bigTitle+'</h1>';
+			str += "<ul>"
+			for( var i = 0; i < data.list.length; i++ ){
+				str += '<li>'+data.list[i].newTitle+'</li>'
+			}
+			str += "</ul>";
+
+			demo.innerHTML = str;
+
+		</script>
+
+	</body>
+</html>

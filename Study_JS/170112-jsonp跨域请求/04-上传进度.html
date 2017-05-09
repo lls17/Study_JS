@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<input type="file" name="" id="fileInput">
+		<input type="button"  value="上传" id="btn" />
+		<script>
+			/*
+				上传
+					http://localhost/2017-11-12/php/post_file.php
+			*/
+			var url = 'http://localhost/2017-11-12/php/post_file.php';
+			btn.onclick = function (){
+				var xhr = new XMLHttpRequest();
+
+				xhr.open("post",url,true);
+
+				console.log( xhr );
+				//每发送一段数据都会触发这个事件
+				xhr.upload.onprogress = function (ev){
+					console.log(Math.round((ev.loaded/ev.total)*100)+"%");	
+				};
+
+				xhr.onload  = function (){
+					console.log("我回来了");
+					console.log( xhr.responseText );	
+				}
+				//转成二进制
+				var f = fileInput.files[0];
+				var fd = new FormData();
+				fd.append("file",f);
+
+				xhr.send(fd);
+			};
+		</script>
+	</body>
+</html>

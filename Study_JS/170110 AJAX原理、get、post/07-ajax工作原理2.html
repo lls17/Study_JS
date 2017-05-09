@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				协议
+
+				http://  
+				file:// 
+
+				http://192.168.2.138/myblog/blog.html
+
+				如果要让别人访问到我们自己写的页面，页面放在别人也可以访问到的服务器上
+
+				把自己的电脑当成服务器，需要配置一个服务器环境
+					appche  服务器软件
+
+				安装集成软件
+					wamp
+
+			*/
+		</script>
+	</head>
+
+	<body>
+		<!--
+			action: 提交地址
+			method：提交方式（动作，方法）	
+				get
+					数据放在地址的?后面的，格式是
+						key=value
+						key=value&key=value
+					因为浏览器缓存地址，不安全
+					浏览器对地址栏中的字符有限制，所以如果get的数据超出了浏览器对地址的字符限制，那么会导致发送的数据不完整
+
+				post
+					在系统后台发送
+					相对安全
+					理论上不限制大小，服务器那边限制大小
+
+		-->
+		<p>用户名：<input id="userName" type="" name="user"><span id="tip"></span></p>
+			<p>密码：<input type="password" name=""></p>
+			<input type="button" name="" value="提交" />
+
+		<script src="./jq3.js"></script>
+		<script>
+			/*
+				1. 通过构造函数，得到一个ajax对象       0
+					XMLHttpRequest
+				2. 连接地址，准备数据                   1
+				3. 发送数据                             2
+				4. 后端响应数据（不一定响应完成）       3
+				5. 响应数据完成                         4
+			*/
+			//后端地址 http://localhost/2017-01-10/php/get.php
+			console.log( XMLHttpRequest );
+			userName.onblur = function (){
+				//ajax技术发送请求
+
+				var xhr = new XMLHttpRequest();
+				/*
+					参数：
+						1. 请求方式
+							get post
+						2. 请求地址
+						3. 布尔值
+							是否为异步
+							true 异步
+							false 同步
+				*/
+
+				xhr.open("Get","http://localhost/2017-01-10/php/get.php?user="+this.value,true);
+
+				//请求完成，拿到数据之后，触发的事件
+				xhr.onload = function (){
+					console.log( xhr.readyState );
+					//responseText 拿到后端返回的数据
+					tip.innerHTML = xhr.responseText;
+				};
+				//发送
+				xhr.send();
+			}
+		</script>
+	</body>
+</html>

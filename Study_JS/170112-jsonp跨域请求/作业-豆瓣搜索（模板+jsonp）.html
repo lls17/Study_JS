@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body, h5, h6{
+				margin: 0;
+				padding: 0;
+				font-size: 12px;
+				font-family: "微软雅黑";
+			}
+			.box{
+				width: 300px;
+				margin: 0 auto;
+				padding: 10px 20px;
+				background-color: #fcc0ac;
+			}
+			.head{
+				height: 80px;
+				/*width: 300px;*/
+				line-height: 80px;
+				padding-top: 40px;
+				text-align: center;
+				background-color: #fee5dc;
+				word-spacing: -8px;
+				border-radius: 6px 6px 0 0;
+			}
+			.head input{
+				display: inline-block;
+				border: 2px solid #fcc0ac;
+				padding: 0;
+				margin: 0;
+				height: 30px;
+			}
+			.head input[type='button']{
+				font-size: 12px;
+				padding: 0 6px;
+				margin-left: -2px;
+				border-left: none;
+				height: 34px;
+				text-align: center;
+				color: #FFF;
+				background-color: #fb805a;			
+			}
+			.main{
+				background-color: #fff;
+				border-radius: 0 0 6px 6px;
+			}
+			.main .tips{
+				height: 30px;
+				line-height: 30px;
+				padding-left: 20px;
+				border-top: 1px solid #fee5dc;
+			}
+			ul{
+				padding: 0;
+				margin: 0;
+				height: 300px;
+				list-style: none;
+			}
+			.main_item{
+				display: block;
+				padding: 10px 20px;
+				border-top: 1px solid #fee5dc;
+			}
+			.main_item .title{
+				font-size: 18px;
+				padding-top: 10px;
+				height: 30px;
+				line-height: 30px;
+			}
+			.main_item .detail{
+				height: 100px;
+			}
+			.det_img{
+				float: left;
+				margin: 6px 10px 0 0;
+				height: 80px;
+				width: 50px;
+			}
+			.det_info{
+				float: left;
+				width: 200px;
+			}
+			.info_title{
+				font-weight: normal;
+				height: 30px;
+				line-height: 30px;
+				font-size: 16px;
+			}
+			.info_arti{
+				line-height: 20px;
+			}
+			.page{
+				text-align: center;
+				height: 30px;
+				line-height: 30px;
+			}
+			.page a{
+				text-decoration: none;
+				color: black;
+				padding: 4px;
+			}
+			.page a:hover{
+				color: orangered;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<header class="head">
+				<input type="text" id="iptTxt" />
+				<input type="button" id="iptBtn" value="搜索相关书籍"/>
+			</header>
+			<section class="main">
+				<div class="tips">请稍后！</div>
+				<ul id="list">
+					<%for(var i=0; i<dataList.length; i++){%>
+						<li class="main_item">
+							<h5 class="title"><%=dataList[i].title%></h5>
+							<div class="detail">
+								<img src="<%=dataList[i].src%>" alt="" class="det_img" />
+								<div class="det_info">
+									<h6 class="info_title"><%=dataList[i].title%></h6>
+									<div class="info_arti">
+										<%=dataList[i].title%>
+									</div>
+								</div>
+							</div>
+						</li>
+					<%}%>
+				</ul>
+				<div class="page">
+					<a href="javascript:;" id="first">首页</a>
+					<a href="javascript:;" id="pre">上一页</a>
+					<span class="pageList">
+						<a href="javascript:;">1</a>
+					</span>
+					<a href="javascript:;" id="next">下一页</a>
+					<a href="javascript:;" id="last">尾页</a>
+				</div>
+			</section>
+		</div>
+		<script src="js/jq3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/template-native.js" type="text/javascript" charset="utf-8"></script>
+		<!--jsonp 请求数据-->
+		<!--<script id="jsonp" src=""></script>-->
+		<script type="text/javascript">
+			var baseURL = "https://api.douban.com/v2/book/search?q=";
+			$("#iptBtn").on("click", function(){
+				var keyStr = $("#iptTxt").val().trim();
+				
+				if(keyStr == ""){
+					alert("请输入搜索内容！");
+				}else{
+//					$("#jsonp").attr("src", baseURL+keyStr+"&start=0&count=2&cb=showData");
+					var script = document.createElement("script");
+					script.src = baseURL+keyStr+"&start=0&count=2&cb=showData";
+					console.log(baseURL+keyStr+"&start=0&count=2&cb=showData");
+					document.body.appendChild(script);
+				}
+			});
+			function showData(data){
+//				template("list", data);
+				console.log(data);
+			}
+		</script>
+	</body>
+</html>

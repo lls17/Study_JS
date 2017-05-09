@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				插件机制
+					jQuery.fn.extend(object)
+					jQuery.extend(object)
+
+				插件，对原有功能的扩展
+				对jq功能的扩展
+
+				怎么给jq扩展功能？
+			*/
+
+			//调用click这个方法
+
+			$(document).click(function (){
+				alert(1)		
+			});
+
+			//$().toArray();
+
+			// $ 一个函数
+
+			console.log( $.isArray([]) );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

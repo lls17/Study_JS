@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				URL编码
+			*/
+			var str = "妙味";
+			//中文编码为url编码格式
+			console.log( encodeURI(str) );
+			//把url编码格式解析为中文
+			console.log( decodeURI("%E5%A6%99") );
+			
+			
+			// 将中文及特殊字符（如@#￥%）均转义
+			console.log(encodeURIComponent(str)); 
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

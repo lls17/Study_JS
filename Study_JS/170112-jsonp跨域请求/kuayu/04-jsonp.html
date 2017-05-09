@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="">
+		<style>
+			
+		</style>
+		<script>
+			/*
+				可以跨域访问的标签
+					img
+					link
+					script
+
+						每一种标签获取到内容，不关系请求文件的格式，文件内容是否能被解析
+
+				jsonp
+					json + padding  json格式填充数据
+			*/
+
+			//按需的加载某个js文件
+
+			document.onclick = function (){
+				var script = document.createElement("script");
+				script.src = './test.js';
+
+				document.body.appendChild(script);	
+
+				//文件加载之后，立马就执行了
+			};
+
+		</script>
+	</head>
+
+	<body>
+	</body>
+</html>

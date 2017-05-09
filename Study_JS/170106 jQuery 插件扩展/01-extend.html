@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				插件机制
+					jQuery.fn.extend(object)
+					jQuery.extend(object)
+
+				插件，对原有功能的扩展
+				对jq功能的扩展
+
+				怎么给jq扩展功能？
+			*/
+
+			/*
+				实例去调用某一个方法，会去到原型上找
+				通过函数调用某个方法(静态方法)，会去构造函数上找
+			*/
+
+			//给数组扩展一个方法，abc
+
+			/*Array.prototype.abc = function (){
+				console.log("123");	
+			};*/
+
+			var arr = [];
+
+			//arr.abc();  //会沿着原型链找
+
+			//Array.from()
+			//静态方法
+			Array.fn = function (){
+				console.log("fn");	
+			};
+
+			Array.fn();  //函数上的方法
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

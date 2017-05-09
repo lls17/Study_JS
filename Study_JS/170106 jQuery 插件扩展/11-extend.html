@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				extend();
+					$().extend(object)
+					$.extend(object)
+			*/
+
+			/*console.log( $().extend );
+			console.log( $.extend );*/
+
+			//多个对象，把多个对象的属性合并到一个对象上
+			var obj1 = {
+				a:1,
+				b:10,
+				arr:[1,2,3]
+			};
+			var target = {
+				a:5,
+				c:3
+			}
+
+			//把obj1和obj2的属性都合并到target对象上
+			//如果是相同属性，会覆盖值
+
+			$.extend(true,target,obj1);
+
+			console.log( target.arr === obj1.arr );  //false
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>后端文档说明</title>
+</head>
+<body>
+<div id="wmd-preview" class="wmd-preview"><div class="md-section-divider"></div><div class="md-section-divider"></div><h1 data-anchor-id="35by" id="后端文档说明">后端文档说明</h1><p data-anchor-id="lf4z"><code>未分类</code></p><hr><p data-anchor-id="miup">请求地址：</p><blockquote data-anchor-id="2fly" class="white-blockquote">
+  <p>GET /zhaopin.php</p>
+</blockquote><p data-anchor-id="b2rk">请求参数：</p><table data-anchor-id="14ha" class="table table-striped-white table-bordered">
+<thead>
+<tr>
+ <th>字段</th>
+ <th style="text-align:right;">说明</th>
+ <th style="text-align:center;">是否必填</th>
+</tr>
+</thead>
+<tbody><tr>
+ <td>type</td>
+ <td style="text-align:right;">获取不同类型值</td>
+ <td style="text-align:center;">必填项</td>
+</tr>
+<tr>
+ <td>page</td>
+ <td style="text-align:right;">获取的页数数据</td>
+ <td style="text-align:center;">默认为0</td>
+</tr>
+</tbody></table><blockquote data-anchor-id="m9o8" class="white-blockquote">
+  <p>type的值为 world 或 school <br>
+  根据不同的传参，返回不同的值 <br>
+  page 获取指定页数的信息，默认为0 <br>
+  不传参则返回所有数据 <br>
+  不填写page参数，返回所有的数据</p>
+</blockquote><p data-anchor-id="sv61">响应数据 json格式的 {}</p><table data-anchor-id="nd79" class="table table-striped-white table-bordered">
+<thead>
+<tr>
+ <th>字段</th>
+ <th style="text-align:right;">说明</th>
+ <th style="text-align:center;">类型</th>
+</tr>
+</thead>
+<tbody><tr>
+ <td>list</td>
+ <td style="text-align:right;">数据列表</td>
+ <td style="text-align:center;">数组</td>
+</tr>
+<tr>
+ <td>total</td>
+ <td style="text-align:right;">总数据个数</td>
+ <td style="text-align:center;">数字</td>
+</tr>
+<tr>
+ <td>pages</td>
+ <td style="text-align:right;">当前页数</td>
+ <td style="text-align:center;">数字</td>
+</tr>
+<tr>
+ <td>num</td>
+ <td style="text-align:right;">一页条数</td>
+ <td style="text-align:center;">数字</td>
+</tr>
+</tbody></table></div>
+</body>
+</html>

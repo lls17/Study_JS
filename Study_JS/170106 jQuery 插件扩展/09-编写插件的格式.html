@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			//var $ = 10;
+		</script>
+		<script>
+			/*
+				书写jQuery插件的格式：
+					1、 匿名函数自执行 把jQuery传进去
+					2. 扩展的方法改如何调用
+						实例调用 扩展在原型上
+						函数调用 扩展在函数上
+			*/
+			(function ($){  //这里的$就是传入参数jQuery这个实参的形参
+				$.fn.drag = function (){
+					console.log("我是拖拽");	
+				};
+				$.fn.drag1 = function (){
+					console.log("我是拖拽");	
+				};
+				$.fn.drag2 = function (){
+					console.log("我是拖拽");	
+				};
+				$.dialog = function (){
+					console.log('我是弹框');	
+				};
+			})(jQuery);
+
+			/*$().drag();
+
+			$.dialog();*/
+
+			//$().dialog();  报错
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

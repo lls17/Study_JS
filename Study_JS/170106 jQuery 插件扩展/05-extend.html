@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				extend();
+					$().extend(object)
+					$.extend(object)
+			*/
+
+//			console.log( $().extend );
+//			console.log( $.extend );
+
+			function func(options){
+				var defaults = {
+					a:1
+				};
+
+				$.extend(defaults,options);
+
+				console.log( defaults );
+
+
+			}
+
+			func({
+				a:2,
+				b:2,
+				c:3
+			});
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

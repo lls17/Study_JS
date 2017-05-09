@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input id="text" />
+		<script>
+			/*
+				ajax
+					和服务端进行通信的
+				ajax的流程
+
+			*/
+
+			//￿ΰ用户名可以注册
+			//ie  http://localhost/2017-11-12/php/get.php?user=刘伟
+
+			//chrome http://localhost/2017-11-12/php/get.php?user=%E5%88%98%E4%BC%9F
+
+
+			//chrome file:///D:/wamp/www/2017-11-12/1-%E4%BB%8A%E5%A4%A9%E5%A4%A9%E6%B0%94%E5%A5%BD.html
+
+			//D:\wamp\www\2017-11-12\1-今天天气好.html
+
+			text.onblur = function (){
+
+				if( this.value.trim() === "" ){
+					alert("请填写内容");
+					return;
+				}
+					
+				var url = 'http://localhost/2017-11-12/php/get.php';
+
+				var xhr = new XMLHttpRequest();
+
+				xhr.open("GET",url+"?user="+encodeURI(this.value));
+
+				xhr.onload = function (){
+					console.log( xhr.responseText );	
+				};
+
+				xhr.send();
+			};
+
+
+
+
+
+		</script>
+	</body>
+</html>

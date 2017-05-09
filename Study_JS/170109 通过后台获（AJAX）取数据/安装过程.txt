@@ -1,0 +1,8 @@
+1. 软件wampserver.exe
+2. 双击 next （安装在磁盘的根目录下）
+3. 启动程序
+4. 打开程序呈现是绿色，启动ok
+
+把资源都放在www目录下
+
+访问 http://localhost/

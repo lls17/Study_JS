@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<!--
+			action: 提交地址
+			method：提交方式（动作，方法）	
+				get
+					数据放在地址的?后面的，格式是
+						key=value
+						key=value&key=value
+					因为浏览器缓存地址，不安全
+					浏览器对地址栏中的字符有限制，所以如果get的数据超出了浏览器对地址的字符限制，那么会导致发送的数据不完整
+
+				post
+					在系统后台发送
+					相对安全
+					理论上不限制大小，服务器那边限制大小
+
+		-->
+		<p>用户名：<input id="userName" type="" name="user"><span id="tip"></span></p>
+			<p>密码：<input type="password" name=""></p>
+			<input type="button" name="" value="提交" />
+
+		<script src="./jq3.js"></script>
+		<script>
+
+			userName.onblur = function (){
+				var xhr = new XMLHttpRequest();
+
+				xhr.open("post","http://localhost/2017-01-10/php/post123.php",true);
+				xhr.onload = function (){
+					console.log( xhr.responseText );
+
+					//http状态码  
+					if( xhr.status === 200 || xhr.status === 304   ){
+						console.log("成功");
+					}else{
+						console.log("失败");
+						console.log(  xhr.status );
+						console.log(  xhr.statusText );
+					}
+
+				};
+				
+				//post可以提交多种格式的数据，设置一个请求头，告诉后端发送的是什么样的格式的数据
+				xhr.setRequestHeader("Content-Type",'application/x-www-form-urlencoded');
+				xhr.send("user="+this.value);
+			};
+			
+		</script>
+	</body>
+</html>

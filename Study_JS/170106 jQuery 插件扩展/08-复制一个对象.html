@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			/*
+				extend();
+					$().extend(object)
+					$.extend(object)
+			*/
+
+			/*console.log( $().extend );
+			console.log( $.extend );*/
+
+			//把obj1复制一份
+			var obj1 = {
+				a:1,
+				b:10,
+				arr:[1,2,3]
+			};
+
+			//extend的返回值为目标对象  浅复制
+			var obj2 = $.extend(true,{},obj1);
+
+			obj2.miaov = "ketang";
+			obj2.arr.push(10000000);
+
+			console.log( obj1 );
+			console.log( obj2 );
+
+			//问：obj1.arr的值是？
+
+			console.log( obj1.arr );
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

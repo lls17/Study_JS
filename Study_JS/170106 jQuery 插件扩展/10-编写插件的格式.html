@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			//var $ = 10;
+		</script>
+		<script>
+			/*
+				书写插件的格式：
+					1、 匿名函数自执行 把Jquery传进去
+					2. 扩展的方法改如何调用
+						实例调用 扩展在原型上
+						函数调用 扩展在函数上
+
+				extend([deep],target,obj,[obj1....])
+					//合并对象
+					如果deep为true，深度合并
+					如果参数为多个对象，那么从第二个对象开始依次把属性合并到第一个对象上
+					如果参数只有一个对象，那么就向jquery.fn或jquery上扩展对象中的方法或者属性
+
+			*/
+			(function ($){
+				//通过对象扩展对个方法，把这个对象上的属性合并到jQuery的原型上$.fn
+				$.fn.extend({
+					drag1:function (){
+						console.log("drag1");	
+					},
+					drag2:function (){
+						console.log("drag2");	
+					},
+					a:10
+				})
+
+				$.extend({
+					dialog1:function (){
+						console.log("dialog1");	
+					},
+					dialog2:function (){
+						console.log("dialog2");	
+					}
+				})
+				
+			})(jQuery);
+
+			$().drag1();
+			$().drag2();
+
+			$.dialog1();
+			$.dialog2();
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

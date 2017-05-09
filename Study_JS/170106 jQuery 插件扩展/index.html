@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//			$(function(){
+//				var obj = {
+//					name:"W",
+//					age:"17",
+//					hobby:["吃","喝","睡"]
+//				}
+//				
+//				var target = {
+//					hobby:["玩"]
+//				}
+//				console.log($.extend(true,target, obj));
+//				
+//			});
+			var obj1 = {
+				name:"lls",
+				age:17
+			};
+			var obj2 = obj1; //对象是赋地址
+			console.log(obj1 == obj2); //true
+			console.log(obj1 === obj2); //true
+			
+			obj2.init = "coffee";
+			console.log(obj1 == obj2); //true
+			console.log(obj1 === obj2); //true
+			console.log(obj1);  //Object {name: "lls", age: 17, init: "coffee"} 
+			console.log(obj2);   //Object {name: "lls", age: 17, init: "coffee"} 
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script>
+//			console.log($("ul").find("li"));
+//			console.log($("ul").find("li").length);
+		</script>
+	</body>
+</html>

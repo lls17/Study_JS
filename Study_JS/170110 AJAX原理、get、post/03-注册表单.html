@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				协议
+
+				http://  
+				file:// 
+
+				http://192.168.2.138/myblog/blog.html
+
+				如果要让别人访问到我们自己写的页面，页面放在别人也可以访问到的服务器上
+
+				把自己的电脑当成服务器，需要配置一个服务器环境
+					appche  服务器软件
+
+				安装集成软件
+					wamp
+
+			*/
+		</script>
+	</head>
+
+	<body>
+		<!--
+			action: 提交地址
+			method：提交方式（动作，方法）		
+		-->
+		<form action="http://localhost/2017-01-10/php/get.php" method="get">
+			<p>用户名：<input type="" name="user"></p>
+			<p>密码：<input type="password" name=""></p>
+			<input type="submit" name="" value="提交" />
+		</form>
+
+		<script src="./jq3.js"></script>
+		<script>
+			//使用的是form表单提交数据
+
+			//把数据提交到 '2017-01-10/php/get.php'
+
+			//search格式 ?key=value&key=value
+
+			//key值是前端和后端约定好的，代表一个有意义的属性
+			// username age
+
+			//get方式
+			//http://localhost/2017-01-10/php/get.php?user=leo
+
+			/*{
+				name,
+				age
+			}*/
+
+
+		</script>
+	</body>
+</html>

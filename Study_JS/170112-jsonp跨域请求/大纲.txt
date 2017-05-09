@@ -1,0 +1,73 @@
+﻿onprogress
+	监控下载进度
+
+enctype: 当提交方式为post的时候，需要设置enctype，如果是在表单中，没有设置，默认是  application/x-www-form-urlencoded
+    	作用：对数据进行编码，并通过请求头的方式告诉后端，发送的数据编码类型，方便后端接收到数据以后，进行对应的解码操作
+    	1.application/x-www-form-urlencoded 默认 user=leo&
+        2.multipart/form-data
+        3.text/plain
+        
+        如果是get方式，传输的数据只有一种编码方式application/x-www-form-urlencoded
+
+apache:
+	路径： F:\wamp\bin\apache\Apache2.2.21\bin\php.ini
+
+	post_max_size
+	upload_max_filesize
+
+
+new FormData()
+data.append("file",oFile.files[0]);
+
+xhr.upload.onprogress
+
+encodeURI：把字符转成URL编码
+JSON.parse
+
+encodeURI：把字符转成URL编码
+
+所谓同源是指，域名，协议，端口相同。
+
+	域名：
+
+		域名就是ip地址的小名（外号）
+
+		如果要域名和ip绑定，需要DNS解析
+						
+			主域名：https://www.baidu.com/
+			二级域名：http://news.baidu.com/
+			三级域名：http://29.classcase.sinaapp.com/
+
+	协议：不同服务器之间通信的一种约定
+
+			http/https:访问互联网上的页面
+			ftp
+			file
+
+	端口：
+				http/https  80
+				ftp  21 22 23
+
+跨域，只要域名，协议，端口有一个不同就产生了跨域访问
+
+使用 XMLHttpRequest
+
+	和后台配合使用
+		用的是PHP
+		header("Access-Control-Allow-Origin:*");
+
+
+XDomainRequest
+
+通过代理的方式，跨域
+	后台的语言是不存在跨域的
+
+
+http://suggestion.baidu.com/su?wd="+ this.value +"&cb=fn2
+
+
+
+
+
+
+

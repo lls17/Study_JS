@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>密码强度检测</title>
+		<style>
+			input{
+				float: left;
+				margin-right: 10px;
+			}
+			#box{
+				float: left;
+			}
+			#tips{
+				float: left;
+			}
+			#tips span{
+				float:left;
+				width:48px;
+				height:18px;
+				font:12px/18px "宋体";
+				color:#fff;
+				overflow:hidden;
+				background:#ccc;
+				margin-right:2px;
+				text-align:center;
+			}
+			#Error{
+				float: left;
+				width: 100%;
+				font-size: 12px;
+				color:red;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>密码强度检测</h1>
+		<div id="box">
+			<input type="text" maxlength="16" id="inp"/>
+			<div id="tips">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div id="Error">密码长度不能小于6位</div>
+		</div>
+		
+		<!--强度规则
+			1.密码长度不能少于6位
+			2.任何字符数的同类字符组合，弱
+			3.任何字符数的两类字符组合，中
+			4.12位字符数以下的三类或四类字符组合，强
+			5.12位字符数以上的三类或四类字符组合，非常好
+		-->
+		<script>
+			var colorArr=["#f30","#fc0","#cc0","#090"];
+			var tipArr=["弱", "中", "强", "非常好"];
+			var spans=tips.getElementsByTagName("span");
+			var Error=document.getElementById("Error");
+			function check(value){ //检测函数
+				var level=0;
+				if(value.length<6){//长度不足6位就返还0
+					return level;
+				}
+				if(/\d/.test(value)){
+					level++;
+				}
+				if(/[a-z]/.test(value)){
+					level++;
+				}
+				if(/[A-Z]/.test(value)){
+					level++;
+				}
+				if(/\W/.test(value)){
+					level++;
+				}
+				if(level===3||level===4){//如果有三到四中字符组合在看一下字符的长度
+					level=value.length<12?3:4;//大于等于12位就返还4
+				}
+				return level;
+			}
+			inp.oninput=function(){
+				var level=check(this.value);
+				if(!level){ //如果长度不足6位则提示
+					Error.style.display="block";
+					for (var i = 0; i < spans.length; i++) {
+						spans[i].innerHTML="";
+						spans[i].style.background="#ccc";
+					}
+				}else{//否则进行渲染
+					Error.style.display="none";
+					for (var i = 0; i < spans.length; i++) {
+						spans[i].innerHTML="";
+						spans[i].style.background="#ccc";
+					}
+					spans[level-1].innerHTML=tipArr[level-1];
+					spans[level-1].style.background=colorArr[level-1];
+				}
+			}
+		</script>
+	</body>
+</html>

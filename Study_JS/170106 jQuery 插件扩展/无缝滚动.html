@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				position: relative;
+				margin: 10px auto;
+				width: 660px;
+				height: 500px;
+				overflow: hidden;
+			}
+			#div {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 500px;
+			}
+			input {
+				width: 80px;
+				height: 40px;
+			}	
+			#pre {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				margin-top: -20px;
+			}
+			#next {
+				position: absolute;
+				top: 50%;
+				right: 0;
+				margin-top: -20px;
+			}
+			img {
+				float: left;
+				position: relative;
+				left: 0;
+				top: 50px;
+				width: 660px;
+				height: 360px;
+			}
+			.icons span {
+				float: left;
+				width: 16px;
+				height: 16px;
+				border-radius: 8px;
+				background: #606060;
+				margin: 0px 10px;	
+			}
+
+			.icons span.yellow{
+				background: yellow;
+			}
+
+			.icons {
+				position: absolute;
+				bottom: 0px;
+				text-align: center;
+			}
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script>
+			
+
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<div id="div">
+				<img src="img/20140926152644.jpg" />
+				<img src="img/20141029201036.jpg" />
+				<img src="img/20141106193135.jpg" />
+				<img src="img/20141106193506.jpg" />
+				<img src="img/20141106193823.jpg" />
+			</div>
+			<div class="icons">
+				<span id="span1" class="yellow"></span>
+				<span id="span2"></span>
+				<span id="span3"></span>
+				<span id="span4"></span>
+				<span id="span5"></span>
+			</div>
+			<input id="pre" type="button" value="上一张" />
+			<input id="next" type="button" value="下一张" />
+		</div>
+		<script>
+			var moveEle = $("#div");
+			var images = $("#div img");
+			
+			
+
+			moveEle.append(images.first().clone())
+			moveEle.prepend(images.last().clone())
+
+			var images = $("#div img");
+
+			var w = images.eq(0).width();
+			var len = images.length;
+
+			$("#div").width(w*len).css("left",-w);
+
+			var allSpan = $("span");
+
+			function spanStyle(index){
+				allSpan.removeClass("yellow").eq(index).addClass("yellow");	
+			}
+
+			allSpan.mouseover(function (){
+				var index = $(this).index();
+					spanStyle(index);
+				if(index === n -1) return;
+				images.show().not(":eq("+(n)+"),:eq("+(index+1)+")").hide();
+
+				if( index+1 < n ){
+					moveEle.css("left",-w);
+					moveEle.stop().animate({
+						left: 0
+					},300)
+				}else{
+					moveEle.css("left",0);
+					moveEle.stop().animate({
+						left: -w
+					},300)
+				}
+
+				n = index+1;
+
+				
+			})
+
+			moveEle.on("position",function (){
+				if(images.is(":hidden")){
+					images.show();
+					moveEle.css("left",-w*n);
+				}	
+			})
+
+
+			//左边
+			var n = 1;
+			$("#pre").click(function (){
+				if(moveEle.is(":animated")){
+					return;
+				}
+				moveEle.trigger("position")
+				n--;
+				spanStyle(n-1);
+				moveEle.stop().animate({
+					left: -n * w
+				},function (){
+					if( n === 0 ){
+						n = len-2;
+						moveEle.css("left",-n*w);
+						
+					}	
+				})
+			})
+			$("#next").click(function (){
+				if(moveEle.is(":animated")){
+					return;
+				}
+				moveEle.trigger("position");
+				n++;
+				if( n === len-1 ){
+					spanStyle(0);
+				}else{
+					spanStyle(n-1);
+				}
+				
+				moveEle.stop().animate({
+					left: -n * w
+				},function (){
+					if( n === len-1 ){
+						moveEle.css("left",-w);
+						n = 1;
+					}	
+				})
+			})
+
+		</script>
+	</body>
+</html>

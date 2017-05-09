@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			function abc(data){
+				var str = '';
+				for( var i = 0; i < data.s.length; i++ ){
+					str += "<li><a href='https://www.baidu.com/s?wd="+data.s[i]+"'>"+data.s[i]+"</a></li>"
+				}
+
+				list.innerHTML = str;
+
+				document.body.removeChild(scriptId);
+
+			}
+			window.onload = function(){
+				serach.oninput = function (){
+					var script = document.createElement('script');
+					script.id = "scriptId"
+					script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value+'&cb=abc';	
+
+					document.body.appendChild(script);
+					//document.body.removeChild(script);
+				};	
+			};
+		</script>
+	</head>
+
+	<body>
+		<input type="" name="" id="serach">
+		<ul id="list">
+			<!-- <li>123</li> -->
+		</ul>
+	</body>
+</html>

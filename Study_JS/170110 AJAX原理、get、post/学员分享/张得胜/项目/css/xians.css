@@ -1,0 +1,164 @@
+#Zhen{
+	width:900px;
+	height:628px;
+	background:#FBFBFB;
+	position: relative;
+}
+#Zpaobu{
+	position: absolute;
+	left: 532px;
+	top: 277px;
+	width:125px;
+	height:157px;
+	background: url(../img/u=3733264171,4212806205&fm=23&gp=0.jpg) #fff no-repeat center / cover;
+	transform: rotateY(180deg);
+}
+#Zpao{
+	position: absolute;
+	left: -150px;
+	top: -156px;
+	width:125px;
+	height:157px;
+	background: url(../img/u=2613626658,3432387443&fm=23&gp=0.jpg) #fff no-repeat center / cover;
+}
+#Zkuan{
+	top: 3%;
+    left: 5%;
+    width: 500px;
+    height: 275px;
+    -webkit-perspective: 800px;
+    perspective: 800px;
+    position: absolute;
+    border: 157px solid #fff;
+}
+.toggle{
+	top: 50%;
+    z-index: 5;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    color: #031b21;
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: -15px;
+    border-radius: 50%;
+    position: absolute;
+    background: #fff;
+    box-shadow: 0 4px 4px #333;
+}
+#neir{
+	width: 313px;
+    padding: 30px;
+   	height:212px;
+    position: relative;
+    backface-visibility: hidden;
+    background: rgba(127,179,66,0.5);
+    border: 1px solid rgba(0,0,0,.35);
+    transform: rotateY(180deg);
+}
+#zenwu{
+	top: 50%;
+    right: 35px;
+    width: 180px;
+    height: 180px;
+    margin-top: -90px;
+    position: absolute;
+}
+#tun{
+    width: 108px;
+    height: 108px;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    transform: scale(.6);   /*		缩放		*/
+    background: url(../img/www.ico.la_ffd493ce75464e629c8209dc977da831_184X184.ico) #fff no-repeat center / cover;
+    box-shadow: 0 0 2px, 0 5px 5px rgba(47,66,81,.75);
+    margin:38px;
+	z-index: 2;
+}
+#Zhuanyi{
+    position: absolute;
+	left:30px;
+	top:0px;
+	padding:5px;
+	border:1px solid paleturquoise;
+	background:papayawhip;
+}
+#social{
+	top: 53%;
+    right: 46%;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    margin-top: -17.5px;
+    margin-right: -17.5px;
+    z-index: 1;
+}
+#social>a{
+	position: absolute;
+	top:0;
+	left:0;
+	float:left;
+	width:35px;
+	height:35px;
+	border-radius: 50%;
+}
+#social>a>i{
+	position: relative;
+	left:12px;
+	top:11px;
+	content: "\f09a";
+	width:11px;
+	height:13px;
+	background: url(../img/Ztt1.png);
+	display: block;
+}
+#social>a>div{
+	width:100px;
+	height:100px;
+	background: url(../img/www.ico.la_098b41633c728bbcd61a5f28fdfad4c7_184X184.ico);
+	background-size: 100px 100px;
+	position: absolute;
+	left:35px;
+	top: 35px;
+	z-index: 3;
+}
+#social .fb{
+	background: #1752CC;
+    border-color: #384f76;
+    z-index: 40;
+}
+#social .tw {
+    background: #29a9e1;
+    border-color: #2a7a9b;
+}
+#social .cp {
+    background: #000000;
+    border-color: #474848;
+}
+#social .pi {
+    background: #cd2129;
+    border-color: #942825;
+}
+#social .li {
+    background: #117bb8;
+    border-color: #1c5d7d;
+}
+#social .yt {
+    background: #cb312e;
+    border-color: #933532;
+}
+#social .gp {
+    background: #df4b38;
+    border-color: #974336;
+    
+}
+
+
+
+
+
+

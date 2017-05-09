@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    .clearfix {
+        zoom: 1;
+    }
+    
+    #main {
+        width: 800px;
+        height: 800px;
+        border: 1px dashed #000;
+        margin: 0 auto;
+    }
+    
+    #pageBox span,
+    #pageBox a {
+        width: 50px;
+        height: 20px;
+        text-align: center;
+        background-color: #666;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+    
+    #pageBox span {
+        display: inline-block;
+    }
+    
+    #pageBox span.actColor {
+        background-color: red;
+    }
+    
+    #pageBox a {
+        float: left;
+        color: #fff;
+    }
+    
+    #pages {
+        float: left;
+    }
+    
+    #info .block span {
+        padding: 20px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    #info .gays {
+        padding: 20px;
+        color: #666;
+    }
+    
+    #info .gays a {
+        font-size: 12px;
+        padding: 10px;
+        color: #328fbe;
+    }
+    
+    #leftBox {
+        width: 100px;
+        float: left;
+        text-align: center;
+    }
+    
+    #leftBox a {
+        display: block;
+        line-height: 50px;
+        background-color: #ccc;
+        margin-bottom: 10px;
+    }
+    
+    #leftBox a.red {
+        background-color: red;
+        color: #fff;
+    }
+    
+    #rightBox {
+        width: 700px;
+        float: right;
+    }
+    
+    #rightBox h3 {
+        line-height: 50px;
+        background-color: yellow;
+        width: 100px;
+        text-align: center;
+    }
+    </style>
+    <script src="./jq3.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			function page(dataType, tarPage){
+				$.ajax({
+					type:"GET",
+					url:"zhaopin.php",
+					data:{
+						type:dataType,
+						page:tarPage
+					},
+					async:true,
+					success:function(data){
+						console.log(data);
+						data = JSON.parse(data);
+						if(dataType === "world"){
+							$("#h3").value("社会招聘");
+						}
+						data.list.each(function(index, item){
+//							$("#info").append();
+						});
+					}
+				});
+			}
+			var curPage = 0;
+			page("world", curPage);
+			
+			$("#leftBox a").on("click", function(){
+				console.log(window.search);
+			});
+		});
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="leftBox">
+            <a href="?world">社会招聘</a>
+            <a href="?school">校园招聘</a>
+        </div>
+        <div id="rightBox">
+            <h3 id="h3"></h3>
+            <div id="info"></div>
+            <div id="pageBox" class="clearfix">
+                <a href="javascript:;" id="prev">prev</a>
+                <div id="pages"></div>
+                <a href="javascript:;" id="next">next</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

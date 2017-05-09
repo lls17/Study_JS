@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="file" id="fileIpt"/>
+		<input type="button" value="上传" id="btn"/>
+		<script>
+			var url = 'php/post_file.php';
+			btn.onclick = function(){
+				
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", url, true);
+				xhr.onload = function(){
+					console.log(xhr.responseText);
+				};
+				
+				//存的是要上传资源的路径
+				console.log(fileIpt.value);
+				//要上传的资源放在files这个属性中，对应的值是一个数组
+				console.log(fileIpt.files);
+				
+				//将文件转为二进制
+				var f = fileIpt.files[0];
+				var fd = new FormData();
+				fd.append("file", f);
+				
+				//发送获取的资源
+//				xhr.send("file="+fileIpt.value);
+				xhr.send(fd);
+			};
+		</script>
+	</body>
+</html>
