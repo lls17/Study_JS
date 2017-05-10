@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.red {
+				color: red;
+			}
+			.fontSize{
+				font-size: 50px;
+			}
+		</style>
+		<script src="./vue.js"></script>
+		<script>
+			function fn(){
+				alert(1)
+			}
+		</script>
+	</head>
+
+	<body>
+		<!-- <input type="button" onclick="fn()" /> -->
+		<div id="box">
+			<input type="button" value="测试v-on" @click="clickHandle2" />
+			<input type="button" value="测试v-on" @click="clickHandle(123,$event)" />
+			<input type="text" @keyup.enter="addTodo" />
+		</div>
+		<script>
+
+			/*
+				参考：http://cn.vuejs.org/v2/guide/events.html
+
+				v-on:   简写为  @
+
+				绑定事件处理程序  事件处理程序统一的写在选项项的methods中
+
+				事件修饰符
+					利用修饰符，methods 只有纯粹的数据逻辑，而不是去处理 DOM 事件细节
+
+					@click.stop
+
+					.stop 阻止冒泡修饰符
+
+				在绑定事件处理程序的时候
+					@click="handle"
+					@click="handle($event)"
+
+			*/
+
+			var vm = new Vue({
+				el:"#box",
+				data:{
+					isChecked:false
+				},
+				methods:{
+					clickHandle(abc,$event){
+						alert(abc);
+						alert($event);
+					},
+					clickHandle2(ev){
+						alert(ev)
+					},
+					addTodo(ev){
+						console.log( ev.keyCode );
+						/*if( ev.keyCode === 13 ){  //处理事件的一些细节
+							alert(1)
+						}*/
+
+						alert(1)
+						
+					}
+				}
+			});
+
+
+
+		</script>
+	</body>
+</html>

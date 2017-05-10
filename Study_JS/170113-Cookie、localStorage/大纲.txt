@@ -1,0 +1,37 @@
+
+
+document.cookie
+	可读可写
+	存cookie：document.cookie = "key=value";
+	取cookie：document.cookie
+
+	1. cookie是跟域名有关系的，不同域名不能共享cookie
+
+	2. 当关闭浏览器的时候，cookie会自动清除，要保存cookie不清除，要设置过期时间
+
+	3. cookie大小有限制，浏览器不同设置的大小不同
+
+
+expires设置过期时间
+toUTCString()
+
+ie7以上支持
+	标准浏览器
+	localStorage
+	设置：
+		localStorage.setItem(key,value);
+	获取：
+
+		localStorage.getItem(key);
+	删除：
+		localStorage.removeItem(key);
+
+		localStorage.clear();清除所有localStorage
+
+storage事件
+
+
+
+
+
+

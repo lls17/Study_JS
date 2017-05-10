@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+
+	</head>
+
+	<body>
+		<div class="a b active"></div>
+		<div class="c d active"></div>
+		<div class="active"></div>
+		<div class="abc"></div>
+		<script>
+			//获取页面中class为active的元素
+			function indexOf(arr,searchStr){
+
+				if( Array.prototype.indexOf ){
+					return arr.indexOf(searchStr);
+				}
+
+				for( var i = 0; i < arr.length; i++ ){
+					if(arr[i] === searchStr){
+						return i;
+					}	
+				}
+				return -1;
+			}
+
+			var allActive = null;
+
+			if(document.getElementsByClassName){
+				//可以使用这个方法
+				allActive = document.getElementsByClassName("active");
+			}else{
+				//自己封装
+
+				//获取到页面中所有的元素
+				var allElement = document.getElementsByTagName("*");
+
+				//遍历所有的元素，这个元素是否有指定的class
+				var elements = [];
+				for( var i = 0; i < allElement.length; i++ ){
+					//allElement[i].className  // "a b active"
+					var classNameArr = allElement[i].className.split(" ");
+
+					if(indexOf(classNameArr,"active") !== -1){
+						elements.push(allElement[i]);
+					}
+				}
+
+				allActive = elements;
+			}
+
+			console.log( allActive.length );
+
+		</script>
+	</body>
+</html>

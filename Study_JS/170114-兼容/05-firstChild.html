@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				firstChild
+					返回元素的第一个子节点
+					在高版本浏览器中第一个子节点为空白文本节点  #text
+					在ie6，7,8下，获取的是第一个元素节点
+			*/
+		</script>
+	</head>
+
+	<body>
+		<ul id="list">
+			abc
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<script>
+		//	console.log( list.firstElementChild );  //ie9以上（包含ie9）
+			//console.log( list.firstChild );  //在高版本
+
+			console.dir(list.childNodes)  //标准
+
+			console.log( list.children );//非标准
+
+			
+
+		</script>
+	</body>
+</html>

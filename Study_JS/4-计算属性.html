@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./vue.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			<p>{{message.split("").reverse().join("")}}</p>
+			<input v-model="c_mes" />
+		</div>
+		<script>
+
+			/*
+				在模板中不要放入过多的逻辑处理
+				在模板中放入太多的逻辑会让模板过重且难以维护
+				
+				计算属性中
+					计算后的值缓存起来，多次使用都用的是第一次计算后的值
+					在计算属性函数中，依赖的数据发生了变化，会重新计算，然后把值缓存起来
+
+				{
+					...
+					computed:{
+						计算属性:function (){   //getter
+								
+						},
+						计算属性:{
+							get(){
+								return 值
+							},
+							set(){
+	
+							}
+						}
+					}
+				}
+			*/
+
+			new Vue({
+				el:"#box",
+				data:{
+					message:"hello"
+				},
+				computed:{
+					"c_mes":{
+						get(){
+							return this.message + "hello,vue"
+						},
+						set(newValue){
+							console.log( newValue);
+
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

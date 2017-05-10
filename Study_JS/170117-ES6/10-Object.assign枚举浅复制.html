@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				Object.assign(target,obj1,obj2)
+					将source对象的可枚举属性赋值到target对象上。
+					注意：如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+
+					只有浅复制，不能深度复制
+			*/
+
+			var obj = {a:1}
+
+			var obj2 = {b:2};
+			var obj3 = {c:[1,2,3,4,5]};
+
+			Object.assign(obj,obj2,obj3);
+			obj.c.push("miaovketang");
+
+			console.log( obj ); //{a: 1, b: 2, c: Array[6]}
+			console.log( obj3 ); //{c: Array[6]}  浅复制
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

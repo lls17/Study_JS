@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				正常模式
+				严格模式
+			*/
+			"use strict";
+
+			//正常模式  
+//			function fn(a,b,c){
+//				a = 10000;
+//				console.log( arguments );	 //[10000, 2, 3]
+//			}
+//			fn(1,2,3);
+
+			//严格模式
+			function fn(a,b,c){
+				a = 10000;
+				console.log( arguments );	//arguments不再追踪参数的变化  [1, 2, 3]
+				var arr = [a,b,c];
+				a = 1000;
+				arr = [a,b,c]
+			}
+			fn(1,2,3);
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<script>
+			/*
+				Object.getPrototypeOf(object)
+					用来获取一个对象的prototype对象
+					
+				Object.setPrototypeOf(obj, { })
+				          给obj设置prototype对象
+			*/
+
+			var obj = {a:1}
+//			console.log( Object.getPrototypeOf(obj) === Object.prototype );  //true
+//			console.log( Object.is(Object.getPrototypeOf(obj), Object.prototype)); //true
+
+			//给obj设置prototype对象
+//			Object.setPrototypeOf(obj,{say:function (){
+//					
+//			}})
+//			console.log( Object.prototype );
+			
+			function Person(){
+				
+			}
+			Person.prototype.say = function (){
+					
+			}
+
+//			Person.prototype = {}
+			var p = new Person();
+			console.log( Object.getPrototypeOf(p) );
+			Object.setPrototypeOf(p,{speaK:function (){
+					
+			}});
+//			Object.setPrototypeOf(p,Object.assign(Object.getPrototypeOf(p),{speaK:function (){
+//					
+//			}}));
+			console.log( Object.getPrototypeOf(p) );
+			
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

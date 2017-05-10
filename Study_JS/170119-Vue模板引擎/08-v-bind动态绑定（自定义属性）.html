@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./vue.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			<p v-bind:data-ms="mes">hello,vue!{{mes}}</p>
+		</div>
+		<script>
+
+		//标签上可以放自定义属性
+		//v-bind 动态的绑定数据
+
+		//响应的数据绑定  当数据发生变化的时候，视图会自动更新
+			var vm = new Vue({
+				el:"#box",
+				data:{
+					mes:"我是自定义属性的值"
+				}
+			});
+			//vue会把data中的数据，放在根实例上
+			console.log( vm );
+
+			setTimeout(function (){
+				vm.mes = "我被改变了"	
+			},1000)
+
+		</script>
+	</body>
+</html>

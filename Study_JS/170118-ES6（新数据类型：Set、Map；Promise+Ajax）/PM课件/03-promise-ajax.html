@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jq3.js"></script>
+		<script src="./ajax.js"></script>
+		<script>
+			/*
+				new Promise
+					ES6的Promise对象是一个构造函数，用来生成Promise实例。下面是Promise对象的基本用法。
+所谓Promise对象，就是代表了未来某个将要发生的事件（通常是一个异步操作）。它的好处在于，有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数
+
+					三种状态：
+						Pending（进行中）、
+						Resolved（已完成，又称Fulfilled）
+						Rejected（已失败）
+			*/
+
+			//先包装
+
+			function ajax2(data){
+				return new Promise(function (resolve,reject){
+					ajax({
+						url:data.url,
+						success(data){
+							resolve(data)
+						},
+						error(data,a){
+							console.log( data,a );
+							reject({status:data,statusText:a})
+						}
+					});
+				})
+			}
+
+			/*ajax2({url:'http://localhost/2017-01-18/php/user.php'})
+			.then(function (data){
+				console.log( data );
+				//重新创造一个promise实例
+				return ajax2({url:'http://localhost/2017-01-18/php/age1111.php'})	
+			})
+			.then(function (data){
+				console.log( data );
+				return ajax2({url:'http://localhost/2017-01-18/php/job.php'})
+			})
+			.then(function (data){
+				console.log( data );
+			})
+			.catch(function (data){
+				console.log( data );
+			})
+			*/
+
+			$.ajax({
+				url:"http://localhost/2017-01-18/php/user.php"
+			})
+			.then(function (data){
+				console.log( data );
+				return $.ajax({
+							url:"http://localhost/2017-01-18/php/age.php"
+						})
+			})
+			.then(function (data){
+				console.log( data );
+			})
+
+
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

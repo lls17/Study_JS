@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				两种数据结构：
+					数组 []
+					对象 {}
+
+				es6中新添了两种
+					Set  类似数组，但是成员的值都是唯一的，没有重复的值。
+					Map
+			*/
+
+			var arr = [1,2,1,2,1,2];
+
+			var set = new Set();
+			/*
+				set.add() 向Set数据结构中添加成员
+			*/
+			set.add(1);
+			set.add(1);
+			set.add(1);
+			set.add(1);
+
+			console.log( set );  // Set {1}
+
+
+			var set2 = new Set([1,2,3,"1",2,3,4]);
+			console.log(set2); //Set {1, 2, 3, "1", 4}
+			console.log(set2.size); //5
+
+			console.log( typeof set2 ); //object
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

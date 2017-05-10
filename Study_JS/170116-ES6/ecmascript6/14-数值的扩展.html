@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				模块化
+			*/
+
+			/*console.log( isNaN(NaN) );  //全局方法
+			console.log( Number.isNaN(NaN) );
+
+			console.log(parseInt("100px"));
+			console.log(Number.parseInt("100px"));*/
+
+			var arr = [];
+
+			arr.push(12);
+
+			//Number.isFinite()用来检查一个数值是否为有限的（finite）
+
+			console.log( Number.isFinite(5) );
+			console.log( Number.isFinite(+Infinity) );
+			console.log( Number.isFinite(-Infinity) );
+			console.log( Number.isFinite(NaN) );
+			console.log( Number.isFinite("foo") );
+
+			//Number.isInteger()
+			console.log("--------------判断是否为整数--------------");
+
+			console.log(Number.isInteger(123),
+			Number.isInteger(123.123),
+			Number.isInteger(123.000));
+
+			console.log(0.1 + 0.2);
+
+		</script>
+	</head>
+
+	<body>
+		<pre>
+			  hrllo
+		</pre>
+	</body>
+</html>

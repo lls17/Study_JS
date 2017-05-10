@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				let 声明变量
+
+					let 声明的变量只能在所声明的块级作用域中有效
+					let 声明的变量不会提升
+					let 声明的变量不会挂载window上
+					let 声明的变量不能再次被声明（不能使用let重复声明一个变量）
+
+				暂存死区
+					从块的开始到声明这段的区域
+
+				什么是块级作用域
+					一对{}包括的区域称为代码块
+					块级作用域指一个变量或者函数只在该区域才起作用。
+					
+				如何形成块级作用域
+					使用let关键字在代码块中声明的变量，只能在该代码块及子级作用域起作用。
+			*/
+			"use strict"
+
+			for( let i = 0; i < 5; i++ ){
+//				console.log( i );  //0/1/2/3/4
+			}
+//			console.log( i ); // ReferenceError: i is not defined
+
+			/*var arr = [];
+
+			for( var i = 0; i < 5; i++ ){
+				arr.push(function (){
+					alert(i);	
+				})
+			}
+
+			arr[3](); //2 3 5 */
+		</script>
+	</head>
+
+	<body>
+		<ul id="list">
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+		</ul>
+		<script>
+			var allLi = list.getElementsByTagName("li");
+
+			/*for( var i = 0; i < allLi.length; i++ ){
+				fn(i)
+			}
+			function fn(i){
+				allLi[i].onclick = function (){
+					alert(i);
+				};
+			}*/
+			//每次循环的时候都会创建一个新的变量为i
+			for( let i = 0; i < allLi.length; i++ ){
+				allLi[i].onclick = function (){
+					alert(i);
+				};
+			}
+
+
+
+		</script>
+	</body>
+</html>

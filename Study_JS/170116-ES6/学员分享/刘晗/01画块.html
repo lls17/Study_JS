@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			
+			fillStyle：填充颜色
+			strokeStyle：描边颜色
+			
+			颜色值：
+			
+				关键字，十六进制颜色值，rgba
+			
+			fillRect( x,y,width,height )
+			strokeRect( x,y,width,height )
+			
+		-->
+		<canvas id="can" width="600" height="600"></canvas>
+		<script>
+		
+//			01,使用canvas作图,首先获取需要canvas的2d绘图环境;通过canvas元素的getContext("2d")方法
+			var context = document.getElementById("can").getContext("2d");
+			
+//			02,在本例中,只需要使用fillRect方法，该方法接受4个参数，横坐标位置，纵坐标位置，宽度和高度，按照下面的写法可以在0 0 点坐标处画出一个50*50的实心方块，默认填充颜色是黑色的，填充颜色可以通过context.fillStyle = 颜色 进行修改。
+			context.fillRect(0,0,50,50);//实心填充
+			
+//			03,当然除了画实心方块以外,还可以描边,使用下面的方法，默认描边宽度是1像素，默认描边颜色是黑色，描边颜色可以通过context.strokeStyle = 颜色 进行修改。（在此例中没有用到）
+			context.strokeRect(100.5,100.5,50,50);//描边
+			
+//			04,上面的例子中为什么横坐标和纵坐标是0.5?那是因为在canvas进行描边的时候如果坐标点位置是整数值，描边宽度默认是1像素，描边时以坐标点开始往两侧各拓展0.5像素，试图形成一像素宽度的线，但是在实际绘图的时候，并不存在0.5像素的宽度，所以实际上在坐标点两侧会各拓展了1像素，描边宽度就变成了2像素。
+//			而如果，坐标点取0.5像素，往两侧各0.5像素，则在实际绘图的时候刚好绘出1像素的线
+		</script>
+	</body>
+</html>

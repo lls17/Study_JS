@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				对cookie进行增删改查
+
+					使用document.cookie设置cookie，存在于会话（session）阶段，如果把浏览器关闭之后，cookie会自动清空
+
+					如果要让cookie在未来某个时刻清空，给这条cookie设置一个过期时间
+			*/
+
+			//d 统一以天为单位
+
+			function setCookie(key,value,d){
+				var date = new Date();
+
+				date.setDate(date.getDate()+d);
+
+				document.cookie = key+"="+value+"; expires="+date.toUTCString();	
+			}
+
+			function getCookie(key){
+				//先获取cookie
+				var cookieArr = document.cookie.split("; "); //["miaov=123333", "ketang=44444444", "ketang123=666666666"]
+
+				for( var i = 0; i < cookieArr.length; i++ ){
+					var arr = cookieArr[i].split("="); // ["miaov","123333"]
+					if(arr[0] === key){
+						return arr[1];
+					}
+				};
+			}
+
+			function removeCookie(key){
+				setCookie(key,"",-1)	
+			}
+
+
+
+			for( var i = 0; i < 10; i++ ){
+				//removeCookie("i"+i)
+				setCookie("i"+i,"miaov")
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<h1>今天天气很好</h1>
+		<ul>
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+		</ul>
+	</body>
+</html>

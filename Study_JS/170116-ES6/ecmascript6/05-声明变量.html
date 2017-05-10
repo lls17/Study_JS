@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				let 声明变量
+
+					let 声明的变量只能在所声明的块级作用域中有效
+					let 声明的变量不会提升
+					let 声明的变量不会挂载window上
+					let 声明的变量不能再次被声明（不能使用let重复声明一个变量）
+
+				暂存死区
+					从块的开始到声明这段的区域
+
+			*/
+			"use strict"
+
+			//块级作用域
+/*			{
+				let abc = 10;
+				{
+					let abc = 20;
+					console.log( abc );  //20
+				}
+				console.log( abc );//10
+			}
+			console.log( abc );
+*/
+/*
+			var fn = 10;
+			let fn = 20;
+			console.log( fn ); //Error 重复命名了
+*/
+/*
+			let fn = 20;
+			var fn = 10;
+			console.log( fn );  //Error 重复命名了
+*/
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

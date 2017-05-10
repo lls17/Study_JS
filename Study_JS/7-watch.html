@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./vue.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			<input v-model="message[0].a" />
+		</div>
+		<script>
+
+			
+			var vm = new Vue({
+				el:"#box",
+				data:{
+					message:[{a:1}],
+					obj:{b:10}
+				},
+				watch:{
+					/*"message[0].a":function (){
+						console.log(123);	
+					}*/
+					"obj.b":function (){
+						console.log('监控obj.b');	
+					},
+					//深度监控
+					message:{
+						handler:function (){
+							console.log("我发生了变化");	
+						},
+						deep:true
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

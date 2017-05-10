@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				正常模式
+				严格模式
+			*/
+			"use strict"
+
+			//正常模式  
+
+			/*function fn(){
+				console.log( this );
+			}
+
+			//fn.call({});
+			fn.call(null);*/
+
+			//严格模式
+			function fn(){
+				console.log( this ); 
+			}
+
+//			fn.call({}); //{ }
+//			fn.call(undefined); //undefined
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

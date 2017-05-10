@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jquery-3.1.1.js"></script>
+		<script src="./template-native.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<h1>学员信息</h1>
+		<input id="addInfo" />
+
+		<ul id="list">
+			<!-- <li>leo <input type="button" value="删除"></li>
+			<li>leo <input type="button" value="删除"></li> -->
+		
+			<script type="text/html" id="listTemp">
+				<%for(var i = 0; i < list.length; i++){%>
+					<li data-id="<%= list[i].id %>"> <%= list[i].title %> <input type="button" value="删除"></li>
+				<%}%>
+			</script>
+		</ul>
+		<script>
+			//数据
+			var data = [
+					{
+						title:"leo",
+						id:0
+					},
+					{
+						title:"momo",
+						id:1
+					}
+				];
+
+			//动态生成html结构，把数据渲染在页面中
+			//字符串拼接
+			/*var str = '';
+			data.forEach(function (item){
+				str += '<li>'+item.title+'<input type="button" value="删除"></li>';	
+			});
+			$("#list").html(str);	*/
+
+			//使用模板引擎
+
+			//要把数据和模板结合在一起  第二个参数为对象，在模板中直接用对象中的属性
+
+			function render(){
+				var html = template("listTemp",{list:data});
+				$("#list").html(html);	
+			}
+			render();
+
+			
+
+			//用户进行交互
+
+			$("#list").on("click","input",function (){
+				//删除或隐藏DOM结构 同时删除数据
+				//	删除数据，重新渲染
+
+				//改变数据
+
+				var id = $(this).parent().attr("data-id");
+
+				data = data.filter( (item) => item.id != id );
+
+				//更新视图
+
+				render();
+
+			});
+
+			$("#addInfo").on("keyup",function (ev){
+				if( ev.keyCode !== 13 ) return;
+				//产生一条数据
+				data.push({
+					title:$(this).val(),
+					id:Math.random()
+				});
+
+				//更新视图
+				render();
+
+			})
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				localStorage 本地存储
+					浏览器可以对一个域下存5M大小的数据
+
+				浏览器值支持localStorage本地存储的，都提供一个localStorage对象
+
+				设置：
+					localStorage.setItem(key,value);
+
+				获取：
+
+					localStorage.getItem(key);
+
+				删除：
+					localStorage.removeItem(key);
+			*/
+
+			console.log( localStorage );
+
+			if(window.localStorage){
+				console.log("支持");
+
+				//localStorage.setItem("miaov",'{"a":1}');
+				localStorage.removeItem("miaov");
+				console.log( localStorage.getItem("miaov") );  // null
+				console.log(JSON.parse(localStorage.getItem("miaov")));
+
+			}else{
+				console.log( "不支持" );
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<h1>今天天气很好</h1>
+		<ul>
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+		</ul>
+	</body>
+</html>

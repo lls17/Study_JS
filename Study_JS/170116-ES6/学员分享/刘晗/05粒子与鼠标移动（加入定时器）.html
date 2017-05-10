@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			canvas{
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script>
+			var c = document.getElementById("canvas").getContext("2d");
+			var parW = 1;
+			var parPos = [];
+			var oriPos = [];
+			
+			var x = 200;
+			var y = 200;
+			c.fillStyle = "#000";
+			function drawDot(){
+				for (var i = 0.5; i < c.canvas.height; i+=7) {
+					for (var j = 0.5; j < c.canvas.width; j+=7	) {
+						c.fillRect( j+parW/2,i+parW/2,parW,parW );
+						parPos.push( {
+							x:j+parW/2,
+							y:i+parW/2,
+						})
+						oriPos.push( {
+							x:j+parW/2,
+							y:i+parW/2,
+						})
+					}
+				}
+			}
+			drawDot();
+			document.onmousemove = function(e){
+				x = e.clientX;
+				y = e.clientY;
+			}
+//			为了达到持续推动粒子的效果,在外部开启一个定时器，在定时器中重复执行让粒子根据鼠标进行运动的函数
+			setInterval(function(){
+				for (var i = 0; i < parPos.length; i++) {
+					var dis = getDis( parPos[i].x-x,parPos[i].y-y )
+					if( dis<=100 ){
+//			！！！！！			在这里把90改成了(dis-5)目的是鼠标和粒子距离越近,变化越大
+						parPos[i].x = parPos[i].x + (parPos[i].x - x)/(dis-5);
+						parPos[i].y = parPos[i].y + (parPos[i].y - y)/(dis-5);
+					}
+				}
+				c.clearRect(0,0,400,400);
+				for (var j = 0; j < parPos.length; j++) {
+					c.fillRect( parPos[j].x+parW/2,parPos[j].y+parW/2,parW,parW );
+				}
+			},50)
+			
+			function getDis(x,y){//勾股定理
+				return Math.sqrt( x*x+y*y )
+			}
+		</script>
+	</body>
+</html>

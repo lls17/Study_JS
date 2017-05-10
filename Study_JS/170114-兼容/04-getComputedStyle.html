@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		<script>
+			/*	
+				//高版本使用
+				getComputedStyle
+					获取计算后的样式值
+
+					全局函数
+						参数：
+							元素
+						返回值
+							指定元素所有的计算后的样式
+
+				低版本 
+					element.currentStyle  是一个对象
+			*/
+		</script>
+	</head>
+
+	<body>
+		<!-- <div id="demo" style="width:200px;">123</div> -->
+		<div id="demo">123</div>
+		<script>
+			//获取div的width
+
+			//console.dir( demo.style );
+
+			//alert(demo.style.width);  //只能获取元素行间设置的样式
+
+			//demo.style.width = "300px";  //设置在行间中
+
+			//console.dir( getComputedStyle(demo).width );  //返回值是一个对象
+
+
+			//console.dir(demo.currentStyle.width);
+
+			console.log(getStyle(demo,"height"));;
+
+			function getStyle(element,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(element)[attr];
+				}else if(element.currentStyle){
+					return element.currentStyle[attr];
+				}else{
+					return element.style[attr];
+				}
+			}
+
+		</script>
+	</body>
+</html>

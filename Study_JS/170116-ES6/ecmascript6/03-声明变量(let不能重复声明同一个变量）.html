@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				let 声明变量
+
+					let 声明的变量只能在所声明的块级作用域中有效
+					let 声明的变量不会提升
+					let 声明的变量不会挂载window上
+					let 声明的变量不能再次被声明（不能使用let重复声明一个变量）
+			*/
+			"use strict"
+//			console.log(  abc );
+			//console.log(  obj1 );
+//			var abc = 10;
+			let obj1 = {};
+			obj1 = 123;
+
+			console.log(obj1 );
+			let obj1 = "a";
+			console.log(obj1 ); //error:  Identifier 'obj1' has already been declared
+
+			//console.log( window );
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

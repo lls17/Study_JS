@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #demo {
+            width:800px;
+            height:300px;
+        }
+    </style>
+    <script src="echarts.js"></script>
+</head>
+<body>
+    <div id="demo"></div>
+    <script>
+        var chart =  echarts.init(document.getElementById("demo"));
+
+        var option = {
+            backgroundColor: new echarts.graphic.RadialGradient(0.5, 0.5, 0.5, [ {
+                offset: 0,
+                color: '#fff'
+            },{
+                offset: 1,
+                color: '#cdd0d5'
+            }]),
+            title: {
+                text: 'ECharts bar'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'line', //line bar scatter  pie
+                data: [5, 20, 30, 10, 10, 20],
+                itemStyle: {
+                    normal: {
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(120, 36, 50, 0.5)',
+                        shadowOffsetY: 5,
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0, color: 'red' // 0% 处的颜色
+                        }, {
+                            offset: 1, color: 'blue' // 100% 处的颜色
+                        }], false)
+                    }
+                }
+            }]
+        };
+        chart.setOption(option);
+    </script>
+</body>
+</html>

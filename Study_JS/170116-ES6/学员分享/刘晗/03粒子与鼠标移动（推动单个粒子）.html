@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			canvas{
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script>
+//		在推动一群粒子之前,先推动一个粒子，
+//			推动一个粒子的思路大致是:通过勾股定理获得鼠标到粒子的距离,当距离小于一定值之后,计算粒子和鼠标横坐标和纵坐标的差值,取这个差值的90分之一(这个数值可以根据需要调整)，然后修改粒子的坐标，达到推动推动粒子的作用。
+			var c = document.getElementById("canvas").getContext("2d");
+			var parW = 8;
+//			模拟一个粒子的初始位置
+			var pos={
+				x:200,
+				y:200
+			}
+			c.fillStyle = "#000";
+			drawDot();
+			
+			function drawDot(){
+//				注意:在canvas中让粒子运动,都是先擦除画布,然后再重新画图,达到视觉上的粒子移动效果，擦除画布需要使用c.clearRect(x坐标,y坐标,宽度,高度)
+				c.clearRect(0,0,400,400)//擦除
+				c.fillRect( pos.x,pos.y,parW,parW );//重新绘制
+			}
+//			当鼠标移动的时候，计算位置
+			document.onmousemove = function(e){
+				if( getDis( e.clientX-pos.x,e.clientY-pos.y  )<=100 ){
+					console.log( 1 );
+					pos.x = pos.x + (pos.x - e.clientX)/90;
+					pos.y = pos.y + (pos.y - e.clientY)/90;
+					drawDot();
+				}
+			}
+//			勾股定理
+			function getDis(x,y){
+				return Math.sqrt( x*x+y*y )
+			}
+			
+		</script>
+	</body>
+</html>

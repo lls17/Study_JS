@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				for of
+					遍历的是键值
+					不能遍历没有遍历器(iterator)的对象
+
+				for in
+					遍历的是键
+				遍历器：
+					它是一种接口，为各种不同的数据结构提供统一的访问机制。
+					任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
+				Symbol.iterator
+			*/
+
+			var arr = ["miaov",undefined,"ketang",];
+
+			var a = arr[Symbol.iterator]();  //或返回一个指针对象  ArrayIterator {}
+			console.log( a.next() );  // {value: "miaov", done: false}
+			console.log( a.next() );  // {value: undefined, done: false}
+			console.log( a.next() );  // {value: "ketang", done: false}
+
+			//遍历器
+			//for of会自动的调用Array.prototype[Symbol.iterator]方法，返回一个对象后，依次调用next方法
+//			for( let value of arr ){
+//				console.log( value );
+//			}
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

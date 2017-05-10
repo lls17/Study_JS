@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jq3.js"></script>
+		<script src="./ajax.js"></script>
+		<script>
+			/*
+				回调函数的方式
+					callback hell  回调地狱
+			*/
+			ajax({
+				url:"http://192.168.2.138/2017-01-18/php/user.php",
+				success(data){
+					//成功
+					console.log( data );
+					ajax({
+						url:"http://192.168.2.138/2017-01-18/php/age.php",
+						success(data){
+							console.log(data);
+
+							ajax({
+								url:"http://192.168.2.138/2017-01-18/php/job.php",
+								success(data){
+									console.log(data);
+								},
+								error(data){
+									console.log( data );
+								}
+							});
+						},
+						error(data){
+							console.log( data );
+						}
+					});
+				},
+				error(data){
+					console.log( data );
+				}
+			});
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

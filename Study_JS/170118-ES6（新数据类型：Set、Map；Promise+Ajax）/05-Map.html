@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				ES6提供了map数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。
+	Map也可以接收一个数组作为参数。该数组的成员是一个个表示键值对的数组。
+
+				map.get(key)
+					通过key获取value
+				map.set(key,value)
+					为Map的实例添加新键值对
+				map.has(key)
+					查找key值是否存在。
+				map.delete(key)
+					删除对应键值对
+				map.clear()
+					清除所有成员
+
+
+			*/
+			//对象中的key值为字符串
+			var o = {
+				a:10
+			}
+			var obj = {
+				abc:10,
+				[o]:1000
+			}
+
+			console.log( obj );
+
+			var m = new Map();
+
+			m.set(o,"100000");
+
+			console.log( m );
+
+			console.log( m.get(o) );
+
+		</script>
+	</head>
+
+	<body>
+		<ul id="list">
+			<li><input type="checkbox" name="">我的音乐</li>
+			<li><input type="checkbox" name="">我的视频</li>
+		</ul>
+		<hr>
+		<input type="button" id="deleteItem" value="删除选中元素" />
+		<script>
+			
+			var Li = document.getElementsByTagName("li");
+
+			var m = new Map();
+
+			[...Li].forEach((item,index) => {
+				m.set(item,index)
+			})
+
+			console.log( m );
+			console.log( m.get(Li[0]) );
+
+		</script>
+	</body>
+</html>

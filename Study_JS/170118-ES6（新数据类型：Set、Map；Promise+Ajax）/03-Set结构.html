@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				两种数据结构：
+					数组 []
+					对象 {}
+
+				es6中新添了两种
+					Set  类似数组，但是成员的值都是唯一的，没有重复的值。
+					Map
+
+				Set数据结构
+					new Set();  添加成员 add()
+					new Set([1,2,3])
+
+				Set（[array]）
+					ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+					Set是一个构造函数，可以传入一个数组初始化默认值。
+				set.size 
+					Set的实例的成员个数（数组的长度）
+				set.add(value)
+					为Set的实例添加值
+				set.delete(value)
+					删除Set实例的值
+				set.has(value)
+					判断传入的参数是否为set的成员
+				set.clear()
+					清除set中所有成员
+			*/
+			var arr = [1,2,3];
+			var arr2 = [2,3,4,5];
+
+			//把两个数组合并起来，合并为新数组没有重复的项
+
+			var newArr = [...new Set([...arr,...arr2])];
+
+			console.log( newArr );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

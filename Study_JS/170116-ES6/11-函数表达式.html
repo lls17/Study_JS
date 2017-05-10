@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				正常模式
+				严格模式
+			*/
+			"use strict"
+
+			/*var f = function (n){
+				if( n <=1 ) return 1;
+				return 	f(n-1)+n;
+			}
+
+			var func = f;
+			var func1 = f;
+
+			var f = 10;
+
+			console.log( func(3) );*/
+
+			var f = function abc(n){   //函数表达式的函数名字，只能在函数内部使用
+				if( n <=1 ) return 1;
+				return 	abc(n-1)+n;
+			}
+
+			var func = f;
+
+			f = 10;
+
+			console.log( func(3) );
+
+			//console.log( abc );
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

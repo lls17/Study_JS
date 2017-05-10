@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="box">
+			<input type="text" @keyup.enter="addItem" v-model="tempVal"/>
+			<ul id="list">
+				<li v-for="item in list" :data-id="item.id">
+					{{item.cont}}
+					<input type="button" value="删除" @click="delItem(item.id, $event)"/>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var data = [
+				{
+					id:"0",
+					cont:"大头儿子和小头爸爸~"
+				},
+				{
+					id:"1",
+					cont:"铁臂阿童木~"
+				}
+			];
+			new Vue({
+				el:"#box",
+				data:{
+					list:data,
+					tempVal:""
+				},
+				methods:{
+					addItem(){  //方法内部的this指向该Vue实例
+						this.list.push({
+							id:this.list.length,
+							cont:this.tempVal
+						});
+						this.tempVal = "";
+					},
+					delItem(id, ev){
+						this.list = this.list.filter(item => item.id!=id)
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

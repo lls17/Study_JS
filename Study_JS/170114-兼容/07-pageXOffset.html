@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body style="height: 2000px;">
+		<script>
+
+		/*
+			pageXOffset设置或返回当前页面相对于窗口显示区左上角的X位置。
+
+			pageYOffset设置或返回当前页面相对于窗口显示区左上角的Y位置。	
+					
+				
+				兼容：
+					主流浏览器、ie9以及ie9以上
+
+			scrollTop
+				可视区顶部到页面顶部的距离。	
+		
+	
+				兼容：
+					
+			         		chrome : 需要从body上面去获取
+
+				            其他浏览器：从html元素(documentELement)上去获取
+
+
+		*/
+
+			document.onclick = function (){
+				//console.log( window.pageYOffset  );
+
+				/*console.log( document.documentElement.scrollTop );
+				console.log( document.body.scrollTop );  //chrome*/
+
+				console.log( document.documentElement.scrollTop || document.body.scrollTop );
+			};
+
+		</script>
+	</body>
+</html>

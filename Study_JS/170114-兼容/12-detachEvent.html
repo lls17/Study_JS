@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				element.addEventListener(evName,evFn,true|false)
+					给元素绑定事件处理函数
+
+						事件处理函数中的this指向的是触发事件的元素
+
+					高版本使用
+
+				element.attachEvent(on+evName,evFn);
+					//只冒泡
+					事件处理函数中的this指向的是window
+	
+				//解绑事件处理函数
+				element.detachEvent(on+evName,evFn);
+			*/
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="测试事件对象" />
+		<script>
+
+		/**/
+
+
+		/*btn.attachEvent("onclick",function (){
+			alert(1)	
+		});
+		function fn(){
+			alert(2)	
+		}
+		btn.attachEvent("onclick",fn);
+
+		btn.detachEvent("onclick",fn);*/
+
+		function func(){
+			alert(this)	
+		}
+		//匿名函数不能解绑
+		btn.attachEvent("onclick",function (){
+			func.call(btn);	
+		});
+
+		//btn.detachEvent("onclick",fn);
+
+		</script>
+	</body>
+</html>

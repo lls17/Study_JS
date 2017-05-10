@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			canvas{
+				/*background: #000;*/
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script>
+//		接下来开始生成一堆的粒子
+//			01，获取2d绘图环境
+			var c = document.getElementById("canvas").getContext("2d");
+//			02，每个例子大小都是2像素
+			var parW = 2;
+//			03，记录每个粒子的初始位置的粒子
+			var parPos = [];
+			c.fillStyle = "#000";
+//			04，画点点
+			drawDot();
+//			封装一个画点的方法，运行方法之后画出一堆粒子
+			function drawDot(){
+//				使用for套for生成
+				for (var i =0; i < c.canvas.height; i+=5) {
+					for (var j = 0; j < c.canvas.width; j+=5) {
+//						使用c.fillRect方法画出每一个粒子;
+						c.fillRect( j,i,parW,parW );
+//						记录每个粒子的位置，一会儿在这个位置的基础上进行变换，然后在重新生成粒子，造成运动的效果
+						parPos.push( {
+							x:j,
+							y:i,
+						} )
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

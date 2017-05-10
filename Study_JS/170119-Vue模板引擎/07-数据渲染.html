@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<script src="./vue.js"></script>
+	</head>
+
+	<body>
+		<h1>学员信息</h1>
+		<div id="box">
+			<p>{{ 1+2 }}/{{3+5}}</p>
+			<p>{{ false ? "true" : "false" }}</p>
+			<p>{{ abc() }}</p>
+			<p>{{ message }}</p>
+			<p>{{ "miaov" }}</p>
+			<p>{{ [1,2,3,4,5] }}</p>
+			<p>{{ {a:1} }}</p>
+			<p>{{ html }}</p>
+			<p>{{ '<span>{{message}}</span>' }}</p>
+		</div>
+		<script>
+
+			new Vue({
+				el:"#box",
+				data:{
+					message:"hello,vue",
+					html:'<span>123</span>'
+				},
+				methods:{
+					abc(){
+						return 1;
+					}
+				}
+			});
+
+		</script>
+	</body>
+</html>

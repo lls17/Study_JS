@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				ES6允许字面量定义对象时，用方法二（表达式）作为对象的属性名，即把表达式放在方括号内。
+				
+			*/
+			var abc = 10;
+			var o = {a:1}
+			var obj = {
+				a:1,
+				["miaov"+1]:2,
+				[abc]:3,
+				["get"+1]:function (){
+						
+				},
+				[o]:123   //key值都是字符串
+			}
+
+			abc = 20;
+
+			console.log( obj );
+
+			console.log( obj[abc] );
+
+			
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

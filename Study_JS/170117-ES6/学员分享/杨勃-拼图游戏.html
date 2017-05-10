@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				text-align:center;
+			}
+			table{
+				margin:100 auto;
+			}
+			div{
+				width:94px;
+				height:94px;
+				text-align:center;
+				font-size:48;
+				background-color:red;
+				padding-top:20;
+				font-size: 50px;
+				text-align: center;
+				line-height: 94px;
+				display : none ;
+			}
+			input{
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>欢迎玩智能拼图游戏</h1>
+		<button id="start">开始游戏</button>
+		<table id="tab">
+			<tbody>
+				<tr>
+					<td><div>1</div></td>
+					<td><div>2</div></td>
+					<td><div>3</div></td>
+					<!--表格中的div隐藏。后面的div不会占前面div隐藏后的位置，因为有td标签在挡着-->
+				</tr>
+				<tr>
+					<td><div>4</div></td>
+					<td><div>5</div></td>
+					<td><div>6</div></td>
+				</tr>
+				<tr>
+					<td><div>7</div></td>
+					<td><div>8</div></td>
+					<td><div>0</div></td>
+				</tr>
+			</tbody>	
+		</table>
+		<input type="button" id="reStart" value="重新开始" style="display: none;" />
+		<input type="button" id="last" value="上一关" style="display: none;" />
+		<input type="button" id="next" value="下一关" style="display: none;" />
+		<script>
+		document.onmousedown=function(e){
+			e.preventDefault()
+		}
+		//通过传入的n生成n行n列。
+			function html(n){
+				var str="";
+				for (var i = 0; i < n; i++) {
+					str+="<tr>";
+					for (var j = 0; j < n; j++) {
+						str+="<td><div>"+(i*n+j+1)+"</div></td>"
+					}
+					str+="</tr>";
+				}
+				tab.tBodies[0].innerHTML=str;
+			}			
+			var num=3;
+			html(num);//初始三行三列
+			
+			var divs=document.getElementsByTagName("div");
+			var trs=tab.tBodies[0].rows;//通过列数来确定可移动的div
+			var target=divs.length-1;//目标移动块
+			var step=0;//步数
+			var beginTime=null;//开始时间
+			//点击开始按钮
+			start.onclick=function(){
+				this.style.display="none";
+				init();
+				reStart.style.display="block";
+				last.style.display="block";
+				next.style.display="block";
+			};
+			//初始化
+			function init(){
+				var arr=[];
+				for (var i = 1; i < divs.length; i++) {
+					arr.push(i)
+				}
+				var newArr=arr.sort(function(){
+					return Math.random()-0.5
+				})
+				for (var i = 0; i < newArr.length; i++) {
+					divs[i].style.display="block";
+					divs[i].innerHTML=newArr[i];
+					if(i==newArr.length-1){//顺便将最后一个div隐藏。
+						divs[i+1].style.display="none"
+					}
+				}
+				beginTime=new Date();
+				target=divs.length-1;
+				step=0;
+				if(isSuccess()){
+					init()
+				}
+			}
+			//判断是否拼图成功
+			function isSuccess(){
+				for (var i = 0; i < divs.length-1; i++) {
+					if(divs[i].innerHTML!=i+1){
+						return false;
+					}
+				}
+				return true;//到了这一步表示所有的div内容已经拼好
+			}
+			
+			//移动div函数
+			function moveDiv(now){
+				if(Math.abs(now-target)==1||Math.abs(now-target)==trs.length){
+					console.log(1)
+					step++;
+					divs[now].style.display="none";
+					divs[target].style.display="block";
+					divs[target].innerHTML=divs[now].innerHTML;
+					target=now;
+				}
+				if(isSuccess()){
+					var endTime=new Date();					
+					time= (endTime.getTime()-beginTime.getTime())/1000;
+					alert("成功,你共花费了"+time+"秒，用了"+step+"步")
+				}
+			}
+			
+			//点击div事件
+			for (var i = 0; i < divs.length; i++) {
+				divs[i].index=i;
+				divs[i].onclick=function(){
+					moveDiv(this.index)
+				}
+			}
+			
+			reStart.onclick=init;//重新开始
+			next.onclick=function(){
+				num++;
+				html(num);
+				divs=document.getElementsByTagName("div");
+				trs=tab.tBodies[0].rows;//通过列数来确定可移动的div
+				target=divs.length-1;//目标移动块
+				beginTime=null;
+				init();
+				for (var i = 0; i < divs.length; i++) {
+					divs[i].index=i;
+					divs[i].onclick=function(){
+						moveDiv(this.index)
+					}
+				}
+			}
+			last.onclick=function(){
+				if(num==3){
+					return
+				}
+				num--;
+				html(num);
+				divs=document.getElementsByTagName("div");
+				trs=tab.tBodies[0].rows;//通过列数来确定可移动的div
+				target=divs.length-1;//目标移动块
+				beginTime=null;
+				init();
+				for (var i = 0; i < divs.length; i++) {
+					divs[i].index=i;
+					divs[i].onclick=function(){
+						moveDiv(this.index)
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

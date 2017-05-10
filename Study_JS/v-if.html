@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./vue.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			<input type="checkbox" v-model="isChecked"  />
+			<!-- <input type="text"  v-model="val" /> -->
+			<p v-show="isChecked">{{val}}+1111</p>	
+			<div v-show="isChecked">
+				
+				<p>{{val}}</p>
+				<p>{{val}}</p>
+				<p>{{val}}</p>
+				<p>{{val}}</p>
+				<p>{{val}}</p>
+				<p>{{val}}</p>
+				
+			</div>
+
+			<!-- <p>hello,vue!</p>
+			<div @click="changeNum">
+				{{ abc }}
+			</div> -->
+		</div>
+		<script>
+
+			/*
+				v-if ="表达式"
+				v-show = "表达式"
+				根据表达式的值是true或false，来决定使用这个指令的元素显示隐藏
+
+				v-if  移入和添加使用指令的节点
+				v-show 切换css的display的block和none
+	
+				频繁的切换元素的显示隐藏。建议用v-show
+				在触发某个事件后要先是某一块内容，之后就不再频繁切换了，建议用v-if
+
+
+				template自定义标签 
+					v-show不支持
+
+			*/
+
+			new Vue({
+				el:"#box",
+				data:{
+					isChecked:true,
+					abc:10,
+					val:1000
+				},
+				methods:{
+					changeNum(){
+						this.abc = 1;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

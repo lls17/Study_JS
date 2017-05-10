@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				Object.defineProperty(obj,prop,descriptor)
+					作用：一个对象上定义一个新属性，或者修改一个已经存在的属性
+					参数：
+						obj 需要定义属性的对象
+						prop 需定义或修改的属性的名字
+						descriptor 将被定义或修改的属性的描述符
+							{
+								value  该属性对应的值
+								writable 是否可以被重赋值  默认为false 不能赋值
+								enumerable 是否可以被枚举  默认为false 不能被枚举
+								configurable 是否允许再次描述，是否允许删除 默认false 不允许再次对属性描述和删除
+							}
+				描述属性的时候两种方式：数据描述和存取描述
+
+							{
+								get(){}
+								set(){}
+								enumerable
+								configurable
+							}
+			*/
+
+			var obj = {
+				defaults:"我是一个值"
+			};
+
+			var value = 10000000
+
+			Object.defineProperty(obj,"miaov",{
+				enumerable:true,
+				configurable:false,
+				get:function (){
+					console.log("我取值被触发了");
+					return value;
+				},
+				set:function (newValue){
+					console.log("我设置的时候被触发了");
+					console.log( newValue );
+
+					//this.miaov = newValue;  只要设置值都会触发set函数
+					if( typeof newValue === "number" ){
+						value = newValue;
+					}
+					
+				}
+			});
+
+			obj.miaov = 2;
+
+			console.log( obj.miaov );
+
+
+		</script>
+	</head>
+
+	<body>
+		
+		</script>
+	</body>
+</html>

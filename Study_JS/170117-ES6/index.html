@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		//描述属性的两种方式：数据描述 和 存取描述
+		
+		//控制属性的特性 —— 数据描述
+			var boy = {"name":"W"};
+			Object.defineProperties(boy, "sex", {
+				value : "boy",
+				writable : false, //false不能被改写
+				enumerable : false, //false不能被枚举
+				configurable : false //false不允许再次描述，且不能删除
+			});
+			
+			console.log(boy);
+			
+		//属性——存取描述 get/set 注意与value（数据描述）不能共存
+			var girl = {};
+			Object.defineProperties(girl, "name", {
+//				value : "LLS"  通过存取描述操作属性，就不能再用数据描述方式了。
+				enumerable : ture,
+				get:function(){
+					return value;
+				},
+				set:function(newVal){
+					console.log("I'm setted");
+					value = newVal;
+				}
+			});
+		</script>
+	</body>
+</html>

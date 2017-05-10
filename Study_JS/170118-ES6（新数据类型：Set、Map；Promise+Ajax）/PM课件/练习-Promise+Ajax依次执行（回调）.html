@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jq3.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script>
+			// 返回Promise对象
+			function ajaxPromise(data){
+				return new Promise(function(resolve, reject){
+					$.ajax({
+						type:"get",
+						url:data.url,
+						async:true,
+						success(data){
+							resolve(data);
+						},
+						error(data, status){
+							reject({data, status});
+						}
+					});
+				});
+			}
+			
+			var p = ajaxPromise({url:"php/user.php"});
+			p.then(function(data){
+				console.log("成功！" + data);
+				//重新创造一个promise实例, 这样就可以依次调用（回调），继续调用下一个then方法
+				return ajaxPromise({url:"php/age.php"});
+			}).then(function(data){
+				console.log("成功！" + data);
+				return ajaxPromise({url:"php/job.php"});
+			}).then(function(data){
+				console.log("成功！" + data);
+			}).catch(function(data){
+				console.log("失败！！" + data);
+			});
+			
+		</script>
+	</body>
+</html>

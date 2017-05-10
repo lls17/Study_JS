@@ -1,0 +1,7 @@
+var tools = (function (){
+	return {
+		$(){
+			
+		}
+	}	
+})()

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				rest参数
+					用于获取函数的参数 或多余的参数 放在数组中
+
+				注意：rest后边不能再有其他参数，否则会报错
+
+				函数中一旦使用了es6的语法，默认都是严格模式；使用"use strict"开启严格模式会报错
+
+				可以替代arguments
+			*/
+
+			function fn(a,...rest){
+				//"use strict"
+				console.log( a,rest );	 //数组 1 [2, 3, 4, 5]
+				rest.push(100000000000)
+				console.log( rest );   //[2, 3, 4, 5, 100000000000]
+			}
+
+			fn(1,2,3,4,5)
+//			fn(1)
+//			fn(1,2,3)
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

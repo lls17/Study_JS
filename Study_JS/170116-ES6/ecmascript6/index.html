@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>	
+			//默认设置cookie为Session
+//			document.cookie = "name=W";
+			var arr = new Array("3");   //参数为字符时，指数组内容
+			console.log(arr);  //["3"] 
+			
+			var arr2 = new Array(3);  //参数为数字时，只数组长度
+			console.log(arr2);  //[] 长度为3的空数组
+			
+			var arr3 = new Array("3","a");
+			console.log(arr3);  //["3", "a"]
+			
+			var arr4 = Array.of(3,4);
+			console.log(arr4); //[3, 4]
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.red {
+				color: red;
+			}
+		</style>
+		<script src="./vue.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			<input type="checkbox" v-bind:checked="isChecked" v-on:change="changeHandle" />
+			<input type="checkbox" v-model="isChecked2" v-on:change="changeHandle2" />
+			<p>hello,vue!</p>
+		</div>
+		<script>
+
+			var vm = new Vue({
+				el:"#box",
+				data:{
+					isChecked:false,
+					isChecked2:true
+				},
+				methods:{
+					changeHandle(){
+						//改变的时候手动更新
+						this.isChecked = !this.isChecked;
+					},
+					changeHandle2(){
+						console.log(this.isChecked2 );
+					}
+				}
+			});
+
+
+
+		</script>
+	</body>
+</html>

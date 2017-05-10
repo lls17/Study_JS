@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+
+	</head>
+
+	<body>
+		<div class="a b active"></div>
+		<div class="c d active"></div>
+		<div class="active"></div>
+		<div class="abc"></div>
+		<ul class="list">
+			<li class="active"></li>
+		</ul>
+		<script>
+			//获取页面中class为active的元素
+
+			function indexOf(arr,searchStr){
+
+				if( Array.prototype.indexOf ){
+					return arr.indexOf(searchStr);
+				}
+
+				for( var i = 0; i < arr.length; i++ ){
+					if(arr[i] === searchStr){
+						return i;
+					}	
+				}
+				return -1;
+			}
+			/*
+				获取指定的class元素，可以从document下获取，也可以从某一个元素下获取
+				所有在封装的函数中，context代表的是某一个元素，不是必填的；如果不填，就默认从document下获取；填写了，就从这个元素下获取
+			*/
+			function getElementsByClassName(className,context){
+				var allActive = null;
+				context = context || document;
+
+				if(document.getElementsByClassName){
+					//可以使用这个方法
+					allActive = context.getElementsByClassName(className);
+				}else{
+					//自己封装
+
+					//获取到页面中所有的元素
+					var allElement = context.getElementsByTagName("*");
+
+					//遍历所有的元素，这个元素是否有指定的class
+					var elements = [];
+					for( var i = 0; i < allElement.length; i++ ){
+						//allElement[i].className  // "a b active"
+						var classNameArr = allElement[i].className.split(" ");
+
+						if(indexOf(classNameArr,className) !== -1){
+							elements.push(allElement[i]);
+						}
+					}
+
+					allActive = elements;
+				}	
+
+				return allActive;
+			}
+
+			
+			var list = getElementsByClassName("list")[0];
+
+			console.log(getElementsByClassName("active",list)[0].nodeName );
+
+
+
+
+
+		</script>
+	</body>
+</html>

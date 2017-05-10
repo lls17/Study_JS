@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<script src="./vue.js"></script>
+	</head>
+
+	<body>
+		<h1>学员信息</h1>
+		<div id="box">
+			<input id="addInfo"  v-model="tempVal" v-on:keyup="addInfo" />
+			<p>{{tempVal}}</p>
+			<ul id="list">
+				<li v-for="item of list">{{item.title}} <input type="button" value="删除" /></li>
+			</ul>
+		</div>
+		<script>
+
+			//数据
+			var list = [
+				{
+					title:"leo1",
+					id:0
+				},
+				{
+					title:"leo2",
+					id:1
+				},
+				{
+					title:"momo",
+					id:2
+				},
+				{
+					title:"momo2",
+					id:3
+				}
+			]
+			var box = document.getElementById("box");
+			new Vue({
+				el:box,
+				data:{
+					list:list,
+					tempVal:"默认值"
+				},
+				methods:{
+					addInfo:function (ev){
+						if(ev.keyCode === 13){
+							//向数据中添加一条信息
+							//找到Model 
+							//this 在vue中事件处理程序中this指向的是根实例
+
+							console.log( this.list );
+
+							this.list.push({
+								title:this.tempVal,
+								id:Math.random()
+							});
+						}  
+					}
+				}
+			});
+
+		</script>
+	</body>
+</html>

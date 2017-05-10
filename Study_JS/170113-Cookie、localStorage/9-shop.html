@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				localStorage 本地存储
+					浏览器可以对一个域下存5M大小的数据
+
+				浏览器值支持localStorage本地存储的，都提供一个localStorage对象
+
+				设置：
+					localStorage.setItem(key,value);
+
+				获取：
+
+					localStorage.getItem(key);
+
+				删除：
+					localStorage.removeItem(key);
+
+				localStorage.clear();清除所有localStorage
+			*/
+
+		</script>
+	</head>
+
+	<body>
+		<p id="dataShow"></p>
+		<h1>商品列表</h1>
+		<ul id="list">
+			<li>电脑</li>
+			<li>ipad</li>
+			<li>手机</li>
+			<li>衣服</li>
+		</ul>
+		<hr>
+		<h1>购物车</h1>
+		<ul id="shopCar">
+			<!-- <li>123</li>
+			<li>123</li>
+			<li>123</li> -->
+		</ul>
+		<script>
+		var shops = [];
+
+		var data = localStorage.getItem('shops');
+
+		if( data ){
+			data = JSON.parse(data);
+			for( var i = 0; i < data.length; i++ ){
+				var newLi = document.createElement("li");
+				newLi.innerHTML = data[i];
+				shopCar.appendChild(newLi);
+			}
+
+			shops = data;
+		}
+
+		dataShow.innerHTML = shops;
+
+		list.onclick = function (ev){
+			if( ev.target.nodeName === "LI" ){
+				//向localStorage存值
+				shops.push(ev.target.innerHTML);
+				localStorage.setItem("shops",JSON.stringify(shops));
+
+				var newLi = document.createElement("li");
+				newLi.innerHTML = ev.target.innerHTML;
+				shopCar.appendChild(newLi);
+				
+				dataShow.innerHTML = shops;
+
+			}	
+		};
+
+		//对localStorage进行增删改的时候，会触发storage事件
+
+		//在本页面改变localStorage中的值的时候，不处触发storage事件，别的窗口打开的这个页面会触发storage事件
+
+		window.addEventListener("storage",function (ev){
+			console.log("我竟然触发了");
+			console.log(ev);
+
+			if(ev.key === "shops"){
+				
+				if(ev.newValue.trim()){
+					var data = JSON.parse(ev.newValue);
+					shopCar.innerHTML = '';
+						for( var i = 0; i < data.length; i++ ){
+							var newLi = document.createElement("li");
+							newLi.innerHTML = data[i];
+							shopCar.appendChild(newLi);
+						}
+					//当别的窗口改变了localStorage中的数据，那么当前这窗口，也要重新记录新的数据
+					shops = data;
+					dataShow.innerHTML = shops;
+				}
+				
+			}
+
+		})
+
+		</script>
+	</body>
+</html>

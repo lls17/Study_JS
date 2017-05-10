@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				let 声明变量
+
+					let 声明的变量只能在所声明的块级作用域中有效
+					let 声明的变量不会提升
+					let 声明的变量不会挂载window上
+					let 声明的变量不能再次被声明（不能使用let重复声明一个变量）
+
+				暂存死区
+					从块的开始到声明这段的区域
+
+			*/
+			"use strict"
+
+			var abc = 10;
+
+			if(true){  //块级作用域
+				abc = 20;
+				let abc;  //error
+			}
+
+			console.log( abc );
+
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

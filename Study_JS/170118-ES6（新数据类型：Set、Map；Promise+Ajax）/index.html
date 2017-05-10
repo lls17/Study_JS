@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+//			var set = new Set();
+		//1.set.add(xx); 添加，但是不能添加重复项
+//			set.add(1);
+//			set.add(1);
+//			set.add("1");
+//			set.add(2);
+//			console.log(set);       // {1, "1", 2}
+		//2.set.size; 获得Set长度
+//			console.log(set.size);  // 3
+		//3.set.delete(xx); 删除			
+//			console.log(set.delete(2));  //true
+		//4.set.has(xx); 是否Set包含这项
+//			console.log(set.has(2)); //false
+		//5.set.clear(); 清除Set
+//			console.log(set.clear());  //undefined
+//=============================================================
+//			var set = new Set();
+//			set.add(1);
+//			set.add(2);
+		//6.Set转Array（利用扩展运算）
+//			console.log([...set]);  //[1, 2]
+//=============================================================			
+			var arr = [1,2,3];
+			var arr2 = [2,3,4,5];
+			//合并两个数组，并去除重复项
+			console.log([...arr, ...arr2]); //[1, 2, 3, 2, 3, 4, 5]
+			console.log(new Set([...arr, ...arr2])); //Set {1, 2, 3, 4, 5}
+			console.log([... new Set([...arr, ...arr2])]); //[1, 2, 3, 4, 5]
+		</script>
+	</body>
+</html>

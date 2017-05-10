@@ -1,0 +1,19 @@
+知识点：
+	canvas
+		获取2d绘图环境
+			var context = document.getElementById("canvas").getContext("2d");
+		画矩形（粒子）
+			context.fillRect(0,0,50,50)
+		擦除区域
+			context.clearRect(0,0,50,50)
+			
+	勾股定理	
+		计算粒子和鼠标的距离
+思路：
+	1、画出一个粒子
+	2、生成一堆粒子
+	3、推动一个粒子（计算鼠标位置和粒子位置的关系）
+	4、推动一堆粒子（使用for循环）
+	5、加入定时器，让粒子位置根据鼠标持续改变
+	6、添加让粒子往回走的效果
+		

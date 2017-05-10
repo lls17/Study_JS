@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.red {
+				color: red;
+			}
+			.fontSize{
+				font-size: 50px;
+			}
+		</style>
+		<script src="./vue.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			<input type="checkbox" v-model="isChecked" />
+			<p :class="{red:isChecked}"  class="fontSize">hello,vue! {{isChecked}} </p>
+		</div>
+		<script>
+
+			/*
+				v-bind:class="{class名字:一个表达式}"
+
+				class是否添加到这个元素上，取决于对应的表达式是true还是fasle
+
+				v-bind: 简写为 :
+				v-on:   简写为  @
+			*/
+
+			var vm = new Vue({
+				el:"#box",
+				data:{
+					isChecked:false
+				}
+			});
+
+
+
+		</script>
+	</body>
+</html>

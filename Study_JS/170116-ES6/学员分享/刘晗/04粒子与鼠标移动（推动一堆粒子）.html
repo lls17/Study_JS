@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			canvas{
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script>
+			var c = document.getElementById("canvas").getContext("2d");
+			var parW = 2;
+			var parPos = [];
+			c.fillStyle = "#000";
+			function drawDot(){
+				for (var i =0; i < c.canvas.height; i+=5) {
+					for (var j = 0; j < c.canvas.width; j+=5	) {
+						c.fillRect( j,i,parW,parW );
+						parPos.push( {
+							x:j,
+							y:i,
+						})
+					}
+				}
+			}
+			drawDot();
+//			可以推动一个粒子之后,可以尝试推动一堆粒子，使用for循环
+			document.onmousemove = function(e){
+				for (var i = 0; i < parPos.length; i++) {
+//					检测每一个粒子和鼠标点的距离的差值是否在100像素之内
+					if( getDis( e.clientX-parPos[i].x,e.clientY-parPos[i].y  )<=100 ){
+						parPos[i].x = parPos[i].x + (parPos[i].x - e.clientX)/90;
+						parPos[i].y = parPos[i].y + (parPos[i].y - e.clientY)/90;
+					}
+				}
+//				上面的for循环把所有的粒子的位置全部重新计算，然后擦除画布，再根据新位置，使用for循环重新绘制所有的粒子
+				c.clearRect(0,0,400,400);
+				for (var j = 0; j < parPos.length; j++) {
+					c.fillRect( parPos[j].x,parPos[j].y,parW,parW );
+				}
+			}
+			function getDis(x,y){
+				return Math.sqrt( x*x+y*y )
+			}
+			
+		</script>
+	</body>
+</html>

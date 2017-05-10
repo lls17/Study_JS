@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				es6提供的简写方式
+					{
+						key:1,
+						fn:function (){
+								
+						}
+					}
+			*/
+			/*var obj = {
+				key:1,
+				a:[1,2,3]
+				fn(){
+
+				}
+			}*/
+
+			//相当于
+			/*var obj = {
+				fn:function (){
+						
+				}
+			}*/
+
+			var a  = "miaov";
+
+			var obj = {
+				a
+			};
+
+			//相当于
+			var obj = {
+				a:a
+			}
+
+			console.log( obj );
+
+			var tools = (function (){
+				function $(){}
+				function addEvent(){}
+				function removeEvent(){}
+
+				return {
+					$,
+					addEvent,
+					removeEvent
+				}
+
+				//相当于下面写法
+
+				/*{
+					$:$,
+					addEvent:addEvent,
+					removeEvent:removeEvent
+				}*/
+
+			})();
+
+			console.log( tools );
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

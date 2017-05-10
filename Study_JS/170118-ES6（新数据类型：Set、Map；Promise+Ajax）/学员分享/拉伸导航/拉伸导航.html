@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				line-height: 1;
+				}	
+			ol, ul {
+				list-style: none;
+			}			
+			body {
+				background: #1f2327 url(footer.png) repeat-x bottom left;
+				min-width: 1036px;
+			}			
+			#container h1 {
+			   display: block;
+			   width: 210px; height: 104px;
+			   margin-left: 130px;
+				background: url(img1/logo.png);
+				text-indent: -9999px;
+			}
+			#centerwell {
+			   position: relative;
+			   height: 177px;
+			   background: #3d464e;
+			   overflow: hidden;
+			}
+			
+			#centerwell li  {
+			   position: relative;
+			   width: 72px; 
+			   height: 177px;
+			   float: left;
+			   border-right: #3d464e 1px solid;
+			   background: white;
+			   overflow:hidden;
+			   cursor: pointer;
+			}
+			
+			#centerwell h3 {
+			   position: absolute;
+			   top: 0; 
+			   left: 0;
+			   margin: 0;
+			   text-indent: -9999px;
+			   width: 72px; height: 177px;
+			}
+	
+			#centerwell p {
+			   width: 215px;
+			   margin-left: 85px;
+			   margin-top: 50px;
+			   padding-top: 40px;
+			   color: #5f5f5f;
+			   font-size: 15px;
+			   line-height: 18px;
+			   /*font-family: "微软雅黑";*/
+			
+			}
+			#behance h3 {
+			   background: url(img1/behance_btn.gif) no-repeat;
+			}
+			#flicker h3 {
+			   background: url(img1/flickr_btn.gif) no-repeat;
+			}
+			#linkedin h3 {
+			   background: url(img1/linkedin_btn.gif) no-repeat;
+			}
+			#facebook h3 {
+			   background: url(img1/facebook_btn.gif) no-repeat;
+			}
+			#twitter h3 {
+			   background: url(img1/twitter_btn.gif) no-repeat;
+			}
+			#resume h3 {
+			   background: url(img1/resume_btn.gif) no-repeat;
+			}
+			#email h3 {
+			   background: url(img1/email_btn.gif) no-repeat;
+			}
+			#contact h3 {
+			   background: url(img1/contact_btn.gif) no-repeat;
+			}
+			#centerwell #behance{
+				width: 318px;
+			}
+	</style>
+	</head>
+	<body>
+		<div id="container">
+      <h1>admin5</h1>
+      <ul id="centerwell">
+         <li id="behance">
+            <h3>Behance</h3>
+            <p>Great minds have purpose, others have wishes.</p>
+         </li>
+         <li id="flicker">
+            <h3>Flicker</h3>
+             <p>Being single is better than being in an unfaithful relationship.</p>
+         </li>
+         <li id="linkedin">
+            <h3>LinkedIn</h3>
+             <p>Sometimes your plans don’t work out because God has better ones.</p>
+         </li>
+         <li id="facebook">   
+            <h3>Facebook</h3>
+             <p>You can’t have a better tomorrow if you don’t stop thinking about yesterday.</p>
+         </li>
+         <li id="twitter">
+            <h3>Twitter</h3>
+             <p>True mastery of any skill takes a lifetime.</p>
+         </li>
+         <li id="resume">
+            <h3>Resume</h3>
+             <p>If you are doing your best,you will not have to worry about failure.</p>
+         </li>
+         <li id="email">
+            <h3>Email</h3>
+             <p>Proper preparation solves 80 percent of life's problems.</p>
+         </li>
+         <li id="contact">
+            <h3>Contact</h3>
+             <p>Winners do what losers don't want to do.</p>
+         </li>
+      </ul>
+      <script src="jquery-3.1.1.js"></script>
+      <script>  
+	   $('#centerwell li').hover(function() {	      
+	      $('#content, h1').stop().animate({opacity: ".2"});
+	      $('.morph').stop().animate({'color': '#9EAEBE'}, 400);
+	      $('.morph_alt').stop().animate({'color': '#9EAEBE'}, 400);
+	       $("#centerwell li").stop().animate({
+		      	width:"72px"
+		      })	            
+	      $(this).stop().animate({
+	      	width: "318px"
+	      	}, 300)
+	      $(this).find('h3').stop().animate({
+	      	backgroundPosition: "-71px"
+	      	}, 300)
+	   }, 
+	    function() {
+		      $('.morph').stop().animate({'color': '#00aaf0'}, 400);
+		      $('.morph_alt').stop().animate({'color': '#00aaf0'}, 400);
+		      $('#content, h1').stop().animate({opacity: "1"});
+
+			  $(this).stop().animate({
+		      		width: "318px"
+		  	  }, 300)
+
+		  	   // $("#behance").stop().animate({width:"318px"});
+		      $(this).find('h3').stop().animate({
+		      	backgroundPosition: "0px"
+		      	}, 300)
+   		});
+      </script>
+	</body>
+</html>

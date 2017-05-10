@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				for of
+					遍历的是键值
+
+					不能遍历没有遍历器(iterator)的对象
+
+				for in
+					遍历的是键
+
+				遍历器：
+					它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
+
+				Symbol.iterator 用在线性集合（有序集合）
+			*/
+
+
+			var obj= {
+				a:1,
+				b:2
+			}
+
+			//如果快速的得到对象的key值
+			//console.log( Object.keys(obj) );  //得到对象的key的值，返回值是一个数组
+
+			//var arr = ["a","b"]  obj[arr[0]] obj[arr[1]]
+
+			Object.prototype[Symbol.iterator] = function (){
+				//console.log( this );  //遍历的对象
+				var keys = Object.keys(this);  //得到对象的属性，放在数组中
+				var index = 0;  //目的是依次取出keys
+				var self = this;
+
+				return {
+					next:function (){
+						return index < keys.length ? {
+							value: self[keys[index++]],
+							done:false
+						} :
+							{
+							value: undefined,
+							done:true
+						}
+					}
+				}	
+			};
+
+
+			//调用被遍历对象的遍历器（Symbol.iterator）
+			for( let value of obj ){
+				console.log( value );
+			}
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			canvas{
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script>
+		//01,使用canvas作图,首先获取需要canvas的2d绘图环境;通过canvas元素的getContext("2d")方法
+			var c = document.getElementById("canvas").getContext("2d");
+			
+			var parW =2;
+			//03，记录每个粒子的初始位置的粒子
+			var parPos = [];
+			var oriPos = [];
+			
+			var x = 100;
+			var y = 100;
+			c.fillStyle = "#000";
+//			接下来为了让所有的粒子可以往回走,首先要记录所有粒子的初始位置,当粒子的位置和鼠标距离不在100像素之内,那么则让粒子慢慢往回移动
+			function drawDot(){
+				for (var i = 0; i < c.canvas.height; i+=7) {
+					for (var j = 0; j < c.canvas.width; j+=7	) {
+					//	02,在本例中,只需要使用fillRect方法，该方法接受4个参数，左边点位置，横坐标位置，纵坐标位置，默认填充颜色是黑色的，填充颜色可以通过context.fillStyle = 颜色 进行修改。
+						c.fillRect( j,i,parW,parW );
+						//记录每个粒子的位置，一会儿在这个位置的基础上进行变换，然后在重新生成粒子，造成运动的效果
+						parPos.push( {
+							x:j,
+							y:i
+						})
+//						在生成的时候存储粒子的初始位置
+						oriPos.push( {
+							x:j,
+							y:i
+						})
+					}
+				}
+			}
+			//上生成粒子
+			drawDot();
+			//当鼠标移动的时候，计算位置
+			document.onmousemove = function(e){
+				x = e.clientX;
+				y = e.clientY;
+			}
+			
+			
+//			封装往回走的函数，在此处只是改变了粒子的坐标位置，原理和推动粒子类似
+			function goback(i){
+				var rx = (oriPos[i].x-parPos[i].x)/10;
+				var ry = (oriPos[i].y-parPos[i].y)/10;
+				parPos[i].x += rx;
+				parPos[i].y += ry;
+			}
+		//	为了达到持续推动粒子的效果,在外部开启一个定时器，在定时器中重复执行让粒子根据鼠标进行运动的函数
+			setInterval(function(){
+				for (var i = 0; i < parPos.length; i++) {
+					var dis = getDis( parPos[i].x-x,parPos[i].y-y  )
+					if( dis<=100 ){
+						parPos[i].x = parPos[i].x + (parPos[i].x - x)/(dis-5);
+						parPos[i].y = parPos[i].y + (parPos[i].y - y)/(dis-5);
+					}
+//					和鼠标之间的距离在100像素之外时,开始让粒子往回走（修改粒子的坐标）
+					else{
+						goback(i);
+					}
+				}
+				//注意:在canvas中让粒子运动,都是先擦除画布,然后再重新画图,达到视觉上的粒子移动效果，擦除画布需要使用c.clearRect(x坐标,y坐标,宽度,高度)
+				c.clearRect(0,0,400,400);
+				//使用for循环重新生成粒子‘
+				for (var j = 0; j < parPos.length; j++) {
+					c.fillRect( parPos[j].x,parPos[j].y,parW,parW );
+				}
+			},50)
+			
+			function getDis(x,y){
+				return Math.sqrt( x*x+y*y )
+			}
+		</script>
+	</body>
+</html>

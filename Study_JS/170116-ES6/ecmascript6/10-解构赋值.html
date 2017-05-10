@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				什么是解构赋值
+				ES6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
+
+				数组的解构赋值语法
+					var [a, b, c] = [1, 2, 3];	
+					
+				对象的解构赋值语法
+					var { foo, bar } = { foo: "aaa", bar: "bbb" };
+				解构赋值的作用
+					函数只能返回一个值，如果要返回多个值，只能将它们放在数组或对象里返回。有了解构赋值，取出这些值就非常方便。
+
+
+			*/
+			
+			/*var arr = [1,2,3,45,6,7];
+
+			let [,a,b,c] = arr;
+
+			console.log( a,b,c );*/
+
+			/*var arr = [1,2,3];
+
+			let [a,b,c=1000] = arr;  //给c一个默认值
+
+			console.log( a,b,c );*/
+
+			function fn([username,age,sex="女"]){
+				/*let username = options[0];
+				let age = options[1];
+				let sex = options[2];*/
+
+				console.log( username,age,sex );
+
+			}
+
+			fn(["leo",29,"男"])
+			fn(["momo",18])
+
+
+		</script>
+	</head>
+
+	<body>
+		<ul id="list">
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+		</ul>
+		<script>
+
+		</script>
+	</body>
+</html>

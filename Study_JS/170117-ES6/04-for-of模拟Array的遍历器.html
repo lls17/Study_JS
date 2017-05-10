@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				for of
+					遍历的是键值
+					不能遍历没有遍历器(iterator)的对象
+
+				for in
+					遍历的是键
+				遍历器：
+					它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
+
+				Symbol.iterator 用在线性集合（有序集合）
+			*/
+
+			var arr = ["miaov",undefined,"ketang"];
+
+			//自己实现一套遍历器接口 iterator
+			//这是我们自己模拟的
+			var a = iterator(arr);
+
+			/*console.log( a.next() );;
+			console.log( a.next() );;
+			console.log( a.next() );;
+			console.log( a.next() );;*/
+			var obj = {};
+			while( !obj.done ){
+				obj = a.next();
+				console.log( obj.value );
+			}
+
+			function iterator(arr){
+				var index = 0;
+				return { //迭代器返回的是一个对象，这个对象有next方法，方法返回一个对象（有value,done属性）
+					next(){
+						return index < arr.length ?
+							{
+								value:arr[index++],
+								done:false
+							}:
+							{
+								value:undefined,
+								done:true
+							}
+					}
+				}
+			}
+
+			//程序内置提供的遍历器接口
+			//Array.prototype[Symbol.iterator] = function (){}
+
+			/*var a = arr[Symbol.iterator]();  //或返回一个指针对象
+
+			console.log( a.next() );  //{value：当前这一次的值,done：是否取值完成}
+			console.log( a.next() );  //{value：当前这一次的值,done：是否取值完成}
+			console.log( a.next() );  //{value：当前这一次的值,done：是否取值完成}
+			console.log( a.next() );  //{value：undefined,done：true}*/
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

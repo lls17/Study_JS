@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				事件对象
+					通过事件对象得到当前这一次事件发生细节
+
+				高版本浏览器中
+					事件对象作为事件处理函数的第一个参数
+				ie低版本 6,7,8
+					获取事件对象
+						在全体提供一个event变量，存的是就是事件发生细节，事件对象
+
+			*/
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="测试事件对象" />
+		<script>
+
+			//console.log( event );  //打开页面，不报错，说明event是存在；报错，不存在。
+
+			console.log( window );  //窗口对象
+
+			//事件对象作为事件处理函数的第一个参数
+			btn.onclick = function (ev){
+				//console.log( ev );
+				//console.log( event ); //ie低版本使用全局的event获取事件对象
+
+				//var e = ev || event;
+				var e = window.event || ev;
+
+				console.log( e );
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		/*
+				for of
+					遍历的是键值
+					不能遍历没有遍历器(iterator)的对象
+
+				for in
+					遍历的是键
+				遍历器：
+					它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
+
+				Symbol.iterator 用在线性集合（有序集合）
+			*/
+			
+			var arr = [3,5,6,7];
+//			for(var val of arr){
+//				console.log(val);  //3,5,6,7
+//			}
+//			for(var attr in arr){
+//				console.log(attr);   //0,1,2,3
+//			}
+			
+			var obj = {
+				"name" : "Lisa",
+				"age" : 17
+			}
+//			for(var val of obj){
+//				console.log(val); // obj[Symbol.iterator] is not a function  
+//			}
+
+			// 数组可以，Object不可以；那么arr[Symbol.iterator]()是什么那？
+//			console.log(arr[Symbol.iterator]());  //返回ArrayIterator {}
+//			console.dir(arr[Symbol.iterator]());  //有next()方法
+		//迭代器返回的是一个对象，这个对象有next方法，方法返回一个对象（有value,done属性）
+			Object.prototype[Symbol.iterator] = function(){
+				//console.log( this );  //遍历的对象
+				var index = 0;
+				var keys = Object.keys(this); //遍历对象的所有key值
+				var self = this;
+				return {
+					next(){
+						return index < keys.length ? {
+							value : self[keys[index++]],
+							done : false
+						} : {
+							value : undefined,
+							done : true
+						}
+					}
+				}
+			}
+			
+//			for(var val of obj){
+//				console.log(val); 
+//			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body style="height: 2000px;">
+		<script>
+
+		/*
+			window.close() --- 关闭当前窗口
+
+			不同的浏览器表现形式不一样
+			
+			兼容：
+			Firefox/Opera
+				 只允许关闭由window.open方法所打开的窗口。
+			Chrome 
+				直接关闭当前窗口	
+			ie
+			询问是否关闭
+
+
+		*/
+
+			document.onclick = function (){
+				//console.log( window.pageYOffset  );
+
+				/*console.log( document.documentElement.scrollTop );
+				console.log( document.body.scrollTop );  //chrome*/
+
+				console.log( document.documentElement.scrollTop || document.body.scrollTop );
+			};
+
+		</script>
+	</body>
+</html>

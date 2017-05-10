@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./vue.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			<p>{{message.split("").reverse().join("")}}</p>
+			<input v-model="message" />
+			{{c_mes}}
+		</div>
+		<script>
+
+			
+			new Vue({
+				el:"#box",
+				data:{
+					message:"hello"
+				},
+				beforeCreate(){
+					console.log( document.getElementById("box") );
+					console.log( this.message );
+				},
+				created(){
+					console.log( this.message );
+					console.log( document.getElementById("box") );
+					this.message = "123";
+					var b = document.getElementById("box");
+					//b.innerHTML = "{{message}}"
+				},
+				beforeMount(){
+					console.log( document.getElementById("box") );
+					var b = document.getElementById("box");
+					b.innerHTML = "{{message}}"
+				},
+				mounted(){
+					console.log( document.getElementById("box") );
+				},
+				computed:{
+					"c_mes":{
+						get(){
+							return this.message + "hello,vue"
+						},
+						set(newValue){
+							console.log( newValue);
+
+						}
+					}
+				}
+			});
+
+			Vue.nextTick(function () {
+			  // DOM 更新了
+			  console.log( document.getElementById("box") );
+			  
+			})
+			
+
+		</script>
+	</body>
+</html>

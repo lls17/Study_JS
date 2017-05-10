@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="获取数据" id="btn" />
+		<script>
+
+			var btn = document.getElementById("btn");
+
+			btn.onclick = function (){
+				var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+
+				
+
+				xhr.open("get","http://localhost/2017-1-14/php/get.php?user=leo",true);
+				//ajax每走一步的时候，都会触发这个函数，等到readystate为4的时候，ajax请求完成了
+				xhr.onreadystatechange = function(){
+					//alert(xhr.readystate)
+
+					if(xhr.readystate === 4){ //请求完成
+						alert(xhr.responseText)
+					}
+				}
+
+				xhr.send();
+
+			};
+		</script>
+	</body>
+</html>

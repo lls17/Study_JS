@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				element.addEventListener(evName,evFn,true|false)
+					给元素绑定事件处理函数
+
+					高版本使用
+
+				element.attachEvent(on+evName,evFn);
+					//只冒泡
+
+			*/
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="测试事件对象" />
+		<script>
+
+		function on(element,evName,evFn){
+			if(element.addEventListener){
+				element.addEventListener(evName,evFn,false);
+			}else if(element.attachEvent){
+				element.attachEvent('on'+evName,function (){
+					evFn.call(element,event);	
+				});
+			}else{
+				element["on"+evName] = evFn;
+			}
+		}
+
+		on(btn,"click",function (){
+			console.log( this );
+		});
+
+		/*btn.addEventListener("click",function (){
+			alert(1)	
+		})*/
+		/*btn.attachEvent("onclick",function (){
+			alert(1)	
+		})*/
+		</script>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				localStorage 本地存储
+					浏览器可以对一个域下存5M大小的数据
+
+				浏览器值支持localStorage本地存储的，都提供一个localStorage对象
+
+				设置：
+					localStorage.setItem(key,value);
+
+				获取：
+
+					localStorage.getItem(key);
+
+				删除：
+					localStorage.removeItem(key);
+
+				localStorage.clear();清除所有localStorage
+			*/
+
+		</script>
+	</head>
+
+	<body>
+		<input type="text" name="" id="messageInput" />
+		<ul id="list">
+			<!-- <li>123</li>
+			<li>123</li>
+			<li>123</li> -->
+		</ul>
+		<script>
+
+			var meesage = [];
+
+			//从localStorage中取出值
+
+			var data = localStorage.getItem("message");
+			//从localStorage中取到了数据，生成li
+			if(data){
+				data = JSON.parse(data);
+
+				for( var i = 0; i < data.length; i++ ){
+					var newLi = document.createElement("li");
+					newLi.innerHTML = data[i];
+					list.appendChild(newLi);
+				}
+			}
+
+
+			messageInput.onkeyup = function (ev){
+				if(ev.keyCode === 13){
+					var newLi = document.createElement("li");
+					newLi.innerHTML = this.value;
+
+					meesage.push(this.value);
+
+					//把数据存在localStorage中
+					localStorage.setItem("message",JSON.stringify(meesage));
+
+					list.appendChild(newLi)
+				}	
+			}
+		</script>
+	</body>
+</html>

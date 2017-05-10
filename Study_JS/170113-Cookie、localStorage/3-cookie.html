@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				对cookie进行增删改查
+
+					使用document.cookie设置cookie，存在于会话（session）阶段，如果把浏览器关闭之后，cookie会自动清空
+
+					如果要让cookie在未来某个时刻清空，给这条cookie设置一个过期时间
+			*/
+			document.cookie = "miaov=1";
+
+			var d = new Date();
+
+			//设置到明天的过期时间
+			//d.setDate(d.getDate()+1);
+
+			d.setMinutes(d.getMinutes()+1);
+
+			document.cookie = "ketang=2; expires="+d.toUTCString();
+			console.log(d.toUTCString()); //Tue, 09 May 2017 07:24:47 GMT
+
+
+
+		</script>
+	</head>
+
+	<body>
+		<h1>今天天气很好</h1>
+		<ul>
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+		</ul>
+	</body>
+</html>

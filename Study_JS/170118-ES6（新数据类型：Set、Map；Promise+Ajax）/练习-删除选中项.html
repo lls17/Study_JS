@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="list"></ul>
+		<input type="button" value="删除" id="btn" />
+		<script>
+			var data = [
+				{
+					id:"1",
+					title:"我的音乐"
+				},
+				{
+					id:"2",
+					title:"我的电影"
+				},
+				{
+					id:"3",
+					title:"我的图片"
+				},
+				{
+					id:"4",
+					title:"我的空间"
+				}
+			];
+			
+			//初始化list
+			function render(){
+				var str = data.map( item => 
+				   `<li data-id="${item.id}"><input type="checkbox"/>${item.title}</li>` 
+				).join("");
+				list.innerHTML = str;
+			}
+			render();
+			
+			btn.onclick = function(){
+				//获得选中li的id
+				var chkIdArr = [...list.getElementsByTagName("li")].filter( item => 
+					item.getElementsByTagName("input")[0].checked
+				).map( item => item.dataset.id);
+				
+				data = data.filter( item => !(new Set(chkIdArr).has(item.id)));
+				render();
+			};
+		</script>
+	</body>
+</html>

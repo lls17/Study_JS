@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./jq3.js"></script>
+		<script src="./ajax.js"></script>
+		<script>
+			/*
+				new Promise
+					ES6的Promise对象是一个构造函数，用来生成Promise实例。下面是Promise对象的基本用法。
+所谓Promise对象，就是代表了未来某个将要发生的事件（通常是一个异步操作）。它的好处在于，有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数
+
+					三种状态：
+						Pending（进行中）、
+						Resolved（已完成，又称Fulfilled）
+						Rejected（已失败）
+			*/
+
+			var p = new Promise(function (resolve, reject){
+					setTimeout(function (){
+						console.log("我是延时定时器，我执行了");
+						//状态为成功
+						//resolve("我是成功的参数");	
+						reject("reject");
+					},1000);
+			});
+
+			p.then(function (data){
+				console.log("我成功了,参数为::::"+data);	
+			}/*,function (data){
+				console.log("我失败了,参数为：：："+data);	
+			}*/)
+			.catch(function (data){
+				console.log("我失败了,参数为：：："+data);	
+			})
+
+			var p = new Promise(function(resolve, reject){
+				resolve();
+			});
+			
+			p.then(function(){
+				console.log("")
+			})
+			// 回调函数的模拟
+//			function fn(fn2){
+//				...
+//				fn2(result);
+//			}
+//			function fn2(data){
+//				...
+//			}
+			
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,3 @@
+https://github.com/carhartl/jquery-cookie
+
+要知道如何操作cookie和localStorage

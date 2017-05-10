@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			var a  = 10;
+			function fn(){
+				this.a = "我是局部变量"
+				console.log(a);
+				/*function fn2(){
+					console.log( this.a );
+					//console.log( this );
+				}*/
+
+//				var fn2 = () =>{
+//					//在定义的时候就确定this的值
+//					console.log( this.a );
+//				}
+//
+//				fn2();
+			}
+			document.onclick  = fn;
+			
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="改变背景" />
+		<script>
+			/*
+				箭头函数体内的this对象，绑定定义时所在的对象，而不是使用时所在的对象。
+			*/
+			btn.onclick = function (){
+				//var self = this;
+				/*setTimeout(function (){
+					self.style.background = "yellow";	
+				},1000)	*/
+				
+				setTimeout(()=>{
+					console.log(this);
+					this.style.background = "yellow";
+				},1000)	
+			};	
+		</script>
+	</body>
+</html>

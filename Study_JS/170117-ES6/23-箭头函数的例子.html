@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<ul>
+			<li>index</li>
+			<li>index</li>
+			<li>index</li>
+		</ul>
+		<script>
+			"use strict"
+			var allLi = document.getElementsByTagName("li");
+			var arr = [1,2,3,4,5,6];
+
+			[...allLi].forEach(function (item){
+				item.onclick = function (){
+					/*arr.forEach(function (value){
+						console.log( this );
+						this.innerHTML += value;
+					})*/	
+
+					arr.forEach( (value) => {
+						console.log( this );  //箭头函数中this就指向了触发这个事件的li
+						this.innerHTML += value;
+					})
+				};
+			});
+		</script>
+	</body>
+</html>

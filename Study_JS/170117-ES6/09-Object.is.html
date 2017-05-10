@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				判断是否相同
+					==   
+					=== 
+
+				Object.is();
+					用于对比参数是否严格相等，相对于===运算符，
+					可以正确比较-0和0还有NaN
+			*/
+
+			console.log( "-0" === -0 );  //false
+			console.log( 0 === -0 );  //true
+			console.log( NaN === NaN ); //false
+
+			console.log('=----------Object.is()-----------------');
+
+			console.log( Object.is("-0",-0) );  //false
+			console.log( Object.is(0,-0) );     //false
+			console.log( Object.is(NaN,NaN) );  //true
+			console.log( Object.is(1,1) );    //true
+
+			//判断两个值是否相同 0 -0
+
+//			function xiangtong(x, y) {
+//
+//					//x不为0
+//
+//				    if (x === y) {
+//				      // 针对+0 不等于 -0的情况
+//				      return x !== 0 || 1 / x === 1 / y;
+//				    }
+//				    // 针对NaN的情况
+//				    return x !== x && y !== y;
+//			};
+//			console.log("--------------------------");
+//
+//			console.log( xiangtong(1,1) );
+//			console.log( xiangtong(1,2) );  //false
+//			console.log( xiangtong(0,-0) );
+//			console.log( xiangtong(NaN,NaN) );
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			"use strict" ;
+//			function fn(){
+//				console.log( this ); //严格模式下，this指向undefined，非window
+//			}
+//
+//			fn();  
+
+			//直接调用函数this指向undefined
+			function Person(){
+				console.log(this); //undefined
+			}
+
+			Person();
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

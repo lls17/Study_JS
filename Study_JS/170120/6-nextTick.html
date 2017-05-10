@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./vue.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			<p>{{message.split("").reverse().join("")}}</p>
+			<input v-model="message" />
+			{{c_mes}}
+		</div>
+		<script>
+
+			
+			var vm = new Vue({
+				el:"#box",
+				data:{
+					message:"hello"
+				},
+				methods:{
+					abc(){
+						alert(1)
+					}
+				}
+			});
+
+			//vue内置提供的方法或属性 调用的时候属性或方法加上$ 例如 vm.$data
+
+			vm.abc();
+
+			console.log( vm.$data );
+			
+
+		</script>
+	</body>
+</html>

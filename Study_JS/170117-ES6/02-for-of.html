@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<script>
+			/*
+				for of
+					遍历的是键值
+					不能遍历没有遍历器(iterator)的对象
+				for in
+					遍历的是键
+			*/
+
+			var obj = {a:1}
+//			var obj = ["a","b"];
+
+			//for in
+			/*for( var attr in arr ){
+				console.log( attr );
+				console.log( arr[attr] );
+			}*/
+
+			//for of
+			//Uncaught TypeError: obj[Symbol.iterator] is not a function
+			for( let value of obj ){
+				console.log( value );
+			}
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

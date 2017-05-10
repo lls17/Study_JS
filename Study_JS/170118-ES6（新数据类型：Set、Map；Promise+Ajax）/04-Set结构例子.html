@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<ul id="list">
+			<!-- <li><input type="checkbox" name="">我的音乐</li>
+			<li><input type="checkbox" name="">我的视频</li> -->
+		</ul>
+		<hr>
+		<input type="button" id="deleteItem" value="删除选中元素" />
+		<script>
+			
+			var data = [
+				{
+					id:"1",
+					title:"我的音乐1"
+				},
+				{
+					id:"2",
+					title:"我的音乐2"
+				},
+				{
+					id:"3",
+					title:"我的音乐3"
+				}
+			];
+
+			render();
+			function render(){
+				var str = data.map(function (value){
+					return `<li data-id="${value.id}"><input type="checkbox" name="">${value.title}</li>`
+				}).join("");
+
+				list.innerHTML = str;
+			}
+
+			var allLi = document.getElementsByTagName("li");
+
+			var fn = (m) => m+1;
+
+			var fn = function (m){
+				return m+1;
+			} 
+
+			//删除
+			deleteItem.onclick = function (){
+				//找到那些选中的li
+
+				/*var checkedLi = [...allLi].filter( (item) => item.getElementsByTagName("input")[0].checked );
+
+				//删除数据数据的id
+
+				var checkedId = checkedLi.map( (item) => item.dataset.id ); //["1","2"]
+
+				data = data.filter((item) => !(new Set(checkedId).has(item.id)));*/
+
+//				var checkedLi = [...allLi].filter(function (item){
+//					return item.getElementsByTagName("input")[0].checked
+//					});
+//				var checkedId = checkedLi.map( function (item) {
+//					return item.dataset.id
+//				});
+				var checkedId = [...allLi].filter(function (item){
+					return item.getElementsByTagName("input")[0].checked
+					}).map( function (item) {
+					return item.dataset.id
+				});
+console.log(checkedId);
+				data = data.filter(function (item){
+					var bl = !(new Set(checkedId).has(item.id))
+console.log(item.id, bl);
+					return bl;
+				});
+
+				render();
+				//删除数据中id对应的数据
+
+				/*data = data.filter(function (item){
+					return !(new Set(checkedId).has(item.id));
+				});*/
+			};
+
+
+		</script>
+	</body>
+</html>
